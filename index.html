@@ -1,0 +1,3105 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<style>
+button:nth-of-type(odd) {
+    background-color: #007bff;  /* Original button color */
+    color: #fff;
+}
+
+button:nth-of-type(even) {
+    background-color: #004185;  /* New alternating color */
+    color: #fff;
+}
+</style>
+
+<style>
+h1, #ancDisplay {
+    color: #004185 !important;
+}
+</style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=portrait"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANC CALCULATOR</title>
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #222;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#routeDisplay {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+.route-waypoint {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    background: #e7e7e7;
+    color: #333;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: grab;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    button {
+        width: 100%;
+    }
+}
+
+
+.searchable-select {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+}
+
+.searchable-select input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.searchable-select ul {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;  /* Remove bullet points */
+}
+
+.searchable-select ul li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.searchable-select ul li:last-child {
+    border-bottom: none;
+}
+
+.searchable-select ul li:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+button {
+    padding: 12px 20px;
+    margin: 10px 0;
+    background: #f5f5f5;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-align: center;
+}
+
+button:hover {
+    background: #e0e0e0;
+    border-color: #b0b0b0;
+}
+
+button:active {
+    background: #d5d5d5;
+    border-color: #999;
+    transform: translateY(1px);
+}
+
+
+/* Updated Color Theme */
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background: #ccc;
+    color: #222;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s, border-color 0.3s;
+    text-align: center;
+}
+
+button:hover {
+    background: #e0e0e0;
+    border-color: #aaa;
+}
+
+button:active {
+    background: #d5d5d5;
+    border-color: #999;
+    transform: translateY(1px);
+}
+
+input:focus {
+    border-color: #555;
+}
+
+.searchable-select ul li:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #222;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card {
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    text-align: center;
+    color: #555;
+}
+
+.card h2, .card h3 {
+    margin: 0 0 15px;
+    font-size: 1.5em;
+}
+
+button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+<style>
+#aircraftList {
+    display: none;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    width: calc(100% - 2px);
+    z-index: 1000;
+}
+
+#aircraftList li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#aircraftList li:hover {
+    background-color: #f0f0f0;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style><style>
+#aircraftSearchInput {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.searchable-select input {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style><style>
+#aircraftSearchInput, #searchInput {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style><style>
+.searchable-select {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+.searchable-select input, .searchable-select ul {
+    width: 100% !important;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+<style>
+/* General body styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Centered Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+    max-width: 1200px;
+}
+
+/* Modern Heading */
+h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Buttons */
+button {
+    padding: 1em 2.5em;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    background-color: #4A90E2;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #357ABD;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Input fields */
+input {
+    padding: 0.8em 1em;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+
+<style>
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background: #007bff; /* Default Primary Blue */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3; /* Hover: Darker Blue */
+}
+
+button:active {
+    background: #004085; /* Active: Even Darker Blue when clicked */
+    transform: translateY(1px);
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+
+<style>
+#routeDisplay {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0; /* Remove rounded corners */
+    padding: 20px;
+    width: 100%;
+    max-width: 600px; /* Match other element widths */
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+
+<style>
+input, .searchable-select input, #aircraftSearchInput {
+    border-radius: 0; /* Remove rounded edges */
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.searchable-select ul {
+    border-radius: 0; /* Remove rounded edges on search dropdowns */
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+
+<script>
+function clearPage() {
+    location.reload();
+}
+</script>
+
+<script>
+function clearPage() {
+    // Force a full reload, bypassing the cache
+    window.location.href = window.location.href;
+}
+</script>
+
+<style>
+    #mtow, #dist {
+        text-align: center;
+        display: block;
+        margin: 10px auto;
+    }
+
+    #ancDisplay {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+
+
+<style>
+.split-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.split-input .placeholder-text {
+    padding: 10px;
+    background-color: #e6e6e6;
+    color: #555;
+    white-space: nowrap;
+    flex: 0 0 40%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.split-input input[type="number"] {
+    border: none;
+    padding: 10px;
+    flex: 1;
+    outline: none;
+    font-size: 16px;
+    background-color: #fff;
+    -moz-appearance: textfield; /* Removes the number spinner on Firefox */
+}
+
+.split-input input[type="number"]::-webkit-inner-spin-button,
+.split-input input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.split-input input[type="number"]:focus {
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+}
+</style>
+
+
+<style>
+.split-input {
+    display: flex;
+    align-items: stretch; /* Align items to stretch vertically */
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.split-input .placeholder-text {
+    padding: 10px;
+    background-color: #e6e6e6;
+    color: #555;
+    white-space: nowrap;
+    flex: 0 0 40%; /* Fixed width for label */
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-input input[type="number"] {
+    border: none;
+    padding: 10px;
+    flex: 1;
+    outline: none;
+    font-size: 16px;
+    background-color: #fff;
+    -moz-appearance: textfield;
+}
+
+.split-input input[type="number"]::-webkit-inner-spin-button,
+.split-input input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.split-input input[type="number"]:focus {
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+}
+</style>
+
+
+<style>
+.split-input .placeholder-text,
+.split-input input[type="number"] {
+    font-size: 16px; /* Match CLEAR button font size */
+}
+</style>
+
+
+<style>
+.split-input input[type="number"],
+.split-input .placeholder-text {
+    height: 40px; /* Match the button height explicitly */
+    display: flex;
+    align-items: center;
+}
+</style>
+
+
+<style>
+.split-input .placeholder-text {
+    color: #999; /* Light gray for the label text */
+    background-color: #fff; /* White background for the gray box below label */
+}
+
+.split-input input[type="number"] {
+    background-color: #fff; /* Ensure input box background remains white */
+}
+</style>
+
+
+<style>
+.split-input {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #ccc; /* General border to match stroke color */
+}
+
+.split-input .placeholder-text {
+    color: #999; /* Light gray for the label text */
+    background-color: #fff; /* White background for the label box */
+    flex: 0 0 40%; /* Fixed width for the label */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.split-input .placeholder-text::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #999; /* Separator line matches border color */
+}
+
+.split-input input[type="number"] {
+    flex: 1;
+    background-color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+}
+</style>
+
+</head>
+<body>
+<style>
+/* Full-width rectangular card styling */
+.full-page-card {
+    margin: 0;
+    padding: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Subtle contrast */
+}
+
+@media screen and (orientation: landscape) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        height: 100vw;
+        width: 100vh;
+        overflow-x: hidden;
+        position: fixed;
+    }
+}
+
+</style>
+<div class='full-page-card'>
+<h1>ANC CALCULATOR</h1>
+<div class="searchable-select">
+<p>Search and click to select aircraft. Search and click waypoints to build a route.</p><input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" type="text"/>
+<ul id="aircraftList" style="display: none;">
+<li onclick="addAircraft('A10')"><span style="color: #808080;">A10</span>  FAIRCHILD Fairchild A-10A <span style="color: #808080;">(23 Tonnes)</span></li>
+<li onclick="addAircraft('A124')"><span style="color: #808080;">A124</span>  ANTONOV Antonov AN-124-100 <span style="color: #808080;">(405 Tonnes)</span></li>
+<li onclick="addAircraft('A19N')"><span style="color: #808080;">A19N</span>  AIRBUS Airbus A319 Neo <span style="color: #808080;">(76 Tonnes)</span></li>
+<li onclick="addAircraft('A20N')"><span style="color: #808080;">A20N</span>  AIRBUS Airbus A320-271N <span style="color: #808080;">(79 Tonnes)</span></li>
+<li onclick="addAircraft('A21N')"><span style="color: #808080;">A21N</span>  AIRBUS Airbus A321-251N <span style="color: #808080;">(95 Tonnes)</span></li>
+<li onclick="addAircraft('A306')"><span style="color: #808080;">A306</span>  AIRBUS Airbus A300B4-622 <span style="color: #808080;">(165 Tonnes)</span></li>
+<li onclick="addAircraft('A30B')"><span style="color: #808080;">A30B</span>  AIRBUS Airbus A300B4-203 <span style="color: #808080;">(165 Tonnes)</span></li>
+<li onclick="addAircraft('A310')"><span style="color: #808080;">A310</span>  AIRBUS Airbus A310-204 <span style="color: #808080;">(144 Tonnes)</span></li>
+<li onclick="addAircraft('A318')"><span style="color: #808080;">A318</span>  AIRBUS Airbus A318-112 <span style="color: #808080;">(68 Tonnes)</span></li>
+<li onclick="addAircraft('A319')"><span style="color: #808080;">A319</span>  AIRBUS Airbus A319-131 <span style="color: #808080;">(77 Tonnes)</span></li>
+<li onclick="addAircraft('A320')"><span style="color: #808080;">A320</span>  AIRBUS Airbus A320-231 <span style="color: #808080;">(79 Tonnes)</span></li>
+<li onclick="addAircraft('A321')"><span style="color: #808080;">A321</span>  AIRBUS Airbus A321-111 <span style="color: #808080;">(92 Tonnes)</span></li>
+<li onclick="addAircraft('A332')"><span style="color: #808080;">A332</span>  AIRBUS Airbus A330-243 <span style="color: #808080;">(242 Tonnes)</span></li>
+<li onclick="addAircraft('A333')"><span style="color: #808080;">A333</span>  AIRBUS Airbus A330-301 <span style="color: #808080;">(242 Tonnes)</span></li>
+<li onclick="addAircraft('A337')"><span style="color: #808080;">A337</span>  AIRBUS Airbus A330-700 Beluga XL <span style="color: #808080;">(227 Tonnes)</span></li>
+<li onclick="addAircraft('A338')"><span style="color: #808080;">A338</span>  AIRBUS Airbus A330-800 <span style="color: #808080;">(247 Tonnes)</span></li>
+<li onclick="addAircraft('A339')"><span style="color: #808080;">A339</span>  AIRBUS Airbus A330-941 <span style="color: #808080;">(252 Tonnes)</span></li>
+<li onclick="addAircraft('A342')"><span style="color: #808080;">A342</span>  AIRBUS Airbus A340-213 <span style="color: #808080;">(275 Tonnes)</span></li>
+<li onclick="addAircraft('A343')"><span style="color: #808080;">A343</span>  AIRBUS Airbus A340-313 <span style="color: #808080;">(277 Tonnes)</span></li>
+<li onclick="addAircraft('A345')"><span style="color: #808080;">A345</span>  AIRBUS Airbus A340-541 <span style="color: #808080;">(380 Tonnes)</span></li>
+<li onclick="addAircraft('A346')"><span style="color: #808080;">A346</span>  AIRBUS Airbus A340-642 <span style="color: #808080;">(380 Tonnes)</span></li>
+<li onclick="addAircraft('A359')"><span style="color: #808080;">A359</span>  AIRBUS Airbus A350-941 <span style="color: #808080;">(281 Tonnes)</span></li>
+<li onclick="addAircraft('A35K')"><span style="color: #808080;">A35K</span>  AIRBUS Airbus A350-1041 <span style="color: #808080;">(316 Tonnes)</span></li>
+<li onclick="addAircraft('A388')"><span style="color: #808080;">A388</span>  AIRBUS Airbus A380-841 <span style="color: #808080;">(575 Tonnes)</span></li>
+<li onclick="addAircraft('A400')"><span style="color: #808080;">A400</span>  AIRBUS Airbus A-400M <span style="color: #808080;">(141 Tonnes)</span></li>
+<li onclick="addAircraft('A5')"><span style="color: #808080;">A5</span>  ICON Icon A-5 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('AA1')"><span style="color: #808080;">AA1</span>  GRUMMAN AMERICAN Grumman American AA-1 Yankee <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('AA5')"><span style="color: #808080;">AA5</span>  GRUMMAN AMERICAN Grumman American AA-5 Cheetah <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('AC11')"><span style="color: #808080;">AC11</span>  ROCKWELL Rockwell Commander 115 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('AC50')"><span style="color: #808080;">AC50</span>  AERO Aero Commander 500 <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('AC56')"><span style="color: #808080;">AC56</span>  AERO Aero Commander 560 <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('AC68')"><span style="color: #808080;">AC68</span>  AERO Aero Commander 680 Super <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('AC6L')"><span style="color: #808080;">AC6L</span>  AERO Aero Commander 685 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('AC80')"><span style="color: #808080;">AC80</span>  ROCKWELL Rockwell Turbo Commander 680 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('AC90')"><span style="color: #808080;">AC90</span>  GULFSTREAM AEROSPACE-ROCKWELL Rockwell Commander 690 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('AC95')"><span style="color: #808080;">AC95</span>  GULFSTREAM AEROSPACE-ROCKWELL Rockwell Jetprop Commander 980 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('AEST')"><span style="color: #808080;">AEST</span>  PIPER Piper Aerostar <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('AN12')"><span style="color: #808080;">AN12</span>  ANTONOV Antonov AN-12 <span style="color: #808080;">(61 Tonnes)</span></li>
+<li onclick="addAircraft('AN72')"><span style="color: #808080;">AN72</span>  ANTONOV Antonov AN-72 <span style="color: #808080;">(35 Tonnes)</span></li>
+<li onclick="addAircraft('AR11')"><span style="color: #808080;">AR11</span>  AERONCA Aeronca 11 Chief <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('ASTR')"><span style="color: #808080;">ASTR</span>  IAI IAI 1125 Astra <span style="color: #808080;">(11 Tonnes)</span></li>
+<li onclick="addAircraft('AT3T')"><span style="color: #808080;">AT3T</span>  AIR TRACTOR Air Tractor AT-302/400/402 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('AT43')"><span style="color: #808080;">AT43</span>  ATR ATR 42-300 <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('AT44')"><span style="color: #808080;">AT44</span>  ATR ATR 42-400 <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('AT45')"><span style="color: #808080;">AT45</span>  ATR ATR 42-500 <span style="color: #808080;">(19 Tonnes)</span></li>
+<li onclick="addAircraft('AT46')"><span style="color: #808080;">AT46</span>  ATR ATR 42-600 <span style="color: #808080;">(19 Tonnes)</span></li>
+<li onclick="addAircraft('AT5T')"><span style="color: #808080;">AT5T</span>  AIR TRACTOR Air Tractor AT-502/503/504 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('AT6T')"><span style="color: #808080;">AT6T</span>  AIR TRACTOR Air Tractor AT-602 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('AT72')"><span style="color: #808080;">AT72</span>  ATR ATR 72-200 <span style="color: #808080;">(22 Tonnes)</span></li>
+<li onclick="addAircraft('AT73')"><span style="color: #808080;">AT73</span>  ATR ATR 72-210 <span style="color: #808080;">(22 Tonnes)</span></li>
+<li onclick="addAircraft('AT75')"><span style="color: #808080;">AT75</span>  ATR ATR 72-210A <span style="color: #808080;">(23 Tonnes)</span></li>
+<li onclick="addAircraft('AT76')"><span style="color: #808080;">AT76</span>  ATR ATR 72-212A 600 <span style="color: #808080;">(23 Tonnes)</span></li>
+<li onclick="addAircraft('AT8T')"><span style="color: #808080;">AT8T</span>  AIR TRACTOR ATR AT-802 <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('B18T')"><span style="color: #808080;">B18T</span>  BEECH Volpar Turbo 18 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('B190')"><span style="color: #808080;">B190</span>  BEECH Beech 1900D <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('B2')"><span style="color: #808080;">B2</span>  NORTHROP Northrop B-2 Spirit <span style="color: #808080;">(171 Tonnes)</span></li>
+<li onclick="addAircraft('B350')"><span style="color: #808080;">B350</span>  BEECH Beechcraft Super King Air 350 <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('B36T')"><span style="color: #808080;">B36T</span>  ALLISON-BEECH Beech Bonanza 36 Turbine <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('B37M')"><span style="color: #808080;">B37M</span>  BOEING Boeing 737 Max 7 <span style="color: #808080;">(81 Tonnes)</span></li>
+<li onclick="addAircraft('B38M')"><span style="color: #808080;">B38M</span>  BOEING Boeing B737-8 Max <span style="color: #808080;">(83 Tonnes)</span></li>
+<li onclick="addAircraft('B39M')"><span style="color: #808080;">B39M</span>  BOEING Boeing B737-9 Max <span style="color: #808080;">(89 Tonnes)</span></li>
+<li onclick="addAircraft('B461')"><span style="color: #808080;">B461</span>  BRITISH AEROSPACE British Aerospace BAe 146-100 Statesman <span style="color: #808080;">(39 Tonnes)</span></li>
+<li onclick="addAircraft('B462')"><span style="color: #808080;">B462</span>  BRITISH AEROSPACE British Aerospace BAe 146-200 <span style="color: #808080;">(43 Tonnes)</span></li>
+<li onclick="addAircraft('B52')"><span style="color: #808080;">B52</span>  BOEING Boeing B-52 Stratofortress <span style="color: #808080;">(222 Tonnes)</span></li>
+<li onclick="addAircraft('B703')"><span style="color: #808080;">B703</span>  BOEING Boeing B707-300 <span style="color: #808080;">(152 Tonnes)</span></li>
+<li onclick="addAircraft('B712')"><span style="color: #808080;">B712</span>  BOEING Boeing B717-200 <span style="color: #808080;">(54 Tonnes)</span></li>
+<li onclick="addAircraft('B721')"><span style="color: #808080;">B721</span>  BOEING Boeing 727-100 <span style="color: #808080;">(73 Tonnes)</span></li>
+<li onclick="addAircraft('B722')"><span style="color: #808080;">B722</span>  BOEING Boeing B727-228 Adv <span style="color: #808080;">(84 Tonnes)</span></li>
+<li onclick="addAircraft('B732')"><span style="color: #808080;">B732</span>  BOEING Boeing B737-200 <span style="color: #808080;">(53 Tonnes)</span></li>
+<li onclick="addAircraft('B733')"><span style="color: #808080;">B733</span>  BOEING Boeing B737-300 <span style="color: #808080;">(64 Tonnes)</span></li>
+<li onclick="addAircraft('B734')"><span style="color: #808080;">B734</span>  BOEING Boeing B737-400E <span style="color: #808080;">(69 Tonnes)</span></li>
+<li onclick="addAircraft('B735')"><span style="color: #808080;">B735</span>  BOEING Boeing B737-500 <span style="color: #808080;">(62 Tonnes)</span></li>
+<li onclick="addAircraft('B736')"><span style="color: #808080;">B736</span>  BOEING Boeing B737-600 <span style="color: #808080;">(66 Tonnes)</span></li>
+<li onclick="addAircraft('B737')"><span style="color: #808080;">B737</span>  BOEING Boeing B737-700 <span style="color: #808080;">(71 Tonnes)</span></li>
+<li onclick="addAircraft('B738')"><span style="color: #808080;">B738</span>  BOEING Boeing B737-800 <span style="color: #808080;">(80 Tonnes)</span></li>
+<li onclick="addAircraft('B739')"><span style="color: #808080;">B739</span>  BOEING Boeing B737-900ER <span style="color: #808080;">(86 Tonnes)</span></li>
+<li onclick="addAircraft('B741')"><span style="color: #808080;">B741</span>  BOEING Boeing 747-100 <span style="color: #808080;">(341 Tonnes)</span></li>
+<li onclick="addAircraft('B742')"><span style="color: #808080;">B742</span>  BOEING Boeing B747-200 <span style="color: #808080;">(378 Tonnes)</span></li>
+<li onclick="addAircraft('B743')"><span style="color: #808080;">B743</span>  BOEING Boeing B747-300 <span style="color: #808080;">(378 Tonnes)</span></li>
+<li onclick="addAircraft('B744')"><span style="color: #808080;">B744</span>  BOEING Boeing B747-400 <span style="color: #808080;">(413 Tonnes)</span></li>
+<li onclick="addAircraft('B748')"><span style="color: #808080;">B748</span>  BOEING Boeing B747-8F <span style="color: #808080;">(448 Tonnes)</span></li>
+<li onclick="addAircraft('B752')"><span style="color: #808080;">B752</span>  BOEING Boeing B757-200 <span style="color: #808080;">(116 Tonnes)</span></li>
+<li onclick="addAircraft('B753')"><span style="color: #808080;">B753</span>  BOEING Boeing B757-300 <span style="color: #808080;">(123 Tonnes)</span></li>
+<li onclick="addAircraft('B762')"><span style="color: #808080;">B762</span>  BOEING Boeing B767-200 <span style="color: #808080;">(143 Tonnes)</span></li>
+<li onclick="addAircraft('B763')"><span style="color: #808080;">B763</span>  BOEING Boeing B767-300ER <span style="color: #808080;">(187 Tonnes)</span></li>
+<li onclick="addAircraft('B764')"><span style="color: #808080;">B764</span>  BOEING Boeing B767-400 <span style="color: #808080;">(205 Tonnes)</span></li>
+<li onclick="addAircraft('B772')"><span style="color: #808080;">B772</span>  BOEING Boeing B777-200ER <span style="color: #808080;">(298 Tonnes)</span></li>
+<li onclick="addAircraft('B773')"><span style="color: #808080;">B773</span>  BOEING Boeing B777-300 <span style="color: #808080;">(300 Tonnes)</span></li>
+<li onclick="addAircraft('B778')"><span style="color: #808080;">B778</span>  BOEING Boeing 777-8 <span style="color: #808080;">(352 Tonnes)</span></li>
+<li onclick="addAircraft('B779')"><span style="color: #808080;">B779</span>  BOEING Boeing 777-9 <span style="color: #808080;">(352 Tonnes)</span></li>
+<li onclick="addAircraft('B77L')"><span style="color: #808080;">B77L</span>  BOEING Boeing B777-200LR <span style="color: #808080;">(348 Tonnes)</span></li>
+<li onclick="addAircraft('B77W')"><span style="color: #808080;">B77W</span>  BOEING Boeing B777-300ER <span style="color: #808080;">(352 Tonnes)</span></li>
+<li onclick="addAircraft('B788')"><span style="color: #808080;">B788</span>  BOEING Boeing B787-8 <span style="color: #808080;">(228 Tonnes)</span></li>
+<li onclick="addAircraft('B789')"><span style="color: #808080;">B789</span>  BOEING Boeing B787-9 <span style="color: #808080;">(255 Tonnes)</span></li>
+<li onclick="addAircraft('B78X')"><span style="color: #808080;">B78X</span>  BOEING Boeing B787-10 <span style="color: #808080;">(255 Tonnes)</span></li>
+<li onclick="addAircraft('BA11')"><span style="color: #808080;">BA11</span>  BAC BAC 1.11/400 <span style="color: #808080;">(40 Tonnes)</span></li>
+<li onclick="addAircraft('BCS1')"><span style="color: #808080;">BCS1</span>  AIRBUS-BOMBARDIER Bombardier CS100 <span style="color: #808080;">(64 Tonnes)</span></li>
+<li onclick="addAircraft('BCS3')"><span style="color: #808080;">BCS3</span>  AIRBUS-BOMBARDIER Bombardier CS300 <span style="color: #808080;">(71 Tonnes)</span></li>
+<li onclick="addAircraft('BE10')"><span style="color: #808080;">BE10</span>  BEECH Beech 100 King Air <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('BE18')"><span style="color: #808080;">BE18</span>  BEECH Beech 18 Twin Beech <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('BE19')"><span style="color: #808080;">BE19</span>  BEECH Beech 19 Sport <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('BE20')"><span style="color: #808080;">BE20</span>  BEECH Beechcraft Super King Air B200 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('BE23')"><span style="color: #808080;">BE23</span>  BEECH Beech 23 Musketeer <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE24')"><span style="color: #808080;">BE24</span>  BEECH Beech 24 Sierra <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE30')"><span style="color: #808080;">BE30</span>  RAYTHEON-BEECH Beech Super King Air 300 <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('BE33')"><span style="color: #808080;">BE33</span>  BEECH Beech 33 Bonanza <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE35')"><span style="color: #808080;">BE35</span>  BEECH Beech 35 Bonanza <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE36')"><span style="color: #808080;">BE36</span>  BEECH Beechcraft Bonanza G36 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE40')"><span style="color: #808080;">BE40</span>  RAYTHEON-BEECH-HAWKER Hawker 400XP <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('BE50')"><span style="color: #808080;">BE50</span>  BEECH Beech 50 Twin Bonanza <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('BE55')"><span style="color: #808080;">BE55</span>  BEECH Beech 55 Baron <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('BE58')"><span style="color: #808080;">BE58</span>  BEECH Beechcraft Baron 58 <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('BE60')"><span style="color: #808080;">BE60</span>  BEECH Beech 60 Duke <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('BE65')"><span style="color: #808080;">BE65</span>  BEECH Beech 65 Queen Air <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('BE70')"><span style="color: #808080;">BE70</span>  BEECH Beech 70 Queen Air <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('BE76')"><span style="color: #808080;">BE76</span>  BEECH Beech Duchess 76 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE77')"><span style="color: #808080;">BE77</span>  BEECH Beech 77 Skipper <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('BE80')"><span style="color: #808080;">BE80</span>  BEECH Beech 80 Queen Air <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('BE95')"><span style="color: #808080;">BE95</span>  BEECH Beech 95 Travel Air <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BE99')"><span style="color: #808080;">BE99</span>  BEECH Beech 99A Airliner <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('BE9L')"><span style="color: #808080;">BE9L</span>  BEECH Beechcraft King Air E90 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('BE9T')"><span style="color: #808080;">BE9T</span>  BEECH Beech 90 (F90) King Air <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('BL17')"><span style="color: #808080;">BL17</span>  BELLANCA Bellanca 17 Viking <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('BL8')"><span style="color: #808080;">BL8</span>  BELLANCA Bellanca 8 Scout <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('BLCF')"><span style="color: #808080;">BLCF</span>  BOEING Boeing 747-400LCF Dreamlifter <span style="color: #808080;">(365 Tonnes)</span></li>
+<li onclick="addAircraft('BT36')"><span style="color: #808080;">BT36</span>  BEECH Beech Bonanza B36TC <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C120')"><span style="color: #808080;">C120</span>  CESSNA Cessna 120 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('C130')"><span style="color: #808080;">C130</span>  LOCKHEED Lockheed L-100-30 Hercules <span style="color: #808080;">(71 Tonnes)</span></li>
+<li onclick="addAircraft('C140')"><span style="color: #808080;">C140</span>  CESSNA Cessna 140 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('C150')"><span style="color: #808080;">C150</span>  CESSNA Cessna 150 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('C152')"><span style="color: #808080;">C152</span>  CESSNA Cessna 152 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('C160')"><span style="color: #808080;">C160</span>  TRANSALL Transall C-160P <span style="color: #808080;">(52 Tonnes)</span></li>
+<li onclick="addAircraft('C162')"><span style="color: #808080;">C162</span>  CESSNA Cessna 162 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('C17')"><span style="color: #808080;">C17</span>  BOEING Boeing C-17 Globemaster 3 <span style="color: #808080;">(266 Tonnes)</span></li>
+<li onclick="addAircraft('C170')"><span style="color: #808080;">C170</span>  CESSNA Cessna 170 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('C172')"><span style="color: #808080;">C172</span>  CESSNA Cessna 172S Skyhawk SP <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C175')"><span style="color: #808080;">C175</span>  CESSNA Cessna 175 Skylark <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C177')"><span style="color: #808080;">C177</span>  CESSNA Cessna 177 Cardinal <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C180')"><span style="color: #808080;">C180</span>  CESSNA Cessna 180 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C182')"><span style="color: #808080;">C182</span>  CESSNA Cessna 182T Skylane <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C185')"><span style="color: #808080;">C185</span>  CESSNA Cessna 185 Skywagon <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C188')"><span style="color: #808080;">C188</span>  CESSNA Cessna A188B <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C195')"><span style="color: #808080;">C195</span>  CESSNA Cessna 195 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C206')"><span style="color: #808080;">C206</span>  CESSNA Cessna 206H <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C207')"><span style="color: #808080;">C207</span>  CESSNA Cessna 207 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C208')"><span style="color: #808080;">C208</span>  CESSNA Cessna 208B <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('C210')"><span style="color: #808080;">C210</span>  CESSNA Cessna 210M <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C212')"><span style="color: #808080;">C212</span>  CASA CASA C-212 Aviocar <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('C240')"><span style="color: #808080;">C240</span>  CESSNA Cessna T240 Corvalis TTx <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C25A')"><span style="color: #808080;">C25A</span>  CESSNA Cessna Citation CJ2+ <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('C25B')"><span style="color: #808080;">C25B</span>  CESSNA Cessna Citation CJ3 <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('C25C')"><span style="color: #808080;">C25C</span>  CESSNA Cessna Citation CJ4 <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('C25M')"><span style="color: #808080;">C25M</span>  CESSNA Cessna 525 Citation M2 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('C303')"><span style="color: #808080;">C303</span>  CESSNA Cessna Crusader <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('C30J')"><span style="color: #808080;">C30J</span>  LOCKHEED MARTIN Lockheed Martin C-130J <span style="color: #808080;">(71 Tonnes)</span></li>
+<li onclick="addAircraft('C310')"><span style="color: #808080;">C310</span>  CESSNA Cessna 310R <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('C320')"><span style="color: #808080;">C320</span>  CESSNA Cessna 320 Skyknight <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('C335')"><span style="color: #808080;">C335</span>  CESSNA Cessna 335 <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('C340')"><span style="color: #808080;">C340</span>  CESSNA Cessna 340A <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('C402')"><span style="color: #808080;">C402</span>  CESSNA Cessna 402B <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('C404')"><span style="color: #808080;">C404</span>  CESSNA Cessna 404 Titan <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('C414')"><span style="color: #808080;">C414</span>  CESSNA Cessna 414A <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('C421')"><span style="color: #808080;">C421</span>  CESSNA Cessna 421C <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('C425')"><span style="color: #808080;">C425</span>  CESSNA Cessna 425 Corsair <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('C441')"><span style="color: #808080;">C441</span>  CESSNA Cessna 441 Conquest <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('C500')"><span style="color: #808080;">C500</span>  CESSNA Cessna 500 Citation 1 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('C501')"><span style="color: #808080;">C501</span>  CESSNA Cessna 501 Citation 1SP <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('C510')"><span style="color: #808080;">C510</span>  CESSNA Cessna Citation Mustang <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('C525')"><span style="color: #808080;">C525</span>  CESSNA Cessna Citation CJ1+ <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('C526')"><span style="color: #808080;">C526</span>  CESSNA Cessna 526 CitationJet <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('C550')"><span style="color: #808080;">C550</span>  CESSNA Cessna Citation II <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('C551')"><span style="color: #808080;">C551</span>  CESSNA Cessna Citation II/SP <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('C55B')"><span style="color: #808080;">C55B</span>  CESSNA Cessna Citation Bravo <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('C560')"><span style="color: #808080;">C560</span>  CESSNA Cessna Citation V <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('C56X')"><span style="color: #808080;">C56X</span>  CESSNA Cessna Citation XLS+ <span style="color: #808080;">(10 Tonnes)</span></li>
+<li onclick="addAircraft('C650')"><span style="color: #808080;">C650</span>  CESSNA Cessna Citation VII <span style="color: #808080;">(11 Tonnes)</span></li>
+<li onclick="addAircraft('C680')"><span style="color: #808080;">C680</span>  CESSNA Cessna Citation Sovereign <span style="color: #808080;">(14 Tonnes)</span></li>
+<li onclick="addAircraft('C68A')"><span style="color: #808080;">C68A</span>  CESSNA Cessna 680A Citation Latitude <span style="color: #808080;">(14 Tonnes)</span></li>
+<li onclick="addAircraft('C700')"><span style="color: #808080;">C700</span>  CESSNA Cessna Citation Longitude <span style="color: #808080;">(18 Tonnes)</span></li>
+<li onclick="addAircraft('C72R')"><span style="color: #808080;">C72R</span>  CESSNA Cessna 172RG Cutlass RG <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C750')"><span style="color: #808080;">C750</span>  CESSNA Cessna Citation X <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('C77R')"><span style="color: #808080;">C77R</span>  CESSNA Cessna 177RG Cardinal RG <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('C82R')"><span style="color: #808080;">C82R</span>  CESSNA Cessna R182 Skylane RG <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('CH7A')"><span style="color: #808080;">CH7A</span>  AERONCA Citabria Aurora 7ECA <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('CH7B')"><span style="color: #808080;">CH7B</span>  BELLANCA Bellanca Citabria Adventure 7GCAA <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('CL30')"><span style="color: #808080;">CL30</span>  BOMBARDIER Bombardier Challenger 300 <span style="color: #808080;">(18 Tonnes)</span></li>
+<li onclick="addAircraft('CL35')"><span style="color: #808080;">CL35</span>  BOMBARDIER Bombardier Challenger 350 <span style="color: #808080;">(19 Tonnes)</span></li>
+<li onclick="addAircraft('CL41')"><span style="color: #808080;">CL41</span>  CANADAIR Canadair CL-41 Tutor <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('CL60')"><span style="color: #808080;">CL60</span>  CANADAIR Canadair Challenger 604 <span style="color: #808080;">(22 Tonnes)</span></li>
+<li onclick="addAircraft('CN35')"><span style="color: #808080;">CN35</span>  CASA CASA CN-235 <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('COL3')"><span style="color: #808080;">COL3</span>  LANCAIR-CESSNA Cessna 350 Corvalis <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('COL4')"><span style="color: #808080;">COL4</span>  LANCAIR-CESSNA Cessna 400 Corvalis TT <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('COUR')"><span style="color: #808080;">COUR</span>  HELIO HELIO H-295 Super Courier <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('CRJ1')"><span style="color: #808080;">CRJ1</span>  CANADAIR Canadair CRJ-100 <span style="color: #808080;">(22 Tonnes)</span></li>
+<li onclick="addAircraft('CRJ2')"><span style="color: #808080;">CRJ2</span>  CANADAIR Canadair CRJ-200 <span style="color: #808080;">(22 Tonnes)</span></li>
+<li onclick="addAircraft('CRJ7')"><span style="color: #808080;">CRJ7</span>  CANADAIR Bombardier CRJ-700 <span style="color: #808080;">(35 Tonnes)</span></li>
+<li onclick="addAircraft('CRJ9')"><span style="color: #808080;">CRJ9</span>  CANADAIR Canadair CRJ-900 <span style="color: #808080;">(37 Tonnes)</span></li>
+<li onclick="addAircraft('CRUZ')"><span style="color: #808080;">CRUZ</span>  CZAW CZAW SportCruiser <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('CVLP')"><span style="color: #808080;">CVLP</span>  CONVAIR Convair CV-240 Convairliner <span style="color: #808080;">(19 Tonnes)</span></li>
+<li onclick="addAircraft('CVLT')"><span style="color: #808080;">CVLT</span>  CONVAIR-CANADAIR Canadair CL-66 <span style="color: #808080;">(27 Tonnes)</span></li>
+<li onclick="addAircraft('D328')"><span style="color: #808080;">D328</span>  DORNIER Dornier 328 <span style="color: #808080;">(14 Tonnes)</span></li>
+<li onclick="addAircraft('DA40')"><span style="color: #808080;">DA40</span>  DIAMOND Diamond DA40 NG <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('DA42')"><span style="color: #808080;">DA42</span>  DIAMOND Diamond DA42 Twin Star <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('DC10')"><span style="color: #808080;">DC10</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas DC10-30 <span style="color: #808080;">(264 Tonnes)</span></li>
+<li onclick="addAircraft('DC3')"><span style="color: #808080;">DC3</span>  DOUGLAS Douglas DC-3 <span style="color: #808080;">(12 Tonnes)</span></li>
+<li onclick="addAircraft('DC3S')"><span style="color: #808080;">DC3S</span>  DOUGLAS Douglas R4D-8 <span style="color: #808080;">(12 Tonnes)</span></li>
+<li onclick="addAircraft('DC6')"><span style="color: #808080;">DC6</span>  DOUGLAS Douglas DC-6 <span style="color: #808080;">(49 Tonnes)</span></li>
+<li onclick="addAircraft('DC87')"><span style="color: #808080;">DC87</span>  DOUGLAS Douglas DC8-72CF <span style="color: #808080;">(152 Tonnes)</span></li>
+<li onclick="addAircraft('DC91')"><span style="color: #808080;">DC91</span>  DOUGLAS Douglas DC-9-10 <span style="color: #808080;">(42 Tonnes)</span></li>
+<li onclick="addAircraft('DC93')"><span style="color: #808080;">DC93</span>  DOUGLAS Douglas C9-B <span style="color: #808080;">(49 Tonnes)</span></li>
+<li onclick="addAircraft('DC95')"><span style="color: #808080;">DC95</span>  DOUGLAS Douglas DC-9-50 <span style="color: #808080;">(55 Tonnes)</span></li>
+<li onclick="addAircraft('DH8A')"><span style="color: #808080;">DH8A</span>  DEHAVILLAND CANADA DeHavilland Canada DHC-8 100 <span style="color: #808080;">(16 Tonnes)</span></li>
+<li onclick="addAircraft('DH8B')"><span style="color: #808080;">DH8B</span>  DEHAVILLAND CANADA DeHavilland Canada DHC-8 200 <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('DH8C')"><span style="color: #808080;">DH8C</span>  DEHAVILLAND CANADA DeHavilland Canada DHC-8 300 <span style="color: #808080;">(19 Tonnes)</span></li>
+<li onclick="addAircraft('DH8D')"><span style="color: #808080;">DH8D</span>  DEHAVILLAND CANADA DeHavilland Canada Dash-8 Q400 <span style="color: #808080;">(30 Tonnes)</span></li>
+<li onclick="addAircraft('DHC2')"><span style="color: #808080;">DHC2</span>  DEHAVILLAND CANADA DeHavilland Canada DHC-2 Beaver <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('DHC6')"><span style="color: #808080;">DHC6</span>  DEHAVILLAND CANADA DeHavilland Canada DHC-6 Twin Otter <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('DHC7')"><span style="color: #808080;">DHC7</span>  DEHAVILLAND CANADA DeHavilland Canada DHC-7 Dash 7 <span style="color: #808080;">(20 Tonnes)</span></li>
+<li onclick="addAircraft('DV20')"><span style="color: #808080;">DV20</span>  DIAMOND Diamond DV-20 Katana <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('E110')"><span style="color: #808080;">E110</span>  EMBRAER Embraer EMB-110 Bandeirante <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('E120')"><span style="color: #808080;">E120</span>  EMBRAER Embraer EMB-120 <span style="color: #808080;">(12 Tonnes)</span></li>
+<li onclick="addAircraft('E135')"><span style="color: #808080;">E135</span>  EMBRAER Embraer EMB-135LR <span style="color: #808080;">(21 Tonnes)</span></li>
+<li onclick="addAircraft('E145')"><span style="color: #808080;">E145</span>  EMBRAER Embraer EMB-145LR <span style="color: #808080;">(23 Tonnes)</span></li>
+<li onclick="addAircraft('E170')"><span style="color: #808080;">E170</span>  EMBRAER Embraer ERJ 170-100 IGW <span style="color: #808080;">(39 Tonnes)</span></li>
+<li onclick="addAircraft('E190')"><span style="color: #808080;">E190</span>  EMBRAER Embraer ERJ 190-100 IGW <span style="color: #808080;">(51 Tonnes)</span></li>
+<li onclick="addAircraft('E195')"><span style="color: #808080;">E195</span>  EMBRAER Embraer ERJ 190-200 IGW <span style="color: #808080;">(53 Tonnes)</span></li>
+<li onclick="addAircraft('E290')"><span style="color: #808080;">E290</span>  EMBRAER Embraer ERJ 190-300 <span style="color: #808080;">(57 Tonnes)</span></li>
+<li onclick="addAircraft('E295')"><span style="color: #808080;">E295</span>  EMBRAER Embraer ERJ-190-400 <span style="color: #808080;">(62 Tonnes)</span></li>
+<li onclick="addAircraft('E35L')"><span style="color: #808080;">E35L</span>  EMBRAER Embraer EMB-135BJ Legacy 600 <span style="color: #808080;">(20 Tonnes)</span></li>
+<li onclick="addAircraft('E45X')"><span style="color: #808080;">E45X</span>  EMBRAER Embraer EMB-145XR <span style="color: #808080;">(25 Tonnes)</span></li>
+<li onclick="addAircraft('E50P')"><span style="color: #808080;">E50P</span>  EMBRAER Embraer EMB-500 Phenom 100 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('E545')"><span style="color: #808080;">E545</span>  EMBRAER Embraer EMB-545 Legacy 450 <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('E550')"><span style="color: #808080;">E550</span>  EMBRAER Embraer EMB-550 Legacy 500 <span style="color: #808080;">(18 Tonnes)</span></li>
+<li onclick="addAircraft('E55P')"><span style="color: #808080;">E55P</span>  EMBRAER Embraer EMB-505 Phenom 300 <span style="color: #808080;">(9 Tonnes)</span></li>
+<li onclick="addAircraft('E75L')"><span style="color: #808080;">E75L</span>  EMBRAER Embraer ERJ 170-200 IGW EWT <span style="color: #808080;">(39 Tonnes)</span></li>
+<li onclick="addAircraft('E75S')"><span style="color: #808080;">E75S</span>  EMBRAER Embraer ERJ 170-200 IGW <span style="color: #808080;">(38 Tonnes)</span></li>
+<li onclick="addAircraft('EA50')"><span style="color: #808080;">EA50</span>  ECLIPSE Eclipse EA500 <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('ERCO')"><span style="color: #808080;">ERCO</span>  ERCO Erco Ercoupe 415-C <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('EVOT')"><span style="color: #808080;">EVOT</span>  LANCAIR Lancair Evolution Turbine <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('F15')"><span style="color: #808080;">F15</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas F-15E <span style="color: #808080;">(37 Tonnes)</span></li>
+<li onclick="addAircraft('F16')"><span style="color: #808080;">F16</span>  LOCKHEED-GENERAL DYNAMICS General Dynamics F-16C <span style="color: #808080;">(20 Tonnes)</span></li>
+<li onclick="addAircraft('F18H')"><span style="color: #808080;">F18H</span>  BOEING-MCDONNELL DOUGLAS Boeing F/A-18C/D Hornet <span style="color: #808080;">(26 Tonnes)</span></li>
+<li onclick="addAircraft('F18S')"><span style="color: #808080;">F18S</span>  BOEING-MCDONNELL DOUGLAS Boeing F/A-18E/F Super Hornet <span style="color: #808080;">(30 Tonnes)</span></li>
+<li onclick="addAircraft('F22')"><span style="color: #808080;">F22</span>  LOCKHEED Lockheed Martin F-22 Raptor <span style="color: #808080;">(38 Tonnes)</span></li>
+<li onclick="addAircraft('F2TH')"><span style="color: #808080;">F2TH</span>  DASSAULT Dassault Falcon 2000EX <span style="color: #808080;">(20 Tonnes)</span></li>
+<li onclick="addAircraft('F406')"><span style="color: #808080;">F406</span>  REIMS-CESSNA Cessna 406 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('F900')"><span style="color: #808080;">F900</span>  DASSAULT Dassault Falcon 900EX <span style="color: #808080;">(23 Tonnes)</span></li>
+<li onclick="addAircraft('FA10')"><span style="color: #808080;">FA10</span>  DASSAULT Dassault Falcon 10 <span style="color: #808080;">(9 Tonnes)</span></li>
+<li onclick="addAircraft('FA20')"><span style="color: #808080;">FA20</span>  DASSAULT Dassault Falcon 20 <span style="color: #808080;">(13 Tonnes)</span></li>
+<li onclick="addAircraft('FA50')"><span style="color: #808080;">FA50</span>  DASSAULT Dassault Falcon 50EX <span style="color: #808080;">(19 Tonnes)</span></li>
+<li onclick="addAircraft('FA7X')"><span style="color: #808080;">FA7X</span>  DASSAULT Dassault Falcon 7X <span style="color: #808080;">(32 Tonnes)</span></li>
+<li onclick="addAircraft('FA8X')"><span style="color: #808080;">FA8X</span>  DASSAULT Dassault Falcon 8X <span style="color: #808080;">(34 Tonnes)</span></li>
+<li onclick="addAircraft('FDCT')"><span style="color: #808080;">FDCT</span>  FLIGHT DESIGN Flight Design CT <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('G150')"><span style="color: #808080;">G150</span>  GULFSTREAM AEROSPACE Gulfstream G150 <span style="color: #808080;">(12 Tonnes)</span></li>
+<li onclick="addAircraft('G164')"><span style="color: #808080;">G164</span>  GRUMMAN AMERICANÃ‚Â  Grumman G-164 (Super) Ag-Cat <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('G280')"><span style="color: #808080;">G280</span>  GULFSTREAM AEROSPACE Gulfstream G280 <span style="color: #808080;">(18 Tonnes)</span></li>
+<li onclick="addAircraft('GA5C')"><span style="color: #808080;">GA5C</span>  GULFSTREAM AEROSPACE Gulfstream G500 (G-7) <span style="color: #808080;">(37 Tonnes)</span></li>
+<li onclick="addAircraft('GA6C')"><span style="color: #808080;">GA6C</span>  GULFSTREAM AEROSPACE Gulfstream G600 (G-7) <span style="color: #808080;">(43 Tonnes)</span></li>
+<li onclick="addAircraft('GA7')"><span style="color: #808080;">GA7</span>  GULFSTREAM AMERICAN - GRUMMAN AMERICAN Grumman American GA-7 Cougar <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('GALX')"><span style="color: #808080;">GALX</span>  GULFSTREAM AEROSPACE-IAI IAI 1126 Galaxy <span style="color: #808080;">(17 Tonnes)</span></li>
+<li onclick="addAircraft('GC1')"><span style="color: #808080;">GC1</span>  GLOBE Globe GC-1 Swift <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('GL5T')"><span style="color: #808080;">GL5T</span>  BOMBARDIER Bombardier Global 5000 <span style="color: #808080;">(42 Tonnes)</span></li>
+<li onclick="addAircraft('GL7T')"><span style="color: #808080;">GL7T</span>  BOMBARDIER Bombardier Global 7500 <span style="color: #808080;">(49 Tonnes)</span></li>
+<li onclick="addAircraft('GLEX')"><span style="color: #808080;">GLEX</span>  BOMBARDIER Bombardier Global 6000 <span style="color: #808080;">(46 Tonnes)</span></li>
+<li onclick="addAircraft('GLF2')"><span style="color: #808080;">GLF2</span>  GULFSTREAM AEROSPACE Gulfstream G-1159 Gulfstream II <span style="color: #808080;">(29 Tonnes)</span></li>
+<li onclick="addAircraft('GLF3')"><span style="color: #808080;">GLF3</span>  GULFSTREAM AEROSPACE Gulfstream III <span style="color: #808080;">(32 Tonnes)</span></li>
+<li onclick="addAircraft('GLF4')"><span style="color: #808080;">GLF4</span>  GULFSTREAM AEROSPACE Gulfstream IV <span style="color: #808080;">(34 Tonnes)</span></li>
+<li onclick="addAircraft('GLF5')"><span style="color: #808080;">GLF5</span>  GULFSTREAM AEROSPACE Gulfstream G550 <span style="color: #808080;">(42 Tonnes)</span></li>
+<li onclick="addAircraft('GLF6')"><span style="color: #808080;">GLF6</span>  GULFSTREAM AEROSPACE Gulfstream G650 <span style="color: #808080;">(46 Tonnes)</span></li>
+<li onclick="addAircraft('H25A')"><span style="color: #808080;">H25A</span>  HAWKER SIDDELEY Hawker Siddeley HS.125-3B <span style="color: #808080;">(12 Tonnes)</span></li>
+<li onclick="addAircraft('H25B')"><span style="color: #808080;">H25B</span>  BRITISH AEROSPACE - HAWKER SIDDELEY Hawker 800XP <span style="color: #808080;">(13 Tonnes)</span></li>
+<li onclick="addAircraft('H25C')"><span style="color: #808080;">H25C</span>  BRITISH AEROSPACE RAYTHEON Hawker 1000 <span style="color: #808080;">(15 Tonnes)</span></li>
+<li onclick="addAircraft('HA4T')"><span style="color: #808080;">HA4T</span>  HAWKER Hawker 4000 <span style="color: #808080;">(18 Tonnes)</span></li>
+<li onclick="addAircraft('HAWK')"><span style="color: #808080;">HAWK</span>  BRITISH AEROSPACE British Aerospace T-45A Goshawk <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('HDJT')"><span style="color: #808080;">HDJT</span>  HONDA Honda HA-420 HondaJet <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('HUSK')"><span style="color: #808080;">HUSK</span>  AVIAT Aviat A-1 Husky <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('IL76')"><span style="color: #808080;">IL76</span>  ILYUSHIN Ilyushin Il-76TD <span style="color: #808080;">(170 Tonnes)</span></li>
+<li onclick="addAircraft('J328')"><span style="color: #808080;">J328</span>  FAIRCHILD DORNIER Dornier 328 Jet <span style="color: #808080;">(16 Tonnes)</span></li>
+<li onclick="addAircraft('JS31')"><span style="color: #808080;">JS31</span>  BRITISH AEROSPACE British Aerospace BAe-3100 Jetstream 31 <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('JS32')"><span style="color: #808080;">JS32</span>  BRITISH AEROSPACE British Aerospace Jetstream 31 <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('JS41')"><span style="color: #808080;">JS41</span>  BRITISH AEROSPACE British Aerospace Jetstream 41 <span style="color: #808080;">(11 Tonnes)</span></li>
+<li onclick="addAircraft('K35R')"><span style="color: #808080;">K35R</span>  BOEING Boeing KC-135R Stratotanker <span style="color: #808080;">(147 Tonnes)</span></li>
+<li onclick="addAircraft('KODI')"><span style="color: #808080;">KODI</span>  QUEST Quest Kodiak 100 <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('L29B')"><span style="color: #808080;">L29B</span>  LOCKHEED Lockheed L-1329 Jetstar 2 <span style="color: #808080;">(21 Tonnes)</span></li>
+<li onclick="addAircraft('L5')"><span style="color: #808080;">L5</span>  STINTSON Stinson L-5 Sentinel <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('L8')"><span style="color: #808080;">L8</span>  LUSCOMBE Luscombe 8 Silvaire <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('LA4')"><span style="color: #808080;">LA4</span>  LAKE Lake LA-4 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('LJ23')"><span style="color: #808080;">LJ23</span>  LEARJET Learjet 23 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('LJ24')"><span style="color: #808080;">LJ24</span>  LEARJET Learjet 24 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('LJ25')"><span style="color: #808080;">LJ25</span>  LEARJET Learjet 25D <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('LJ31')"><span style="color: #808080;">LJ31</span>  LEARJET Learjet 31 <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('LJ35')"><span style="color: #808080;">LJ35</span>  LEARJET Learjet 35 <span style="color: #808080;">(9 Tonnes)</span></li>
+<li onclick="addAircraft('LJ40')"><span style="color: #808080;">LJ40</span>  LEARJET Learjet 40 <span style="color: #808080;">(10 Tonnes)</span></li>
+<li onclick="addAircraft('LJ45')"><span style="color: #808080;">LJ45</span>  LEARJET Learjet 45 <span style="color: #808080;">(10 Tonnes)</span></li>
+<li onclick="addAircraft('LJ55')"><span style="color: #808080;">LJ55</span>  LEARJET Learjet 55 <span style="color: #808080;">(9 Tonnes)</span></li>
+<li onclick="addAircraft('LJ60')"><span style="color: #808080;">LJ60</span>  LEARJET Learjet 60XR <span style="color: #808080;">(11 Tonnes)</span></li>
+<li onclick="addAircraft('LJ70')"><span style="color: #808080;">LJ70</span>  LEARJET Learjet 70 <span style="color: #808080;">(10 Tonnes)</span></li>
+<li onclick="addAircraft('LJ75')"><span style="color: #808080;">LJ75</span>  LEARJET Learjet 75 <span style="color: #808080;">(10 Tonnes)</span></li>
+<li onclick="addAircraft('LNC4')"><span style="color: #808080;">LNC4</span>  LANCAIR Lancair IV-P <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('LNP4')"><span style="color: #808080;">LNP4</span>  LANCAIR Lancair IV PropJet <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('M20P')"><span style="color: #808080;">M20P</span>  MOONEY Mooney M20R Ovation 2 GX <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('M20T')"><span style="color: #808080;">M20T</span>  MOONEY Mooney M20TN Acclaim Type S <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('M5')"><span style="color: #808080;">M5</span>  MAULE Maule M-5 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('MD11')"><span style="color: #808080;">MD11</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-11 <span style="color: #808080;">(274 Tonnes)</span></li>
+<li onclick="addAircraft('MD81')"><span style="color: #808080;">MD81</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-81 <span style="color: #808080;">(64 Tonnes)</span></li>
+<li onclick="addAircraft('MD82')"><span style="color: #808080;">MD82</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-82 <span style="color: #808080;">(68 Tonnes)</span></li>
+<li onclick="addAircraft('MD83')"><span style="color: #808080;">MD83</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-83 <span style="color: #808080;">(73 Tonnes)</span></li>
+<li onclick="addAircraft('MD87')"><span style="color: #808080;">MD87</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-87 <span style="color: #808080;">(68 Tonnes)</span></li>
+<li onclick="addAircraft('MD88')"><span style="color: #808080;">MD88</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-88 <span style="color: #808080;">(68 Tonnes)</span></li>
+<li onclick="addAircraft('MD90')"><span style="color: #808080;">MD90</span>  BOEING-MCDONNELL DOUGLAS McDonnell Douglas MD-90 <span style="color: #808080;">(71 Tonnes)</span></li>
+<li onclick="addAircraft('MU2')"><span style="color: #808080;">MU2</span>  MITSUBISHI Mitsubishi MU-2B-60 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('MU30')"><span style="color: #808080;">MU30</span>  MITSUBISHI Mitsubishi MU-300 Diamond <span style="color: #808080;">(7 Tonnes)</span></li>
+<li onclick="addAircraft('NAVI')"><span style="color: #808080;">NAVI</span>  NORTH AMERICAN-RYAN Ryan Navion <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P180')"><span style="color: #808080;">P180</span>  PIAGGIO Piaggio P.180 Avanti II <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('P210')"><span style="color: #808080;">P210</span>  RILEY-CESSNA Cessna P210 Pressurized <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P28A')"><span style="color: #808080;">P28A</span>  PIPER Piper PA-28-161 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P28B')"><span style="color: #808080;">P28B</span>  PIPER Piper PA-28-236 Dakota <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P28R')"><span style="color: #808080;">P28R</span>  PIPER Piper PA-28R-201 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P28T')"><span style="color: #808080;">P28T</span>  PIPER Piper PA-28RT-201 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P3')"><span style="color: #808080;">P3</span>  LOCKHEED Lockheed P-3 Orion <span style="color: #808080;">(62 Tonnes)</span></li>
+<li onclick="addAircraft('P32R')"><span style="color: #808080;">P32R</span>  PIPER Piper PA-32R-301T Turbo Sarato <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P32T')"><span style="color: #808080;">P32T</span>  PIPER Piper PA-32RT-300T Turbo Lance <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P46T')"><span style="color: #808080;">P46T</span>  PIPER Piper PA-46-500TP <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('P51')"><span style="color: #808080;">P51</span>  NORTH AMERICAN North American P-51 Mustang <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('P68')"><span style="color: #808080;">P68</span>  VULCAN- PARTEVANIA Partenavia P-68 Observer <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('P750')"><span style="color: #808080;">P750</span>  PACIFIC AEROSPACE PAC 750XL <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('P8')"><span style="color: #808080;">P8</span>  BOEING Boeing P-8 Poseidon <span style="color: #808080;">(86 Tonnes)</span></li>
+<li onclick="addAircraft('PA11')"><span style="color: #808080;">PA11</span>  PIPER Piper PA-11 Cub Special <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA12')"><span style="color: #808080;">PA12</span>  PIPER Piper PA-12 Super Cruiser <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA16')"><span style="color: #808080;">PA16</span>  PIPER Piper PA-16 Clipper <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA18')"><span style="color: #808080;">PA18</span>  PIPER Piper PA-18 Super Cub <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA20')"><span style="color: #808080;">PA20</span>  PIPER Piper PA-20 Pacer <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA22')"><span style="color: #808080;">PA22</span>  PIPER Piper PA-22 Tri-Pacer <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA23')"><span style="color: #808080;">PA23</span>  PIPER Piper PA-23-160 Apache <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('PA24')"><span style="color: #808080;">PA24</span>  PIPER Piper PA-24 Comanche <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('PA25')"><span style="color: #808080;">PA25</span>  PIPER Piper PA-25 Pawnee <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('PA27')"><span style="color: #808080;">PA27</span>  PIPER Piper PA-23-250 Aztec D <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('PA30')"><span style="color: #808080;">PA30</span>  PIPER Piper PA-30 Turbo Twin Comanch <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('PA31')"><span style="color: #808080;">PA31</span>  PIPER Piper PA-31 Navajo C <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('PA32')"><span style="color: #808080;">PA32</span>  PIPER Piper PA-32-301T Turbo Saratog <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('PA34')"><span style="color: #808080;">PA34</span>  PIPER Piper PA-34-220T <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('PA36')"><span style="color: #808080;">PA36</span>  PIPER Piper PA-36 Pawnee Brave <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('PA38')"><span style="color: #808080;">PA38</span>  PIPER Piper PA-38 Tomahawk <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('PA44')"><span style="color: #808080;">PA44</span>  PIPER Piper PA-44-180 Seminole <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('PA46')"><span style="color: #808080;">PA46</span>  PIPER Piper PA-46-350P <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('PAT4')"><span style="color: #808080;">PAT4</span>  PIPER Piper PA-31T-3T-1040 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('PAY1')"><span style="color: #808080;">PAY1</span>  PIPER Piper PA-31T1 Cheyenne IA <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('PAY2')"><span style="color: #808080;">PAY2</span>  PIPER Piper PA-31T2 Cheyenne 2XL <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('PAY3')"><span style="color: #808080;">PAY3</span>  PIPER Piper PA-42 Cheyenne III <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('PAY4')"><span style="color: #808080;">PAY4</span>  PIPER Piper PA-42-1000 Cheyenne 400 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('PC12')"><span style="color: #808080;">PC12</span>  PILATUS Pilatus PC-12/45 <span style="color: #808080;">(5 Tonnes)</span></li>
+<li onclick="addAircraft('PC24')"><span style="color: #808080;">PC24</span>  PILATUS Pilatus PC-24 <span style="color: #808080;">(9 Tonnes)</span></li>
+<li onclick="addAircraft('PRM1')"><span style="color: #808080;">PRM1</span>  RAYTHEON- HAWKER BEECHCRAFT Hawker Beechcraft Premier IA <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('R721')"><span style="color: #808080;">R721</span>  BOEING Boeing 727-100 <span style="color: #808080;">(77 Tonnes)</span></li>
+<li onclick="addAircraft('R722')"><span style="color: #808080;">R722</span>  BOEING Boeing 727-200RE Super 27 <span style="color: #808080;">(90 Tonnes)</span></li>
+<li onclick="addAircraft('RJ1H')"><span style="color: #808080;">RJ1H</span>  AVRO Avro RJ100 <span style="color: #808080;">(47 Tonnes)</span></li>
+<li onclick="addAircraft('RJ85')"><span style="color: #808080;">RJ85</span>  AVRO Avro RJ85 <span style="color: #808080;">(44 Tonnes)</span></li>
+<li onclick="addAircraft('RV12')"><span style="color: #808080;">RV12</span>  VAN'SÃ‚Â  Van's RV-12 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('S108')"><span style="color: #808080;">S108</span>  STINSON Stinson 108 Voyager <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('S22T')"><span style="color: #808080;">S22T</span>  CIRRUS Cirrus SR22T <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('SB20')"><span style="color: #808080;">SB20</span>  SAAB Saab 2000 <span style="color: #808080;">(23 Tonnes)</span></li>
+<li onclick="addAircraft('SBR1')"><span style="color: #808080;">SBR1</span>  NORTH AMERICAN ROCKWELL Rockwell CT-39G Sabreliner <span style="color: #808080;">(10 Tonnes)</span></li>
+<li onclick="addAircraft('SBR2')"><span style="color: #808080;">SBR2</span>  NORTH AMERICAN ROCKWELL Rockwell Sabre 75/80 <span style="color: #808080;">(11 Tonnes)</span></li>
+<li onclick="addAircraft('SC7')"><span style="color: #808080;">SC7</span>  SHORT Short SC-7 Skyvan <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('SF34')"><span style="color: #808080;">SF34</span>  SAAB Saab SF 340B <span style="color: #808080;">(13 Tonnes)</span></li>
+<li onclick="addAircraft('SF50')"><span style="color: #808080;">SF50</span>  CIRRUS Cirrus SF50 Vision <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('SH33')"><span style="color: #808080;">SH33</span>  SHORT Short 330 <span style="color: #808080;">(11 Tonnes)</span></li>
+<li onclick="addAircraft('SH36')"><span style="color: #808080;">SH36</span>  SHORT Short SD3-60 <span style="color: #808080;">(13 Tonnes)</span></li>
+<li onclick="addAircraft('SR20')"><span style="color: #808080;">SR20</span>  CIRRUS Cirrus SR20 <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('SR22')"><span style="color: #808080;">SR22</span>  CIRRUS Cirrus SR22 <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('SU95')"><span style="color: #808080;">SU95</span>  SUKHOI SUKHOI RRJ-95B Superjet 100 <span style="color: #808080;">(46 Tonnes)</span></li>
+<li onclick="addAircraft('SW3')"><span style="color: #808080;">SW3</span>  FAIRCHILD SWEARINGEN Swearingen Merlin 3 <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('SW4')"><span style="color: #808080;">SW4</span>  FAIRCHILD SWEARINGEN Swearingen SA227-AC Metro III <span style="color: #808080;">(8 Tonnes)</span></li>
+<li onclick="addAircraft('T210')"><span style="color: #808080;">T210</span>  CESSNA Cessna T210M <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('T28')"><span style="color: #808080;">T28</span>  NORTH AMERICAN North American T-28 Trojan <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('T34P')"><span style="color: #808080;">T34P</span>  BEECH Beech T-34B Mentor <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('T38')"><span style="color: #808080;">T38</span>  NORTHROP Northrop T-38 Talon <span style="color: #808080;">(6 Tonnes)</span></li>
+<li onclick="addAircraft('T6')"><span style="color: #808080;">T6</span>  NORTH AMERICAN North American T-6 Texan <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('TAYB')"><span style="color: #808080;">TAYB</span>  TAYLORCRAFT nan <span style="color: #808080;">(1 Tonne)</span></li>
+<li onclick="addAircraft('TB20')"><span style="color: #808080;">TB20</span>  SOCATA Socata TB 20 Trinidad <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('TBM7')"><span style="color: #808080;">TBM7</span>  SOCATA Socata TBM-700 <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('TBM8')"><span style="color: #808080;">TBM8</span>  SOCATA Socata TBM-850 <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('TBM9')"><span style="color: #808080;">TBM9</span>  SOCATA Socata TBM-930 <span style="color: #808080;">(4 Tonnes)</span></li>
+<li onclick="addAircraft('TEX2')"><span style="color: #808080;">TEX2</span>  RAYTHEON Raytheon T-6B <span style="color: #808080;">(3 Tonnes)</span></li>
+<li onclick="addAircraft('TOBA')"><span style="color: #808080;">TOBA</span>  SOCATA Socata TB-10 Tobago <span style="color: #808080;">(2 Tonnes)</span></li>
+<li onclick="addAircraft('V22')"><span style="color: #808080;">V22</span>  BELL-BOEING Bell-Boeing V-22 Osprey <span style="color: #808080;">(28 Tonnes)</span></li>
+<li onclick="addAircraft('WW24')"><span style="color: #808080;">WW24</span>  IAI IAI 1124 Westwind <span style="color: #808080;">(11 Tonnes)</span></li>
+</ul>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
+    const aircraftList = document.getElementById('aircraftList');
+    const aircraftItems = aircraftList.querySelectorAll('li');
+
+    searchBox.addEventListener('focus', () => {
+        aircraftList.style.display = 'block';
+    });
+
+    searchBox.addEventListener('blur', () => {
+        setTimeout(() => {
+            aircraftList.style.display = 'none';
+        }, 200); // Delay to allow item click event
+    });
+
+    // Filtering logic
+    searchBox.addEventListener('input', () => {
+        const filter = searchBox.value.toLowerCase();
+        aircraftItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+
+    // Populate MTOW input field when an aircraft is selected
+    aircraftItems.forEach(item => {
+        item.addEventListener('click', () => {
+            searchBox.value = item.textContent.trim();
+            const mtowMatch = item.textContent.match(/\((\d+) Tonnes\)/);
+            if (mtowMatch) {
+                const mtowValue = parseFloat(mtowMatch[1]);
+                document.getElementById('mtow').value = mtowValue;
+            }
+        });
+    });
+});
+</script>
+<div class="searchable-select">
+<input id="searchInput" oninput="filterWaypoints()" placeholder="Search and select a waypoint" type="text"/>
+<ul id="waypointList"><li onclick="addWaypoint('AKUMU')">AKUMU</li><li onclick="addWaypoint('ALSAR')">ALSAR</li><li onclick="addWaypoint('AMSAD')">AMSAD</li><li onclick="addWaypoint('ANTIM')">ANTIM</li><li onclick="addWaypoint('ANVOX')">ANVOX</li><li onclick="addWaypoint('ANVUN')">ANVUN</li><li onclick="addWaypoint('APDIK')">APDIK</li><li onclick="addWaypoint('APDOT')">APDOT</li><li onclick="addWaypoint('APGEN')">APGEN</li><li onclick="addWaypoint('APKOL')">APKOL</li><li onclick="addWaypoint('APLOG')">APLOG</li><li onclick="addWaypoint('APMIT')">APMIT</li><li onclick="addWaypoint('APNAD')">APNAD</li><li onclick="addWaypoint('APNOL')">APNOL</li><li onclick="addWaypoint('ATUNU')">ATUNU</li><li onclick="addWaypoint('ATUPA')">ATUPA</li><li onclick="addWaypoint('AVATU')">AVATU</li><li onclick="addWaypoint('AVEKI')">AVEKI</li><li onclick="addWaypoint('AVETA')">AVETA</li><li onclick="addWaypoint('AVIGO')">AVIGO</li><li onclick="addWaypoint('AVIRI')">AVIRI</li><li onclick="addWaypoint('AVITA')">AVITA</li><li onclick="addWaypoint('AVUNO')">AVUNO</li><li onclick="addWaypoint('AXOSI')">AXOSI</li><li onclick="addWaypoint('BILAK')">BILAK</li><li onclick="addWaypoint('BONAP')">BONAP</li><li onclick="addWaypoint('BOSAD')">BOSAD</li><li onclick="addWaypoint('BOTEN')">BOTEN</li><li onclick="addWaypoint('BUJUMBURA CVOR')">BJA      <span style="color: #808080;">Bujumbura CVOR</span></li><li onclick="addWaypoint('DARAS')">DARAS</li><li onclick="addWaypoint('DASTA')">DASTA</li><li onclick="addWaypoint('DATAN')">DATAN</li><li onclick="addWaypoint('DO')">DO      <span style="color: #808080;">Dodoma NDB</span></li><li onclick="addWaypoint('DUDGA')">DUDGA</li><li onclick="addWaypoint('DUMA')">DUMA</li><li onclick="addWaypoint('DUMPA')">DUMPA</li><li onclick="addWaypoint('DUNDO')">DUNDO</li><li onclick="addWaypoint('DUSKA')">DUSKA</li><li onclick="addWaypoint('DV')">DV      <span style="color: #808080;">Dar es salaam DVOR</span></li><li onclick="addWaypoint('EGLOX')">EGLOX</li><li onclick="addWaypoint('EGMIL')">EGMIL</li><li onclick="addWaypoint('EGNUM')">EGNUM</li><li onclick="addWaypoint('EGPET')">EGPET</li><li onclick="addWaypoint('EGSEM')">EGSEM</li><li onclick="addWaypoint('EGSIX')">EGSIX</li><li onclick="addWaypoint('EGTAN')">EGTAN</li><li onclick="addWaypoint('ELAVA')">ELAVA</li><li onclick="addWaypoint('EPMAB')">EPMAB</li><li onclick="addWaypoint('EPMIN')">EPMIN</li><li onclick="addWaypoint('EPTAN')">EPTAN</li><li onclick="addWaypoint('EPTEL')">EPTEL</li><li onclick="addWaypoint('EPTIK')">EPTIK</li><li onclick="addWaypoint('ERBOK')">ERBOK</li><li onclick="addWaypoint('ERDEN')">ERDEN</li><li onclick="addWaypoint('ESPUX')">ESPUX</li><li onclick="addWaypoint('ESRES')">ESRES</li><li onclick="addWaypoint('ESVIM')">ESVIM</li><li onclick="addWaypoint('ETIVO')">ETIVO</li><li onclick="addWaypoint('ETLEK')">ETLEK</li><li onclick="addWaypoint('ETMIS')">ETMIS</li><li onclick="addWaypoint('ETMIX')">ETMIX</li><li onclick="addWaypoint('ETMOV')">ETMOV</li><li onclick="addWaypoint('ETUXI')">ETUXI</li><li onclick="addWaypoint('EVASI')">EVASI</li><li onclick="addWaypoint('EVATO')">EVATO</li><li onclick="addWaypoint('EXELU')">EXELU</li><li onclick="addWaypoint('EXEMI')">EXEMI</li><li onclick="addWaypoint('GABSO')">GABSO</li><li onclick="addWaypoint('GAVDA')">GAVDA</li><li onclick="addWaypoint('GEREN')">GEREN</li><li onclick="addWaypoint('GERUD')">GERUD</li><li onclick="addWaypoint('GESAT')">GESAT</li><li onclick="addWaypoint('GETAB')">GETAB</li><li onclick="addWaypoint('GETUX')">GETUX</li><li onclick="addWaypoint('HTAI')">HTAI      <span style="color: #808080;">Lamai</span></li><li onclick="addWaypoint('HTAL')">HTAL      <span style="color: #808080;">Allience</span></li><li onclick="addWaypoint('HTAR')">HTAR      <span style="color: #808080;">Arusha</span></li><li onclick="addWaypoint('HTAS')">HTAS      <span style="color: #808080;">Mashado</span></li><li onclick="addWaypoint('HTBA')">HTBA</li><li onclick="addWaypoint('HTBB')">HTBB      <span style="color: #808080;">Kiba (Kibambawe)</span></li><li onclick="addWaypoint('HTBE')">HTBE      <span style="color: #808080;">Berega</span></li><li onclick="addWaypoint('HTBF')">HTBF      <span style="color: #808080;">Buckreef</span></li><li onclick="addWaypoint('HTBG')">HTBG      <span style="color: #808080;">Kikoboga</span></li><li onclick="addWaypoint('HTBH')">HTBH      <span style="color: #808080;">Biharamulo</span></li><li onclick="addWaypoint('HTBJ')">HTBJ      <span style="color: #808080;">Kabojo</span></li><li onclick="addWaypoint('HTBM')">HTBM      <span style="color: #808080;">Bagamoyo</span></li><li onclick="addWaypoint('HTBN')">HTBN      <span style="color: #808080;">Bulyankhulu</span></li><li onclick="addWaypoint('HTBO')">HTBO      <span style="color: #808080;">Веновено</span></li><li onclick="addWaypoint('HTBS')">HTBS      <span style="color: #808080;">Mbesa</span></li><li onclick="addWaypoint('HTBT')">HTBT      <span style="color: #808080;">Buturi</span></li><li onclick="addWaypoint('HTBU')">HTBU      <span style="color: #808080;">Bukoba</span></li><li onclick="addWaypoint('HTBV')">HTBV      <span style="color: #808080;">Yaeda Chini</span></li><li onclick="addWaypoint('HTBX')">HTBX      <span style="color: #808080;">Мавохі</span></li><li onclick="addWaypoint('HTBY')">HTBY      <span style="color: #808080;">Mbamba Bay</span></li><li onclick="addWaypoint('HTCF')">HTCF      <span style="color: #808080;">Catfish</span></li><li onclick="addWaypoint('HTCH')">HTCH      <span style="color: #808080;">Chunya</span></li><li onclick="addWaypoint('HTCM')">HTCM      <span style="color: #808080;">Chemchem</span></li><li onclick="addWaypoint('HTCV')">HTCV      <span style="color: #808080;">Chivanjee</span></li><li onclick="addWaypoint('HTDA')">HTDA      <span style="color: #808080;">Dar es Salaam</span></li><li onclick="addWaypoint('HTDB')">HTDB      <span style="color: #808080;">Madaba</span></li><li onclick="addWaypoint('HTDG')">HTDG      <span style="color: #808080;">Dolly</span></li><li onclick="addWaypoint('HTDK')">HTDK      <span style="color: #808080;">Dakawa</span></li><li onclick="addWaypoint('HTDN')">HTDN      <span style="color: #808080;">Saadani</span></li><li onclick="addWaypoint('HTDO')">HTDO      <span style="color: #808080;">Dodoma</span></li><li onclick="addWaypoint('HTDU')">HTDU      <span style="color: #808080;">Kibidula</span></li><li onclick="addWaypoint('HTDY')">HTDY      <span style="color: #808080;">Dorman</span></li><li onclick="addWaypoint('HTEB')">HTEB      <span style="color: #808080;">Sengerema</span></li><li onclick="addWaypoint('HTEE')">HTEE      <span style="color: #808080;">Mlele Ram</span></li><li onclick="addWaypoint('HTEJ')">HTEJ      <span style="color: #808080;">Shama</span></li><li onclick="addWaypoint('HTEN')">HTEN      <span style="color: #808080;">Enduleni</span></li><li onclick="addWaypoint('HTEQ')">HTEQ      <span style="color: #808080;">Shughuli</span></li><li onclick="addWaypoint('HTER')">HTER      <span style="color: #808080;">Mtera</span></li><li onclick="addWaypoint('HTES')">HTES      <span style="color: #808080;">Engorika</span></li><li onclick="addWaypoint('HTEY')">HTEY      <span style="color: #808080;">Sikonge</span></li><li onclick="addWaypoint('HTFE')">HTFE      <span style="color: #808080;">Fish Eagle</span></li><li onclick="addWaypoint('HTFI')">HTFI      <span style="color: #808080;">Fort Ikoma</span></li><li onclick="addWaypoint('HTFR')">HTFR      <span style="color: #808080;">Kifura</span></li><li onclick="addWaypoint('HTGA')">HTGA      <span style="color: #808080;">Mbuga/Ilonga</span></li><li onclick="addWaypoint('HTGE')">HTGE      <span style="color: #808080;">Geita</span></li><li onclick="addWaypoint('HTGL')">HTGL      <span style="color: #808080;">Gerai Lumbwa</span></li><li onclick="addWaypoint('HTGM')">HTGM      <span style="color: #808080;">Magambua</span></li><li onclick="addWaypoint('HTGO')">HTGO      <span style="color: #808080;">Kizigo</span></li><li onclick="addWaypoint('HTGP')">HTGP      <span style="color: #808080;">Golden Pride</span></li><li onclick="addWaypoint('HTGR')">HTGR      <span style="color: #808080;">Grumet</span></li><li onclick="addWaypoint('HTGS')">HTGS      <span style="color: #808080;">Malagarasi</span></li><li onclick="addWaypoint('HTGT')">HTGT      <span style="color: #808080;">Gelai East</span></li><li onclick="addWaypoint('HTGU')">HTGU      <span style="color: #808080;">Miguruwe</span></li><li onclick="addWaypoint('HTGV')">HTGV      <span style="color: #808080;">George Vineyard Memorial (Kipili)</span></li><li onclick="addWaypoint('HTGW')">HTGW      <span style="color: #808080;">Songwe</span></li><li onclick="addWaypoint('HTGZ')">HTGZ      <span style="color: #808080;">Magazini</span></li><li onclick="addWaypoint('HTHB')">HTHB      <span style="color: #808080;">Muhuba</span></li><li onclick="addWaypoint('HTHG')">HTHG      <span style="color: #808080;">Kilumbi</span></li><li onclick="addWaypoint('HTHI')">HTHI      <span style="color: #808080;">Mlay/Mlahi</span></li><li onclick="addWaypoint('HTHM')">HTHM      <span style="color: #808080;">Mwambesi</span></li><li onclick="addWaypoint('HTHR')">HTHR      <span style="color: #808080;">Heri Hospital</span></li><li onclick="addWaypoint('HTHS')">HTHS      <span style="color: #808080;">Muhesi</span></li><li onclick="addWaypoint('HTHY')">HTHY      <span style="color: #808080;">Hydom</span></li><li onclick="addWaypoint('HTI')">HTI      <span style="color: #808080;">Lesirwai</span></li><li onclick="addWaypoint('HTIA')">HTIA      <span style="color: #808080;">Ifakara</span></li><li onclick="addWaypoint('HTIF')">HTIF      <span style="color: #808080;">Ifunda Farm</span></li><li onclick="addWaypoint('HTIH')">HTIH      <span style="color: #808080;">Tarime (Sasi)</span></li><li onclick="addWaypoint('HTIK')">HTIK      <span style="color: #808080;">Iku-Lake Chada</span></li><li onclick="addWaypoint('HTIL')">HTIL      <span style="color: #808080;">Lila</span></li><li onclick="addWaypoint('HTIR')">HTIR      <span style="color: #808080;">Iringa</span></li><li onclick="addWaypoint('HTIW')">HTIW      <span style="color: #808080;">Liwale</span></li><li onclick="addWaypoint('HTIY')">HTIY      <span style="color: #808080;">Inyonga</span></li><li onclick="addWaypoint('HTJN')">HTJN      <span style="color: #808080;">Kwajoni</span></li><li onclick="addWaypoint('HTJO')">HTJO      <span style="color: #808080;">Jongomero</span></li><li onclick="addWaypoint('HTJR')">HTJR      <span style="color: #808080;">Mkwaja Ranch</span></li><li onclick="addWaypoint('HTKA')">HTKA      <span style="color: #808080;">Kigoma</span></li><li onclick="addWaypoint('HTKB')">HTKB</li><li onclick="addWaypoint('HTKC')">HTKC      <span style="color: #808080;">Kleins Camp</span></li><li onclick="addWaypoint('HTKD')">HTKD      <span style="color: #808080;">Kondoa</span></li><li onclick="addWaypoint('HTKE')">HTKE      <span style="color: #808080;">Ketumbeine</span></li><li onclick="addWaypoint('HTKF')">HTKF      <span style="color: #808080;">Kibebe Farm</span></li><li onclick="addWaypoint('HTKG')">HTKG      <span style="color: #808080;">Namkongo</span></li><li onclick="addWaypoint('HTKH')">HTKH      <span style="color: #808080;">Канама</span></li><li onclick="addWaypoint('HTKI')">HTKI      <span style="color: #808080;">Kilwa Masoko</span></li><li onclick="addWaypoint('HTKJ')">HTKJ      <span style="color: #808080;">Kilimanjaro</span></li><li onclick="addWaypoint('HTKL')">HTKL      <span style="color: #808080;">Kirondatal</span></li><li onclick="addWaypoint('HTKM')">HTKM      <span style="color: #808080;">Kilombero</span></li><li onclick="addWaypoint('HTKN')">HTKN      <span style="color: #808080;">Kasense</span></li><li onclick="addWaypoint('HTKO')">HTKO      <span style="color: #808080;">Kongwa</span></li><li onclick="addWaypoint('HTKP')">HTKP      <span style="color: #808080;">Kingupira</span></li><li onclick="addWaypoint('HTKR')">HTKR      <span style="color: #808080;">Kingupira</span></li><li onclick="addWaypoint('HTKS')">HTKS      <span style="color: #808080;">Kilosa</span></li><li onclick="addWaypoint('HTKT')">HTKT      <span style="color: #808080;">Kilimatinde</span></li><li onclick="addWaypoint('HTKU')">HTKU      <span style="color: #808080;">Kasulu</span></li><li onclick="addWaypoint('HTKX')">HTKX      <span style="color: #808080;">Kitemela</span></li><li onclick="addWaypoint('HTLA')">HTLA      <span style="color: #808080;">Lukula</span></li><li onclick="addWaypoint('HTLB')">HTLB      <span style="color: #808080;">Malambo</span></li><li onclick="addWaypoint('HTLD')">HTLD      <span style="color: #808080;">Loliondo</span></li><li onclick="addWaypoint('HTLE')">HTLE      <span style="color: #808080;">Ilembula</span></li><li onclick="addWaypoint('HTLI')">HTLI      <span style="color: #808080;">Lindi</span></li><li onclick="addWaypoint('HTLJ')">HTLJ      <span style="color: #808080;">Lualanje</span></li><li onclick="addWaypoint('HTLK')">HTLK      <span style="color: #808080;">Luika</span></li><li onclick="addWaypoint('HTLL')">HTLL      <span style="color: #808080;">Liuli</span></li><li onclick="addWaypoint('HTLM')">HTLM      <span style="color: #808080;">Lake Manyara</span></li><li onclick="addWaypoint('HTLN')">HTLN      <span style="color: #808080;">Lukwati</span></li><li onclick="addWaypoint('HTLO')">HTLO      <span style="color: #808080;">Lobo Wild Life Lodge</span></li><li onclick="addWaypoint('HTLP')">HTLP      <span style="color: #808080;">Lupa</span></li><li onclick="addWaypoint('HTLR')">HTLR      <span style="color: #808080;">Lukuliro</span></li><li onclick="addWaypoint('HTLS')">HTLS      <span style="color: #808080;">Lesingita</span></li><li onclick="addWaypoint('HTLT')">HTLT      <span style="color: #808080;">Lunda Wma</span></li><li onclick="addWaypoint('HTLU')">HTLU      <span style="color: #808080;">Lunda</span></li><li onclick="addWaypoint('HTLV')">HTLV      <span style="color: #808080;">Liveria</span></li><li onclick="addWaypoint('HTLW')">HTLW      <span style="color: #808080;">Luwegu</span></li><li onclick="addWaypoint('HTLY')">HTLY      <span style="color: #808080;">Luwele</span></li><li onclick="addWaypoint('HTMA')">HTMA      <span style="color: #808080;">Mafia</span></li><li onclick="addWaypoint('HTMD')">HTMD      <span style="color: #808080;">Buhemba Gold Mining</span></li><li onclick="addWaypoint('HTME')">HTME      <span style="color: #808080;">Matambwe</span></li><li onclick="addWaypoint('HTMF')">HTMF      <span style="color: #808080;">Mufindi</span></li><li onclick="addWaypoint('HTMG')">HTMG      <span style="color: #808080;">Morogoro</span></li><li onclick="addWaypoint('HTMH')">HTMH      <span style="color: #808080;">Makau</span></li><li onclick="addWaypoint('HTMI')">HTMI      <span style="color: #808080;">Masasi</span></li><li onclick="addWaypoint('HTMJ')">HTMJ      <span style="color: #808080;">Maji Moto</span></li><li onclick="addWaypoint('HTMK')">HTMK      <span style="color: #808080;">Mikumi</span></li><li onclick="addWaypoint('HTML')">HTML      <span style="color: #808080;">Mahale</span></li><li onclick="addWaypoint('HTMM')">HTMM      <span style="color: #808080;">Mamarehe</span></li><li onclick="addWaypoint('HTMN')">HTMN      <span style="color: #808080;">Matemanga</span></li><li onclick="addWaypoint('HTMO')">HTMO      <span style="color: #808080;">Mombo</span></li><li onclick="addWaypoint('HTMP')">HTMP      <span style="color: #808080;">Mpanda</span></li><li onclick="addWaypoint('HTMR')">HTMR      <span style="color: #808080;">Msembe Ruaha</span></li><li onclick="addWaypoint('HTMS')">HTMS      <span style="color: #808080;">Moshi</span></li><li onclick="addWaypoint('HTMT')">HTMT      <span style="color: #808080;">Mtwara</span></li><li onclick="addWaypoint('HTMU')">HTMU      <span style="color: #808080;">Musoma</span></li><li onclick="addWaypoint('HTMV')">HTMV      <span style="color: #808080;">Mvumi</span></li><li onclick="addWaypoint('HTMW')">HTMW      <span style="color: #808080;">Mwanza</span></li><li onclick="addWaypoint('HTMX')">HTMX      <span style="color: #808080;">Mpwapwa</span></li><li onclick="addWaypoint('HTMY')">HTMY      <span style="color: #808080;">Mbuyu</span></li><li onclick="addWaypoint('HTNA')">HTNA      <span style="color: #808080;">Nachingwea</span></li><li onclick="addWaypoint('HTNB')">HTNB      <span style="color: #808080;">Naberera</span></li><li onclick="addWaypoint('HTND')">HTND      <span style="color: #808080;">Ndutu</span></li><li onclick="addWaypoint('HTNF')">HTNF      <span style="color: #808080;">Nkonje</span></li><li onclick="addWaypoint('HTNG')">HTNG      <span style="color: #808080;">Ngerengere</span></li><li onclick="addWaypoint('HTNH')">HTNH      <span style="color: #808080;">Ndolo</span></li><li onclick="addWaypoint('HTNJ')">HTNJ      <span style="color: #808080;">Njombe</span></li><li onclick="addWaypoint('HTNK')">HTNK      <span style="color: #808080;">Nkinga</span></li><li onclick="addWaypoint('HTNM')">HTNM      <span style="color: #808080;">North Mara</span></li><li onclick="addWaypoint('HTNN')">HTNN      <span style="color: #808080;">Ngorongoro</span></li><li onclick="addWaypoint('HTNO')">HTNO      <span style="color: #808080;">Mbono</span></li><li onclick="addWaypoint('HTNR')">HTNR      <span style="color: #808080;">Ngara</span></li><li onclick="addWaypoint('HTNW')">HTNW      <span style="color: #808080;">Ngwazi</span></li><li onclick="addWaypoint('HTNY')">HTNY      <span style="color: #808080;">Kinyanguru</span></li><li onclick="addWaypoint('HTNZ')">HTNZ      <span style="color: #808080;">Nzega</span></li><li onclick="addWaypoint('HTOM')">HTOM      <span style="color: #808080;">Olemilei</span></li><li onclick="addWaypoint('HTON')">HTON      <span style="color: #808080;">Mishamo</span></li><li onclick="addWaypoint('HTOP')">HTOP</li><li onclick="addWaypoint('HTOR')">HTOR      <span style="color: #808080;">Olepakashi/Engaresero</span></li><li onclick="addWaypoint('HTOZ')">HTOZ      <span style="color: #808080;">Kigosa 1/Kigozi</span></li><li onclick="addWaypoint('HTPD')">HTPD      <span style="color: #808080;">Mpunde</span></li><li onclick="addWaypoint('HTPE')">HTPE      <span style="color: #808080;">Pemba</span></li><li onclick="addWaypoint('HTPP')">HTPP      <span style="color: #808080;">Kapunga</span></li><li onclick="addWaypoint('HTPT')">HTPT      <span style="color: #808080;">Piti/Kitemela</span></li><li onclick="addWaypoint('HTPW')">HTPW      <span style="color: #808080;">Matipwili</span></li><li onclick="addWaypoint('HTRA')">HTRA      <span style="color: #808080;">Mkangire</span></li><li onclick="addWaypoint('HTRB')">HTRB      <span style="color: #808080;">Rubondo</span></li><li onclick="addWaypoint('HTRE')">HTRE      <span style="color: #808080;">Pemba</span></li><li onclick="addWaypoint('HTRG')">HTRG      <span style="color: #808080;">Rungwa</span></li><li onclick="addWaypoint('HTRL')">HTRL      <span style="color: #808080;">Mbarali</span></li><li onclick="addWaypoint('HTRN')">HTRN      <span style="color: #808080;">Barani</span></li><li onclick="addWaypoint('HTRS')">HTRS      <span style="color: #808080;">Kibesa</span></li><li onclick="addWaypoint('HTRU')">HTRU      <span style="color: #808080;">Mchauru</span></li><li onclick="addWaypoint('HTRX')">HTRX      <span style="color: #808080;">Tango One</span></li><li onclick="addWaypoint('HTRZ')">HTRZ      <span style="color: #808080;">Kirumira</span></li><li onclick="addWaypoint('HTSA')">HTSA      <span style="color: #808080;">Makwasa</span></li><li onclick="addWaypoint('HTSB')">HTSB      <span style="color: #808080;">Kagera Sugar</span></li><li onclick="addWaypoint('HTSD')">HTSD      <span style="color: #808080;">Singida</span></li><li onclick="addWaypoint('HTSE')">HTSE      <span style="color: #808080;">Same</span></li><li onclick="addWaypoint('HTSG')">HTSG      <span style="color: #808080;">Stiglers Gorge</span></li><li onclick="addWaypoint('HTSH')">HTSH      <span style="color: #808080;">Mafinga</span></li><li onclick="addWaypoint('HTSI')">HTSI      <span style="color: #808080;">Kihansi</span></li><li onclick="addWaypoint('HTSJ')">HTSJ      <span style="color: #808080;">Simanjiro</span></li><li onclick="addWaypoint('HTSK')">HTSK      <span style="color: #808080;">Sitalike</span></li><li onclick="addWaypoint('HTSL')">HTSL      <span style="color: #808080;">Msolwa</span></li><li onclick="addWaypoint('HTSM')">HTSM      <span style="color: #808080;">Masimba</span></li><li onclick="addWaypoint('HTSN')">HTSN      <span style="color: #808080;">Seronera</span></li><li onclick="addWaypoint('HTSO')">HTSO      <span style="color: #808080;">Songea</span></li><li onclick="addWaypoint('HTSS')">HTSS      <span style="color: #808080;">Songosongo</span></li><li onclick="addWaypoint('HTST')">HTST      <span style="color: #808080;">Serengeti South</span></li><li onclick="addWaypoint('HTSU')">HTSU      <span style="color: #808080;">Sumbawanga</span></li><li onclick="addWaypoint('HTSW')">HTSW      <span style="color: #808080;">Kiswa</span></li><li onclick="addWaypoint('HTSY')">HTSY      <span style="color: #808080;">Shinyanga - Ibadakuli</span></li><li onclick="addWaypoint('HTTA')">HTTA      <span style="color: #808080;">Mngeta</span></li><li onclick="addWaypoint('HTTB')">HTTB      <span style="color: #808080;">Tabora</span></li><li onclick="addWaypoint('HTTC')">HTTC      <span style="color: #808080;">Трс</span></li><li onclick="addWaypoint('HTTE')">HTTE      <span style="color: #808080;">Mtemere</span></li><li onclick="addWaypoint('HTTF')">HTTF      <span style="color: #808080;">Mwadui</span></li><li onclick="addWaypoint('HTTG')">HTTG      <span style="color: #808080;">Tanga</span></li><li onclick="addWaypoint('HTTJ')">HTTJ      <span style="color: #808080;">Handajega</span></li><li onclick="addWaypoint('HTTL')">HTTL      <span style="color: #808080;">Tulawaka</span></li><li onclick="addWaypoint('HTTN')">HTTN      <span style="color: #808080;">Magangwe</span></li><li onclick="addWaypoint('HTTO')">HTTO      <span style="color: #808080;">Kogatende</span></li><li onclick="addWaypoint('HTTR')">HTTR      <span style="color: #808080;">Tarangire</span></li><li onclick="addWaypoint('HTTS')">HTTS      <span style="color: #808080;">Milembwe</span></li><li onclick="addWaypoint('HTTU')">HTTU      <span style="color: #808080;">Tunduru</span></li><li onclick="addWaypoint('HTTV')">HTTV      <span style="color: #808080;">Msima</span></li><li onclick="addWaypoint('HTTX')">HTTX      <span style="color: #808080;">Tarime</span></li><li onclick="addWaypoint('HTTY')">HTTY      <span style="color: #808080;">Manyara South</span></li><li onclick="addWaypoint('HTTZ')">HTTZ      <span style="color: #808080;">Tura</span></li><li onclick="addWaypoint('HTTI')">HTTI      <span style="color: #808080;">Mtibwa</span></li><li onclick="addWaypoint('HTUC')">HTUC      <span style="color: #808080;">Turiani</span></li><li onclick="addWaypoint('HTUF')">HTUF      <span style="color: #808080;">Ugalla</span></li><li onclick="addWaypoint('HTUG')">HTUG      <span style="color: #808080;">Lugala</span></li><li onclick="addWaypoint('HTUK')">HTUK      <span style="color: #808080;">Ukerewe - Nansio</span></li><li onclick="addWaypoint('HTUN')">HTUN      <span style="color: #808080;">Murungu</span></li><li onclick="addWaypoint('HTUO')">HTUO      <span style="color: #808080;">Merugoi</span></li><li onclick="addWaypoint('HTUP')">HTUP      <span style="color: #808080;">Mtemaupinde</span></li><li onclick="addWaypoint('HTUR')">HTUR      <span style="color: #808080;">Urambo</span></li><li onclick="addWaypoint('HTUS')">HTUS      <span style="color: #808080;">Masusu</span></li><li onclick="addWaypoint('HTUT')">HTUT      <span style="color: #808080;">Utete</span></li><li onclick="addWaypoint('HTUU')">HTUU      <span style="color: #808080;">Kalulu</span></li><li onclick="addWaypoint('HTUV')">HTUV      <span style="color: #808080;">Uvinza</span></li><li onclick="addWaypoint('HTUW')">HTUW      <span style="color: #808080;">Nungwi</span></li><li onclick="addWaypoint('HTUZ')">HTUZ      <span style="color: #808080;">Kuro</span></li><li onclick="addWaypoint('HTVR')">HTVR      <span style="color: #808080;">Buger</span></li><li onclick="addWaypoint('HTWA')">HTWA      <span style="color: #808080;">Sasakwa</span></li><li onclick="addWaypoint('HTWB')">HTWB      <span style="color: #808080;">Mwiba</span></li><li onclick="addWaypoint('HTWH')">HTWH      <span style="color: #808080;">Wazo Hill</span></li><li onclick="addWaypoint('HTWI')">HTWI      <span style="color: #808080;">Mchukwi</span></li><li onclick="addWaypoint('HTWK')">HTWK      <span style="color: #808080;">West Kilimanjaro</span></li><li onclick="addWaypoint('HTWS')">HTWS      <span style="color: #808080;">Kwamsisi</span></li><li onclick="addWaypoint('HTYA')">HTYA      <span style="color: #808080;">Kibaya</span></li><li onclick="addWaypoint('HTYE')">HTYE      <span style="color: #808080;">Nyamonge</span></li><li onclick="addWaypoint('HTYO')">HTYO      <span style="color: #808080;">Moyowosi</span></li><li onclick="addWaypoint('HTYW')">HTYW      <span style="color: #808080;">Likuyu</span></li><li onclick="addWaypoint('HTYY')">HTYY      <span style="color: #808080;">Yeye 2</span></li><li onclick="addWaypoint('HTZA')">HTZA      <span style="color: #808080;">Zanzibar</span></li><li onclick="addWaypoint('HTZI')">HTZI      <span style="color: #808080;">Kisima (Mkomazi)</span></li><li onclick="addWaypoint('HTZW')">HTZW      <span style="color: #808080;">Ziwandu</span></li><li onclick="addWaypoint('IBGEN')">IBGEN</li><li onclick="addWaypoint('IBKOB')">IBKOB</li><li onclick="addWaypoint('IBMAR')">IBMAR</li><li onclick="addWaypoint('IBROP')">IBROP</li><li onclick="addWaypoint('IMDOM')">IMDOM</li><li onclick="addWaypoint('IMGEX')">IMGEX</li><li onclick="addWaypoint('IMKIX')">IMKIX</li><li onclick="addWaypoint('IMLAK')">IMLAK</li><li onclick="addWaypoint('IMPIL')">IMPIL</li><li onclick="addWaypoint('IMRAX')">IMRAX</li><li onclick="addWaypoint('IMROD')">IMROD</li><li onclick="addWaypoint('IMSAT')">IMSAT</li><li onclick="addWaypoint('ITBEX')">ITBEX</li><li onclick="addWaypoint('ITBOS')">ITBOS</li><li onclick="addWaypoint('ITGOP')">ITGOP</li><li onclick="addWaypoint('ITLAN')">ITLAN</li><li onclick="addWaypoint('ITMEN')">ITMEN</li><li onclick="addWaypoint('ITNOV')">ITNOV</li><li onclick="addWaypoint('ITOBO')">ITOBO</li><li onclick="addWaypoint('ITROM')">ITROM</li><li onclick="addWaypoint('ITSEV')">ITSEV</li><li onclick="addWaypoint('ITSOK')">ITSOK</li><li onclick="addWaypoint('IXAPA')">IXAPA</li><li onclick="addWaypoint('KASAMA NDB')">KS      <span style="color: #808080;">Kasama NDB</span></li><li onclick="addWaypoint('KASIM')">KASIM</li><li onclick="addWaypoint('KB')">KB</li><li onclick="addWaypoint('KG')">KG      <span style="color: #808080;">Kigoma NDB</span></li><li onclick="addWaypoint('KNM')">KNM      <span style="color: #808080;">Kigali DVOR</span></li><li onclick="addWaypoint('KINAN')">KINAN</li><li onclick="addWaypoint('KIRAWIRA A')">KIRAWIRA A</li><li onclick="addWaypoint('KISIR')">KISIR</li><li onclick="addWaypoint('KIVUR')">KIVUR</li><li onclick="addWaypoint('KL')">KL</li><li onclick="addWaypoint('KO')">KO</li><li onclick="addWaypoint('KOBEL')">KOBEL</li><li onclick="addWaypoint('KOGUT')">KOGUT</li><li onclick="addWaypoint('KV')">KV      <span style="color: #808080;">Kilimanjaro DVOR</span></li><li onclick="addWaypoint('LABAT')">LABAT</li><li onclick="addWaypoint('LOSIN')">LOSIN</li><li onclick="addWaypoint('LUGAP')">LUGAP</li><li onclick="addWaypoint('LUSOB')">LUSOB</li><li onclick="addWaypoint('MAGAD')">MAGAD</li><li onclick="addWaypoint('MB')">MB      <span style="color: #808080;">Mbeya NDB</span></li><li onclick="addWaypoint('MIWAS')">MIWAS</li><li onclick="addWaypoint('MORU')">MORU</li><li onclick="addWaypoint('MPULULU')">MPULULU</li><li onclick="addWaypoint('MT')">MT      <span style="color: #808080;">Mtwara NDB</span></li><li onclick="addWaypoint('MUMTU')">MUMTU</li><li onclick="addWaypoint('MV')">MV      <span style="color: #808080;">Mwanza VOR</span></li><li onclick="addWaypoint('NAGON')">NAGON</li><li onclick="addWaypoint('NESAL')">NESAL</li><li onclick="addWaypoint('NESOX')">NESOX</li><li onclick="addWaypoint('NEXAD')">NEXAD</li><li onclick="addWaypoint('NIBOT')">NIBOT</li><li onclick="addWaypoint('NIDED')">NIDED</li><li onclick="addWaypoint('NIDEL')">NIDEL</li><li onclick="addWaypoint('NIDEX')">NIDEX</li><li onclick="addWaypoint('ODGAT')">ODGAT</li><li onclick="addWaypoint('OKDAS')">OKDAS</li><li onclick="addWaypoint('OKLOM')">OKLOM</li><li onclick="addWaypoint('OKMAS')">OKMAS</li><li onclick="addWaypoint('OKNES')">OKNES</li><li onclick="addWaypoint('OKPAB')">OKPAB</li><li onclick="addWaypoint('OKSIS')">OKSIS</li><li onclick="addWaypoint('OKSOT')">OKSOT</li><li onclick="addWaypoint('OKTEX')">OKTEX</li><li onclick="addWaypoint('OPDET')">OPDET</li><li onclick="addWaypoint('ORLIM')">ORLIM</li><li onclick="addWaypoint('OVANA')">OVANA</li><li onclick="addWaypoint('PARIN')">PARIN</li><li onclick="addWaypoint('PENOD')">PENOD</li><li onclick="addWaypoint('ROVUM')">ROVUM</li><li onclick="addWaypoint('SELRU')">SELRU</li><li onclick="addWaypoint('SINGI')">SINGI</li><li onclick="addWaypoint('TABNO')">TABNO</li><li onclick="addWaypoint('TABORA B')">TABORA B</li><li onclick="addWaypoint('TARANGILE 1')">TARANGILE 1</li><li onclick="addWaypoint('TB')">TB      <span style="color: #808080;">Tabora NDB</span></li><li onclick="addWaypoint('TEBLU')">TEBLU</li><li onclick="addWaypoint('THANDA')">THANDA     <span style="color: #808080;">Thanda Island Helipad</span></li><li onclick="addWaypoint('TIKAN')">TIKAN</li><li onclick="addWaypoint('UDMAM')">UDMAM</li><li onclick="addWaypoint('UDNOT')">UDNOT</li><li onclick="addWaypoint('UMTAP')">UMTAP</li><li onclick="addWaypoint('UNLEN')">UNLEN</li><li onclick="addWaypoint('USUBU')">USUBU</li><li onclick="addWaypoint('UTATA')">UTATA</li><li onclick="addWaypoint('UTEMA')">UTEMA</li><li onclick="addWaypoint('UTINA')">UTINA</li><li onclick="addWaypoint('UTOVU')">UTOVU</li><li onclick="addWaypoint('UVBOX')">UVBOX</li><li onclick="addWaypoint('UVDIX')">UVDIX</li><li onclick="addWaypoint('UVKAT')">UVKAT</li><li onclick="addWaypoint('UVKOD')">UVKOD</li><li onclick="addWaypoint('UVLED')">UVLED</li><li onclick="addWaypoint('UVMAN')">UVMAN</li><li onclick="addWaypoint('UVMEX')">UVMEX</li><li onclick="addWaypoint('UVMID')">UVMID</li><li onclick="addWaypoint('UVORA')">UVORA</li><li onclick="addWaypoint('UVUKO')">UVUKO</li><li onclick="addWaypoint('UVUMI')">UVUMI</li><li onclick="addWaypoint('XAKRI')">XAKRI</li><li onclick="addWaypoint('XINDA')">XINDA</li><li onclick="addWaypoint('ZV')">ZV</li><li onclick="addWaypoint('НТКВ')">НТКВ</li><li onclick="addWaypoint('SG')">SG      <span style="color: #808080;">Songea NDB</span></li>
+<li onclick="addWaypoint('TG')">TG      <span style="color: #808080;">Tanga NDB</span></li>
+</ul>
+</div>
+<div id="routeDisplay">
+<strong>Route:</strong>
+<span id="routeWaypoints">None</span>
+<p class="instructions">(Drag to rearrange waypoints. Click to remove waypoints.)</p>
+</div>
+<div id="output"></div>
+<button onclick="calculateDistance()">Calculate Distance</button>
+<button onclick="toggleCoordinates()">Show/Hide Coordinates</button>
+
+        <div class="split-input">
+            <span class="placeholder-text">Enter MTOW (in Tonnes):</span>
+            <input id="mtow" type="number" placeholder=""/>
+        </div>
+        
+        <div class="split-input">
+            <span class="placeholder-text">Enter DIST (in km):</span>
+            <input id="dist" type="number" placeholder=""/>
+        </div>
+        <p id="ancDisplay"></p><button id="calculateANCButton" onclick="calculateANC()">Calculate ANC</button><button onclick="location.reload();">CLEAR</button>
+<script>
+        const waypoints = {
+"TG": { "lat": -5.0888333, "lon": 39.0733333 },
+"SG": { "lat": -10.6803333, "lon": 35.5801667 },
+
+"THANDA": { "lat": -7.7036, "lon": 39.6808 },
+
+"HTNF": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUW": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+    "HTIY": { "lat": -6.7167, "lon": 32.1000 },
+    "HTKD": { "lat": -4.9333, "lon": 35.7667 },
+    "HTKI": { "lat": -8.9167, "lon": 39.4833 },
+    "HTKL": { "lat": -4.3167, "lon": 34.3333 },
+
+    "HTKS": { "lat": -6.9000, "lon": 37.0167 },
+    "HTKU": { "lat": -4.5492, "lon": 30.1010 },
+
+    "HTLI": { "lat": -9.8509, "lon": 39.7591 },
+    "HTLL": { "lat": -11.1000, "lon": 34.6500 },
+
+    "HTMV": { "lat": -6.3741, "lon": 35.8987 },
+    "HTMX": { "lat": -6.3500, "lon": 36.4833 },
+    "HTNJ": { "lat": -9.3500, "lon": 34.8000 },
+    "HTRU": { "lat": -2.8108, "lon": 32.1719 },
+    "HTSE": { "lat": -4.0833, "lon": 37.7000 },
+    "HTTU": { "lat": -1.1833, "lon": 37.3667 },
+    "HTUK": { "lat": -2.1069, "lon": 33.1118 },
+    "HTUR": { "lat": -5.0667, "lon": 32.0500 },
+    "HTUV": { "lat": -5.0920, "lon": 30.4119 },
+    "HTUW": { "lat": -5.7532, "lon": 39.3160 },
+
+    "DUMA": { "lat": -2.4500, "lon": 35.0833 },
+    "HTIK": { "lat": -6.9000, "lon": 31.1667 },
+    "HTFI": { "lat": -2.0833, "lon": 34.6333 },
+    "HTJO": { "lat": -7.8833, "lon": 34.6000 },
+    "HTBG": { "lat": -7.3333, "lon": 37.8333 },
+    "KIRAWIRA A": { "lat": -2.1667, "lon": 34.1333 },
+    "KIRAWIRA B (GRUMETI)": { "lat": -2.1653, "lon": 34.2250 },
+    "HTTO": {"lat": -1.5685111, "lon": 34.8871265},
+    "HTUZ": { "lat": -4.0000, "lon": 36.0833 },
+
+    "HTLO": { "lat": -2.0106, "lon": 35.1608 },
+    "HTLU": { "lat": -7.4833, "lon": 35.7667 },
+
+    "HTTN": { "lat": -7.7167, "lon": 34.2333 },
+    "MORU": { "lat": -2.7500, "lon": 34.7667 },
+
+    "MPULULU": { "lat": -7.0500, "lon": 34.7333 },
+    "HTRB": { "lat": -2.2833, "lon": 31.8333 },
+    "HTST": { "lat": -3.0086, "lon": 34.7647 },
+
+    "HTSK": { "lat": -6.6333, "lon": 31.1333 },
+    "TABORA B": { "lat": -1.8167, "lon": 34.1333 },
+    "TARANGILE 1": { "lat": -4.7500, "lon": 35.9667 },
+    "TARANGILE 2": { "lat": -3.7667, "lon": 36.0167 },
+"HTGZ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTRE": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTFR": {"lat": -3.838092, "lon": 30.640202},
+"HTHI": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTGT": {"lat": -2.476768, "lon": 36.25761},
+"HTSG": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTO": {"lat": -1.568396, "lon": 34.886933},
+"HTRU": {"lat": -2.813667, "lon": 32.172472},
+"HTOZ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTRL": {"lat": -8.656494, "lon": 34.273113},
+"HTRN": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIW": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUR": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUV": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTC": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBB": {"lat": -7.748241, "lon": 38.001833},
+"HTBG": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTGO": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTMX": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTJ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTMH": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTMM": {"lat": -2.657814, "lon": 34.394518},
+"HTTY": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTDK": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTGS": {"lat": -4.793813, "lon": 30.712949},
+"HTMD": {"lat": -1.774223, "lon": 34.098139},
+"HTPP": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBJ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIR": {"lat": -7.668630123, "lon": 35.7521019},
+"HTMN": {"lat": -10.763142, "lon": 36.953222},
+"HTNM": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUZ": {"lat": -4.007918, "lon": 36.076105},
+"HTGA": {"lat": -8.978724, "lon": 36.869154},
+"HTJO": {"lat": -7.894934, "lon": 34.580821},
+"HTEJ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTX": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTZ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTPD": {"lat": -6.259359, "lon": 33.619996},
+"HTSL": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLB": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTYW": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTDG": {"lat": -3.4394216, "lon": 36.8616974},
+"HTSW": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTRX": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTF": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLK": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTJN": {"lat": -5.512166, "lon": 38.965097},
+"HTBO": {"lat": -7.666746, "lon": 37.927229},
+"HTFI": {"lat": -2.080103, "lon": 34.62952},
+"HTPW": {"lat": -6.248936, "lon": 38.678104},
+"HTUO": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTCV": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIA": {"lat": -8.064876, "lon": 36.698112},
+"HTNZ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBS": {"lat": -11.331675, "lon": 37.067816},
+"HTKU": {"lat": -4.549167, "lon": 30.102222},
+"HTNG": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTS": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKD": {"lat": -4.893710136, "lon": 35.7682991},
+"HTTV": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTNO": {"lat": -3.11141, "lon": 34.660824},
+"HTSK": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTYE": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTSA": {"lat": -6.817874, "lon": 34.218918},
+"HTSB": {"lat": -1.233641, "lon": 31.327325},
+"HTGU": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTRS": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTGP": {"lat": -4.080354, "lon": 33.160212},
+"HTKG": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIL": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTMY": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUF": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIY": {"lat": -6.719232, "lon": 32.062657},
+"HTNW": {"lat": -8.522635, "lon": 35.179545},
+"HTOM": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIK": {"lat": -6.908626, "lon": 31.166407},
+"HTKR": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLE": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTI": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKI": {"lat": -8.91123, "lon": 39.508619},
+"HTTR": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTMV": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTST": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"НТКВ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTYY": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTZI": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUC": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTNN": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKM": {"lat": -7.687751, "lon": 36.986496},
+"HTLV": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTL": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBX": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKL": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTNJ": {"lat": -9.350000381, "lon": 34.79999924},
+"HTRG": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTME": {"lat": -7.528887, "lon": 37.76201},
+"HTYO": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUG": {"lat": -8.916494, "lon": 36.126593},
+"HTVR": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKF": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLN": {"lat": -7.599608, "lon": 32.3072},
+"HTDU": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTFE": {"lat": -4.805057, "lon": 31.276613},
+"HTEQ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLL": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTWS": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTGV": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTI": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLI": {"lat": -9.85111, "lon": 39.757801},
+"HTDC": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTN": {"lat": -7.719942, "lon": 34.226726},
+"HTUK": {"lat": -2.1068287, "lon": 33.1117120},
+"HTLJ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUP": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTYA": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTON": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKP": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBV": {"lat": -3.961546, "lon": 35.144932},
+"HTIH": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTUS": {"lat": -2.272545, "lon": 35.8086306},
+"HTCF": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTDN": { "lat": -6.0309216, "lon": 38.7701179
+},
+"HTLO": {"lat": -2.009865, "lon": 35.159105},
+"HTDQ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLP": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLU": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTJR": {"lat": -5.719283, "lon": 38.828465},
+"HTTU": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTEB": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTWH": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKE": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKT": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTRZ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTLS": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTNB": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTOR": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTDY": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTSE": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBF": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTGM": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTSJ": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTTE": { "lat": -7.7501513, "lon": 38.2087011},
+"HTZW": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBM": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTHB": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTIF": {"lat": -8.070735, "lon": 35.432556},
+"HTHG": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKS": {"lat": -6.864605, "lon": 37.00845},
+"HTSI": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTKX": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTBE": {
+    "lat": "to_be_defined",
+    "lon": "to_be_defined"
+},
+"HTMS": {
+    "lat": -3.3667,
+    "lon": 37.3167
+},
+"KO": {
+    "lat": -3.4319,
+    "lon": 36.9899
+},
+"KL": {
+    "lat": -3.4343,
+    "lon": 36.9232
+},
+"KB": {
+    "lat": -3.5755,
+    "lon": 36.6967
+},
+"HTAR": {
+    "lat": -3.3537,
+    "lon": 36.6246
+},
+    
+"ZV": {
+    "lat": -6.25090,
+    "lon": 39.25194
+},
+
+    
+"HTDA": { "lat": -6.8780873, "lon": 39.2026718
+},
+
+    
+"HTZA": {
+    "lat": -6.23096,
+    "lon": 39.25054
+},
+
+    
+"IMSAT": {
+    "lat": -6.1333,
+    "lon": 37.6667
+},
+
+    "NIDED": {
+        "lat": -4.82065,
+        "lon": 40.618925
+    },
+    "AKUMU": {
+        "lat": -1.008136,
+        "lon": 34.02655
+    },
+    "ALSAR": {
+        "lat": -1.451228,
+        "lon": 30.744514
+    },
+    "AMSAD": {
+        "lat": -6.221833,
+        "lon": 43.993508
+    },
+    "ANTIM": {
+        "lat": -4.601578,
+        "lon": 36.129778
+    },
+    "ANVOX": {
+        "lat": -2.734381,
+        "lon": 36.161825
+    },
+    "ANVUN": {
+        "lat": -6.444689,
+        "lon": 39.740992
+    },
+    "APDIK": {
+        "lat": -2.470275,
+        "lon": 36.675486
+    },
+    "APDOT": {
+        "lat": -1.537053,
+        "lon": 34.567111
+    },
+    "APGEN": {
+        "lat": -8.189483,
+        "lon": 40.83945
+    },
+    "APKOL": {
+        "lat": -9.487747,
+        "lon": 33.312089
+    },
+    "APLOG": {
+        "lat": -1.501764,
+        "lon": 34.921056
+    },
+    "APMIT": {
+        "lat": -3.277064,
+        "lon": 36.467639
+    },
+    "APNAD": {
+        "lat": -1.0,
+        "lon": 32.55595
+    },
+    "APNOL": {
+        "lat": -4.324008,
+        "lon": 34.891336
+    },
+    "ATUNU": {
+        "lat": -5.396756,
+        "lon": 35.920589
+    },
+    "ATUPA": {
+        "lat": -2.651497,
+        "lon": 32.307514
+    },
+    "ATUPA": {
+        "lat": -2.651486,
+        "lon": 32.307514
+    },
+    "AVATU": {
+        "lat": -3.034422,
+        "lon": 35.426578
+    },
+    "AVEKI": {
+        "lat": -6.257547,
+        "lon": 39.622425
+    },
+    "AVETA": {
+        "lat": -3.680478,
+        "lon": 36.054372
+    },
+    "AVIGO": {
+        "lat": -5.57015,
+        "lon": 40.912642
+    },
+    "AVIRI": {
+        "lat": -6.678525,
+        "lon": 32.086919
+    },
+    "AVITA": {
+        "lat": -6.0311,
+        "lon": 37.754969
+    },
+    "AVUNO": {
+        "lat": -3.532981,
+        "lon": 37.750858
+    },
+    "AXOSI": {
+        "lat": -5.960556,
+        "lon": 37.800833
+    },
+    "BILAK": {
+        "lat": -9.132164,
+        "lon": 32.388603
+    },
+    "BONAP": {
+        "lat": -11.635278,
+        "lon": 37.657519
+    },
+    "BOSAD": {
+        "lat": -1.9073,
+        "lon": 30.82035
+    },
+    "BOTEN": {
+        "lat": -8.479722,
+        "lon": 38.681944
+    },
+    "BUJUMBURA CVOR": {
+        "lat": -3.346339,
+        "lon": 29.322025
+    },
+    "BUJUMBURA CVOR": {
+        "lat": -3.346339,
+        "lon": 29.322025
+    },
+    "DV": {
+        "lat": -6.888006,
+        "lon": 39.192714
+    },
+    "DARAS": {
+        "lat": -7.933147,
+        "lon": 40.503928
+    },
+    "DASTA": {
+        "lat": -8.717797,
+        "lon": 41.492842
+    },
+    "DATAN": {
+        "lat": -2.098672,
+        "lon": 30.896186
+    },
+    "DO": {
+        "lat": -6.168986,
+        "lon": 35.746506
+    },
+    "DUDGA": {
+        "lat": -1.0025,
+        "lon": 32.388358
+    },
+    "DUMPA": {
+        "lat": -4.172647,
+        "lon": 35.484042
+    },
+    "DUNDO": {
+        "lat": -4.867325,
+        "lon": 38.798558
+    },
+    "DUSKA": {
+        "lat": -10.63,
+        "lon": 40.2167
+    },
+    "EGLOX": {
+        "lat": -1.856469,
+        "lon": 34.995456
+    },
+    "EGMIL": {
+        "lat": -3.9803,
+        "lon": 35.732578
+    },
+    "EGNUM": {
+        "lat": -5.794444,
+        "lon": 37.926944
+    },
+    "EGPET": {
+        "lat": -5.877325,
+        "lon": 39.394508
+    },
+    "EGSEM": {
+        "lat": -6.445142,
+        "lon": 42.457319
+    },
+    "EGSIX": {
+        "lat": -4.526061,
+        "lon": 35.276153
+    },
+    "EGTAN": {
+        "lat": -11.16815,
+        "lon": 39.247806
+    },
+    "ELAVA": {
+        "lat": -5.118969,
+        "lon": 40.384269
+    },
+    "EPMAB": {
+        "lat": -8.5906,
+        "lon": 35.141364
+    },
+    "EPMIN": {
+        "lat": -4.762697,
+        "lon": 33.855258
+    },
+    "EPTAN": {
+        "lat": -2.798619,
+        "lon": 36.260147
+    },
+    "EPTEL": {
+        "lat": -4.041744,
+        "lon": 38.293333
+    },
+    "EPTIK": {
+        "lat": -4.611203,
+        "lon": 35.446903
+    },
+    "ERBOK": {
+        "lat": -3.210756,
+        "lon": 29.864539
+    },
+    "ERDEN": {
+        "lat": -8.5555,
+        "lon": 39.214006
+    },
+    "ESPUX": {
+        "lat": -3.781133,
+        "lon": 32.865953
+    },
+    "ESRES": {
+        "lat": -8.21435,
+        "lon": 30.679125
+    },
+    "ESVIM": {
+        "lat": -3.499031,
+        "lon": 29.797803
+    },
+    "ETIVO": {
+        "lat": -5.857753,
+        "lon": 37.8739
+    },
+    "ETLEK": {
+        "lat": -4.268417,
+        "lon": 32.222625
+    },
+    "ETMIS": {
+        "lat": -7.826758,
+        "lon": 40.603047
+    },
+    "ETMIX": {
+        "lat": -2.378864,
+        "lon": 30.057117
+    },
+    "ETMOV": {
+        "lat": -3.19375,
+        "lon": 36.114664
+    },
+    "ETMOV": {
+        "lat": -3.195881,
+        "lon": 36.1144
+    },
+    "ETUXI": {
+        "lat": -5.088133,
+        "lon": 34.921969
+    },
+    "EVASI": {
+        "lat": -3.713661,
+        "lon": 34.810097
+    },
+    "EVATO": {
+        "lat": -2.33585,
+        "lon": 36.450822
+    },
+    "EXELU": {
+        "lat": -2.951019,
+        "lon": 36.554219
+    },
+    "EXELU": {
+        "lat": -3.006317,
+        "lon": 36.539536
+    },
+    "GABSO": {
+        "lat": -2.852481,
+        "lon": 37.567517
+    },
+    "GAVDA": {
+        "lat": -2.7867,
+        "lon": 29.6603
+    },
+    "GEREN": {
+        "lat": -5.064797,
+        "lon": 38.461097
+    },
+    "GERUD": {
+        "lat": -3.857328,
+        "lon": 35.672044
+    },
+    "GESAT": {
+        "lat": -9.441642,
+        "lon": 33.062917
+    },
+    "GETAB": {
+        "lat": -2.979967,
+        "lon": 30.793747
+    },
+    "GETUX": {
+        "lat": -4.484297,
+        "lon": 29.569717
+    },
+    "HTSY": {
+        "lat": -3.608297,
+        "lon": 33.503481
+    },
+    "IBGEN": {
+        "lat": -2.489522,
+        "lon": 32.721939
+    },
+    "IBKOB": {
+        "lat": -3.189469,
+        "lon": 36.096511
+    },
+    "IBMAR": {
+        "lat": -2.735919,
+        "lon": 32.749572
+    },
+    "IBROP": {
+        "lat": -9.321389,
+        "lon": 33.353611
+    },
+    "IMDOM": {
+        "lat": -5.456703,
+        "lon": 34.708903
+    },
+    "IMGEX": {
+        "lat": -1.818258,
+        "lon": 34.247844
+    },
+    "IMKIX": {
+        "lat": -4.501878,
+        "lon": 36.842533
+    },
+    "IMLAK": {
+        "lat": -2.568075,
+        "lon": 35.950478
+    },
+    "IMPIL": {
+        "lat": -3.518181,
+        "lon": 35.892122
+    },
+    "IMRAX": {
+        "lat": -3.191672,
+        "lon": 34.039031
+    },
+    "IMROD": {
+        "lat": -6.65215,
+        "lon": 40.900878
+    },
+    "ITBEX": {
+        "lat": -9.272211,
+        "lon": 33.479592
+    },
+    "ITBOS": {
+        "lat": -1.72565,
+        "lon": 32.636508
+    },
+    "ITGOP": {
+        "lat": -6.171364,
+        "lon": 38.488878
+    },
+    "ITLAN": {
+        "lat": -7.543744,
+        "lon": 37.650789
+    },
+    "ITMEN": {
+        "lat": -3.553083,
+        "lon": 35.930481
+    },
+    "ITNOV": {
+        "lat": -5.372522,
+        "lon": 35.844692
+    },
+    "ITOBO": {
+        "lat": -5.044528,
+        "lon": 33.009019
+    },
+    "ITROM": {
+        "lat": -2.399386,
+        "lon": 32.711853
+    },
+    "ITSEV": {
+        "lat": -5.052272,
+        "lon": 36.3022
+    },
+    "ITSOK": {
+        "lat": -4.48235,
+        "lon": 35.955758
+    },
+    "IXAPA": {
+        "lat": -1.569319,
+        "lon": 34.244014
+    },
+    "KASAMA NDB": {
+        "lat": -10.204356,
+        "lon": 31.134814
+    },
+    "KASIM": {
+        "lat": -8.22035,
+        "lon": 38.17915
+    },
+    "KNM": {
+        "lat": -1.968564,
+        "lon": 30.147558
+    },
+    "KG": {
+        "lat": -4.888353,
+        "lon": 29.669131
+    },
+    "KV": {
+        "lat": -3.4280523,
+        "lon": 37.1064496
+    },
+    "KINAN": {
+        "lat": -10.742892,
+        "lon": 42.435647
+    },
+    "KISIR": {
+        "lat": -8.174794,
+        "lon": 40.266978
+    },
+    "KIVUR": {
+        "lat": -2.619167,
+        "lon": 29.267322
+    },
+    "KOBEL": {
+        "lat": -9.417458,
+        "lon": 41.310894
+    },
+    "KOGUT": {
+        "lat": -6.535494,
+        "lon": 41.917556
+    },
+    "LOSIN": {
+        "lat": -3.133303,
+        "lon": 36.12215
+    },
+    "LUGAP": {
+        "lat": -5.693631,
+        "lon": 38.019975
+    },
+    "LUSOB": {
+        "lat": -1.638694,
+        "lon": 33.536622
+    },
+    "MAGAD": {
+        "lat": -2.181247,
+        "lon": 36.151197
+    },
+    "MB": {
+        "lat": -8.922767,
+        "lon": 33.458172
+    },
+    "MIWAS": {
+        "lat": -4.925678,
+        "lon": 36.043956
+    },
+    "MT": {
+        "lat": -10.332392,
+        "lon": 40.184531
+    },
+    "MUMTU": {
+        "lat": -5.199508,
+        "lon": 38.173039
+    },
+    "MV": {
+        "lat": -2.443003,
+        "lon": 32.933903
+    },
+    "NAGON": {
+        "lat": -8.497822,
+        "lon": 39.652242
+    },
+    "NESAL": {
+        "lat": -1.002656,
+        "lon": 33.851261
+    },
+    "NESOX": {
+        "lat": -5.503067,
+        "lon": 35.038561
+    },
+    "NEXAD": {
+        "lat": -4.165883,
+        "lon": 31.917731
+    },
+    "NIBOT": {
+        "lat": -2.014233,
+        "lon": 34.437386
+    },
+    "NIDEL": {
+        "lat": -8.974736,
+        "lon": 34.207944
+    },
+    "NIDEX": {
+        "lat": -4.252372,
+        "lon": 35.61075
+    },
+    "ODGAT": {
+        "lat": -7.947042,
+        "lon": 37.895256
+    },
+    "OKDAS": {
+        "lat": -5.172819,
+        "lon": 35.190231
+    },
+    "OKLOM": {
+        "lat": -7.670408,
+        "lon": 33.302919
+    },
+    "OKMAS": {
+        "lat": -5.653733,
+        "lon": 35.810006
+    },
+    "OKNES": {
+        "lat": -3.585739,
+        "lon": 37.900842
+    },
+    "OKPAB": {
+        "lat": -3.816019,
+        "lon": 37.961361
+    },
+    "OKSIS": {
+        "lat": -1.590661,
+        "lon": 34.027653
+    },
+    "OKSOT": {
+        "lat": -1.429286,
+        "lon": 33.872372
+    },
+    "OKTEX": {
+        "lat": -1.002656,
+        "lon": 31.249528
+    },
+    "OPDET": {
+        "lat": -5.119883,
+        "lon": 29.4227
+    },
+    "ORLIM": {
+        "lat": -10.742081,
+        "lon": 34.410731
+    },
+    "OVANA": {
+        "lat": -9.619958,
+        "lon": 33.50015
+    },
+    "PARIN": {
+        "lat": -1.769225,
+        "lon": 35.367461
+    },
+    "PENOD": {
+        "lat": -5.615561,
+        "lon": 33.075964
+    },
+    "ROVUM": {
+        "lat": -11.606169,
+        "lon": 35.558539
+    },
+    "SELRU": {
+        "lat": -2.49725,
+        "lon": 35.855397
+    },
+    "SINGI": {
+        "lat": -5.783903,
+        "lon": 34.909622
+    },
+    "TABNO": {
+        "lat": -10.387089,
+        "lon": 43.639839
+    },
+    "TB": {
+        "lat": -5.064406,
+        "lon": 32.832633
+    },
+    "TEBLU": {
+        "lat": -1.328369,
+        "lon": 33.774061
+    },
+    "TIKAN": {
+        "lat": -9.080192,
+        "lon": 31.965314
+    },
+    "UDMAM": {
+        "lat": -3.702403,
+        "lon": 30.41735
+    },
+    "UDNOT": {
+        "lat": -9.085592,
+        "lon": 32.103169
+    },
+    "UMTAP": {
+        "lat": -10.560153,
+        "lon": 34.636014
+    },
+    "UNLEN": {
+        "lat": -1.292769,
+        "lon": 34.239758
+    },
+    "USUBU": {
+        "lat": -4.4815,
+        "lon": 32.945739
+    },
+    "UTATA": {
+        "lat": -2.685825,
+        "lon": 37.042506
+    },
+    "UTEMA": {
+        "lat": -9.296933,
+        "lon": 32.752353
+    },
+    "UTINA": {
+        "lat": -11.168433,
+        "lon": 34.489067
+    },
+    "UTOVU": {
+        "lat": -3.975128,
+        "lon": 35.201542
+    },
+    "UVBOX": {
+        "lat": -3.951922,
+        "lon": 36.298689
+    },
+    "UVDIX": {
+        "lat": -2.078647,
+        "lon": 34.251856
+    },
+    "UVKAT": {
+        "lat": -9.312761,
+        "lon": 34.959631
+    },
+    "UVKOD": {
+        "lat": -1.737064,
+        "lon": 32.347936
+    },
+    "UVLED": {
+        "lat": -2.374308,
+        "lon": 32.319064
+    },
+    "UVMAN": {
+        "lat": -5.095933,
+        "lon": 32.176428
+    },
+    "UVMEX": {
+        "lat": -6.789958,
+        "lon": 39.955894
+    },
+    "UVMID": {
+        "lat": -3.581225,
+        "lon": 32.255542
+    },
+    "UVORA": {
+        "lat": -7.432583,
+        "lon": 30.002064
+    },
+    "UVUKO": {
+        "lat": -4.702336,
+        "lon": 39.500908
+    },
+    "UVUMI": {
+        "lat": -5.66095,
+        "lon": 35.846961
+    },
+    "XAKRI": {
+        "lat": -2.190322,
+        "lon": 36.172836
+    },
+    "XINDA": {
+        "lat": -1.084928,
+        "lon": 33.961439
+    },
+    "DVOR": {
+        "lat": -3.427881,
+        "lon": 37.106611
+    },
+    "EXEMI": {
+        "lat": -2.750875,
+        "lon": 34.230561
+    },
+    "LABAT": {
+        "lat": -1.002656,
+        "lon": 33.45875
+    }
+,
+"HTAI": {
+    "lat": -1.5616934,
+    "lon": 34.7023730
+},
+"HTAL": {
+    "lat": -31.5756233,
+    "lon": -68.6849263
+},
+"HTAS": {
+    "lat": 32.175273,
+    "lon": 34.926677
+},
+"HTBA": {
+    "lat": 52.4881849,
+    "lon": 6.0544815
+},
+"HTBH": {
+    "lat": -2.6603,
+    "lon": 31.3500
+},
+"HTBN": {
+    "lat": 16.936777,
+    "lon": 43.771098
+},
+"HTBT": {
+    "lat": 31.8062313,
+    "lon": 35.2692277
+},
+"HTBU": { "lat": -1.3305742, "lon": 31.8194127 },
+"HTBY": {
+    "lat": 17.933333,
+    "lon": 30.966667
+},
+"HTCH": {
+    "lat": -8.559177349999999,
+    "lon": 33.43547039554499
+},
+"HTCM": {
+    "lat": 46.9617675,
+    "lon": 16.278200731666622
+},
+"HTDB": {
+    "lat": 52.3623427,
+    "lon": 4.8695215
+},
+"HTDO": {
+    "lat": -6.1700681500000005,
+    "lon": 35.754430618763045
+},
+"HTEE": {
+    "lat": 13.7796933,
+    "lon": 98.7124157
+},
+"HTEN": {
+    "lat": 17.0969991,
+    "lon": 96.3200175
+},
+"HTER": {
+    "lat": 9.9776535,
+    "lon": 98.5494378
+},
+"HTES": {
+    "lat": 49.1355098,
+    "lon": -0.47051
+},
+"HTEY": {
+    "lat": 25.36091605,
+    "lon": 96.99050045
+},
+"HTGE": {
+    "lat": -2.7431076,
+    "lon": 31.71008826429769
+},
+"HTGL": {
+    "lat": 50.4442293,
+    "lon": 100.1579353
+},
+"HTGR": {
+    "lat": 21.5822272,
+    "lon": 71.4255742
+},
+"HTGW": {
+    "lat": -8.9216503,
+    "lon": 33.27373863940497
+},
+"HTHM": {
+    "lat": 24.4638519,
+    "lon": 39.6833937
+},
+"HTHR": {
+    "lat": 25.7289325,
+    "lon": 32.60213950516434
+},
+"HTHS": {
+    "lat": 39.9605951,
+    "lon": 65.9355931
+},
+"HTHY": {
+    "lat": 13.8255175,
+    "lon": 100.718174
+},
+"HTKA": {
+    "lat": -4.88641355,
+    "lon": 29.66999721980784
+},
+"HTKB": {
+    "lat": -3.52604515,
+    "lon": 30.650418965020407
+},
+"HTKC": {
+    "lat": -1.7733408,
+    "lon": 35.2738344
+},
+"HTKH": {
+    "lat": 36.3640698,
+    "lon": 52.83926295175668
+},
+"HTKJ": {
+    "lat": -3.4280794,
+    "lon": 37.0762888915749
+},
+"HTKN": {
+    "lat": 30.8522739,
+    "lon": 56.7995944
+},
+"HTKO": {
+    "lat": -6.16346955,
+    "lon": 36.42142026314065
+},
+"HTLA": {
+    "lat": 32.804671,
+    "lon": 35.09867
+},
+"HTLD": {
+    "lat": -2.0695228,
+    "lon": 35.539985466726904
+},
+"HTLM": {
+    "lat": -3.3754297500000003,
+    "lon": 35.81841518400475
+},
+"HTLR": {
+    "lat": 48.0861212,
+    "lon": 16.2573042
+},
+"HTLT": {
+    "lat": 35.3382696,
+    "lon": 40.1859941
+},
+"HTLW": {
+    "lat": 35.6752461,
+    "lon": 44.0701279
+},
+"HTLY": {
+    "lat": 14.383316,
+    "lon": 43.98589
+},
+"HTMA": {
+    "lat": -7.91735835,
+    "lon": 39.66804537412173
+},
+"HTMF": {
+    "lat": -8.733807,
+    "lon": 35.3033183
+},
+"HTMG": {
+    "lat": -6.7972567,
+    "lon": 37.65293413099329
+},
+"HTMI": {
+    "lat": -10.738714,
+    "lon": 38.77182244631695
+},
+"HTMJ": {
+    "lat": 43.8015515,
+    "lon": 4.6564631
+},
+"HTMK": {
+    "lat": 32.00441764999999,
+    "lon": 34.865560983390154
+},
+"HTML": {
+    "lat": -6.0117669,
+    "lon": 29.7654228
+},
+"HTMO": {
+    "lat": -4.8991455,
+    "lon": 38.2402893
+},
+"HTMP": {
+    "lat": -6.35497145,
+    "lon": 31.08408249793776
+},
+"HTMR": {
+    "lat": 31.43500955,
+    "lon": 34.534656877741725
+},
+"HTMT": {
+    "lat": -10.33753,
+    "lon": 40.18218
+},
+"HTMU": { "lat": -1.5035000, "lon": 33.8021667 },
+"HTMW": {
+    "lat": -2.44583425,
+    "lon": 32.93340863939895
+},
+"HTNA": {
+    "lat": 32.790254,
+    "lon": 35.52886
+},
+"HTND": {
+    "lat": -3.027934,
+    "lon": 34.9914545
+},
+"HTNH": {
+    "lat": 32.6960454,
+    "lon": 35.3174536
+},
+"HTNK": {
+    "lat": 32.4830222,
+    "lon": 34.8936223
+},
+"HTNR": { "lat": -2.5416624, "lon": 30.7040798 },
+"HTNY": {
+    "lat": 32.0881595,
+    "lon": 34.7752881
+},
+"HTOP": {
+    "lat": 41.7031215,
+    "lon": 2.8545373
+},
+"HTPE": {
+    "lat": -5.25760455,
+    "lon": 39.812129878249095
+},
+"HTPT": {
+    "lat": 43.6027477,
+    "lon": -116.20301156145555
+},
+"HTRA": {
+    "lat": 37.286855,
+    "lon": 49.574484
+},
+"HTRB": {
+    "lat": 47.5010605,
+    "lon": -0.5685783939849622
+},
+"HTSD": {
+    "lat": -4.8104587,
+    "lon": 34.7274309
+},
+"HTSH": {
+    "lat": 24.974886400000003,
+    "lon": 121.53287021562588
+},
+"HTSM": {
+    "lat": -29.69836105,
+    "lon": -53.82190234411016
+},
+"HTSN": {
+    "lat": -2.4576367,
+    "lon": 34.8207415
+},
+"HTSO": {
+    "lat": -10.6812175,
+    "lon": 35.58191536198474
+},
+"HTSS": {
+    "lat": -8.528,
+    "lon": 39.507
+},
+"HTSU": {
+    "lat": -7.9484409,
+    "lon": 31.61107548285324
+},
+"HTTA": {
+    "lat": 31.5807426,
+    "lon": 74.3176297
+},
+"HTTB": {
+    "lat": -5.0775058,
+    "lon": 32.83423957241028
+},
+"HTTG": { "lat": -5.0921010, "lon": 39.0715982 },
+"HTUN": {
+    "lat": 25.8668903,
+    "lon": 95.0904189
+},
+"HTUT": {
+    "lat": -7.999353,
+    "lon": 38.760044
+},
+"HTUU": {
+    "lat": 16.80378,
+    "lon": 96.2065582
+},
+"HTWA": {"lat": -2.45806, "lon": 34.822498},
+"HTWB": {
+    "lat": 31.81649125,
+    "lon": 35.35905120092828
+},
+"HTWI": {
+    "lat": 21.227039,
+    "lon": 92.956963
+},
+"HTWK": {
+    "lat": 51.3131269,
+    "lon": 12.373565233025795
+}};
+
+        let route = [];
+
+        function filterWaypoints() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const waypointList = document.getElementById("waypointList");
+            const items = waypointList.getElementsByTagName("li");
+
+            for (let i = 0; i < items.length; i++) {
+                const text = items[i].textContent || items[i].innerText;
+                if (text.toLowerCase().includes(searchInput)) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+        }
+
+        function addWaypoint(waypoint) {
+            route.push(waypoint);
+            updateRouteDisplay();
+            document.getElementById("searchInput").value = "";
+        }
+
+        function removeWaypoint(index) {
+            route.splice(index, 1);
+            updateRouteDisplay();
+        }
+
+        function updateRouteDisplay() {
+            const routeDisplay = document.getElementById("routeWaypoints");
+            if (route.length === 0) {
+                routeDisplay.innerHTML = "None";
+                return;
+            }
+
+            routeDisplay.innerHTML = "";
+            route.forEach((waypoint, index) => {
+                const span = document.createElement("span");
+                span.className = "route-waypoint";
+                span.draggable = true;
+                span.textContent = waypoint;
+                span.setAttribute("data-index", index);
+
+                span.addEventListener("click", () => removeWaypoint(index));
+                span.addEventListener("dragstart", dragStart);
+                span.addEventListener("dragover", dragOver);
+                span.addEventListener("drop", drop);
+                span.addEventListener("dragend", dragEnd);
+
+                routeDisplay.appendChild(span);
+            });
+        }
+
+        function dragStart(e) {
+            e.dataTransfer.setData("text/plain", e.target.getAttribute("data-index"));
+            e.target.classList.add("dragging");
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            const draggedIndex = e.dataTransfer.getData("text/plain");
+            const targetIndex = e.target.getAttribute("data-index");
+
+            const draggedItem = route.splice(draggedIndex, 1)[0];
+            route.splice(targetIndex, 0, draggedItem);
+            updateRouteDisplay();
+        }
+
+        function dragEnd(e) {
+            e.target.classList.remove("dragging");
+        }
+
+        function euclideanDistance(lat1, lon1, lat2, lon2) {
+            const dx = lat2 - lat1;
+            const dy = lon2 - lon1;
+            const distanceInDegrees = Math.sqrt(dx ** 2 + dy ** 2);
+            const distanceInKm = distanceInDegrees * 111; // Approximate conversion for degrees to km
+            const distanceInNm = distanceInKm / 1.852; // Convert km to nautical miles
+            return { km: distanceInKm, nm: distanceInNm };
+        }
+
+        function calculateDistance() {
+            if (route.length < 2) {
+                document.getElementById("output").innerHTML = "<p>Please add at least two waypoints to calculate distance.</p>";
+                return;
+            }
+
+            let totalDistanceKm = 0;
+            let totalDistanceNm = 0;
+
+            for (let i = 0; i < route.length - 1; i++) {
+                const wp1 = waypoints[route[i]];
+                const wp2 = waypoints[route[i + 1]];
+                if (!wp1 || !wp2) {
+                    document.getElementById('dist').value = totalDistanceKm.toFixed(2);
+    document.getElementById("output").innerHTML = `<p>Invalid waypoint: ${!wp1 ? route[i] : route[i + 1]}</p>`;
+                    return;
+                }
+
+                const distance = euclideanDistance(wp1.lat, wp1.lon, wp2.lat, wp2.lon);
+                totalDistanceKm += distance.km;
+                totalDistanceNm += distance.nm;
+            }
+
+            document.getElementById('dist').value = totalDistanceKm.toFixed(2);
+    document.getElementById("output").innerHTML = `
+                <h3>Route Distance</h3>
+                <p>Total Distance: ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} nautical miles)</p>
+            `;
+        }
+
+        function clearPage() {
+            route = [];
+            updateRouteDisplay();
+            document.getElementById("searchInput").value = "";
+            document.getElementById("output").innerHTML = "";
+        }
+    
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const waypointList = document.getElementById("waypointList");
+
+    // Initially hide the dropdown list
+    waypointList.style.display = "none";
+
+    // Show dropdown when the user interacts with the search box
+    searchInput.addEventListener("focus", () => {
+        waypointList.style.display = "block";
+    });
+
+    // Hide dropdown when a waypoint is clicked and added to the route
+    function addWaypoint(waypoint) {
+        route.push(waypoint);
+        updateRouteDisplay();
+        searchInput.value = "";
+        waypointList.style.display = "none";  // Hide the dropdown
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const waypointList = document.getElementById("waypointList");
+
+    // Initially hide the dropdown list
+    waypointList.style.display = "none";
+
+    // Show dropdown when the user interacts with the search box
+    searchInput.addEventListener("focus", () => {
+        waypointList.style.display = "block";
+    });
+
+    // Hide dropdown when a waypoint is clicked and added to the route
+    function addWaypoint(waypoint) {
+        route.push(waypoint);
+        updateRouteDisplay();
+        searchInput.value = "";
+        waypointList.style.display = "none";  // Hide the dropdown
+    }
+
+    window.addWaypoint = addWaypoint;  // Ensure the function is accessible globally
+});
+
+
+let coordinatesVisible = false;
+
+function toggleCoordinates() {
+    const routeWaypoints = document.getElementById('routeWaypoints');
+    const waypointsArray = routeWaypoints.querySelectorAll('.route-waypoint');
+    
+    waypointsArray.forEach(waypoint => {
+        const waypointName = waypoint.getAttribute('data-name') || waypoint.textContent.match(/^[^\(]+/)[0].trim();
+        const coords = waypoints[waypointName];
+
+        if (coords && coords.lat && coords.lon) {
+            if (coordinatesVisible) {
+                waypoint.textContent = waypointName;
+            } else {
+                waypoint.textContent = `${waypointName} (${coords.lat}, ${coords.lon})`;
+            }
+        }
+    });
+
+    coordinatesVisible = !coordinatesVisible;
+}
+</script>
+
+<footer style="text-align: center; margin-top: 20px; font-size: 0.8em;">
+    <span style="color: #aaa;">&copy; 2024 Albright Machumu</span><br/>
+    <span style="color: #777;">“With dedication, deep work, commitment, endurance, and determination, everything is possible; simplicity is the way.”</span>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
+    const aircraftList = document.getElementById('aircraftList');
+
+    searchBox.addEventListener('focus', () => {
+        aircraftList.style.display = 'block';
+    });
+
+    searchBox.addEventListener('blur', () => {
+        setTimeout(() => {
+            aircraftList.style.display = 'none';
+        }, 200); // Delay to allow item click event
+    });
+});
+</script>
+<label id="ancLabel"></label>
+<script>
+function calculateANC() {
+    // Get the values of MTOW and DIST from input fields
+    let mtow = parseFloat(document.getElementById("mtow").value);
+    let dist = parseFloat(document.getElementById("dist").value);
+
+    // Validate the inputs
+    if (isNaN(mtow) || isNaN(dist)) {
+        document.getElementById("ancDisplay").innerText = "Please enter valid numbers for MTOW and DIST.";
+        return;
+    }
+
+    // Step 1: Calculate Weight Factor (wf)
+    let wf = Math.sqrt(mtow / 50);
+
+    // Step 2: Calculate Distance Factor (df)
+    let df = dist / 100;
+
+    // Step 3: Calculate Resultant (r)
+    let r = wf * df;
+
+    // Step 4: Determine ANC based on resultant r
+    let anc;
+    if (r <= 1) {
+        anc = 60;
+    } else if (r <= 2) {
+        anc = 90;
+    } else if (r <= 4) {
+        anc = 140;
+    } else if (r <= 8) {
+        anc = 200;
+    } else if (r <= 12) {
+        anc = 235;
+    } else if (r <= 15) {
+        anc = 280;
+    } else if (r <= 20) {
+        anc = 320;
+    } else if (r <= 25) {
+        anc = 365;
+    } else {
+        anc = 400;
+    }
+
+    // Display the calculated ANC above the button
+    document.getElementById("ancDisplay").innerText = "Air Navigation Charges: " + anc;
+}
+</script>
+</div></body>
+</html>
