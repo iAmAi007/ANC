@@ -8120,10 +8120,6 @@ function calculateANC() {
 
     // Step 4: Determine ANC based on resultant r
     let anc;
-    
-    if (mtow === 0 || dist === 0) {
-        anc= 0;}
-        
     if (r <= 1) {
         anc = 60;
     } else if (r <= 2) {
@@ -8150,5 +8146,20 @@ function calculateANC() {
 } 
 </script>
 </div>
+<script>
+function calculateANC() {
+    let mtow = parseFloat(document.getElementById('mtow').value) || 0;
+    let dist = parseFloat(document.getElementById('dist').value) || 0;
+    let ancDisplay = document.getElementById('ancDisplay');
 
+    // Set ANC to 0 if either MTOW or DIST is 0
+    if (mtow === 0 || dist === 0) {
+        ancDisplay.textContent = '0';
+    } else {
+        // Example calculation for ANC (modify this as per your actual calculation)
+        let anc = mtow * dist;  // Replace with the appropriate formula
+        ancDisplay.textContent = anc.toFixed(2);
+    }
+}
+</script>
 </body></html>
