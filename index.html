@@ -8139,7 +8139,10 @@ function calculateANC() {
     } else {
         anc = 400;
     }
-
+    
+    if (mtow === 0 || dist === 0) {
+        ancDisplay.textContent = "Air Navigation Charges: 0";
+    }
     // Display the calculated ANC above the button
     document.getElementById("ancDisplay").innerText = "Air Navigation Charges: " + anc;
 } 
