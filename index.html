@@ -3016,6 +3016,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let coordinatesVisible = false;
 
+function toDMS(decimal, isLatitude) {
+    const degrees = Math.floor(Math.abs(decimal));
+    const minutesFloat = (Math.abs(decimal) - degrees) * 60;
+    const minutes = Math.floor(minutesFloat);
+    const seconds = ((minutesFloat - minutes) * 60).toFixed(2);
+
+    const direction = isLatitude
+        ? (decimal >= 0 ? 'N' : 'S')
+        : (decimal >= 0 ? 'E' : 'W');
+
+    return `${degrees}°${minutes}'${seconds}" ${direction}`;
+}
+
 function toggleCoordinates() {
     const routeWaypoints = document.getElementById('routeWaypoints');
     const waypointsArray = routeWaypoints.querySelectorAll('.route-waypoint');
@@ -3028,7 +3041,9 @@ function toggleCoordinates() {
             if (coordinatesVisible) {
                 waypoint.textContent = waypointName;
             } else {
-                waypoint.textContent = `${waypointName} (${coords.lat}, ${coords.lon})`;
+                const latDMS = toDMS(coords.lat, true);
+                const lonDMS = toDMS(coords.lon, false);
+                waypoint.textContent = `${waypointName} (${latDMS}, ${lonDMS})`;
             }
         }
     });
