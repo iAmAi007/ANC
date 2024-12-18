@@ -8120,6 +8120,10 @@ function calculateANC() {
 
     // Step 4: Determine ANC based on resultant r
     let anc;
+    
+    if (mtow === 0 || dist === 0) {
+        anc= 0;}
+        
     if (r <= 1) {
         anc = 60;
     } else if (r <= 2) {
@@ -8140,9 +8144,7 @@ function calculateANC() {
         anc = 400;
     }
     
-    if (mtow === 0 || dist === 0) {
-        ancDisplay.textContent = "Air Navigation Charges: 0";
-    }
+    
     // Display the calculated ANC above the button
     document.getElementById("ancDisplay").innerText = "Air Navigation Charges: " + anc;
 } 
