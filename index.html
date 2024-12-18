@@ -8111,7 +8111,7 @@ function calculateANC() {
 
     // Check if MTOW or DIST is 0
     if (mtow === 0 || dist === 0) {
-        document.getElementById("ancDisplay").innerText = "Air Navigation Charges: 0";
+        document.getElementById("ancDisplay").innerText = "Air Navigation Charges: 0 USD";
         return;
     }
 
@@ -8147,7 +8147,7 @@ function calculateANC() {
     }
 
     // Display the calculated ANC above the button
-    document.getElementById("ancDisplay").innerText = "Air Navigation Charges: " + anc;
+    document.getElementById("ancDisplay").innerText = "Air Navigation Charges: " + anc + "USD";
 } 
 </script>
 </div>
