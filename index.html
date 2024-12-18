@@ -418,7 +418,7 @@ input[type="text"] {
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: 'SF Pro Display';
     background-color: #f4f7fa;
     color: #333;
     line-height: 1.6;
@@ -6305,13 +6305,10 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 <div id="routeDisplay">
 <strong>Route:</strong>
-<span id="routeWaypoints"><span class="route-waypoint" draggable="true" data-index="0">AKUMU</span><span class="route-waypoint" draggable="true" data-index="1">APKOL</span></span>
+<span id="routeWaypoints">None</span>
 <p class="instructions">(Drag to rearrange waypoints. Click to remove waypoints.)</p>
 </div>
-<div id="output">
-                <h3>Route Distance</h3>
-                <p>Total Distance: 944.57 km (510.03 nautical miles)</p>
-            </div>
+<div id="output"></div>
 <button onclick="calculateDistance()">Calculate Distance</button>
 <button onclick="toggleCoordinates()">Show/Hide Coordinates</button>
 <div class="split-input">
@@ -6322,7 +6319,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <span class="placeholder-text">Enter DIST (in km):</span>
 <input id="dist" placeholder="" type="number">
 </div>
-<p id="ancDisplay">Air Navigation Charges: 140 USD</p><button id="calculateANCButton" onclick="calculateANC()">Calculate ANC</button><button onclick="location.reload();">CLEAR</button>
+<p id="ancDisplay"></p><button id="calculateANCButton" onclick="calculateANC()">Calculate ANC</button><button onclick="location.reload();">CLEAR</button>
 <script>
         const waypoints = {
 "TG": { "lat": -5.0888333, "lon": 39.0733333 },
