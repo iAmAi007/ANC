@@ -8155,10 +8155,6 @@ function calculateANC() {
     // Set ANC to 0 if either MTOW or DIST is 0
     if (mtow === 0 || dist === 0) {
         ancDisplay.textContent = "Air Navigation Charges: 0";
-    } else {
-        // Example calculation for ANC (modify this as per your actual calculation)
-        let anc = mtow * dist;  // Replace with the appropriate formula
-        ancDisplay.textContent = anc.toFixed(2);
     }
 }
 </script>
