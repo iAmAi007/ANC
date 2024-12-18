@@ -8109,6 +8109,12 @@ function calculateANC() {
         return;
     }
 
+    // Check if MTOW or DIST is 0
+    if (mtow === 0 || dist === 0) {
+        document.getElementById("ancDisplay").innerText = "Air Navigation Charges: 0";
+        return;
+    }
+
     // Step 1: Calculate Weight Factor (wf)
     let wf = Math.sqrt(mtow / 50);
 
@@ -8139,8 +8145,7 @@ function calculateANC() {
     } else {
         anc = 400;
     }
-    
-    
+
     // Display the calculated ANC above the button
     document.getElementById("ancDisplay").innerText = "Air Navigation Charges: " + anc;
 } 
