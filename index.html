@@ -829,46 +829,21 @@ function clearPage() {
             display: none; /* Hide content on wide screens */
         }
     }
-</style>
-<script>
-    if (window.innerWidth > 600) {
-        document.body.innerHTML = "<p style='text-align:center; margin-top:20%; font-size:24px;'>This application is only accessible on mobile devices.</p>";
-    }
-</script>
 
-
-<style>
     @media screen and (orientation: landscape) {
-        #content {
-            display: none; /* Hide content in landscape orientation */
+        body::before {
+            content: "Landscape view is disabled. Please use portrait mode.";
+            display: block;
+            text-align: center;
+            margin-top: 20%;
+            font-size: 24px;
+            color: #333;
         }
-        #landscapeMessage {
-            display: block; /* Show message in landscape orientation */
-        }
-    }
-
-    @media screen and (orientation: portrait) {
-        #content {
-            display: block; /* Show content in portrait orientation */
-        }
-        #landscapeMessage {
-            display: none; /* Hide message in portrait orientation */
+        body * {
+            display: none; /* Hide all content in landscape orientation */
         }
     }
 </style>
-
-<div id="content">
-    <!-- Original content will be here -->
-</div>
-<div id="landscapeMessage" style="display: none; text-align:center; margin-top:20%; font-size:24px;">
-    Landscape view is disabled. Please use portrait mode.
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const bodyContent = document.body.innerHTML;
-        document.getElementById('content').innerHTML = bodyContent;
-    });
-</script>
 
 </head>
 <body>
