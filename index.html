@@ -822,29 +822,19 @@ function clearPage() {
     outline: none;
 }
 </style>
-
 <style>
-    @media screen and (min-width: 601px) {
-        body {
-            display: none; /* Hide content on wide screens */
-        }
-    }
 
-    @media screen and (orientation: landscape) {
-        body::before {
-            content: "Landscape view is disabled. Please use portrait mode.";
-            display: block;
-            text-align: center;
-            margin-top: 20%;
-            font-size: 24px;
-            color: #333;
-        }
-        body * {
-            display: none; /* Hide all content in landscape orientation */
-        }
-    }
+input, #mtow, #dist {
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
 </style>
-
 </head>
 <body>
 <style>
