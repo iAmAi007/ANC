@@ -822,6 +822,34 @@ function clearPage() {
     outline: none;
 }
 </style>
+
+<style>
+    @media screen and (min-width: 601px) {
+        body {
+            display: none; /* Hide content on wide screens */
+        }
+    }
+</style>
+<script>
+    if (window.innerWidth > 600) {
+        document.body.innerHTML = "<p style='text-align:center; margin-top:20%; font-size:24px;'>This application is only accessible on mobile devices.</p>";
+    }
+</script>
+
+
+<style>
+    @media screen and (orientation: landscape) {
+        body {
+            display: none; /* Hide content in landscape orientation */
+        }
+    }
+</style>
+<script>
+    if (window.matchMedia('(orientation: landscape)').matches) {
+        document.body.innerHTML = "<p style='text-align:center; margin-top:20%; font-size:24px;'>Please rotate your device to portrait mode.</p>";
+    }
+</script>
+
 </head>
 <body>
 <style>
