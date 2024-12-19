@@ -839,21 +839,35 @@ function clearPage() {
 
 <style>
     @media screen and (orientation: landscape) {
-        body {
+        #content {
             display: none; /* Hide content in landscape orientation */
+        }
+        #landscapeMessage {
+            display: block; /* Show message in landscape orientation */
+        }
+    }
+
+    @media screen and (orientation: portrait) {
+        #content {
+            display: block; /* Show content in portrait orientation */
+        }
+        #landscapeMessage {
+            display: none; /* Hide message in portrait orientation */
         }
     }
 </style>
+
+<div id="content">
+    <!-- Original content will be here -->
+</div>
+<div id="landscapeMessage" style="display: none; text-align:center; margin-top:20%; font-size:24px;">
+    Landscape view is disabled. Please use portrait mode.
+</div>
 <script>
-    function checkOrientation() {
-        if (window.matchMedia('(orientation: landscape)').matches) {
-            document.body.innerHTML = "<p style='text-align:center; margin-top:20%; font-size:24px;'>Landscape view is disabled. Please use portrait mode.</p>";
-        } else {
-            location.reload();
-        }
-    }
-    window.addEventListener('orientationchange', checkOrientation);
-    window.addEventListener('DOMContentLoaded', checkOrientation);
+    document.addEventListener('DOMContentLoaded', () => {
+        const bodyContent = document.body.innerHTML;
+        document.getElementById('content').innerHTML = bodyContent;
+    });
 </script>
 
 </head>
