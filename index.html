@@ -845,9 +845,15 @@ function clearPage() {
     }
 </style>
 <script>
-    if (window.matchMedia('(orientation: landscape)').matches) {
-        document.body.innerHTML = "<p style='text-align:center; margin-top:20%; font-size:24px;'>Please rotate your device to portrait mode.</p>";
+    function checkOrientation() {
+        if (window.matchMedia('(orientation: landscape)').matches) {
+            document.body.innerHTML = "<p style='text-align:center; margin-top:20%; font-size:24px;'>Landscape view is disabled. Please use portrait mode.</p>";
+        } else {
+            location.reload();
+        }
     }
+    window.addEventListener('orientationchange', checkOrientation);
+    window.addEventListener('DOMContentLoaded', checkOrientation);
 </script>
 
 </head>
