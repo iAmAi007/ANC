@@ -144,6 +144,42 @@
         left: 50%;
         transform: translateX(-50%);
     }
+
+
+.route {
+    text-align: center;       /* Align content to the center */
+    border: 1px solid #000;   /* Keep the bounding box */
+    padding: 10px;
+    box-sizing: border-box;
+    display: block;
+}
+
+
+
+.instructions {
+    text-align: left;
+}
+
+
+strong {
+    display: block;
+    text-align: left;
+}
+
+
+#routeWaypoints {
+    display: block;
+    text-align: left;
+}
+
+
+.route-container {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add a small gap between the elements */
+}
+
 </style>
 <style>
     /* Typewriter effect for header */
@@ -9096,8 +9132,8 @@ document.addEventListener("DOMContentLoaded", () => {
 </ul>
 </div>
 <div id="routeDisplay">
-<strong>Route:</strong>
-<span id="routeWaypoints">None</span>
+<div class="route-container"><strong>Route:</strong>
+<span id="routeWaypoints">None</span></div>
 <p class="instructions">(Drag to rearrange waypoints. Click to remove waypoints.)</p>
 </div>
 <div id="output"></div>
