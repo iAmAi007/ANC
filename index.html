@@ -180,6 +180,81 @@ strong {
     gap: 5px; /* Add a small gap between the elements */
 }
 
+
+.route-distance {
+    white-space: nowrap;
+    text-align: left;
+}
+
+
+.route-distance {
+    white-space: nowrap;      /* Prevent text from wrapping */
+    display: flex;            /* Use flexbox for better control */
+    align-items: center;      /* Align text vertically in the center */
+    gap: 5px;                 /* Add a small gap between elements if needed */
+}
+
+
+.route-distance {
+    text-align: center;       /* Center-align the text */
+    white-space: nowrap;      /* Prevent the text from wrapping */
+}
+
+
+.route-distance {
+    text-align: center;       /* Center-align the text */
+    white-space: nowrap;      /* Prevent wrapping */
+    margin: 0 auto;           /* Center the paragraph block itself */
+}
+
+
+.route-distance {
+    display: flex;            /* Use flexbox for centering */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically if needed */
+    white-space: nowrap;      /* Prevent the text from wrapping */
+    width: 100%;              /* Ensure it takes full width */
+    text-align: center;       /* Center the text */
+}
+
+
+.route-distance {
+    padding-top: 10px;        /* Add top padding */
+    padding-bottom: 10px;     /* Add bottom padding */
+}
+
+
+.route-distance {
+    padding-top: 12px;        /* Set equal top padding */
+    padding-bottom: 12px;     /* Set equal bottom padding */
+}
+
+
+.route-distance {
+    padding-top: 12px;        /* Keep top padding */
+    padding-bottom: 14px;     /* Slightly increase bottom padding */
+}
+
+
+button.clear {
+    padding-bottom: 14px;     /* Slightly increase bottom padding */
+}
+
+
+button.clear {
+    padding-bottom: 18px;     /* Further increase bottom padding */
+}
+
+
+button.clear {
+    margin-bottom: 20px;    /* Add more space below the CLEAR button */
+}
+
+
+button.clear {
+    margin-bottom: 40px;    /* Significantly increase space below the CLEAR button */
+}
+
 </style>
 <style>
     /* Typewriter effect for header */
@@ -10819,7 +10894,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById('dist').value = totalDistanceKm.toFixed(2);
     document.getElementById("output").innerHTML = `
-                <p><strong>Route Distance:</strong> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} nm)</p>
+                <p class="route-distance"><strong>Route Distance:</strong> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} nm)</p>
             `;
         }
 
