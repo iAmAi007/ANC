@@ -1,5 +1,4 @@
 <html lang="en"><head>
-
 <style>
     /* Typewriter effect for header */
     @keyframes disappear {
@@ -63,8 +62,16 @@
     font-weight: bold;
     font-style: normal;
 }
-</style>
 
+.searchable-select input, 
+.searchable-select ul li {
+    text-align: left; /* Aligns text to the left */
+}
+
+.searchable-select ul li {
+    padding-left: 10px; /* Optional: Adds padding for better spacing */
+}
+</style>
 <style>
     /* Typewriter effect for header */
     @keyframes disappear {
@@ -517,10 +524,6 @@ h1 {
     color: #555;
 }
 
-.card h2, .card h3 {
-    margin: 0 0 15px;
-    font-size: 1.5em;
-}
 
 button {
     letter-spacing: 0.5px;
@@ -547,16 +550,7 @@ input[type="text"] {
     font-size: 1em;
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -625,16 +619,7 @@ input[type="text"] {
     background-color: #f0f0f0;
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style><style>
@@ -692,16 +677,7 @@ input[type="text"] {
     max-width: 100% !important;
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style><style>
@@ -754,16 +730,7 @@ input[type="text"] {
     max-width: 100% !important;
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style><style>
@@ -819,16 +786,7 @@ input[type="text"] {
     width: 100% !important;
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -889,16 +847,7 @@ body {
 }
 
 /* Centered Container */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    margin: 0 auto;
-    box-sizing: border-box;
-    max-width: 1200px;
-}
+
 
 /* Modern Heading */
 h1 {
@@ -989,16 +938,7 @@ input:focus {
     }
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -1069,16 +1009,7 @@ button:active {
     transform: translateY(1px);
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -1138,16 +1069,7 @@ button:active {
     box-sizing: border-box;
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -1208,16 +1130,7 @@ input, .searchable-select input, #aircraftSearchInput {
     border-radius: 0; /* Remove rounded edges on search dropdowns */
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -1766,8 +1679,53 @@ function clearPage() {
 }
 
 </style>
-</head>
+<style>
+    .card {
+        background: #fff;
+        padding: 20px;
+        max-width: 600px;
+        width: 100%;
+        margin: 20px auto;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+    }
+</style>
+<style>
+    body {
+        font-family: 'SF Pro Display', Arial, sans-serif;
+        background: #fdfdfd;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+</style>
+<style>
+button#calculateANCButton, button#calculateDistanceButton {
+    margin-right:10px; /* Adjust the value as needed */
+}
+</style></head>
 <body>
+<div class="card"><style>
+    .card {
+        background: #fff;
+        padding: 20px;
+        max-width: 500px;
+        width: 100%;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
+        box-sizing: border-box;
+        margin: 20px auto;
+    }
+</style>
+
+<div class="container">
 <style>
     /* Typewriter effect for header */
     @keyframes disappear {
@@ -1814,16 +1772,7 @@ function clearPage() {
     }
     
 /* Full-width rectangular card styling */
-.full-page-card {
-    margin: 0;
-    padding: 20px;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffffff;
-    border: none;
-    box-shadow: none;
-    box-sizing: border-box;
-}
+
 body {
     letter-spacing: 0.5px;
     margin: 0;
@@ -1831,16 +1780,7 @@ body {
     background-color: #f4f4f4; /* Subtle contrast */
 }
 
-@media screen and (orientation: landscape) {
-    body {
-    letter-spacing: 0.5px;
-        transform: rotate(90deg);
-        transform-origin: center center;
-        height: 100vw;
-        width: 100vh;
-        overflow-x: hidden;
-        position: fixed;
-    }
+
 }
 
 </style>
@@ -5380,9 +5320,9 @@ body {
     <span style="color: #808080;">(60 Tonnes)</span>
 </li>
 <li onclick="addAircraft('F50')">
-    <span style="color: #808080;">F50</span>  
+<span style="color: #808080;">F50</span>  
     Fokker 50 <span>100/300</span>
-    <span style="color: #808080;">(19 Tonnes)</span>
+<span style="color: #808080;">(19 Tonnes)</span>
 </li>
 <li onclick="addAircraft('F60')">
 <span style="color: #808080;">F60</span>  
@@ -7281,9 +7221,7 @@ body {
 <li onclick="addAircraft('TOBA')"><span style="color: #808080;">TOBA</span>  SOCATA Socata TB-10 Tobago <span style="color: #808080;">(2 Tonnes)</span></li>
 <li onclick="addAircraft('V22')"><span style="color: #808080;">V22</span>  BELL-BOEING Bell-Boeing V-22 Osprey <span style="color: #808080;">(28 Tonnes)</span></li>
 <li onclick="addAircraft('WW24')"><span style="color: #808080;">WW24</span>  IAI IAI 1124 Westwind <span style="color: #808080;">(11 Tonnes)</span></li>
-</ul>
-</div>
-<script>
+</ul></div><script>
 document.addEventListener("DOMContentLoaded", () => {
     const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
     const aircraftList = document.getElementById('aircraftList');
@@ -7337,8 +7275,8 @@ document.addEventListener("DOMContentLoaded", () => {
 <p class="instructions">(Drag to rearrange waypoints. Click to remove waypoints.)</p>
 </div>
 <div id="output"></div>
-<button onclick="calculateDistance()">Calculate Distance</button>
-<button onclick="toggleCoordinates()">Show/Hide Coordinates</button>
+<button id="calculateDistanceButton" onclick="calculateDistance()" style="margin-bottom: 20px; ">Calculate Distance</button>
+<button onclick="toggleCoordinates()" style="margin-bottom: 20px; ">Show/Hide Coordinates</button>
 <div class="split-input">
 <span class="placeholder-text">Enter MTOW (in Tonnes):</span>
 <input id="mtow" placeholder="" type="number">
@@ -7347,7 +7285,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <span class="placeholder-text">Enter DIST (in km):</span>
 <input id="dist" placeholder="" type="number">
 </div>
-<p id="ancDisplay"></p><button id="calculateANCButton" onclick="calculateANC()">Calculate ANC</button><button onclick="location.reload();">CLEAR</button>
+<p id="ancDisplay"></p><button id="calculateANCButton" onclick="calculateANC()" style="margin-bottom: 20px; ">Calculate ANC</button><button onclick="location.reload();" style="margin-bottom: 20px; ">CLEAR</button>
 <script>
         const waypoints = {
 "TG": { "lat": -5.0888333, "lon": 39.0733333 },
@@ -9019,8 +8957,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.getElementById('dist').value = totalDistanceKm.toFixed(2);
     document.getElementById("output").innerHTML = `
-                <h3>Route Distance</h3>
-                <p>Total Distance: ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} nautical miles)</p>
+                <p><strong>Route Distance:</strong> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} nautical miles)</p>
             `;
         }
 
@@ -9240,8 +9177,8 @@ function calculateANC() {
 } 
 </script>
 </div>
-
-
+</div>
+</div>
 
 </body>
 </html>
