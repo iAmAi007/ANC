@@ -3457,7 +3457,24 @@ button#calculateANCButton, button#calculateDistanceButton {
         left: 50%;
         transform: translateX(-50%);
     }
-</style></head>
+</style>
+<style>
+    .loader {
+        color: #0000FF;
+        width: 4px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
+        transform: translateX(-38px);
+        animation: l21 0.5s infinite alternate linear;
+    }
+
+    @keyframes l21 {
+        50%  {box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px}
+        100% {box-shadow: 19px 0 0 0, 38px 0 0 3px, 57px 0 0 7px}
+    }
+</style>
+</head>
 <body>
 <div class="card"><style>
     .card {
@@ -9188,7 +9205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="split-input"><input id="Departure_date" style="flex: 3; font-family: 'SF Pro Display'; text-align:center; padding: 0;" type="date"></div>
 </div>
 </div>
-<p id="ancDisplay"></p><button id="calculateANCButton" onclick="calculateANC()" style="margin: 0 0 20px 0; ">Calculate ANC</button><button onclick="calculatePKG()" style="margin: 0 0 20px 0;">Calculate PKG</button><button onclick="location.reload();" style="margin: 0 0 30px 0;">CLEAR</button>
+<p id="ancDisplay"></p><button id="calculateANCButton" onclick="calculateANC()" style="margin: 0 0 20px 0; ">Calculate ANC</button><button id="calculatePKGButton" style="margin: 0 0 20px 0;">Calculate PKG</button><button onclick="location.reload();" style="margin: 0 0 30px 0;">CLEAR</button>
 <script>
         const waypoints = {
 "TG": { "lat": -5.0888333, "lon": 39.0733333 },
@@ -11215,6 +11232,49 @@ function calculatePKG() {
 </div>
 </div>
 
+
+<script>
+// Function to display the loader with a full-page white background and execute after delay
+function showLoaderAndExecute(callback) {
+    // Create a full-page loader container
+    const loaderContainer = document.createElement('div');
+    loaderContainer.style.position = "fixed";
+    loaderContainer.style.top = "0";
+    loaderContainer.style.left = "0";
+    loaderContainer.style.width = "100%";
+    loaderContainer.style.height = "100%";
+    loaderContainer.style.backgroundColor = "white"; // Full-page white background
+    loaderContainer.style.zIndex = "9999";
+    loaderContainer.style.display = "flex";
+    loaderContainer.style.justifyContent = "center";
+    loaderContainer.style.alignItems = "center";
+
+    // Create the loader element
+    const loader = document.createElement('div');
+    loader.className = "loader";
+    loaderContainer.appendChild(loader);
+
+    // Append loader to body
+    document.body.appendChild(loaderContainer);
+
+    // Wait for 2 seconds, then remove loader and execute callback
+    setTimeout(() => {
+        loaderContainer.remove(); // Remove loader from DOM
+        callback(); // Execute the original functionality
+    }, 2000);
+}
+
+// Attach full-page loader functionality to both Calculate ANC and Calculate PKG buttons
+document.getElementById('calculateANCButton').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent instant execution
+    showLoaderAndExecute(calculateANC);
+});
+
+document.getElementById('calculatePKGButton').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent instant execution
+    showLoaderAndExecute(calculatePKG);
+});
+</script>
 
 
 </body>
