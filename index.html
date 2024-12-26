@@ -46,92 +46,29 @@
         cursor: block;
     }
     
-@font-face {
-    font-family: 'SF Pro Display';
-    src: url('SFPRODISPLAY-REGULAR.TTF') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'SF Pro Display';
-    src: url('SFPRODISPLAY-BOLD.TTF') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
-.searchable-select input, 
-.searchable-select ul li {
-    text-align: left; /* Aligns text to the left */
-}
-
-.searchable-select ul li {
-    padding-left: 10px; /* Optional: Adds padding for better spacing */
-}
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('SFPRODISPLAY-REGULAR.TTF') format('truetype');
+        font-weight: normal;
+        font-style: normal;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('SFPRODISPLAY-BOLD.TTF') format('truetype');
+        font-weight: bold;
+        font-style: normal;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
+    .searchable-select input, 
+    .searchable-select ul li {
+        text-align: left; /* Aligns text to the left */
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
+    .searchable-select ul li {
+        padding-left: 10px; /* Optional: Adds padding for better spacing */
     }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-    
+       
     .card {
         margin-top: 0; /* Snap the card to the top of the page */
         position: absolute;
@@ -141,47 +78,47 @@
     }
 
 
-.route {
-    text-align: center;       /* Align content to the center */
-    border: 1px solid #000;   /* Keep the bounding box */
-    padding: 10px;
-    box-sizing: border-box;
-    display: block;
-}
+    .route {
+        text-align: center;       /* Align content to the center */
+        border: 1px solid #000;   /* Keep the bounding box */
+        padding: 10px;
+        box-sizing: border-box;
+        display: block;
+    }
 
 
 
-.instructions {
-    text-align: left;
-}
+    .instructions {
+        text-align: left;
+    }
 
 
-strong {
-    display: block;
-    text-align: left;
-}
+    strong {
+        display: block;
+        text-align: left;
+    }
 
 
-#routeWaypoints {
-    display: block;
-    text-align: left;
-}
+    #routeWaypoints {
+        display: block;
+        text-align: left;
+    }
 
 
-.route-container {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 7px; /* Add a small gap between the elements */
-}
+    .route-container {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 7px; /* Add a small gap between the elements */
+    }
 
 
-input[type="date"], 
-input[type="time"] {
-    outline: none;
-    border: none;
-    color: 004185;
-}
+    input[type="date"], 
+    input[type="time"] {
+        outline: none;
+        border: none;
+        color: 004185;
+    }
 
 </style>
 <style>
@@ -226,79 +163,16 @@ input[type="time"] {
         cursor: block;
     }
     
-button:nth-of-type(odd) {
-    background-color: #1358bf;  /* Original button color */
-    color: #fff;
-}
-
-button:nth-of-type(even) {
-    background-color: #004185;  /* New alternating color */
-    color: #fff;
-}
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
+    button:nth-of-type(odd) {
+        background-color: #1358bf;  /* Original button color */
+        color: #fff;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
+    button:nth-of-type(even) {
+        background-color: #004185;  /* New alternating color */
+        color: #fff;
     }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-    
+        
     .card {
         margin-top: 0; /* Snap the card to the top of the page */
         position: absolute;
@@ -307,6 +181,7 @@ button:nth-of-type(even) {
         transform: translateX(-50%);
     }
 </style>
+
 <style>
 
     
@@ -349,13 +224,13 @@ button:nth-of-type(even) {
         cursor: block;
     }
     
-h1, #ancDisplay {
-    color: #004185 !important;
-}
+    h1, #ancDisplay {
+        color: #004185 !important;
+    }
 
-h1, #pkgDisplay {
-    color: #004185 !important;
-}
+    h1, #pkgDisplay {
+        color: #004185 !important;
+    }
 
     @media (orientation: landscape) {
         .card button {
@@ -363,55 +238,8 @@ h1, #pkgDisplay {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-    }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
         .split-input {
             flex-direction: row; /* Ensure the input and label are in a row */
         }
@@ -819,7 +647,7 @@ input[type="text"] {
         }
     }
 
-    @media (orientation: landscape) {
+    @media (orientation: portrait) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -828,31 +656,6 @@ input[type="text"] {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
         .split-input {
             flex-direction: row; /* Ensure the input and label are in a row */
         }
@@ -861,20 +664,6 @@ input[type="text"] {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
     
     .card {
         margin-top: 0; /* Snap the card to the top of the page */
@@ -950,83 +739,17 @@ input[type="text"] {
 #aircraftList li:hover {
     background-color: #d1e8ff;
 }
+   
+.card {
+    margin-top: 0; /* Snap the card to the top of the page */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+</style>
 
-
-
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-    
-    .card {
-        margin-top: 0; /* Snap the card to the top of the page */
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-</style><style>
-
-    
+<style> 
     h1 {
     padding-top: 10px;
         font-family: 'SF Pro Display';
@@ -1079,53 +802,6 @@ input[type="text"] {
 
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
 
     @media (orientation: landscape) {
         .card button {
@@ -1205,70 +881,7 @@ input[type="text"] {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-    }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-    
-    .card {
-        margin-top: 0; /* Snap the card to the top of the page */
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-    }
 </style><style>
 
     
@@ -1548,53 +1161,12 @@ input:focus {
 
 
 
-    @media (orientation: landscape) {
+    @media (min-width: 481px) and (max-width: 767px) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
 
     @media (orientation: landscape) {
         .card button {
@@ -3602,10 +3174,10 @@ body {
     }
 </style>
 <div class="full-page-card">
-<!-- <h1>ANC CALCULATOR</h1> -->
+<!-- <h1>ANC CALCULATOR</h1> 
 <div class="icon" style="margin: 0; align-items: center; align-content: center; justify-content: center; width: 100%">
 <img src="icon.svg" height="70" width="100%">
-</div>
+</div>-->
 <div class="searchable-select">
 <p></p><input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" type="text">
 <ul id="aircraftList" style="display: none;">
