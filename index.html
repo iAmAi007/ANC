@@ -43,7 +43,7 @@
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
     @font-face {
@@ -117,8 +117,9 @@
     input[type="date"], 
     input[type="time"] {
         outline: none;
+        height: 60px;
         border: none;
-        color: 004185;
+        color: #004185;
     }
 
 </style>
@@ -161,7 +162,7 @@
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
     button:nth-of-type(odd) {
@@ -176,7 +177,6 @@
         
 
 </style>
-
 <style>
 
     
@@ -216,7 +216,7 @@
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
     h1, #ancDisplay {
@@ -235,13 +235,6 @@
 
 
 
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
     
 
 </style>
@@ -260,7 +253,6 @@
     h1 {
     padding-top: 10px;
         font-family: 'Nunito';
-        src: url('NUNITO-SEMIBOLD.TTF') format('truetype');
         letter-spacing: 3px;
         color: #222;
         font-size: 2rem;
@@ -294,231 +286,230 @@
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
 
-body {
-    letter-spacing: 0.5px;
-    font-family: 'SF Pro Display';
-    background-color: #f4f4f4;
-    margin: 0;
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 100px;
-    color: #004185;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-h1 {
-    padding-top: 10px;
-    letter-spacing: 30px;
-    color: #222;
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#routeDisplay {
-    background: #fff;
-    border: 1px solid #6cb4ef;
-    border-radius: 8px;
-    padding: 20px;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-input {
-    letter-spacing: 0.5px;
-    margin: 20px 0;
-    padding: 10px;
-    width: 100%;
-    background: #ffffff;
-    border: 1px solid #6cb4ef;
-    border-radius: 4px;
-    color: #004185;
-    font-size: 16px;
-    box-sizing: border-box;
-    outline: none;
-}
-
-input:focus {
-    border-color: #6cb4ef;
-}
-
-.route-waypoint {
-    display: inline-block;
-    margin: 5px;
-    padding: 8px 12px;
-    background: #c5edff;
-    color: #004185;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: grab;
-    text-align: center;
-}
-
-button {
-    letter-spacing: 0.5px;
-    padding: 10px 20px;
-    margin: 0;
-    background: #1358bf;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-footer {
-    text-align: center;
-    margin: 80px 0 0 0;
-    text-align: center;
-    font-size: 0.2em;
-    color: #004185;
-
-}
-
-@media screen and (max-width: 600px) {
     body {
-    letter-spacing: 0.5px;
-        padding: 10px;
+        letter-spacing: 0.5px;
+        font-family: 'SF Pro Display';
+        background-color: #f4f4f4;
+        margin: 0;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 100px;
+        color: #004185;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
     }
-    button {
-    letter-spacing: 0.5px;
+
+    h1 {
+        padding-top: 10px;
+        letter-spacing: 30px;
+        color: #222;
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #routeDisplay {
+        background: #fff;
+        border: 1px solid #6cb4ef;
+        border-radius: 8px;
+        padding: 20px;
         width: 100%;
+        max-width: 600px;
+        margin: 20px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-}
+
+    input {
+        letter-spacing: 0.5px;
+        margin: 20px 0;
+        padding: 10px;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #6cb4ef;
+        border-radius: 4px;
+        color: #004185;
+        font-size: 16px;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    input:focus {
+        border-color: #6cb4ef;
+    }
+
+    .route-waypoint {
+        display: inline-block;
+        margin: 5px;
+        padding: 8px 12px;
+        background: #c5edff;
+        color: #004185;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: grab;
+        text-align: center;
+    }
+
+    button {
+        letter-spacing: 0.5px;
+        padding: 10px 20px;
+        margin: 0;
+        background: #1358bf;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    footer {
+        text-align: center;
+        margin: 80px 0 0 0;
+        text-align: center;
+        font-size: 0.2em;
+        color: #004185;
+
+    }
+
+    @media screen and (max-width: 600px) {
+        body {
+        letter-spacing: 0.5px;
+            padding: 10px;
+        }
+        button {
+        letter-spacing: 0.5px;
+            width: 100%;
+        }
+    }
 
 
-.searchable-select {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-}
+    .searchable-select {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+    }
 
-.searchable-select input {
-    letter-spacing: 0.5px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #6cb4ef;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
+    .searchable-select input {
+        letter-spacing: 0.5px;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #6cb4ef;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
 
-.searchable-select ul {
-    position: absolute;
-    width: 100%;
-    max-height: 200px;
-    background: #fff;
-    border: 1px solid #6cb4ef;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 0;
-    padding: 0;
-    overflow-y: auto;
-    z-index: 1000;
-    list-style: none;  /* Remove bullet points */
-}
+    .searchable-select ul {
+        position: absolute;
+        width: 100%;
+        max-height: 200px;
+        background: #fff;
+        border: 1px solid #6cb4ef;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 0;
+        padding: 0;
+        overflow-y: auto;
+        z-index: 1000;
+        list-style: none;  /* Remove bullet points */
+    }
 
-.searchable-select ul li {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    border-bottom: 1px solid #f0f0f0;
-}
+    .searchable-select ul li {
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+        border-bottom: 1px solid #f0f0f0;
+    }
 
-.searchable-select ul li:last-child {
-    border-bottom: none;
-}
+    .searchable-select ul li:last-child {
+        border-bottom: none;
+    }
 
-.searchable-select ul li:hover {
-    background-color: #BDDDFC;
-    color: inherit;
-}
-
-
-button {
-    letter-spacing: 0.5px;
-    padding: 12px 20px;
-    margin: 0;
-    background: #f5f5f5;
-    color: #004185;
-    border: 1px solid #6cb4ef;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    transition: background-color 0.3s, border-color 0.3s;
-    text-align: center;
-}
-
-button:hover {
-    background: #e0e0e0;
-    border-color: #6cb4ef;
-}
-
-button:active {
-    background: #d5d5d5;
-    border-color: #6cb4ef;
-    transform: translateY(1px);
-}
+    .searchable-select ul li:hover {
+        background-color: #BDDDFC;
+        color: inherit;
+    }
 
 
-/* Updated Color Theme */
-button {
-    letter-spacing: 0.5px;
-    padding: 10px 20px;
-    margin: 0;
-    background: #1358bf;
-    color: #222;
-    border: 1px solid #6cb4ef;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-    transition: background-color 0.3s, border-color 0.3s;
-    text-align: center;
-}
+    button {
+        letter-spacing: 0.5px;
+        padding: 12px 20px;
+        margin: 0;
+        background: #f5f5f5;
+        color: #004185;
+        border: 1px solid #6cb4ef;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s, border-color 0.3s;
+        text-align: center;
+    }
 
-button:hover {
-    background: #e0e0e0;
-    border-color: #6cb4ef;
-}
+    button:hover {
+        background: #e0e0e0;
+        border-color: #6cb4ef;
+    }
 
-button:active {
-    background: #d5d5d5;
-    border-color: #6cb4ef;
-    transform: translateY(1px);
-}
+    button:active {
+        background: #d5d5d5;
+        border-color: #6cb4ef;
+        transform: translateY(1px);
+    }
 
-input:focus {
-    border-color: #6cb4ef;
-}
 
-.searchable-select ul li:hover {
-    background-color: #d1e8ff;
-    color: inherit;
-}
+    /* Updated Color Theme */
+    button {
+        letter-spacing: 0.5px;
+        padding: 10px 20px;
+        margin: 0;
+        background: #1358bf;
+        color: #222;
+        border: 1px solid #6cb4ef;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        transition: background-color 0.3s, border-color 0.3s;
+        text-align: center;
+    }
 
-<style>
+    button:hover {
+        background: #e0e0e0;
+        border-color: #6cb4ef;
+    }
+
+    button:active {
+        background: #d5d5d5;
+        border-color: #6cb4ef;
+        transform: translateY(1px);
+    }
+
+    input:focus {
+        border-color: #6cb4ef;
+    }
+
+    .searchable-select ul li:hover {
+        background-color: #d1e8ff;
+        color: inherit;
+    }
+
     /* Typewriter effect for header */
-    @keyframes disappear{
+    @keyframes disappear {
         100% {
             border-color: transparent;
         }
@@ -560,72 +551,73 @@ input:focus {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-body {
-    letter-spacing: 0.5px;
-    font-family: 'SF Pro Display';
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    color: #004185;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-}
+    body {
+        letter-spacing: 0.5px;
+        font-family: 'SF Pro Display';
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        color: #004185;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+</style>
+<style>
+    h1 {
+        padding-top: 10px;
+        letter-spacing: 2px;
+        color: #222;
+        font-size: 2em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-h1 {
-    padding-top: 10px;
-    letter-spacing: 2px;
-    color: #222;
-    font-size: 2em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.card {
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
-    border-radius: 15px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    padding-bottom: 100px;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px 0 20px 0;
-    text-align: center;
-    color: #004185;
-}
+    .card {
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        border-radius: 15px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        padding-bottom: 100px;
+        width: 100%;
+        max-width: 600px;
+        margin: 20px 0 20px 0;
+        text-align: center;
+        color: #004185;
+    }
 
 
-button {
-    letter-spacing: 0.5px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    button {
+        letter-spacing: 0.5px;
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-button:hover {
-    background: #0056b3;
-}
+    button:hover {
+        background: #0056b3;
+    }
 
-input[type="text"] {
-    width: 100%;
-    padding: 0px;
-    margin-bottom: 20px;
-    border: 1px solid #6cb4ef;
-    border-radius: 10px;
-    font-size: 1em;
-}
+    input[type="text"] {
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 20px;
+        border: 1px solid #6cb4ef;
+        border-radius: 10px;
+        font-size: 1em;
+    }
 
 
 
@@ -645,13 +637,6 @@ input[type="text"] {
         }
     }
 
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
 
     
 
@@ -700,32 +685,31 @@ input[type="text"] {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-#aircraftList {
-    display: none;
-    border: 1px solid #6cb4ef;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: white;
-    position: absolute;
-    width: calc(100% - 2px);
-    z-index: 1000;
-}
+    #aircraftList {
+        display: none;
+        border: 1px solid #6cb4ef;
+        max-height: 200px;
+        overflow-y: auto;
+        background-color: white;
+        position: absolute;
+        width: calc(100% - 2px);
+        z-index: 1000;
+    }
 
-#aircraftList li {
-    padding: 8px;
-    cursor: pointer;
-}
+    #aircraftList li {
+        padding: 8px;
+        cursor: pointer;
+    }
 
-#aircraftList li:hover {
-    background-color: #d1e8ff;
-}
+    #aircraftList li:hover {
+        background-color: #d1e8ff;
+    }
    
 
 </style>
-
 <style> 
     h1 {
     padding-top: 10px;
@@ -763,18 +747,18 @@ input[type="text"] {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-#aircraftSearchInput {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-.searchable-select input {
-    letter-spacing: 0.5px;
-    width: 100% !important;
-    max-width: 100% !important;
-}
+    #aircraftSearchInput {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .searchable-select input {
+        letter-spacing: 0.5px;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 
 
 
@@ -787,12 +771,6 @@ input[type="text"] {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
     
 
@@ -835,13 +813,13 @@ input[type="text"] {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-#aircraftSearchInput, #searchInput {
-    width: 100% !important;
-    max-width: 100% !important;
-}
+    #aircraftSearchInput, #searchInput {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
 
 
 
@@ -853,7 +831,8 @@ input[type="text"] {
     }
 
 
-</style><style>
+</style>
+<style>
 
     
     h1 {
@@ -892,16 +871,16 @@ input[type="text"] {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-.searchable-select {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-.searchable-select input, .searchable-select ul {
-    width: 100% !important;
-}
+    .searchable-select {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .searchable-select input, .searchable-select ul {
+        width: 100% !important;
+    }
 
 
 
@@ -946,12 +925,6 @@ input[type="text"] {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -960,12 +933,6 @@ input[type="text"] {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -1010,118 +977,118 @@ input[type="text"] {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-/* General body styling */
-body {
-    letter-spacing: 0.5px;
-    margin: 0;
-    padding: 0;
-    font-family: 'SF Pro Display';
-    background-color: #f4f7fa;
-    color: #004185;
-    line-height: 1.6;
-}
-
-/* Centered Container */
-
-
-/* Modern Heading */
-h1 {
-    padding-top: 10px;
-    letter-spacing: 2px;
-    font-size: 2rem;
-    font-weight: 600;
-    text-align: center;
-    color: #004185;
-    margin-bottom: 1.5rem;
-    letter-spacing: 1px;
-}
-
-/* Buttons */
-button {
-    letter-spacing: 0.5px;
-    padding: 1em 2.5em;
-    font-size: 1rem;
-    font-weight: 500;
-    color: white;
-    background-color: #4A90E2;
-    border: none;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background-color: #357ABD;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Input fields */
-input {
-    letter-spacing: 0.5px;
-    padding: 0.8em 1em;
-    margin: 0;
-    width: 100%;
-    text-align: center;
-    align-content: center;
-    max-width: 400px;
-    font-size: 1rem;
-    border: 2px solid #1358bf;
-    border-radius: 10px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-input:focus {
-    border-color: #6cb4ef;
-    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
+    /* General body styling */
     body {
-    letter-spacing: 0.5px;
-        padding: 1rem;
+        letter-spacing: 0.5px;
+        margin: 0;
+        padding: 0;
+        font-family: 'SF Pro Display';
+        background-color: #f4f7fa;
+        color: #004185;
+        line-height: 1.6;
+    }
+
+    /* Centered Container */
+
+
+    /* Modern Heading */
+    h1 {
+        padding-top: 10px;
+        letter-spacing: 2px;
+        font-size: 2rem;
+        font-weight: 600;
+        text-align: center;
+        color: #004185;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    /* Buttons */
+    button {
+        letter-spacing: 0.5px;
+        padding: 1em 2.5em;
+        font-size: 1rem;
+        font-weight: 500;
+        color: white;
+        background-color: #4A90E2;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #357ABD;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Input fields */
+    input {
+        letter-spacing: 0.5px;
+        padding: 0.8em 1em;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        align-content: center;
+        max-width: 400px;
+        font-size: 1rem;
+        border: 2px solid #1358bf;
+        border-radius: 10px;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+
+    input:focus {
+        border-color: #6cb4ef;
+        box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+        body {
+        letter-spacing: 0.5px;
+            padding: 1rem;
+            }
+
+        h1 {
+        padding-top: 10px;
+        letter-spacing: 2px;
+            font-size: 2rem;
         }
 
-    h1 {
-    padding-top: 10px;
-    letter-spacing: 2px;
-        font-size: 2rem;
+        button {
+        letter-spacing: 0.5px;
+            width: 100%;
+        }
     }
 
-    button {
-    letter-spacing: 0.5px;
-        width: 100%;
+    @media (min-width: 481px) and (max-width: 767px) {
+        h1 {
+        padding-top: 10px;
+        letter-spacing: 2px;
+            font-size: 2.5rem;
+        }
     }
-}
 
-@media (min-width: 481px) and (max-width: 767px) {
-    h1 {
-    padding-top: 10px;
-    letter-spacing: 2px;
-        font-size: 2.5rem;
+    @media (min-width: 768px) and (max-width: 1024px) {
+        h1 {
+        padding-top: 10px;
+        letter-spacing: 2px;
+            font-size: 2rem;
+        }
     }
-}
 
-@media (min-width: 768px) and (max-width: 1024px) {
-    h1 {
-    padding-top: 10px;
-    letter-spacing: 2px;
-        font-size: 2rem;
+    @media (min-width: 1025px) {
+        h1 {
+        padding-top: 10px;
+        letter-spacing: 2px;
+            font-size: 3.5rem;
+        }
     }
-}
-
-@media (min-width: 1025px) {
-    h1 {
-    padding-top: 10px;
-    letter-spacing: 2px;
-        font-size: 3.5rem;
-    }
-}
 
 
 
@@ -1140,12 +1107,6 @@ input:focus {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
     
 
@@ -1189,30 +1150,30 @@ input:focus {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-button {
-    letter-spacing: 0.5px;
-    padding: 10px 20px;
-    margin: 0;
-    background: #007bff; /* Default Primary Blue */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
+    button {
+        letter-spacing: 0.5px;
+        padding: 10px 20px;
+        margin: 0;
+        background: #007bff; /* Default Primary Blue */
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
 
-button:hover {
-    background: #0056b3; /* Hover: Darker Blue */
-}
+    button:hover {
+        background: #0056b3; /* Hover: Darker Blue */
+    }
 
-button:active {
-    background: #004085; /* Active: Even Darker Blue when clicked */
-    transform: translateY(1px);
-}
+    button:active {
+        background: #004085; /* Active: Even Darker Blue when clicked */
+        transform: translateY(1px);
+    }
 
 
 
@@ -1257,12 +1218,6 @@ button:active {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -1271,12 +1226,6 @@ button:active {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -1321,19 +1270,19 @@ button:active {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-#routeDisplay {
-    background: #fff;
-    border: 1px solid #6cb4ef;
-    border-radius: 0; /* Remove rounded corners */
-    padding: 20px;
-    width: 100%;
-    max-width: 600px; /* Match other element widths */
-    margin: 0 0 20px 0;
-    box-sizing: border-box;
-}
+    #routeDisplay {
+        background: #fff;
+        border: 1px solid #6cb4ef;
+        border-radius: 0; /* Remove rounded corners */
+        padding: 20px;
+        width: 100%;
+        max-width: 600px; /* Match other element widths */
+        margin: 0 0 20px 0;
+        box-sizing: border-box;
+    }
 
 
 
@@ -1378,12 +1327,6 @@ button:active {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -1392,12 +1335,6 @@ button:active {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -1442,20 +1379,20 @@ button:active {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-input, .searchable-select input, #aircraftSearchInput {
-    border-radius: 0; /* Remove rounded edges */
-    border: 1px solid #6cb4ef;
-    padding: 10px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
+    input, .searchable-select input, #aircraftSearchInput {
+        border-radius: 0; /* Remove rounded edges */
+        border: 1px solid #6cb4ef;
+        padding: 10px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
 
-.searchable-select ul {
-    border-radius: 0; /* Remove rounded edges on search dropdowns */
-}
+    .searchable-select ul {
+        border-radius: 0; /* Remove rounded edges on search dropdowns */
+    }
 
 
 
@@ -1500,12 +1437,6 @@ input, .searchable-select input, #aircraftSearchInput {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -1514,12 +1445,6 @@ input, .searchable-select input, #aircraftSearchInput {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -1575,7 +1500,7 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
 
@@ -1631,12 +1556,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -1645,12 +1564,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -1695,67 +1608,66 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-.split-input {
-    letter-spacing: 0.5px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    align-content: center;
-    vertical-align: middle; 
-    width: 100%;
-    border: 1px;
-    border-radius: 0;
-    background-color: #ffffff;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-}
+    .split-input {
+        letter-spacing: 0.5px;
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        align-content: center;
+        vertical-align: middle; 
+        width: 100%;
+        border: 1px;
+        border-radius: 0;
+        background-color: #ffffff;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+    }
 
-.split-input .placeholder-text {
-    padding: 0;
-    background-color: #e6e6e6;
-    color: #004185;
-    white-space: nowrap;
-    flex: 0 0 40%;
-    text-align: right;
-    font-size: 14px;
-    padding: 0;
-    margin: 0;
-}
+    .split-input .placeholder-text {
+        padding: 0;
+        background-color: #e6e6e6;
+        color: #004185;
+        white-space: nowrap;
+        flex: 0 0 40%;
+        text-align: right;
+        font-size: 14px;
+        padding: 0;
+        margin: 0;
+    }
 
 
-.split-input input[type="number"] {
-    border: none;
-    text-align: center;
-    vertical-align: middle; 
-    display: flex;
-    outline: none;
-    font-size: 16px;
-    background-color: #fff;
-    padding: 0;
-    margin: 0;
-}
+    .split-input input[type="number"] {
+        border: none;
+        text-align: center;
+        vertical-align: middle;
+        align-content: center; 
+        display: flex;
+        -webkit-appearance: none;
+        appearance:none;
+        -moz-appearance: none;
+        height: 60px;
+        line-height: 60px;
+        padding-bottom: 30px;
+        outline: none;
+        letter-spacing: 0.5px;
+        font-size: 16px;
+        background-color: #fff;
+        padding: 0;
+        margin: 0;
+    }
 
-.split-input input[type="number"] {
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-    display: flex;
-    vertical-align: middle; 
-    align-content: center;
-    appearance:none;   
-    letter-spacing: 0.5px;
-    padding: 0;
-    margin: 0;
-}
+        
+        
 
-.split-input input[type="number"]:focus {
-    background-color: #fff;
-    vertical-align: middle; 
-    border-left: 1px solid #6cb4ef;
-}
+    .split-input input[type="number"]:focus {
+        background-color: #fff;
+        vertical-align: middle; 
+        border-left: 1px solid #6cb4ef;
+    }
 
     @media (orientation: landscape) {
         .card button {
@@ -1797,12 +1709,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -1811,12 +1717,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -1861,55 +1761,55 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-.split-input {
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: stretch; /* Align items to stretch vertically */
-    width: 100%;
-    border: 1px solid #6cb4ef;
-    border-radius: 4px;
-    background-color: #ffffff;
-    overflow: hidden;
-    margin: 0 0 10px 0;
-}
+    .split-input {
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: stretch; /* Align items to stretch vertically */
+        width: 100%;
+        border: 1px solid #6cb4ef;
+        border-radius: 4px;
+        background-color: #ffffff;
+        overflow: hidden;
+        margin: 0 0 10px 0;
+    }
 
-.split-input .placeholder-text {
-    padding: 10px;
-    background-color: #e6e6e6;
-    color: #004185;
-    white-space: nowrap;
-    flex: 0 0 40%; /* Fixed width for label */
-    text-align: center;
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-}
+    .split-input .placeholder-text {
+        padding: 10px;
+        background-color: #e6e6e6;
+        color: #004185;
+        white-space: nowrap;
+        flex: 0 0 40%; /* Fixed width for label */
+        text-align: center;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+    }
 
-.split-input input[type="number"] {
-    border: none;
-    padding: 10px;
-    flex: 1;
-    outline: none;
-    font-size: 16px;
-    background-color: #fff;
-}
+    .split-input input[type="number"] {
+        border: none;
+        padding: 10px;
+        flex: 1;
+        outline: none;
+        font-size: 16px;
+        background-color: #fff;
+    }
 
-.split-input input[type="number"] {
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-    appearance:none;        
-    letter-spacing: 0.5px;
-    margin: 0;
-}
+    .split-input input[type="number"] {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        appearance:none;        
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
 
-.split-input input[type="number"]:focus {
-    background-color: #fff;
-    border: none;
-    box-shadow: none;
-}
+    .split-input input[type="number"]:focus {
+        background-color: #fff;
+        border: none;
+        box-shadow: none;
+    }
 
     @media (orientation: landscape) {
         .card button {
@@ -1951,12 +1851,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -1965,12 +1859,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     .card {
@@ -1980,7 +1868,7 @@ function clearPage() {
         left: 50%;
         transform: translateX(-50%);
     }
-</style>
+</style> </head><body>--&gt; --&gt;
 <style>
 
     
@@ -2020,14 +1908,14 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-.split-input .placeholder-text,
-.split-input input[type="number"] {
-    font-size: 16px; /* Match CLEAR button font size */
-    font-size: 16px; /* Match CLEAR button font size */
-}
+    .split-input .placeholder-text,
+    .split-input input[type="number"] {
+        font-size: 16px; /* Match CLEAR button font size */
+        font-size: 16px; /* Match CLEAR button font size */
+    }
 
     @media (orientation: landscape) {
         .card button {
@@ -2069,12 +1957,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2083,126 +1965,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-    
-
-</style>
-<style>
-
-    
-    h1 {
-    padding-top: 10px;
-        font-family: 'SF Pro Display';
-        letter-spacing: 2px;
-        color: #222;
-        font-size: 2rem;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 1.5rem;
-        overflow: hidden;
-        white-space: nowrap;
-        border-right: .15em solid #007bff; /* Cursor color */
-        width: 0;
-        animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
-    }
-
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: block;
-    }
-    
-.split-input input[type="number"],
-.split-input .placeholder-text {
-    height: 40px; /* Match the button height explicitly */
-    display: flex;
-    align-items: center;
-}
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -2247,17 +2009,14 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-.split-input .placeholder-text {
-    color: #1358bf; /* Light gray for the label text */
-    background-color: #fff; /* White background for the gray box below label */
-}
-
-.split-input input[type="number"] {
-    background-color: #fff; /* Ensure input box background remains white */
-}
+    .split-input input[type="number"],
+    .split-input .placeholder-text {
+        display: flex;
+        align-items: center;
+    }
 
     @media (orientation: landscape) {
         .card button {
@@ -2299,12 +2058,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2313,12 +2066,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -2363,45 +2110,17 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
-.split-input {
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: stretch;
-    border: 1px solid #6cb4ef; /* General border to match stroke color */
-}
+    .split-input .placeholder-text {
+        color: #1358bf; /* Light gray for the label text */
+        background-color: #fff; /* White background for the gray box below label */
+    }
 
-.split-input .placeholder-text {
-    color: #1358bf; /* Light gray for the label text */
-    background-color: #fff; /* White background for the label box */
-    flex: 0 0 40%; /* Fixed width for the label */
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-
-.split-input .placeholder-text::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 0.5px;
-    height: 62.62px;
-    background-color: #6cb4ef; /* Separator line matches border color */
-}
-
-.split-input input[type="number"] {
-    flex: 1;
-    background-color: #fff;
-    border: none;
-    padding: 10px;
-    text-align: center; 
-    font-size: 16px;
-    outline: none;
-}
+    .split-input input[type="number"] {
+        background-color: #fff; /* Ensure input box background remains white */
+    }
 
     @media (orientation: landscape) {
         .card button {
@@ -2443,12 +2162,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2457,12 +2170,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -2507,21 +2214,152 @@ function clearPage() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
+    }
+    
+    .split-input {
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: stretch;
+        border: 1px solid #6cb4ef; /* General border to match stroke color */
+    }
+
+    .split-input .placeholder-text {
+        color: #1358bf; /* Light gray for the label text */
+        background-color: #fff; /* White background for the label box */
+        flex: 0 0 40%; /* Fixed width for the label */
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .split-input .placeholder-text::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 0.5px;
+        background-color: #6cb4ef; /* Separator line matches border color */
+    }
+
+    .split-input input[type="number"] {
+        flex: 1;
+        background-color: #fff;
+        border: none;
+        padding: 10px;
+        text-align: center; 
+        font-size: 16px;
+        outline: none;
+    }
+
+    @media (orientation: landscape) {
+        .card button {
+            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+        }
+    }
+
+    @media (orientation: landscape) {
+        .card button {
+            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+        }
+        footer {
+            font-size: 0.2em; /* Ensure footer text remains small */
+        }
+    }
+
+    @media (orientation: landscape) {
+        .card button {
+            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+        }
+        footer {
+            font-size: 0.2em; /* Ensure footer text remains even smaller */
+        }
+    }
+
+    @media (orientation: landscape) {
+        .card button {
+            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+        }
+        footer {
+            font-size: 0.2em; /* Make footer text even smaller */
+        }
+    }
+
+    @media (orientation: landscape) {
+        .card button {
+            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+        }
+        footer {
+            font-size: 0.2em; /* Ensure footer text remains small */
+        }
+    }
+
+    @media (orientation: landscape) {
+        .card button {
+            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+        }
+        footer {
+            font-size: 0.2em; /* Ensure footer text remains small */
+        }
     }
     
 
-.searchable-select input {
-    border-radius: 0 !important;
-}
+</style>
+<style>
 
-.searchable-select ul {
-    border-radius: 0 !important;
-}
+    
+    h1 {
+    padding-top: 10px;
+        font-family: 'SF Pro Display';
+        letter-spacing: 2px;
+        color: #222;
+        font-size: 2rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: .15em solid #007bff; /* Cursor color */
+        width: 0;
+        animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
+    }
 
-.searchable-select ul li {
-    border-radius: 0 !important;
-}
+    /* Typewriter animation */
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    /* Cursor blink effect */
+    @keyframes blink {
+        50% {
+            border-color: transparent;
+        }
+    }
+
+    /* Set cursor color */
+    h1 {
+    padding-top: 10px;
+        cursor: default;
+    }
+    
+
+    .searchable-select input {
+        border-radius: 0 !important;
+    }
+
+    .searchable-select ul {
+        border-radius: 0 !important;
+    }
+
+    .searchable-select ul li {
+        border-radius: 0 !important;
+    }
 
 
     @media (orientation: landscape) {
@@ -2564,12 +2402,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2578,12 +2410,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -2642,12 +2468,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2656,12 +2476,6 @@ function clearPage() {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -2720,12 +2534,6 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2735,18 +2543,12 @@ function clearPage() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
     
 
 </style>
 <style>
-button#calculateANCButton,{
+button#calculateANCButton {
     margin-right:10px; /* Adjust the value as needed */
 }
 
@@ -2799,12 +2601,6 @@ button#toggleCoordinatesButton {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2814,17 +2610,11 @@ button#toggleCoordinatesButton {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
     
 
 </style>
-<style>
+<!-- <!-- <style>
     .loader {
         color: #0000FF;
         width: 4px;
@@ -2832,16 +2622,128 @@ button#toggleCoordinatesButton {
         border-radius: 50%;
         box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
         transform: translateX(-38px);
-        animation: l21 0.5s infinite alternate linear;
+        /* animation: l21 0.5s infinite alternate linear; */
     }
 
     @keyframes l21 {
         50%  {box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px}
         100% {box-shadow: 19px 0 0 0, 38px 0 0 3px, 57px 0 0 7px}
     }
+</style> --> --&gt;
+<style>
+    .route-distance {
+        color: #6CB4EF;
+    }
+</style> --&gt; --&gt;
+<style>
+/* Default button styles */
+.button-original {
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    margin: 0;
+    background: #1358bf; /* Default button background */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Hover effect */
+.button-original:hover {
+    background: #0056b3;
+}
+
+/* Active button state */
+.button-original:active {
+    background: #004185;
+    transform: translateY(1px);
+}
 </style>
-</head>
-<body>
+
+
+<style>
+button#toggleCoordinatesButton {
+    background: #1358bf; /* Match the Distance button color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button#toggleCoordinatesButton:hover {
+    background: #004185; /* Hover color */
+}
+
+button#toggleCoordinatesButton:active {
+    background: #004185; /* Active color */
+}
+
+button#calculateDistanceButton {
+    background: #1358bf; /* Match the Distance button color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button#calculateDistanceButton:hover {
+    background: #004185; /* Hover color */
+}
+
+button#calculateDistanceButton:active {
+    background: #004185; /* Active color */
+}
+
+button#ancButton {
+    background: #004185; /* Match the Distance button color */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button#ancButton:hover {
+    background: #0056b3; /* Hover color */
+}
+
+button#ancButton:active {
+    background: #004185; /* Active color */
+}
+
+
+</style>
+
+
+<style>
+button#clearButton {
+    background: red; /* Red background for the CLEAR button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button#clearButton:hover {
+    background: darkred; /* Darker red on hover */
+}
+
+button#clearButton:active {
+    background: crimson; /* Slightly different shade on active */
+}
+</style>
+
+
+
 <div class="card"><div class="horizontal-buttons"></div><style>
     .card {
         background: #fff;
@@ -2895,12 +2797,6 @@ button#toggleCoordinatesButton {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -2909,12 +2805,6 @@ button#toggleCoordinatesButton {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -2960,7 +2850,7 @@ button#toggleCoordinatesButton {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
 /* Full-width rectangular card styling */
@@ -3015,12 +2905,6 @@ body {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -3029,12 +2913,6 @@ body {
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
-        }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
         }
     }
     
@@ -3046,7 +2924,7 @@ body {
 <img src="icon.svg" height="70" width="100%">
 </div>-->
 <div class="searchable-select">
-<p></p><input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text">
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text">
 <ul id="aircraftList" style="display: none;">
 <li onclick="addAircraft('Jetcruzer-500')">
 <span style="color: #6cb4ef">Jetcruzer-500</span>  
@@ -8523,24 +8401,70 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <div class="searchable-select">
-<input id="searchInput" oninput="filterWaypoints()" placeholder="Search waypoints to build a route" type="text">
-<ul id="waypointList" style="display: none;"><li onclick="addWaypoint('AKUMU')">AKUMU</li><li onclick="addWaypoint('ALSAR')">ALSAR</li><li onclick="addWaypoint('AMSAD')">AMSAD</li><li onclick="addWaypoint('ANTIM')">ANTIM</li><li onclick="addWaypoint('ANVOX')">ANVOX</li><li onclick="addWaypoint('ANVUN')">ANVUN</li><li onclick="addWaypoint('APDIK')">APDIK</li><li onclick="addWaypoint('APDOT')">APDOT</li><li onclick="addWaypoint('APGEN')">APGEN</li><li onclick="addWaypoint('APKOL')">APKOL</li><li onclick="addWaypoint('APLOG')">APLOG</li><li onclick="addWaypoint('APMIT')">APMIT</li><li onclick="addWaypoint('APNAD')">APNAD</li><li onclick="addWaypoint('APNOL')">APNOL</li><li onclick="addWaypoint('ATUNU')">ATUNU</li><li onclick="addWaypoint('ATUPA')">ATUPA</li><li onclick="addWaypoint('AVATU')">AVATU</li><li onclick="addWaypoint('AVEKI')">AVEKI</li><li onclick="addWaypoint('AVETA')">AVETA</li><li onclick="addWaypoint('AVIGO')">AVIGO</li><li onclick="addWaypoint('AVIRI')">AVIRI</li><li onclick="addWaypoint('AVITA')">AVITA</li><li onclick="addWaypoint('AVUNO')">AVUNO</li><li onclick="addWaypoint('AXOSI')">AXOSI</li><li onclick="addWaypoint('BILAK')">BILAK</li><li onclick="addWaypoint('BONAP')">BONAP</li><li onclick="addWaypoint('BOSAD')">BOSAD</li><li onclick="addWaypoint('BOTEN')">BOTEN</li><li onclick="addWaypoint('BUJUMBURA CVOR')">BJA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bujumbura CVOR</span></li><li onclick="addWaypoint('DARAS')">DARAS</li><li onclick="addWaypoint('DASTA')">DASTA</li><li onclick="addWaypoint('DATAN')">DATAN</li><li onclick="addWaypoint('DO')">DO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dodoma NDB</span></li><li onclick="addWaypoint('DUDGA')">DUDGA</li><li onclick="addWaypoint('DUMA')">DUMA</li><li onclick="addWaypoint('DUMPA')">DUMPA</li><li onclick="addWaypoint('DUNDO')">DUNDO</li><li onclick="addWaypoint('DUSKA')">DUSKA</li><li onclick="addWaypoint('DV')">DV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dar es salaam DVOR</span></li><li onclick="addWaypoint('EGLOX')">EGLOX</li><li onclick="addWaypoint('EGMIL')">EGMIL</li><li onclick="addWaypoint('EGNUM')">EGNUM</li><li onclick="addWaypoint('EGPET')">EGPET</li><li onclick="addWaypoint('EGSEM')">EGSEM</li><li onclick="addWaypoint('EGSIX')">EGSIX</li><li onclick="addWaypoint('EGTAN')">EGTAN</li><li onclick="addWaypoint('ELAVA')">ELAVA</li><li onclick="addWaypoint('EPMAB')">EPMAB</li><li onclick="addWaypoint('EPMIN')">EPMIN</li><li onclick="addWaypoint('EPTAN')">EPTAN</li><li onclick="addWaypoint('EPTEL')">EPTEL</li><li onclick="addWaypoint('EPTIK')">EPTIK</li><li onclick="addWaypoint('ERBOK')">ERBOK</li><li onclick="addWaypoint('ERDEN')">ERDEN</li><li onclick="addWaypoint('ESPUX')">ESPUX</li><li onclick="addWaypoint('ESRES')">ESRES</li><li onclick="addWaypoint('ESVIM')">ESVIM</li><li onclick="addWaypoint('ETIVO')">ETIVO</li><li onclick="addWaypoint('ETLEK')">ETLEK</li><li onclick="addWaypoint('ETMIS')">ETMIS</li><li onclick="addWaypoint('ETMIX')">ETMIX</li><li onclick="addWaypoint('ETMOV')">ETMOV</li><li onclick="addWaypoint('ETUXI')">ETUXI</li><li onclick="addWaypoint('EVASI')">EVASI</li><li onclick="addWaypoint('EVATO')">EVATO</li><li onclick="addWaypoint('EXELU')">EXELU</li><li onclick="addWaypoint('EXEMI')">EXEMI</li><li onclick="addWaypoint('GABSO')">GABSO</li><li onclick="addWaypoint('GAVDA')">GAVDA</li><li onclick="addWaypoint('GEREN')">GEREN</li><li onclick="addWaypoint('GERUD')">GERUD</li><li onclick="addWaypoint('GESAT')">GESAT</li><li onclick="addWaypoint('GETAB')">GETAB</li><li onclick="addWaypoint('GETUX')">GETUX</li><li onclick="addWaypoint('HTAI')">HTAI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lamai</span></li><li onclick="addWaypoint('HTAL')">HTAL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Allience</span></li><li onclick="addWaypoint('HTAR')">HTAR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Arusha</span></li><li onclick="addWaypoint('HTAS')">HTAS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mashado</span></li><li onclick="addWaypoint('HTBA')">HTBA</li><li onclick="addWaypoint('HTBB')">HTBB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kiba (Kibambawe)</span></li><li onclick="addWaypoint('HTBE')">HTBE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Berega</span></li><li onclick="addWaypoint('HTBF')">HTBF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buckreef</span></li><li onclick="addWaypoint('HTBG')">HTBG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kikoboga</span></li><li onclick="addWaypoint('HTBH')">HTBH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Biharamulo</span></li><li onclick="addWaypoint('HTBJ')">HTBJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kabojo</span></li><li onclick="addWaypoint('HTBM')">HTBM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bagamoyo</span></li><li onclick="addWaypoint('HTBN')">HTBN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bulyankhulu</span></li><li onclick="addWaypoint('HTBO')">HTBO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Веновено</span></li><li onclick="addWaypoint('HTBS')">HTBS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbesa</span></li><li onclick="addWaypoint('HTBT')">HTBT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buturi</span></li><li onclick="addWaypoint('HTBU')">HTBU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bukoba</span></li><li onclick="addWaypoint('HTBV')">HTBV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Yaeda Chini</span></li><li onclick="addWaypoint('HTBX')">HTBX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Мавохі</span></li><li onclick="addWaypoint('HTBY')">HTBY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbamba Bay</span></li><li onclick="addWaypoint('HTCF')">HTCF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Catfish</span></li><li onclick="addWaypoint('HTCH')">HTCH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Chunya</span></li><li onclick="addWaypoint('HTCM')">HTCM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Chemchem</span></li><li onclick="addWaypoint('HTCV')">HTCV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Chivanjee</span></li><li onclick="addWaypoint('HTDA')">HTDA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dar es Salaam</span></li><li onclick="addWaypoint('HTDB')">HTDB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Madaba</span></li><li onclick="addWaypoint('HTDG')">HTDG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dolly</span></li><li onclick="addWaypoint('HTDK')">HTDK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dakawa</span></li><li onclick="addWaypoint('HTDN')">HTDN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Saadani</span></li><li onclick="addWaypoint('HTDO')">HTDO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dodoma</span></li><li onclick="addWaypoint('HTDU')">HTDU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibidula</span></li><li onclick="addWaypoint('HTDY')">HTDY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dorman</span></li><li onclick="addWaypoint('HTEB')">HTEB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sengerema</span></li><li onclick="addWaypoint('HTEE')">HTEE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mlele Ram</span></li><li onclick="addWaypoint('HTEJ')">HTEJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Shama</span></li><li onclick="addWaypoint('HTEN')">HTEN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Enduleni</span></li><li onclick="addWaypoint('HTEQ')">HTEQ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Shughuli</span></li><li onclick="addWaypoint('HTER')">HTER &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtera</span></li><li onclick="addWaypoint('HTES')">HTES &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Engorika</span></li><li onclick="addWaypoint('HTEY')">HTEY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sikonge</span></li><li onclick="addWaypoint('HTFE')">HTFE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Fish Eagle</span></li><li onclick="addWaypoint('HTFI')">HTFI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Fort Ikoma</span></li><li onclick="addWaypoint('HTFR')">HTFR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kifura</span></li><li onclick="addWaypoint('HTGA')">HTGA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbuga/Ilonga</span></li><li onclick="addWaypoint('HTGE')">HTGE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Geita</span></li><li onclick="addWaypoint('HTGL')">HTGL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Gerai Lumbwa</span></li><li onclick="addWaypoint('HTGM')">HTGM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Magambua</span></li><li onclick="addWaypoint('HTGO')">HTGO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kizigo</span></li><li onclick="addWaypoint('HTGP')">HTGP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Golden Pride</span></li><li onclick="addWaypoint('HTGR')">HTGR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Grumet</span></li><li onclick="addWaypoint('HTGS')">HTGS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Malagarasi</span></li><li onclick="addWaypoint('HTGT')">HTGT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Gelai East</span></li><li onclick="addWaypoint('HTGU')">HTGU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Miguruwe</span></li><li onclick="addWaypoint('HTGV')">HTGV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">George Vineyard Memorial (Kipili)</span></li><li onclick="addWaypoint('HTGW')">HTGW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songwe</span></li><li onclick="addWaypoint('HTGZ')">HTGZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Magazini</span></li><li onclick="addWaypoint('HTHB')">HTHB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Muhuba</span></li><li onclick="addWaypoint('HTHG')">HTHG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilumbi</span></li><li onclick="addWaypoint('HTHI')">HTHI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mlay/Mlahi</span></li><li onclick="addWaypoint('HTHM')">HTHM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwambesi</span></li><li onclick="addWaypoint('HTHR')">HTHR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Heri Hospital</span></li><li onclick="addWaypoint('HTHS')">HTHS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Muhesi</span></li><li onclick="addWaypoint('HTHY')">HTHY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Hydom</span></li><li onclick="addWaypoint('HTI')">HTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lesirwai</span></li><li onclick="addWaypoint('HTIA')">HTIA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ifakara</span></li><li onclick="addWaypoint('HTIF')">HTIF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ifunda Farm</span></li><li onclick="addWaypoint('HTIH')">HTIH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tarime (Sasi)</span></li><li onclick="addWaypoint('HTIK')">HTIK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Iku-Lake Chada</span></li><li onclick="addWaypoint('HTIL')">HTIL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lila</span></li><li onclick="addWaypoint('HTIR')">HTIR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Iringa</span></li><li onclick="addWaypoint('HTIW')">HTIW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Liwale</span></li><li onclick="addWaypoint('HTIY')">HTIY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Inyonga</span></li><li onclick="addWaypoint('HTJN')">HTJN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kwajoni</span></li><li onclick="addWaypoint('HTJO')">HTJO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Jongomero</span></li><li onclick="addWaypoint('HTJR')">HTJR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mkwaja Ranch</span></li><li onclick="addWaypoint('HTKA')">HTKA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigoma</span></li><li onclick="addWaypoint('HTKB')">HTKB</li><li onclick="addWaypoint('HTKC')">HTKC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kleins Camp</span></li><li onclick="addWaypoint('HTKD')">HTKD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kondoa</span></li><li onclick="addWaypoint('HTKE')">HTKE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ketumbeine</span></li><li onclick="addWaypoint('HTKF')">HTKF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibebe Farm</span></li><li onclick="addWaypoint('HTKG')">HTKG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Namkongo</span></li><li onclick="addWaypoint('HTKH')">HTKH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Канама</span></li><li onclick="addWaypoint('HTKI')">HTKI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilwa Masoko</span></li><li onclick="addWaypoint('HTKJ')">HTKJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilimanjaro</span></li><li onclick="addWaypoint('HTKL')">HTKL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kirondatal</span></li><li onclick="addWaypoint('HTKM')">HTKM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilombero</span></li><li onclick="addWaypoint('HTKN')">HTKN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kasense</span></li><li onclick="addWaypoint('HTKO')">HTKO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kongwa</span></li><li onclick="addWaypoint('HTKP')">HTKP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kingupira</span></li><li onclick="addWaypoint('HTKR')">HTKR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kingupira</span></li><li onclick="addWaypoint('HTKS')">HTKS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilosa</span></li><li onclick="addWaypoint('HTKT')">HTKT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilimatinde</span></li><li onclick="addWaypoint('HTKU')">HTKU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kasulu</span></li><li onclick="addWaypoint('HTKX')">HTKX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kitemela</span></li><li onclick="addWaypoint('HTLA')">HTLA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lukula</span></li><li onclick="addWaypoint('HTLB')">HTLB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Malambo</span></li><li onclick="addWaypoint('HTLD')">HTLD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Loliondo</span></li><li onclick="addWaypoint('HTLE')">HTLE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ilembula</span></li><li onclick="addWaypoint('HTLI')">HTLI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lindi</span></li><li onclick="addWaypoint('HTLJ')">HTLJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lualanje</span></li><li onclick="addWaypoint('HTLK')">HTLK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Luika</span></li><li onclick="addWaypoint('HTLL')">HTLL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Liuli</span></li><li onclick="addWaypoint('HTLM')">HTLM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lake Manyara</span></li><li onclick="addWaypoint('HTLN')">HTLN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lukwati</span></li><li onclick="addWaypoint('HTLO')">HTLO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lobo Wild Life Lodge</span></li><li onclick="addWaypoint('HTLP')">HTLP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lupa</span></li><li onclick="addWaypoint('HTLR')">HTLR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lukuliro</span></li><li onclick="addWaypoint('HTLS')">HTLS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lesingita</span></li><li onclick="addWaypoint('HTLT')">HTLT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lunda Wma</span></li><li onclick="addWaypoint('HTLU')">HTLU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lunda</span></li><li onclick="addWaypoint('HTLV')">HTLV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Liveria</span></li><li onclick="addWaypoint('HTLW')">HTLW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Luwegu</span></li><li onclick="addWaypoint('HTLY')">HTLY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Luwele</span></li><li onclick="addWaypoint('HTMA')">HTMA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mafia</span></li><li onclick="addWaypoint('HTMD')">HTMD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buhemba Gold Mining</span></li><li onclick="addWaypoint('HTME')">HTME &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Matambwe</span></li><li onclick="addWaypoint('HTMF')">HTMF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mufindi</span></li><li onclick="addWaypoint('HTMG')">HTMG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Morogoro</span></li><li onclick="addWaypoint('HTMH')">HTMH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Makau</span></li><li onclick="addWaypoint('HTMI')">HTMI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Masasi</span></li><li onclick="addWaypoint('HTMJ')">HTMJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Maji Moto</span></li><li onclick="addWaypoint('HTMK')">HTMK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mikumi</span></li><li onclick="addWaypoint('HTML')">HTML &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mahale</span></li><li onclick="addWaypoint('HTMM')">HTMM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mamarehe</span></li><li onclick="addWaypoint('HTMN')">HTMN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Matemanga</span></li><li onclick="addWaypoint('HTMO')">HTMO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mombo</span></li><li onclick="addWaypoint('HTMP')">HTMP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mpanda</span></li><li onclick="addWaypoint('HTMR')">HTMR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Msembe Ruaha</span></li><li onclick="addWaypoint('HTMS')">HTMS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Moshi</span></li><li onclick="addWaypoint('HTMT')">HTMT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtwara</span></li><li onclick="addWaypoint('HTMU')">HTMU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Musoma</span></li><li onclick="addWaypoint('HTMV')">HTMV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mvumi</span></li><li onclick="addWaypoint('HTMW')">HTMW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwanza</span></li><li onclick="addWaypoint('HTMX')">HTMX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mpwapwa</span></li><li onclick="addWaypoint('HTMY')">HTMY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbuyu</span></li><li onclick="addWaypoint('HTNA')">HTNA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nachingwea</span></li><li onclick="addWaypoint('HTNB')">HTNB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Naberera</span></li><li onclick="addWaypoint('HTND')">HTND &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ndutu</span></li><li onclick="addWaypoint('HTNF')">HTNF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nkonje</span></li><li onclick="addWaypoint('HTNG')">HTNG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngerengere</span></li><li onclick="addWaypoint('HTNH')">HTNH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ndolo</span></li><li onclick="addWaypoint('HTNJ')">HTNJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Njombe</span></li><li onclick="addWaypoint('HTNK')">HTNK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nkinga</span></li><li onclick="addWaypoint('HTNM')">HTNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">North Mara</span></li><li onclick="addWaypoint('HTNN')">HTNN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngorongoro</span></li><li onclick="addWaypoint('HTNO')">HTNO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbono</span></li><li onclick="addWaypoint('HTNR')">HTNR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngara</span></li><li onclick="addWaypoint('HTNW')">HTNW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngwazi</span></li><li onclick="addWaypoint('HTNY')">HTNY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kinyanguru</span></li><li onclick="addWaypoint('HTNZ')">HTNZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nzega</span></li><li onclick="addWaypoint('HTOM')">HTOM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Olemilei</span></li><li onclick="addWaypoint('HTON')">HTON &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mishamo</span></li><li onclick="addWaypoint('HTOP')">HTOP</li><li onclick="addWaypoint('HTOR')">HTOR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Olepakashi/Engaresero</span></li><li onclick="addWaypoint('HTOZ')">HTOZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigosa 1/Kigozi</span></li><li onclick="addWaypoint('HTPD')">HTPD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mpunde</span></li><li onclick="addWaypoint('HTPE')">HTPE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Pemba</span></li><li onclick="addWaypoint('HTPP')">HTPP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kapunga</span></li><li onclick="addWaypoint('HTPT')">HTPT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Piti/Kitemela</span></li><li onclick="addWaypoint('HTPW')">HTPW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Matipwili</span></li><li onclick="addWaypoint('HTRA')">HTRA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mkangire</span></li><li onclick="addWaypoint('HTRB')">HTRB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Rubondo</span></li><li onclick="addWaypoint('HTRE')">HTRE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Pemba</span></li><li onclick="addWaypoint('HTRG')">HTRG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Rungwa</span></li><li onclick="addWaypoint('HTRL')">HTRL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbarali</span></li><li onclick="addWaypoint('HTRN')">HTRN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Barani</span></li><li onclick="addWaypoint('HTRS')">HTRS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibesa</span></li><li onclick="addWaypoint('HTRU')">HTRU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mchauru</span></li><li onclick="addWaypoint('HTRX')">HTRX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tango One</span></li><li onclick="addWaypoint('HTRZ')">HTRZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kirumira</span></li><li onclick="addWaypoint('HTSA')">HTSA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Makwasa</span></li><li onclick="addWaypoint('HTSB')">HTSB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kagera Sugar</span></li><li onclick="addWaypoint('HTSD')">HTSD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Singida</span></li><li onclick="addWaypoint('HTSE')">HTSE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Same</span></li><li onclick="addWaypoint('HTSG')">HTSG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Stiglers Gorge</span></li><li onclick="addWaypoint('HTSH')">HTSH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mafinga</span></li><li onclick="addWaypoint('HTSI')">HTSI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kihansi</span></li><li onclick="addWaypoint('HTSJ')">HTSJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Simanjiro</span></li><li onclick="addWaypoint('HTSK')">HTSK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sitalike</span></li><li onclick="addWaypoint('HTSL')">HTSL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Msolwa</span></li><li onclick="addWaypoint('HTSM')">HTSM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Masimba</span></li><li onclick="addWaypoint('HTSN')">HTSN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Seronera</span></li><li onclick="addWaypoint('HTSO')">HTSO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songea</span></li><li onclick="addWaypoint('HTSS')">HTSS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songosongo</span></li><li onclick="addWaypoint('HTST')">HTST &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Serengeti South</span></li><li onclick="addWaypoint('HTSU')">HTSU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sumbawanga</span></li><li onclick="addWaypoint('HTSW')">HTSW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kiswa</span></li><li onclick="addWaypoint('HTSY')">HTSY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Shinyanga - Ibadakuli</span></li><li onclick="addWaypoint('HTTA')">HTTA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mngeta</span></li><li onclick="addWaypoint('HTTB')">HTTB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tabora</span></li><li onclick="addWaypoint('HTTC')">HTTC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Трс</span></li><li onclick="addWaypoint('HTTE')">HTTE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtemere</span></li><li onclick="addWaypoint('HTTF')">HTTF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwadui</span></li><li onclick="addWaypoint('HTTG')">HTTG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tanga</span></li><li onclick="addWaypoint('HTTJ')">HTTJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Handajega</span></li><li onclick="addWaypoint('HTTL')">HTTL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tulawaka</span></li><li onclick="addWaypoint('HTTN')">HTTN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Magangwe</span></li><li onclick="addWaypoint('HTTO')">HTTO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kogatende</span></li><li onclick="addWaypoint('HTTR')">HTTR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tarangire</span></li><li onclick="addWaypoint('HTTS')">HTTS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Milembwe</span></li><li onclick="addWaypoint('HTTU')">HTTU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tunduru</span></li><li onclick="addWaypoint('HTTV')">HTTV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Msima</span></li><li onclick="addWaypoint('HTTX')">HTTX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tarime</span></li><li onclick="addWaypoint('HTTY')">HTTY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Manyara South</span></li><li onclick="addWaypoint('HTTZ')">HTTZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tura</span></li><li onclick="addWaypoint('HTTI')">HTTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtibwa</span></li><li onclick="addWaypoint('HTUC')">HTUC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Turiani</span></li><li onclick="addWaypoint('HTUF')">HTUF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ugalla</span></li><li onclick="addWaypoint('HTUG')">HTUG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lugala</span></li><li onclick="addWaypoint('HTUK')">HTUK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ukerewe - Nansio</span></li><li onclick="addWaypoint('HTUN')">HTUN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Murungu</span></li><li onclick="addWaypoint('HTUO')">HTUO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Merugoi</span></li><li onclick="addWaypoint('HTUP')">HTUP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtemaupinde</span></li><li onclick="addWaypoint('HTUR')">HTUR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Urambo</span></li><li onclick="addWaypoint('HTUS')">HTUS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Masusu</span></li><li onclick="addWaypoint('HTUT')">HTUT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Utete</span></li><li onclick="addWaypoint('HTUU')">HTUU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kalulu</span></li><li onclick="addWaypoint('HTUV')">HTUV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Uvinza</span></li><li onclick="addWaypoint('HTUW')">HTUW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nungwi</span></li><li onclick="addWaypoint('HTUZ')">HTUZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kuro</span></li><li onclick="addWaypoint('HTVR')">HTVR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buger</span></li><li onclick="addWaypoint('HTWA')">HTWA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sasakwa</span></li><li onclick="addWaypoint('HTWB')">HTWB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwiba</span></li><li onclick="addWaypoint('HTWH')">HTWH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Wazo Hill</span></li><li onclick="addWaypoint('HTWI')">HTWI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mchukwi</span></li><li onclick="addWaypoint('HTWK')">HTWK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">West Kilimanjaro</span></li><li onclick="addWaypoint('HTWS')">HTWS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kwamsisi</span></li><li onclick="addWaypoint('HTYA')">HTYA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibaya</span></li><li onclick="addWaypoint('HTYE')">HTYE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nyamonge</span></li><li onclick="addWaypoint('HTYO')">HTYO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Moyowosi</span></li><li onclick="addWaypoint('HTYW')">HTYW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Likuyu</span></li><li onclick="addWaypoint('HTYY')">HTYY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Yeye 2</span></li><li onclick="addWaypoint('HTZA')">HTZA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Zanzibar</span></li><li onclick="addWaypoint('HTZI')">HTZI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kisima (Mkomazi)</span></li><li onclick="addWaypoint('HTZW')">HTZW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ziwandu</span></li><li onclick="addWaypoint('IBGEN')">IBGEN</li><li onclick="addWaypoint('IBKOB')">IBKOB</li><li onclick="addWaypoint('IBMAR')">IBMAR</li><li onclick="addWaypoint('IBROP')">IBROP</li><li onclick="addWaypoint('IMDOM')">IMDOM</li><li onclick="addWaypoint('IMGEX')">IMGEX</li><li onclick="addWaypoint('IMKIX')">IMKIX</li><li onclick="addWaypoint('IMLAK')">IMLAK</li><li onclick="addWaypoint('IMPIL')">IMPIL</li><li onclick="addWaypoint('IMRAX')">IMRAX</li><li onclick="addWaypoint('IMROD')">IMROD</li><li onclick="addWaypoint('IMSAT')">IMSAT</li><li onclick="addWaypoint('ITBEX')">ITBEX</li><li onclick="addWaypoint('ITBOS')">ITBOS</li><li onclick="addWaypoint('ITGOP')">ITGOP</li><li onclick="addWaypoint('ITLAN')">ITLAN</li><li onclick="addWaypoint('ITMEN')">ITMEN</li><li onclick="addWaypoint('ITNOV')">ITNOV</li><li onclick="addWaypoint('ITOBO')">ITOBO</li><li onclick="addWaypoint('ITROM')">ITROM</li><li onclick="addWaypoint('ITSEV')">ITSEV</li><li onclick="addWaypoint('ITSOK')">ITSOK</li><li onclick="addWaypoint('IXAPA')">IXAPA</li><li onclick="addWaypoint('KASAMA NDB')">KS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kasama NDB</span></li><li onclick="addWaypoint('KASIM')">KASIM</li><li onclick="addWaypoint('KB')">KB</li><li onclick="addWaypoint('KG')">KG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigoma NDB</span></li><li onclick="addWaypoint('KNM')">KNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigali DVOR</span></li><li onclick="addWaypoint('KINAN')">KINAN</li><li onclick="addWaypoint('KIRAWIRA A')">KIRAWIRA A</li><li onclick="addWaypoint('KISIR')">KISIR</li><li onclick="addWaypoint('KIVUR')">KIVUR</li><li onclick="addWaypoint('KL')">KL</li><li onclick="addWaypoint('KO')">KO</li><li onclick="addWaypoint('KOBEL')">KOBEL</li><li onclick="addWaypoint('KOGUT')">KOGUT</li><li onclick="addWaypoint('KV')">KV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilimanjaro DVOR</span></li><li onclick="addWaypoint('LABAT')">LABAT</li><li onclick="addWaypoint('LOSIN')">LOSIN</li><li onclick="addWaypoint('LUGAP')">LUGAP</li><li onclick="addWaypoint('LUSOB')">LUSOB</li><li onclick="addWaypoint('MAGAD')">MAGAD</li><li onclick="addWaypoint('MB')">MB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbeya NDB</span></li><li onclick="addWaypoint('MIWAS')">MIWAS</li><li onclick="addWaypoint('MORU')">MORU</li><li onclick="addWaypoint('MPULULU')">MPULULU</li><li onclick="addWaypoint('MT')">MT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtwara NDB</span></li><li onclick="addWaypoint('MUMTU')">MUMTU</li><li onclick="addWaypoint('MV')">MV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwanza VOR</span></li><li onclick="addWaypoint('NAGON')">NAGON</li><li onclick="addWaypoint('NESAL')">NESAL</li><li onclick="addWaypoint('NESOX')">NESOX</li><li onclick="addWaypoint('NEXAD')">NEXAD</li><li onclick="addWaypoint('NIBOT')">NIBOT</li><li onclick="addWaypoint('NIDED')">NIDED</li><li onclick="addWaypoint('NIDEL')">NIDEL</li><li onclick="addWaypoint('NIDEX')">NIDEX</li><li onclick="addWaypoint('ODGAT')">ODGAT</li><li onclick="addWaypoint('OKDAS')">OKDAS</li><li onclick="addWaypoint('OKLOM')">OKLOM</li><li onclick="addWaypoint('OKMAS')">OKMAS</li><li onclick="addWaypoint('OKNES')">OKNES</li><li onclick="addWaypoint('OKPAB')">OKPAB</li><li onclick="addWaypoint('OKSIS')">OKSIS</li><li onclick="addWaypoint('OKSOT')">OKSOT</li><li onclick="addWaypoint('OKTEX')">OKTEX</li><li onclick="addWaypoint('OPDET')">OPDET</li><li onclick="addWaypoint('ORLIM')">ORLIM</li><li onclick="addWaypoint('OVANA')">OVANA</li><li onclick="addWaypoint('PARIN')">PARIN</li><li onclick="addWaypoint('PENOD')">PENOD</li><li onclick="addWaypoint('ROVUM')">ROVUM</li><li onclick="addWaypoint('SELRU')">SELRU</li><li onclick="addWaypoint('SINGI')">SINGI</li><li onclick="addWaypoint('TABNO')">TABNO</li><li onclick="addWaypoint('TABORA B')">TABORA B</li><li onclick="addWaypoint('TARANGILE 1')">TARANGILE 1</li><li onclick="addWaypoint('TB')">TB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tabora NDB</span></li><li onclick="addWaypoint('TEBLU')">TEBLU</li><li onclick="addWaypoint('THANDA')">THANDA&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Thanda Island Helipad</span></li><li onclick="addWaypoint('TIKAN')">TIKAN</li><li onclick="addWaypoint('UDMAM')">UDMAM</li><li onclick="addWaypoint('UDNOT')">UDNOT</li><li onclick="addWaypoint('UMTAP')">UMTAP</li><li onclick="addWaypoint('UNLEN')">UNLEN</li><li onclick="addWaypoint('USUBU')">USUBU</li><li onclick="addWaypoint('UTATA')">UTATA</li><li onclick="addWaypoint('UTEMA')">UTEMA</li><li onclick="addWaypoint('UTINA')">UTINA</li><li onclick="addWaypoint('UTOVU')">UTOVU</li><li onclick="addWaypoint('UVBOX')">UVBOX</li><li onclick="addWaypoint('UVDIX')">UVDIX</li><li onclick="addWaypoint('UVKAT')">UVKAT</li><li onclick="addWaypoint('UVKOD')">UVKOD</li><li onclick="addWaypoint('UVLED')">UVLED</li><li onclick="addWaypoint('UVMAN')">UVMAN</li><li onclick="addWaypoint('UVMEX')">UVMEX</li><li onclick="addWaypoint('UVMID')">UVMID</li><li onclick="addWaypoint('UVORA')">UVORA</li><li onclick="addWaypoint('UVUKO')">UVUKO</li><li onclick="addWaypoint('UVUMI')">UVUMI</li><li onclick="addWaypoint('XAKRI')">XAKRI</li><li onclick="addWaypoint('XINDA')">XINDA</li><li onclick="addWaypoint('ZV')">ZV</li><li onclick="addWaypoint('НТКВ')">НТКВ</li><li onclick="addWaypoint('SG')">SG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songea NDB</span></li>
+<input id="searchInput" oninput="filterWaypoints()" placeholder="Search waypoints to build a route" style="color: #6cb4ef" type="text">
+<ul id="waypointList" style="display: none;"><li onclick="addWaypoint('AKUMU')">AKUMU</li><li onclick="addWaypoint('ALSAR')">ALSAR</li><li onclick="addWaypoint('AMSAD')">AMSAD</li><li onclick="addWaypoint('ANTIM')">ANTIM</li><li onclick="addWaypoint('ANVOX')">ANVOX</li><li onclick="addWaypoint('ANVUN')">ANVUN</li><li onclick="addWaypoint('APDIK')">APDIK</li><li onclick="addWaypoint('APDOT')">APDOT</li><li onclick="addWaypoint('APGEN')">APGEN</li><li onclick="addWaypoint('APKOL')">APKOL</li><li onclick="addWaypoint('APLOG')">APLOG</li><li onclick="addWaypoint('APMIT')">APMIT</li><li onclick="addWaypoint('APNAD')">APNAD</li><li onclick="addWaypoint('APNOL')">APNOL</li><li onclick="addWaypoint('ATUNU')">ATUNU</li><li onclick="addWaypoint('ATUPA')">ATUPA</li><li onclick="addWaypoint('AVATU')">AVATU</li><li onclick="addWaypoint('AVEKI')">AVEKI</li><li onclick="addWaypoint('AVETA')">AVETA</li><li onclick="addWaypoint('AVIGO')">AVIGO</li><li onclick="addWaypoint('AVIRI')">AVIRI</li><li onclick="addWaypoint('AVITA')">AVITA</li><li onclick="addWaypoint('AVUNO')">AVUNO</li><li onclick="addWaypoint('AXOSI')">AXOSI</li><li onclick="addWaypoint('BILAK')">BILAK</li><li onclick="addWaypoint('BONAP')">BONAP</li><li onclick="addWaypoint('BOSAD')">BOSAD</li><li onclick="addWaypoint('BOTEN')">BOTEN</li><li onclick="addWaypoint('BUJUMBURA CVOR')">BJA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bujumbura CVOR</span></li><li onclick="addWaypoint('DARAS')">DARAS</li><li onclick="addWaypoint('DASTA')">DASTA</li><li onclick="addWaypoint('DATAN')">DATAN</li><li onclick="addWaypoint('DO')">DO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dodoma NDB</span></li><li onclick="addWaypoint('DUDGA')">DUDGA</li><li onclick="addWaypoint('DUMA')">DUMA</li><li onclick="addWaypoint('DUMPA')">DUMPA</li><li onclick="addWaypoint('DUNDO')">DUNDO</li><li onclick="addWaypoint('DUSKA')">DUSKA</li><li onclick="addWaypoint('DV')">DV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dar es salaam DVOR</span></li><li onclick="addWaypoint('EGLOX')">EGLOX</li><li onclick="addWaypoint('EGMIL')">EGMIL</li><li onclick="addWaypoint('EGNUM')">EGNUM</li><li onclick="addWaypoint('EGPET')">EGPET</li><li onclick="addWaypoint('EGSEM')">EGSEM</li><li onclick="addWaypoint('EGSIX')">EGSIX</li><li onclick="addWaypoint('EGTAN')">EGTAN</li><li onclick="addWaypoint('ELAVA')">ELAVA</li><li onclick="addWaypoint('EPMAB')">EPMAB</li><li onclick="addWaypoint('EPMIN')">EPMIN</li><li onclick="addWaypoint('EPTAN')">EPTAN</li><li onclick="addWaypoint('EPTEL')">EPTEL</li><li onclick="addWaypoint('EPTIK')">EPTIK</li><li onclick="addWaypoint('ERBOK')">ERBOK</li><li onclick="addWaypoint('ERDEN')">ERDEN</li><li onclick="addWaypoint('ESPUX')">ESPUX</li><li onclick="addWaypoint('ESRES')">ESRES</li><li onclick="addWaypoint('ESVIM')">ESVIM</li><li onclick="addWaypoint('ETIVO')">ETIVO</li><li onclick="addWaypoint('ETLEK')">ETLEK</li><li onclick="addWaypoint('ETMIS')">ETMIS</li><li onclick="addWaypoint('ETMIX')">ETMIX</li><li onclick="addWaypoint('ETMOV')">ETMOV</li><li onclick="addWaypoint('ETUXI')">ETUXI</li><li onclick="addWaypoint('EVASI')">EVASI</li><li onclick="addWaypoint('EVATO')">EVATO</li><li onclick="addWaypoint('EXELU')">EXELU</li><li onclick="addWaypoint('EXEMI')">EXEMI</li><li onclick="addWaypoint('GABSO')">GABSO</li><li onclick="addWaypoint('GAVDA')">GAVDA</li><li onclick="addWaypoint('GEREN')">GEREN</li><li onclick="addWaypoint('GERUD')">GERUD</li><li onclick="addWaypoint('GESAT')">GESAT</li><li onclick="addWaypoint('GETAB')">GETAB</li><li onclick="addWaypoint('GETUX')">GETUX</li><li onclick="addWaypoint('HTAI')">HTAI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lamai</span></li><li onclick="addWaypoint('HTAL')">HTAL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Allience</span></li><li onclick="addWaypoint('HTAR')">HTAR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Arusha</span></li><li onclick="addWaypoint('HTAS')">HTAS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mashado</span></li><li onclick="addWaypoint('HTBA')">HTBA</li><li onclick="addWaypoint('HTBB')"><span class="route-name">HTBB &nbsp;&nbsp;&nbsp;&nbsp; Kiba</span><span class="route-distance"> (Kibambawe)</span></li><li onclick="addWaypoint('HTBE')">HTBE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Berega</span></li><li onclick="addWaypoint('HTBF')">HTBF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buckreef</span></li><li onclick="addWaypoint('HTBG')">HTBG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kikoboga</span></li><li onclick="addWaypoint('HTBH')">HTBH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Biharamulo</span></li><li onclick="addWaypoint('HTBJ')">HTBJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kabojo</span></li><li onclick="addWaypoint('HTBM')">HTBM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bagamoyo</span></li><li onclick="addWaypoint('HTBN')">HTBN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bulyankhulu</span></li><li onclick="addWaypoint('HTBO')">HTBO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Веновено</span></li><li onclick="addWaypoint('HTBS')">HTBS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbesa</span></li><li onclick="addWaypoint('HTBT')">HTBT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buturi</span></li><li onclick="addWaypoint('HTBU')">HTBU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Bukoba</span></li><li onclick="addWaypoint('HTBV')">HTBV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Yaeda Chini</span></li><li onclick="addWaypoint('HTBX')">HTBX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Мавохі</span></li><li onclick="addWaypoint('HTBY')">HTBY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbamba Bay</span></li><li onclick="addWaypoint('HTCF')">HTCF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Catfish</span></li><li onclick="addWaypoint('HTCH')">HTCH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Chunya</span></li><li onclick="addWaypoint('HTCM')">HTCM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Chemchem</span></li><li onclick="addWaypoint('HTCV')">HTCV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Chivanjee</span></li><li onclick="addWaypoint('HTDA')">HTDA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dar es Salaam</span></li><li onclick="addWaypoint('HTDB')">HTDB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Madaba</span></li><li onclick="addWaypoint('HTDG')">HTDG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dolly</span></li><li onclick="addWaypoint('HTDK')">HTDK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dakawa</span></li><li onclick="addWaypoint('HTDN')">HTDN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Saadani</span></li><li onclick="addWaypoint('HTDO')">HTDO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dodoma</span></li><li onclick="addWaypoint('HTDU')">HTDU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibidula</span></li><li onclick="addWaypoint('HTDY')">HTDY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Dorman</span></li><li onclick="addWaypoint('HTEB')">HTEB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sengerema</span></li><li onclick="addWaypoint('HTEE')">HTEE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mlele Ram</span></li><li onclick="addWaypoint('HTEJ')">HTEJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Shama</span></li><li onclick="addWaypoint('HTEN')">HTEN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Enduleni</span></li><li onclick="addWaypoint('HTEQ')">HTEQ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Shughuli</span></li><li onclick="addWaypoint('HTER')">HTER &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtera</span></li><li onclick="addWaypoint('HTES')">HTES &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Engorika</span></li><li onclick="addWaypoint('HTEY')">HTEY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sikonge</span></li><li onclick="addWaypoint('HTFE')">HTFE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Fish Eagle</span></li><li onclick="addWaypoint('HTFI')">HTFI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Fort Ikoma</span></li><li onclick="addWaypoint('HTFR')">HTFR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kifura</span></li><li onclick="addWaypoint('HTGA')">HTGA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbuga/Ilonga</span></li><li onclick="addWaypoint('HTGE')">HTGE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Geita</span></li><li onclick="addWaypoint('HTGL')">HTGL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Gerai Lumbwa</span></li><li onclick="addWaypoint('HTGM')">HTGM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Magambua</span></li><li onclick="addWaypoint('HTGO')">HTGO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kizigo</span></li><li onclick="addWaypoint('HTGP')">HTGP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Golden Pride</span></li><li onclick="addWaypoint('HTGR')">HTGR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Grumet</span></li><li onclick="addWaypoint('HTGS')">HTGS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Malagarasi</span></li><li onclick="addWaypoint('HTGT')">HTGT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Gelai East</span></li><li onclick="addWaypoint('HTGU')">HTGU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Miguruwe</span></li><li onclick="addWaypoint('HTGV')"><span class="route-name">HTGV &nbsp;&nbsp;&nbsp;&nbsp; George Vineyard Memorial</span><span class="route-distance"> (Kipili)</span></li><li onclick="addWaypoint('HTGW')">HTGW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songwe</span></li><li onclick="addWaypoint('HTGZ')">HTGZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Magazini</span></li><li onclick="addWaypoint('HTHB')">HTHB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Muhuba</span></li><li onclick="addWaypoint('HTHG')">HTHG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilumbi</span></li><li onclick="addWaypoint('HTHI')">HTHI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mlay/Mlahi</span></li><li onclick="addWaypoint('HTHM')">HTHM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwambesi</span></li><li onclick="addWaypoint('HTHR')">HTHR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Heri Hospital</span></li><li onclick="addWaypoint('HTHS')">HTHS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Muhesi</span></li><li onclick="addWaypoint('HTHY')">HTHY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Hydom</span></li><li onclick="addWaypoint('HTI')">HTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lesirwai</span></li><li onclick="addWaypoint('HTIA')">HTIA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ifakara</span></li><li onclick="addWaypoint('HTIF')">HTIF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ifunda Farm</span></li><li onclick="addWaypoint('HTIH')"><span class="route-name">HTIH &nbsp;&nbsp;&nbsp;&nbsp; Tarime</span><span class="route-distance"> (Sasi)</span></li><li onclick="addWaypoint('HTIK')">HTIK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Iku-Lake Chada</span></li><li onclick="addWaypoint('HTIL')">HTIL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lila</span></li><li onclick="addWaypoint('HTIR')">HTIR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Iringa</span></li><li onclick="addWaypoint('HTIW')">HTIW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Liwale</span></li><li onclick="addWaypoint('HTIY')">HTIY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Inyonga</span></li><li onclick="addWaypoint('HTJN')">HTJN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kwajoni</span></li><li onclick="addWaypoint('HTJO')">HTJO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Jongomero</span></li><li onclick="addWaypoint('HTJR')">HTJR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mkwaja Ranch</span></li><li onclick="addWaypoint('HTKA')">HTKA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigoma</span></li><li onclick="addWaypoint('HTKB')">HTKB</li><li onclick="addWaypoint('HTKC')">HTKC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kleins Camp</span></li><li onclick="addWaypoint('HTKD')">HTKD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kondoa</span></li><li onclick="addWaypoint('HTKE')">HTKE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ketumbeine</span></li><li onclick="addWaypoint('HTKF')">HTKF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibebe Farm</span></li><li onclick="addWaypoint('HTKG')">HTKG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Namkongo</span></li><li onclick="addWaypoint('HTKH')">HTKH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Канама</span></li><li onclick="addWaypoint('HTKI')">HTKI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilwa Masoko</span></li><li onclick="addWaypoint('HTKJ')">HTKJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilimanjaro</span></li><li onclick="addWaypoint('HTKL')">HTKL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kirondatal</span></li><li onclick="addWaypoint('HTKM')">HTKM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilombero</span></li><li onclick="addWaypoint('HTKN')">HTKN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kasense</span></li><li onclick="addWaypoint('HTKO')">HTKO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kongwa</span></li><li onclick="addWaypoint('HTKP')">HTKP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kingupira</span></li><li onclick="addWaypoint('HTKR')">HTKR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kingupira</span></li><li onclick="addWaypoint('HTKS')">HTKS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilosa</span></li><li onclick="addWaypoint('HTKT')">HTKT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilimatinde</span></li><li onclick="addWaypoint('HTKU')">HTKU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kasulu</span></li><li onclick="addWaypoint('HTKX')">HTKX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kitemela</span></li><li onclick="addWaypoint('HTLA')">HTLA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lukula</span></li><li onclick="addWaypoint('HTLB')">HTLB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Malambo</span></li><li onclick="addWaypoint('HTLD')">HTLD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Loliondo</span></li><li onclick="addWaypoint('HTLE')">HTLE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ilembula</span></li><li onclick="addWaypoint('HTLI')">HTLI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lindi</span></li><li onclick="addWaypoint('HTLJ')">HTLJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lualanje</span></li><li onclick="addWaypoint('HTLK')">HTLK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Luika</span></li><li onclick="addWaypoint('HTLL')">HTLL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Liuli</span></li><li onclick="addWaypoint('HTLM')">HTLM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lake Manyara</span></li><li onclick="addWaypoint('HTLN')">HTLN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lukwati</span></li><li onclick="addWaypoint('HTLO')">HTLO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lobo Wild Life Lodge</span></li><li onclick="addWaypoint('HTLP')">HTLP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lupa</span></li><li onclick="addWaypoint('HTLR')">HTLR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lukuliro</span></li><li onclick="addWaypoint('HTLS')">HTLS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lesingita</span></li><li onclick="addWaypoint('HTLT')">HTLT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lunda Wma</span></li><li onclick="addWaypoint('HTLU')">HTLU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lunda</span></li><li onclick="addWaypoint('HTLV')">HTLV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Liveria</span></li><li onclick="addWaypoint('HTLW')">HTLW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Luwegu</span></li><li onclick="addWaypoint('HTLY')">HTLY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Luwele</span></li><li onclick="addWaypoint('HTMA')">HTMA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mafia</span></li><li onclick="addWaypoint('HTMD')">HTMD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buhemba Gold Mining</span></li><li onclick="addWaypoint('HTME')">HTME &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Matambwe</span></li><li onclick="addWaypoint('HTMF')">HTMF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mufindi</span></li><li onclick="addWaypoint('HTMG')">HTMG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Morogoro</span></li><li onclick="addWaypoint('HTMH')">HTMH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Makau</span></li><li onclick="addWaypoint('HTMI')">HTMI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Masasi</span></li><li onclick="addWaypoint('HTMJ')">HTMJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Maji Moto</span></li><li onclick="addWaypoint('HTMK')">HTMK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mikumi</span></li><li onclick="addWaypoint('HTML')">HTML &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mahale</span></li><li onclick="addWaypoint('HTMM')">HTMM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mamarehe</span></li><li onclick="addWaypoint('HTMN')">HTMN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Matemanga</span></li><li onclick="addWaypoint('HTMO')">HTMO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mombo</span></li><li onclick="addWaypoint('HTMP')">HTMP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mpanda</span></li><li onclick="addWaypoint('HTMR')">HTMR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Msembe Ruaha</span></li><li onclick="addWaypoint('HTMS')">HTMS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Moshi</span></li><li onclick="addWaypoint('HTMT')">HTMT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtwara</span></li><li onclick="addWaypoint('HTMU')">HTMU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Musoma</span></li><li onclick="addWaypoint('HTMV')">HTMV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mvumi</span></li><li onclick="addWaypoint('HTMW')">HTMW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwanza</span></li><li onclick="addWaypoint('HTMX')">HTMX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mpwapwa</span></li><li onclick="addWaypoint('HTMY')">HTMY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbuyu</span></li><li onclick="addWaypoint('HTNA')">HTNA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nachingwea</span></li><li onclick="addWaypoint('HTNB')">HTNB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Naberera</span></li><li onclick="addWaypoint('HTND')">HTND &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ndutu</span></li><li onclick="addWaypoint('HTNF')">HTNF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nkonje</span></li><li onclick="addWaypoint('HTNG')">HTNG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngerengere</span></li><li onclick="addWaypoint('HTNH')">HTNH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ndolo</span></li><li onclick="addWaypoint('HTNJ')">HTNJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Njombe</span></li><li onclick="addWaypoint('HTNK')">HTNK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nkinga</span></li><li onclick="addWaypoint('HTNM')">HTNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">North Mara</span></li><li onclick="addWaypoint('HTNN')">HTNN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngorongoro</span></li><li onclick="addWaypoint('HTNO')">HTNO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbono</span></li><li onclick="addWaypoint('HTNR')">HTNR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngara</span></li><li onclick="addWaypoint('HTNW')">HTNW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ngwazi</span></li><li onclick="addWaypoint('HTNY')">HTNY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kinyanguru</span></li><li onclick="addWaypoint('HTNZ')">HTNZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nzega</span></li><li onclick="addWaypoint('HTOM')">HTOM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Olemilei</span></li><li onclick="addWaypoint('HTON')">HTON &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mishamo</span></li><li onclick="addWaypoint('HTOP')">HTOP</li><li onclick="addWaypoint('HTOR')">HTOR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Olepakashi/Engaresero</span></li><li onclick="addWaypoint('HTOZ')">HTOZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigosa 1/Kigozi</span></li><li onclick="addWaypoint('HTPD')">HTPD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mpunde</span></li><li onclick="addWaypoint('HTPE')">HTPE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Pemba</span></li><li onclick="addWaypoint('HTPP')">HTPP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kapunga</span></li><li onclick="addWaypoint('HTPT')">HTPT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Piti/Kitemela</span></li><li onclick="addWaypoint('HTPW')">HTPW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Matipwili</span></li><li onclick="addWaypoint('HTRA')">HTRA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mkangire</span></li><li onclick="addWaypoint('HTRB')">HTRB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Rubondo</span></li><li onclick="addWaypoint('HTRE')">HTRE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Pemba</span></li><li onclick="addWaypoint('HTRG')">HTRG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Rungwa</span></li><li onclick="addWaypoint('HTRL')">HTRL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbarali</span></li><li onclick="addWaypoint('HTRN')">HTRN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Barani</span></li><li onclick="addWaypoint('HTRS')">HTRS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibesa</span></li><li onclick="addWaypoint('HTRU')">HTRU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mchauru</span></li><li onclick="addWaypoint('HTRX')">HTRX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tango One</span></li><li onclick="addWaypoint('HTRZ')">HTRZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kirumira</span></li><li onclick="addWaypoint('HTSA')">HTSA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Makwasa</span></li><li onclick="addWaypoint('HTSB')">HTSB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kagera Sugar</span></li><li onclick="addWaypoint('HTSD')">HTSD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Singida</span></li><li onclick="addWaypoint('HTSE')">HTSE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Same</span></li><li onclick="addWaypoint('HTSG')">HTSG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Stiglers Gorge</span></li><li onclick="addWaypoint('HTSH')">HTSH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mafinga</span></li><li onclick="addWaypoint('HTSI')">HTSI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kihansi</span></li><li onclick="addWaypoint('HTSJ')">HTSJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Simanjiro</span></li><li onclick="addWaypoint('HTSK')">HTSK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sitalike</span></li><li onclick="addWaypoint('HTSL')">HTSL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Msolwa</span></li><li onclick="addWaypoint('HTSM')">HTSM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Masimba</span></li><li onclick="addWaypoint('HTSN')">HTSN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Seronera</span></li><li onclick="addWaypoint('HTSO')">HTSO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songea</span></li><li onclick="addWaypoint('HTSS')">HTSS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songosongo</span></li><li onclick="addWaypoint('HTST')">HTST &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Serengeti South</span></li><li onclick="addWaypoint('HTSU')">HTSU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sumbawanga</span></li><li onclick="addWaypoint('HTSW')">HTSW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kiswa</span></li><li onclick="addWaypoint('HTSY')">HTSY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Shinyanga - Ibadakuli</span></li><li onclick="addWaypoint('HTTA')">HTTA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mngeta</span></li><li onclick="addWaypoint('HTTB')">HTTB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tabora</span></li><li onclick="addWaypoint('HTTC')">HTTC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Трс</span></li><li onclick="addWaypoint('HTTE')">HTTE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtemere</span></li><li onclick="addWaypoint('HTTF')">HTTF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwadui</span></li><li onclick="addWaypoint('HTTG')">HTTG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tanga</span></li><li onclick="addWaypoint('HTTJ')">HTTJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Handajega</span></li><li onclick="addWaypoint('HTTL')">HTTL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tulawaka</span></li><li onclick="addWaypoint('HTTN')">HTTN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Magangwe</span></li><li onclick="addWaypoint('HTTO')">HTTO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kogatende</span></li><li onclick="addWaypoint('HTTR')">HTTR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tarangire</span></li><li onclick="addWaypoint('HTTS')">HTTS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Milembwe</span></li><li onclick="addWaypoint('HTTU')">HTTU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tunduru</span></li><li onclick="addWaypoint('HTTV')">HTTV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Msima</span></li><li onclick="addWaypoint('HTTX')">HTTX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tarime</span></li><li onclick="addWaypoint('HTTY')">HTTY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Manyara South</span></li><li onclick="addWaypoint('HTTZ')">HTTZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tura</span></li><li onclick="addWaypoint('HTTI')">HTTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtibwa</span></li><li onclick="addWaypoint('HTUC')">HTUC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Turiani</span></li><li onclick="addWaypoint('HTUF')">HTUF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ugalla</span></li><li onclick="addWaypoint('HTUG')">HTUG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Lugala</span></li><li onclick="addWaypoint('HTUK')">HTUK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ukerewe - Nansio</span></li><li onclick="addWaypoint('HTUN')">HTUN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Murungu</span></li><li onclick="addWaypoint('HTUO')">HTUO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Merugoi</span></li><li onclick="addWaypoint('HTUP')">HTUP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtemaupinde</span></li><li onclick="addWaypoint('HTUR')">HTUR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Urambo</span></li><li onclick="addWaypoint('HTUS')">HTUS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Masusu</span></li><li onclick="addWaypoint('HTUT')">HTUT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Utete</span></li><li onclick="addWaypoint('HTUU')">HTUU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kalulu</span></li><li onclick="addWaypoint('HTUV')">HTUV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Uvinza</span></li><li onclick="addWaypoint('HTUW')">HTUW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nungwi</span></li><li onclick="addWaypoint('HTUZ')">HTUZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kuro</span></li><li onclick="addWaypoint('HTVR')">HTVR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Buger</span></li><li onclick="addWaypoint('HTWA')">HTWA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Sasakwa</span></li><li onclick="addWaypoint('HTWB')">HTWB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwiba</span></li><li onclick="addWaypoint('HTWH')">HTWH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Wazo Hill</span></li><li onclick="addWaypoint('HTWI')">HTWI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mchukwi</span></li><li onclick="addWaypoint('HTWK')">HTWK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">West Kilimanjaro</span></li><li onclick="addWaypoint('HTWS')">HTWS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kwamsisi</span></li><li onclick="addWaypoint('HTYA')">HTYA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kibaya</span></li><li onclick="addWaypoint('HTYE')">HTYE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Nyamonge</span></li><li onclick="addWaypoint('HTYO')">HTYO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Moyowosi</span></li><li onclick="addWaypoint('HTYW')">HTYW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Likuyu</span></li><li onclick="addWaypoint('HTYY')">HTYY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Yeye 2</span></li><li onclick="addWaypoint('HTZA')">HTZA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Zanzibar</span></li><li onclick="addWaypoint('HTZI')"><span class="route-name">HTZI &nbsp;&nbsp;&nbsp;&nbsp; Kisima</span><span class="route-distance"> (Mkomazi)</span></li><li onclick="addWaypoint('HTZW')">HTZW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Ziwandu</span></li><li onclick="addWaypoint('IBGEN')">IBGEN</li><li onclick="addWaypoint('IBKOB')">IBKOB</li><li onclick="addWaypoint('IBMAR')">IBMAR</li><li onclick="addWaypoint('IBROP')">IBROP</li><li onclick="addWaypoint('IMDOM')">IMDOM</li><li onclick="addWaypoint('IMGEX')">IMGEX</li><li onclick="addWaypoint('IMKIX')">IMKIX</li><li onclick="addWaypoint('IMLAK')">IMLAK</li><li onclick="addWaypoint('IMPIL')">IMPIL</li><li onclick="addWaypoint('IMRAX')">IMRAX</li><li onclick="addWaypoint('IMROD')">IMROD</li><li onclick="addWaypoint('IMSAT')">IMSAT</li><li onclick="addWaypoint('ITBEX')">ITBEX</li><li onclick="addWaypoint('ITBOS')">ITBOS</li><li onclick="addWaypoint('ITGOP')">ITGOP</li><li onclick="addWaypoint('ITLAN')">ITLAN</li><li onclick="addWaypoint('ITMEN')">ITMEN</li><li onclick="addWaypoint('ITNOV')">ITNOV</li><li onclick="addWaypoint('ITOBO')">ITOBO</li><li onclick="addWaypoint('ITROM')">ITROM</li><li onclick="addWaypoint('ITSEV')">ITSEV</li><li onclick="addWaypoint('ITSOK')">ITSOK</li><li onclick="addWaypoint('IXAPA')">IXAPA</li><li onclick="addWaypoint('KASAMA NDB')">KS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kasama NDB</span></li><li onclick="addWaypoint('KASIM')">KASIM</li><li onclick="addWaypoint('KB')">KB</li><li onclick="addWaypoint('KG')">KG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigoma NDB</span></li><li onclick="addWaypoint('KNM')">KNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kigali DVOR</span></li><li onclick="addWaypoint('KINAN')">KINAN</li><li onclick="addWaypoint('KIRAWIRA A')">KIRAWIRA A</li><li onclick="addWaypoint('KISIR')">KISIR</li><li onclick="addWaypoint('KIVUR')">KIVUR</li><li onclick="addWaypoint('KL')">KL</li><li onclick="addWaypoint('KO')">KO</li><li onclick="addWaypoint('KOBEL')">KOBEL</li><li onclick="addWaypoint('KOGUT')">KOGUT</li><li onclick="addWaypoint('KV')">KV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Kilimanjaro DVOR</span></li><li onclick="addWaypoint('LABAT')">LABAT</li><li onclick="addWaypoint('LOSIN')">LOSIN</li><li onclick="addWaypoint('LUGAP')">LUGAP</li><li onclick="addWaypoint('LUSOB')">LUSOB</li><li onclick="addWaypoint('MAGAD')">MAGAD</li><li onclick="addWaypoint('MB')">MB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mbeya NDB</span></li><li onclick="addWaypoint('MIWAS')">MIWAS</li><li onclick="addWaypoint('MORU')">MORU</li><li onclick="addWaypoint('MPULULU')">MPULULU</li><li onclick="addWaypoint('MT')">MT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mtwara NDB</span></li><li onclick="addWaypoint('MUMTU')">MUMTU</li><li onclick="addWaypoint('MV')">MV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Mwanza VOR</span></li><li onclick="addWaypoint('NAGON')">NAGON</li><li onclick="addWaypoint('NESAL')">NESAL</li><li onclick="addWaypoint('NESOX')">NESOX</li><li onclick="addWaypoint('NEXAD')">NEXAD</li><li onclick="addWaypoint('NIBOT')">NIBOT</li><li onclick="addWaypoint('NIDED')">NIDED</li><li onclick="addWaypoint('NIDEL')">NIDEL</li><li onclick="addWaypoint('NIDEX')">NIDEX</li><li onclick="addWaypoint('ODGAT')">ODGAT</li><li onclick="addWaypoint('OKDAS')">OKDAS</li><li onclick="addWaypoint('OKLOM')">OKLOM</li><li onclick="addWaypoint('OKMAS')">OKMAS</li><li onclick="addWaypoint('OKNES')">OKNES</li><li onclick="addWaypoint('OKPAB')">OKPAB</li><li onclick="addWaypoint('OKSIS')">OKSIS</li><li onclick="addWaypoint('OKSOT')">OKSOT</li><li onclick="addWaypoint('OKTEX')">OKTEX</li><li onclick="addWaypoint('OPDET')">OPDET</li><li onclick="addWaypoint('ORLIM')">ORLIM</li><li onclick="addWaypoint('OVANA')">OVANA</li><li onclick="addWaypoint('PARIN')">PARIN</li><li onclick="addWaypoint('PENOD')">PENOD</li><li onclick="addWaypoint('ROVUM')">ROVUM</li><li onclick="addWaypoint('SELRU')">SELRU</li><li onclick="addWaypoint('SINGI')">SINGI</li><li onclick="addWaypoint('TABNO')">TABNO</li><li onclick="addWaypoint('TABORA B')">TABORA B</li><li onclick="addWaypoint('TARANGILE 1')">TARANGILE 1</li><li onclick="addWaypoint('TB')">TB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tabora NDB</span></li><li onclick="addWaypoint('TEBLU')">TEBLU</li><li onclick="addWaypoint('THANDA')">THANDA&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Thanda Island Helipad</span></li><li onclick="addWaypoint('TIKAN')">TIKAN</li><li onclick="addWaypoint('UDMAM')">UDMAM</li><li onclick="addWaypoint('UDNOT')">UDNOT</li><li onclick="addWaypoint('UMTAP')">UMTAP</li><li onclick="addWaypoint('UNLEN')">UNLEN</li><li onclick="addWaypoint('USUBU')">USUBU</li><li onclick="addWaypoint('UTATA')">UTATA</li><li onclick="addWaypoint('UTEMA')">UTEMA</li><li onclick="addWaypoint('UTINA')">UTINA</li><li onclick="addWaypoint('UTOVU')">UTOVU</li><li onclick="addWaypoint('UVBOX')">UVBOX</li><li onclick="addWaypoint('UVDIX')">UVDIX</li><li onclick="addWaypoint('UVKAT')">UVKAT</li><li onclick="addWaypoint('UVKOD')">UVKOD</li><li onclick="addWaypoint('UVLED')">UVLED</li><li onclick="addWaypoint('UVMAN')">UVMAN</li><li onclick="addWaypoint('UVMEX')">UVMEX</li><li onclick="addWaypoint('UVMID')">UVMID</li><li onclick="addWaypoint('UVORA')">UVORA</li><li onclick="addWaypoint('UVUKO')">UVUKO</li><li onclick="addWaypoint('UVUMI')">UVUMI</li><li onclick="addWaypoint('XAKRI')">XAKRI</li><li onclick="addWaypoint('XINDA')">XINDA</li><li onclick="addWaypoint('ZV')">ZV</li><li onclick="addWaypoint('НТКВ')">НТКВ</li><li onclick="addWaypoint('SG')">SG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Songea NDB</span></li>
 <li onclick="addWaypoint('TG')">TG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #6cb4ef;">Tanga NDB</span></li>
-</ul>
+<li data-distance="243.61" onclick="document.getElementById('dist').value = '243.61';"><span class="route-name">DV UA407 UVUKO</span><span class="route-distance"> (243.61 km)</span></li><li data-distance="277.80" onclick="document.getElementById('dist').value = '277.80';"><span class="route-name">DV UB400 NIDED</span><span class="route-distance"> (277.80 km)</span></li><li data-distance="424.92" onclick="document.getElementById('dist').value = '424.92';"><span class="route-name">DV UG424 AVIGO</span><span class="route-distance"> (424.92 km)</span></li><li data-distance="303.78" onclick="document.getElementById('dist').value = '303.78';"><span class="route-name">DV DCT ITSIR</span><span class="route-distance"> (303.78 km)</span></li><li data-distance="623.92" onclick="document.getElementById('dist').value = '623.92';"><span class="route-name">DV UG661 TABNO</span><span class="route-distance"> (623.92 km)</span></li><li data-distance="555.88" onclick="document.getElementById('dist').value = '555.88';"><span class="route-name">DV UA401 KINAN</span><span class="route-distance"> (555.88 km)</span></li><li data-distance="429.39" onclick="document.getElementById('dist').value = '429.39';"><span class="route-name">DV NAGON UT427 DUSKA</span><span class="route-distance"> (429.39 km)</span></li><li data-distance="473.43" onclick="document.getElementById('dist').value = '473.43';"><span class="route-name">DV UB533 EGTAN</span><span class="route-distance"> (473.43 km)</span></li><li data-distance="551.49" onclick="document.getElementById('dist').value = '551.49';"><span class="route-name">DV UG657 BONAP</span><span class="route-distance"> (551.49 km)</span></li><li data-distance="657.00" onclick="document.getElementById('dist').value = '657.00';"><span class="route-name">DV UB400 ROVUM</span><span class="route-distance"> (657.00 km)</span></li><li data-distance="677.02" onclick="document.getElementById('dist').value = '677.02';"><span class="route-name">DV UA407 ORLIM</span><span class="route-distance"> (677.02 km)</span></li><li data-distance="732.10" onclick="document.getElementById('dist').value = '732.10';"><span class="route-name">DV UG424 GESAT</span><span class="route-distance"> (732.10 km)</span></li><li data-distance="1046.94" onclick="document.getElementById('dist').value = '1046.94';"><span class="route-name">DV UB607 UDMAM</span><span class="route-distance"> (1046.94 km)</span></li><li data-distance="1082.75" onclick="document.getElementById('dist').value = '1082.75';"><span class="route-name">DV UW305 UB531 DATAN</span><span class="route-distance"> (1082.75 km)</span></li><li data-distance="910.33" onclick="document.getElementById('dist').value = '910.33';"><span class="route-name">DV UA401 LABAT</span><span class="route-distance"> (910.33 km)</span></li><li data-distance="529.45" onclick="document.getElementById('dist').value = '529.45';"><span class="route-name">DV DCT KV UTATA</span><span class="route-distance"> (529.45 km)</span></li><li data-distance="366.10" onclick="document.getElementById('dist').value = '366.10';"><span class="route-name">DV UL445 OKPAB</span><span class="route-distance"> (366.10 km)</span></li><li data-distance="447.09" onclick="document.getElementById('dist').value = '447.09';"><span class="route-name">DV MUMTU UT427 KV</span><span class="route-distance"> (447.09 km)</span></li><li data-distance="852.77" onclick="document.getElementById('dist').value = '852.77';"><span class="route-name">DV UW305 MZ</span><span class="route-distance"> (852.77 km)</span></li><li data-distance="482.56" onclick="document.getElementById('dist').value = '482.56';"><span class="route-name">DV MUMTU DCT AR</span><span class="route-distance"> (482.56 km)</span></li><li data-distance="1027.29" onclick="document.getElementById('dist').value = '1027.29';"><span class="route-name">DV UW305 DCT BK</span><span class="route-distance"> (1027.29 km)</span></li><li data-distance="414.61" onclick="document.getElementById('dist').value = '414.61';"><span class="route-name">DV IMSAT DCT DO</span><span class="route-distance"> (414.61 km)</span></li><li data-distance="395.07" onclick="document.getElementById('dist').value = '395.07';"><span class="route-name">DV DCT HTIR</span><span class="route-distance"> (395.07 km)</span></li><li data-distance="1100.64" onclick="document.getElementById('dist').value = '1100.64';"><span class="route-name">DV V282 HTKA</span><span class="route-distance"> (1100.64 km)</span></li><li data-distance="749.56" onclick="document.getElementById('dist').value = '749.56';"><span class="route-name">DV V282 HTTB</span><span class="route-distance"> (749.56 km)</span></li><li data-distance="199.40" onclick="document.getElementById('dist').value = '199.40';"><span class="route-name">DV DCT HTTG</span><span class="route-distance"> (199.40 km)</span></li><li data-distance="732.43" onclick="document.getElementById('dist').value = '732.43';"><span class="route-name">DV J228 HTSY</span><span class="route-distance"> (732.43 km)</span></li><li data-distance="396.27" onclick="document.getElementById('dist').value = '396.27';"><span class="route-name">DV T427/UT427 MT</span><span class="route-distance"> (396.27 km)</span></li><li data-distance="577.58" onclick="document.getElementById('dist').value = '577.58';"><span class="route-name">DV DCT HTSO</span><span class="route-distance"> (577.58 km)</span></li><li data-distance="192.94" onclick="document.getElementById('dist').value = '192.94';"><span class="route-name">DV DCT HTPE</span><span class="route-distance"> (192.94 km)</span></li><li data-distance="71.36" onclick="document.getElementById('dist').value = '71.36';"><span class="route-name">DV DCT HTZA</span><span class="route-distance"> (71.36 km)</span></li><li data-distance="82.36" onclick="document.getElementById('dist').value = '82.36';"><span class="route-name">KV UA727 UTATA</span><span class="route-distance"> (82.36 km)</span></li><li data-distance="190.11" onclick="document.getElementById('dist').value = '190.11';"><span class="route-name">KV UL434 ANVOX UM441 XAKRI</span><span class="route-distance"> (190.11 km)</span></li><li data-distance="90.17" onclick="document.getElementById('dist').value = '90.17';"><span class="route-name">KV UA610 OKNES</span><span class="route-distance"> (90.17 km)</span></li><li data-distance="1070.46" onclick="document.getElementById('dist').value = '1070.46';"><span class="route-name">KV DV UN306 UG661 TABNO</span><span class="route-distance"> (1070.46 km)</span></li><li data-distance="1002.97" onclick="document.getElementById('dist').value = '1002.97';"><span class="route-name">KV DV  UN306 UA401 KINAN</span><span class="route-distance"> (1002.97 km)</span></li><li data-distance="876.48" onclick="document.getElementById('dist').value = '876.48';"><span class="route-name">KV DV UN306 MT DUSKA</span><span class="route-distance"> (876.48 km)</span></li><li data-distance="903.46" onclick="document.getElementById('dist').value = '903.46';"><span class="route-name">KV DCT UTINA</span><span class="route-distance"> (903.46 km)</span></li><li data-distance="801.49" onclick="document.getElementById('dist').value = '801.49';"><span class="route-name">KV DCT MB UR779 GESAT</span><span class="route-distance"> (801.49 km)</span></li><li data-distance="794.03" onclick="document.getElementById('dist').value = '794.03';"><span class="route-name">KV DCT MB APKOL</span><span class="route-distance"> (794.03 km)</span></li><li data-distance="722.26" onclick="document.getElementById('dist').value = '722.26';"><span class="route-name">KV UB531 MV UM306 GETAB</span><span class="route-distance"> (722.26 km)</span></li><li data-distance="450.59" onclick="document.getElementById('dist').value = '450.59';"><span class="route-name">KV UA610 NESAL</span><span class="route-distance"> (450.59 km)</span></li><li data-distance="706.48" onclick="document.getElementById('dist').value = '706.48';"><span class="route-name">KV UB531 DATAN</span><span class="route-distance"> (706.48 km)</span></li><li data-distance="743.63" onclick="document.getElementById('dist').value = '743.63';"><span class="route-name">KV UB531 DCT ALSAR</span><span class="route-distance"> (743.63 km)</span></li><li data-distance="53.97" onclick="document.getElementById('dist').value = '53.97';"><span class="route-name">KV DCT AR</span><span class="route-distance"> (53.97 km)</span></li><li data-distance="338.58" onclick="document.getElementById('dist').value = '338.58';"><span class="route-name">KV DCT DO</span><span class="route-distance"> (338.58 km)</span></li><li data-distance="841.22" onclick="document.getElementById('dist').value = '841.22';"><span class="route-name">KV DCT HTKA</span><span class="route-distance"> (841.22 km)</span></li><li data-distance="476.50" onclick="document.getElementById('dist').value = '476.50';"><span class="route-name">KV UB531 HTMW</span><span class="route-distance"> (476.50 km)</span></li><li data-distance="843.68" onclick="document.getElementById('dist').value = '843.68';"><span class="route-name">KV UN306 HTMT</span><span class="route-distance"> (843.68 km)</span></li><li data-distance="508.50" onclick="document.getElementById('dist').value = '508.50';"><span class="route-name">KV DCT HTTB</span><span class="route-distance"> (508.50 km)</span></li><li data-distance="285.28" onclick="document.getElementById('dist').value = '285.28';"><span class="route-name">KV DCT HTTG</span><span class="route-distance"> (285.28 km)</span></li><li data-distance="362.34" onclick="document.getElementById('dist').value = '362.34';"><span class="route-name">KV DCT HTPE</span><span class="route-distance"> (362.34 km)</span></li><li data-distance="390.25" onclick="document.getElementById('dist').value = '390.25';"><span class="route-name">KV DCT GEREN DCT ZV</span><span class="route-distance"> (390.25 km)</span></li><li data-distance="920.52" onclick="document.getElementById('dist').value = '920.52';"><span class="route-name">KV UN306 DV UB533 EGTAN</span><span class="route-distance"> (920.52 km)</span></li><li data-distance="173.12" onclick="document.getElementById('dist').value = '173.12';"><span class="route-name">ZV DCT UVUKO</span><span class="route-distance"> (173.12 km)</span></li><li data-distance="220.59" onclick="document.getElementById('dist').value = '220.59';"><span class="route-name">ZV DCT NIDED</span><span class="route-distance"> (220.59 km)</span></li><li data-distance="200.90" onclick="document.getElementById('dist').value = '200.90';"><span class="route-name">ZV DCT AVIGO</span><span class="route-distance"> (200.90 km)</span></li><li data-distance="299.34" onclick="document.getElementById('dist').value = '299.34';"><span class="route-name">ZV DCT ITSIR</span><span class="route-distance"> (299.34 km)</span></li><li data-distance="695.28" onclick="document.getElementById('dist').value = '695.28';"><span class="route-name">ZV DV TABNO</span><span class="route-distance"> (695.28 km)</span></li><li data-distance="627.24" onclick="document.getElementById('dist').value = '627.24';"><span class="route-name">ZV DV KINAN</span><span class="route-distance"> (627.24 km)</span></li><li data-distance="500.74" onclick="document.getElementById('dist').value = '500.74';"><span class="route-name">ZV DCT NAGON UN306 DUSKA</span><span class="route-distance"> (500.74 km)</span></li><li data-distance="622.85" onclick="document.getElementById('dist').value = '622.85';"><span class="route-name">ZV DCT BONAP</span><span class="route-distance"> (622.85 km)</span></li><li data-distance="728.39" onclick="document.getElementById('dist').value = '728.39';"><span class="route-name">ZV DCT ROVUM</span><span class="route-distance"> (728.39 km)</span></li><li data-distance="748.37" onclick="document.getElementById('dist').value = '748.37';"><span class="route-name">ZV DCT ORLIM</span><span class="route-distance"> (748.37 km)</span></li><li data-distance="1017.99" onclick="document.getElementById('dist').value = '1017.99';"><span class="route-name">ZV DCT ITGOP UDMAM</span><span class="route-distance"> (1017.99 km)</span></li><li data-distance="1053.81" onclick="document.getElementById('dist').value = '1053.81';"><span class="route-name">ZV DCT MZ DATAN</span><span class="route-distance"> (1053.81 km)</span></li><li data-distance="881.39" onclick="document.getElementById('dist').value = '881.39';"><span class="route-name">ZV DCT LABAT</span><span class="route-distance"> (881.39 km)</span></li><li data-distance="302.95" onclick="document.getElementById('dist').value = '302.95';"><span class="route-name">ZV DCT GEREN LUDOL</span><span class="route-distance"> (302.95 km)</span></li><li data-distance="264.84" onclick="document.getElementById('dist').value = '264.84';"><span class="route-name">ZV UT913 DUNDO DCT EPTEL</span><span class="route-distance"> (264.84 km)</span></li><li data-distance="237.06" onclick="document.getElementById('dist').value = '237.06';"><span class="route-name">EPTEL  UT913 TG DCT ZV</span><span class="route-distance"> (237.06 km)</span></li><li data-distance="544.78" onclick="document.getElementById('dist').value = '544.78';"><span class="route-name">ZV DV UB533</span><span class="route-distance"> (544.78 km)</span></li><li data-distance="429.85" onclick="document.getElementById('dist').value = '429.85';"><span class="route-name">ZV DCT AR</span><span class="route-distance"> (429.85 km)</span></li><li data-distance="823.83" onclick="document.getElementById('dist').value = '823.83';"><span class="route-name">ZV DCT ITGOP UW305 MZ</span><span class="route-distance"> (823.83 km)</span></li><li data-distance="126.81" onclick="document.getElementById('dist').value = '126.81';"><span class="route-name">ZV DCT HTPE</span><span class="route-distance"> (126.81 km)</span></li><li data-distance="1071.75" onclick="document.getElementById('dist').value = '1071.75';"><span class="route-name">ZV ITGOP HTKA</span><span class="route-distance"> (1071.75 km)</span></li><li data-distance="720.63" onclick="document.getElementById('dist').value = '720.63';"><span class="route-name">ZV ITGOP HTTB</span><span class="route-distance"> (720.63 km)</span></li><li data-distance="180.87" onclick="document.getElementById('dist').value = '180.87';"><span class="route-name">MZ UG656 APNAD</span><span class="route-distance"> (180.87 km)</span></li><li data-distance="280.78" onclick="document.getElementById('dist').value = '280.78';"><span class="route-name">MZ UG450 PARIN</span><span class="route-distance"> (280.78 km)</span></li><li data-distance="566.42" onclick="document.getElementById('dist').value = '566.42';"><span class="route-name">MZ UB531 UA610 OKNES</span><span class="route-distance"> (566.42 km)</span></li><li data-distance="1476.69" onclick="document.getElementById('dist').value = '1476.69';"><span class="route-name">MZ UW305 UG661 TABNO</span><span class="route-distance"> (1476.69 km)</span></li><li data-distance="1408.65" onclick="document.getElementById('dist').value = '1408.65';"><span class="route-name">MZ UW305 UA401 KINAN</span><span class="route-distance"> (1408.65 km)</span></li><li data-distance="1282.16" onclick="document.getElementById('dist').value = '1282.16';"><span class="route-name">MZ UW305 DV UN306 DUSKA</span><span class="route-distance"> (1282.16 km)</span></li><li data-distance="1053.97" onclick="document.getElementById('dist').value = '1053.97';"><span class="route-name">MZ DCT ROVOM</span><span class="route-distance"> (1053.97 km)</span></li><li data-distance="796.17" onclick="document.getElementById('dist').value = '796.17';"><span class="route-name">MZ UG656 OVANA</span><span class="route-distance"> (796.17 km)</span></li><li data-distance="783.43" onclick="document.getElementById('dist').value = '783.43';"><span class="route-name">MZ UG656 UA405 APKOL</span><span class="route-distance"> (783.43 km)</span></li><li data-distance="790.90" onclick="document.getElementById('dist').value = '790.90';"><span class="route-name">MZ UG656 UR779 GESAT</span><span class="route-distance"> (790.90 km)</span></li><li data-distance="640.40" onclick="document.getElementById('dist').value = '640.40';"><span class="route-name">MZ UR784 UVORA</span><span class="route-distance"> (640.40 km)</span></li><li data-distance="199.89" onclick="document.getElementById('dist').value = '199.89';"><span class="route-name">MZ UT146 AKUMU</span><span class="route-distance"> (199.89 km)</span></li><li data-distance="245.56" onclick="document.getElementById('dist').value = '245.56';"><span class="route-name">MZ UG450 GETAB</span><span class="route-distance"> (245.56 km)</span></li><li data-distance="230.13" onclick="document.getElementById('dist').value = '230.13';"><span class="route-name">MZ UB531 DATAN</span><span class="route-distance"> (230.13 km)</span></li><li data-distance="267.13" onclick="document.getElementById('dist').value = '267.13';"><span class="route-name">MZ DCT ALSAR</span><span class="route-distance"> (267.13 km)</span></li><li data-distance="290.10" onclick="document.getElementById('dist').value = '290.10';"><span class="route-name">MZ DCT HTTB</span><span class="route-distance"> (290.10 km)</span></li><li data-distance="452.04" onclick="document.getElementById('dist').value = '452.04';"><span class="route-name">MZ DCT HTKA</span><span class="route-distance"> (452.04 km)</span></li><li data-distance="476.50" onclick="document.getElementById('dist').value = '476.50';"><span class="route-name">MZ DCT HTKJ</span><span class="route-distance"> (476.50 km)</span></li><li data-distance="742.00" onclick="document.getElementById('dist').value = '742.00';"><span class="route-name">MZ DCT TG</span><span class="route-distance"> (742.00 km)</span></li><li data-distance="717.24" onclick="document.getElementById('dist').value = '717.24';"><span class="route-name">MZ UG656 HTGW</span><span class="route-distance"> (717.24 km)</span></li><li data-distance="422.83" onclick="document.getElementById('dist').value = '422.83';"><span class="route-name">MZ DCT AR</span><span class="route-distance"> (422.83 km)</span></li><li data-distance="824.77" onclick="document.getElementById('dist').value = '824.77';"><span class="route-name">MZ DCT HTPE</span><span class="route-distance"> (824.77 km)</span></li><li data-distance="1053.81" onclick="document.getElementById('dist').value = '1053.81';"><span class="route-name">MZ DATAN DCT ZV</span><span class="route-distance"> (1053.81 km)</span></li><li data-distance="516.93" onclick="document.getElementById('dist').value = '516.93';"><span class="route-name">MZ DCT DO</span><span class="route-distance"> (516.93 km)</span></li><li data-distance="1249.04" onclick="document.getElementById('dist').value = '1249.04';"><span class="route-name">MZ UW305 ITGOP DV UN306 MT</span><span class="route-distance"> (1249.04 km)</span></li><li data-distance="1053.97" onclick="document.getElementById('dist').value = '1053.97';"><span class="route-name">MZ DCT HTSO</span><span class="route-distance"> (1053.97 km)</span></li><li data-distance="657.70" onclick="document.getElementById('dist').value = '657.70';"><span class="route-name">MZ DCT HTIR</span><span class="route-distance"> (657.70 km)</span></li><li data-distance="820.55" onclick="document.getElementById('dist').value = '820.55';"><span class="route-name">SW MB UP312 LOSIN EVATO</span><span class="route-distance"> (820.55 km)</span></li><li data-distance="951.32" onclick="document.getElementById('dist').value = '951.32';"><span class="route-name">SW MB UG656 UB531 DATAN</span><span class="route-distance"> (951.32 km)</span></li><li data-distance="902.07" onclick="document.getElementById('dist').value = '902.07';"><span class="route-name">SW MB UG656 APNAD</span><span class="route-distance"> (902.07 km)</span></li><li data-distance="808.32" onclick="document.getElementById('dist').value = '808.32';"><span class="route-name">SW MB UG656 UB607 UDMAM</span><span class="route-distance"> (808.32 km)</span></li><li data-distance="97.49" onclick="document.getElementById('dist').value = '97.49';"><span class="route-name">SW UG656 OVANA</span><span class="route-distance"> (97.49 km)</span></li><li data-distance="62.93" onclick="document.getElementById('dist').value = '62.93';"><span class="route-name">SW UA405 APKOL</span><span class="route-distance"> (62.93 km)</span></li><li data-distance="62.19" onclick="document.getElementById('dist').value = '62.19';"><span class="route-name">SW UR779 GESAT</span><span class="route-distance"> (62.19 km)</span></li><li data-distance="70.91" onclick="document.getElementById('dist').value = '70.91';"><span class="route-name">SW UB530 UTEMA</span><span class="route-distance"> (70.91 km)</span></li><li data-distance="598.14" onclick="document.getElementById('dist').value = '598.14';"><span class="route-name">SW DCT HTKA</span><span class="route-distance"> (598.14 km)</span></li><li data-distance="717.24" onclick="document.getElementById('dist').value = '717.24';"><span class="route-name">SW UG656 MZ</span><span class="route-distance"> (717.24 km)</span></li><li data-distance="778.45" onclick="document.getElementById('dist').value = '778.45';"><span class="route-name">SW UP312 NIDEX HTKJ</span><span class="route-distance"> (778.45 km)</span></li><li data-distance="737.74" onclick="document.getElementById('dist').value = '737.74';"><span class="route-name">SW UP312 NIDEX DCT AR</span><span class="route-distance"> (737.74 km)</span></li><li data-distance="694.00" onclick="document.getElementById('dist').value = '694.00';"><span class="route-name">SW DCT HTDA</span><span class="route-distance"> (694.00 km)</span></li><li data-distance="886.89" onclick="document.getElementById('dist').value = '886.89';"><span class="route-name">SW DCT HTPE</span><span class="route-distance"> (886.89 km)</span></li><li data-distance="765.36" onclick="document.getElementById('dist').value = '765.36';"><span class="route-name">SW DCT HTZA</span><span class="route-distance"> (765.36 km)</span></li><li data-distance="893.40" onclick="document.getElementById('dist').value = '893.40';"><span class="route-name">SW DCT HTTG</span><span class="route-distance"> (893.40 km)</span></li><li data-distance="415.87" onclick="document.getElementById('dist').value = '415.87';"><span class="route-name">SW DCT DO</span><span class="route-distance"> (415.87 km)</span></li><li data-distance="308.14" onclick="document.getElementById('dist').value = '308.14';"><span class="route-name">SW DCT HTIR</span><span class="route-distance"> (308.14 km)</span></li><li data-distance="774.80" onclick="document.getElementById('dist').value = '774.80';"><span class="route-name">SW DCT HTMT</span><span class="route-distance"> (774.80 km)</span></li><li data-distance="323.84" onclick="document.getElementById('dist').value = '323.84';"><span class="route-name">SW DCT HTSO</span><span class="route-distance"> (323.84 km)</span></li><li data-distance="212.35" onclick="document.getElementById('dist').value = '212.35';"><span class="route-name">SW DCT SUMBAWANGA(HTSU)</span><span class="route-distance"> (212.35 km)</span></li><li data-distance="372.59" onclick="document.getElementById('dist').value = '372.59';"><span class="route-name">SW DCT MPANDA(HTMP)</span><span class="route-distance"> (372.59 km)</span></li><li data-distance="455.07" onclick="document.getElementById('dist').value = '455.07';"><span class="route-name">SW DCT UG656 PENOD DCT TB</span><span class="route-distance"> (455.07 km)</span></li><li data-distance="431.52" onclick="document.getElementById('dist').value = '431.52';"><span class="route-name">DO UM315 LOSIN UP312 EVATO</span><span class="route-distance"> (431.52 km)</span></li><li data-distance="570.42" onclick="document.getElementById('dist').value = '570.42';"><span class="route-name">DO UM315 UTINA</span><span class="route-distance"> (570.42 km)</span></li><li data-distance="455.59" onclick="document.getElementById('dist').value = '455.59';"><span class="route-name">DO DCT APKOL</span><span class="route-distance"> (455.59 km)</span></li><li data-distance="466.70" onclick="document.getElementById('dist').value = '466.70';"><span class="route-name">DO DCT GESAT</span><span class="route-distance"> (466.70 km)</span></li><li data-distance="455.59" onclick="document.getElementById('dist').value = '455.59';"><span class="route-name">DO DCT OVANA</span><span class="route-distance"> (455.59 km)</span></li><li data-distance="481.52" onclick="document.getElementById('dist').value = '481.52';"><span class="route-name">DO MB UB530 UTEMA</span><span class="route-distance"> (481.52 km)</span></li><li data-distance="494.48" onclick="document.getElementById('dist').value = '494.48';"><span class="route-name">DO DCT BILAK</span><span class="route-distance"> (494.48 km)</span></li><li data-distance="514.86" onclick="document.getElementById('dist').value = '514.86';"><span class="route-name">DO DCT UDNOT</span><span class="route-distance"> (514.86 km)</span></li><li data-distance="651.90" onclick="document.getElementById('dist').value = '651.90';"><span class="route-name">DO DCT UDMAM</span><span class="route-distance"> (651.90 km)</span></li><li data-distance="701.91" onclick="document.getElementById('dist').value = '701.91';"><span class="route-name">DO DCT DATAN</span><span class="route-distance"> (701.91 km)</span></li><li data-distance="696.35" onclick="document.getElementById('dist').value = '696.35';"><span class="route-name">DO MZ ITROM UG656 APNAD</span><span class="route-distance"> (696.35 km)</span></li><li data-distance="418.55" onclick="document.getElementById('dist').value = '418.55';"><span class="route-name">DO UT912 APDIK</span><span class="route-distance"> (418.55 km)</span></li><li data-distance="653.76" onclick="document.getElementById('dist').value = '653.76';"><span class="route-name">DO DCT GETAB</span><span class="route-distance"> (653.76 km)</span></li><li data-distance="616.72" onclick="document.getElementById('dist').value = '616.72';"><span class="route-name">DO DCT HTSU DCT ESRES</span><span class="route-distance"> (616.72 km)</span></li><li data-distance="342.62" onclick="document.getElementById('dist').value = '342.62';"><span class="route-name">DO DCT HTTB</span><span class="route-distance"> (342.62 km)</span></li><li data-distance="324.10" onclick="document.getElementById('dist').value = '324.10';"><span class="route-name">DO DCT HTAR</span><span class="route-distance"> (324.10 km)</span></li><li data-distance="388.92" onclick="document.getElementById('dist').value = '388.92';"><span class="route-name">DO DCT HTTG</span><span class="route-distance"> (388.92 km)</span></li><li data-distance="383.36" onclick="document.getElementById('dist').value = '383.36';"><span class="route-name">DO ITGOP DCT HTZA</span><span class="route-distance"> (383.36 km)</span></li><li data-distance="483.37" onclick="document.getElementById('dist').value = '483.37';"><span class="route-name">DO ITGOP DCT HTPE</span><span class="route-distance"> (483.37 km)</span></li><li data-distance="500.04" onclick="document.getElementById('dist').value = '500.04';"><span class="route-name">DO DCT HTSO</span><span class="route-distance"> (500.04 km)</span></li><li data-distance="688.94" onclick="document.getElementById('dist').value = '688.94';"><span class="route-name">DO DCT HTKA</span><span class="route-distance"> (688.94 km)</span></li><li data-distance="809.32" onclick="document.getElementById('dist').value = '809.32';"><span class="route-name">DO IMSAT DV DCT HTMT</span><span class="route-distance"> (809.32 km)</span></li><li data-distance="331.51" onclick="document.getElementById('dist').value = '331.51';"><span class="route-name">DO DCT MPANDA(HTMP)</span><span class="route-distance"> (331.51 km)</span></li><li data-distance="187.05" onclick="document.getElementById('dist').value = '187.05';"><span class="route-name">DO DCT HTSD(SINGIDA)</span><span class="route-distance"> (187.05 km)</span></li><li data-distance="375.96" onclick="document.getElementById('dist').value = '375.96';"><span class="route-name">DO DCT HTSY(SHINYANGA)</span><span class="route-distance"> (375.96 km)</span></li><li data-distance="33.34" onclick="document.getElementById('dist').value = '33.34';"><span class="route-name">MT DUSKA</span><span class="route-distance"> (33.34 km)</span></li><li data-distance="633.38" onclick="document.getElementById('dist').value = '633.38';"><span class="route-name">MT DCT SG ORLIM</span><span class="route-distance"> (633.38 km)</span></li><li data-distance="251.87" onclick="document.getElementById('dist').value = '251.87';"><span class="route-name">MT DCT KINAN</span><span class="route-distance"> (251.87 km)</span></li><li data-distance="761.17" onclick="document.getElementById('dist').value = '761.17';"><span class="route-name">MT UT427 DV UB533 LUDOL</span><span class="route-distance"> (761.17 km)</span></li><li data-distance="644.50" onclick="document.getElementById('dist').value = '644.50';"><span class="route-name">MT UT427 DV UA407 UVUKO</span><span class="route-distance"> (644.50 km)</span></li><li data-distance="635.24" onclick="document.getElementById('dist').value = '635.24';"><span class="route-name">MT UT427 DV UG424 AVIGO</span><span class="route-distance"> (635.24 km)</span></li><li data-distance="1305.66" onclick="document.getElementById('dist').value = '1305.66';"><span class="route-name">MT UT427 DV UA401 LABAT</span><span class="route-distance"> (1305.66 km)</span></li><li data-distance="464.85" onclick="document.getElementById('dist').value = '464.85';"><span class="route-name">MT UT427 DV HTZA</span><span class="route-distance"> (464.85 km)</span></li><li data-distance="505.60" onclick="document.getElementById('dist').value = '505.60';"><span class="route-name">MT DCT HTSO</span><span class="route-distance"> (505.60 km)</span></li><li data-distance="563.01" onclick="document.getElementById('dist').value = '563.01';"><span class="route-name">MT DCT HTPE</span><span class="route-distance"> (563.01 km)</span></li><li data-distance="600.05" onclick="document.getElementById('dist').value = '600.05';"><span class="route-name">MT DCT ZV HTTG</span><span class="route-distance"> (600.05 km)</span></li><li data-distance="811.18" onclick="document.getElementById('dist').value = '811.18';"><span class="route-name">MT DV ITGOP IMSAT DO</span><span class="route-distance"> (811.18 km)</span></li><li data-distance="976.00" onclick="document.getElementById('dist').value = '976.00';"><span class="route-name">MT DV ITGOP IMSAT DO DCT IR</span><span class="route-distance"> (976.00 km)</span></li></ul>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const waypointList = document.getElementById('waypointList');
+        if (waypointList) {
+            waypointList.addEventListener('click', function(event) {
+                if (event.target && event.target.tagName === 'LI') {
+                    waypointList.style.display = 'none';
+                }
+            });
+        }
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const waypointList = document.getElementById('waypointList');
+        const routeDisplay = document.getElementById('routeDisplay');
+        const typedInput = document.getElementById('searchInput'); // Assuming the input box has id 'searchInput'
+
+        if (waypointList) {
+            waypointList.addEventListener('click', function(event) {
+                if (event.target.tagName === 'LI' || event.target.parentElement.tagName === 'LI') {
+                    const selectedLi = event.target.tagName === 'LI' ? event.target : event.target.parentElement;
+                    const routeName = selectedLi.querySelector('.route-name').textContent.trim();
+                    const routeDistance = selectedLi.querySelector('.route-distance').textContent.trim();
+
+                    // Set the route display to show only the route name
+                    if (routeDisplay) {
+                        routeDisplay.textContent = routeName;
+                    }
+
+                    // Hide the dropdown list
+                    waypointList.style.display = 'none';
+
+                    // Populate the distance in the input field (if exists)
+                    const distInput = document.getElementById('dist');
+                    if (distInput) {
+                        distInput.value = routeDistance.replace(/[()km]/g, '').trim();
+                    }
+
+                    // Clear the typed input field
+                    if (typedInput) {
+                        typedInput.value = '';
+                    }
+                }
+            });
+        }
+    });
+    </script>
+
 <div id="routeDisplay">
 <div class="route-container"><strong>Route:</strong>
 <span id="routeWaypoints">None</span></div>
 <p class="instructions">(Drag to rearrange waypoints. Click to remove waypoints.)</p>
 </div>
-
-<div id="output" style="margin: 30px 0 30px 0;"></div> 
-
-
+<div id="output" style="margin: 30px 0 30px 0;"></div>
 <div id="actionContainer">
-    <button id="calculateDistanceButton" onclick="calculateDistance()">Distance</button>
-    <button id="toggleCoordinatesButton" onclick="toggleCoordinates()">Coordinates</button>
-    <style>
+<button id="calculateDistanceButton" onclick="calculateDistance()">Distance</button>
+<button id="toggleCoordinatesButton" onclick="toggleCoordinates()">Coordinates</button>
+<style>
         #actionContainer {
             display: flex;
             justify-content: center; /* Center align the buttons */
@@ -8550,48 +8474,33 @@ document.addEventListener("DOMContentLoaded", () => {
             position: relative;
         }
 
-        button {
-            margin: 0;
-            background-color: #1358cf; /* Primary button color */
-            color: #fff; /* Button text color */
-            border: none;
-            border-radius: 4px; /* Rounded corners */
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #0056b3; /* Darker color on hover */
-        }
-    </style>
+</style>
 </div>
-
-
-
 <div id="split-inputContainer">
-    <div class="split-input"> 
+<div class="split-input">
 <span class="placeholder-text">MTOW</span>
-<input id="mtow" placeholder="" style="text-align: center; vertical-align: middle;" type="number">
+<input id="mtow" placeholder="" style="text-align: center; justify-content: center; vertical-align: middle;" type="number">
 </div>
 <div class="split-input">
 <span class="placeholder-text">DIST</span>
-<input id="dist" placeholder="" type="number" style="text-align: center; vertical-align: middle;">
+<input id="dist" placeholder="" style="text-align: center;  justify-content: center;vertical-align: middle;" type="number">
 </div>
-    <style>
+<style>
         #split-inputContainer {
             display: flex;
-            justify-content: center; 
+            justify-content: center;
+            appearance: none; 
             align-items: center;    
             gap: 7px; 
             margin: 30px 0 5px 0;
             width: 100%;
-            height: 62.62px; 
+            height: 60px; 
         }
         #mtow {
             text-align: center;
+            appearance: none;
             display: flex;
             box-sizing: border-box;
-            top: calc(50%-20px);
             margin: 0;
             align-items: center;
             box-shadow: none;
@@ -8605,7 +8514,6 @@ document.addEventListener("DOMContentLoaded", () => {
             text-align: center;
             display: flex;
             box-sizing: border-box;
-            top: calc(50%-20px);
             align-content: center;
             outline: none;
             border: none;
@@ -8617,32 +8525,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </style>
 </div>
-
-
-
 <div style="margin-bottom: 0;">
 <div style="display: flex; justify-content: space-between; gap: 7px;">
-<div class="split-input"><div class="placeholder-text">Arrival</div><input id="Arrival_time" style="flex: 1; width: fit-content;  font-family: 'SF Pro Display'; text-align:center; padding: 0;" type="time"></div>
-<div class="split-input"><input id="Arrival_date" style="flex: 5; font-family: 'SF Pro Display'; text-align:center; color: 004185; padding: 0; " type="date"></div>
+<div class="split-input"><div class="placeholder-text">Arrival</div><input id="Arrival_time" style="flex: 1; font-family: 'SF Pro Display'; text-align:center; padding: 0;" type="time"></div>
+<div class="split-input"><input id="Arrival_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding: 0;" type="date"></div>
 </div>
 </div>
 <div style="margin-bottom: 0;">
 <div style="display: flex; justify-content: space-between; gap: 7px;">
-<div class="split-input"><div class="placeholder-text">Departure</div><input id="Departure_time" style="flex:  1; font-family: 'SF Pro Display';  text-align:center; padding: 0;" type="time"></div>
-<div class="split-input"><input id="Departure_date" style="flex: 5; font-family: 'SF Pro Display'; text-align:center; color: 004185; padding: 0;" type="date"></div>
+<div class="split-input"><div class="placeholder-text">Departure</div><input id="Departure_time" style="flex:  1; font-family: 'SF Pro Display'; text-align:center; padding: 0;" type="time"></div>
+<div class="split-input"><input id="Departure_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding: 0;" type="date"></div>
 </div>
 </div>
-
-<p id="ancDisplay"></p>
-
+<!-- <p id="ancDisplay"></p> -->
 <!-- Buttons positioned below ancDisplay -->
 <div id="buttonContainer">
-    <button id="ancButton" onclick="calculateANC()">ANC</button>
-    <button id="pkgButton" onclick="calculatePKG()">PKG</button>
-    <button id="clearButton" onclick="location.reload();">CLEAR</button>
+<button id="ancButton" onclick="calculateANC()">ANC</button>
+<button id="pkgButton" onclick="calculatePKG()">PKG</button>
+<button id="clearButton" onclick="location.reload();">CLEAR</button>
 </div>
-
-
 <style>
     #buttonContainer {
         display: flex;
@@ -8651,28 +8552,10 @@ document.addEventListener("DOMContentLoaded", () => {
         margin-top: 10px; /* Space between #ancDisplay and the buttons */
     }
 
-    button {
-        padding: 10px 20px;
-        background-color: #007bff; /* Primary button color */
-        color: #fff; /* Button text color */
-        border: none;
-        border-radius: 4px; /* Rounded corners */
-        cursor: pointer;
-        font-size: 16px;
-    }
 
-    button:hover {
-        background-color: #0056b3; /* Darker color on hover */
-    }
+    
 
-    #ancDisplay {
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px; /* Add space between the text and buttons */
-    }
-</style>
-
+</style> 
 <script>
         const waypoints = {
 "TG": { "lat": -5.0888333, "lon": 39.0733333 },
@@ -10354,6 +10237,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("output").innerHTML = "";
         }
     
+
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
     const waypointList = document.getElementById("waypointList");
@@ -10438,7 +10322,7 @@ function toggleCoordinates() {
 }
 </script>
 <footer style="text-align: center; margin-top: 50px; font-size: 0.8em;">
-<span style="color: #8ed0f4;">© 2024 Albright Machumu</span><br>
+<span style="color: #6cb4ef;">© 2024 Albright Machumu</span><br>
 <span style="color: #6cb4ef;">“With commitment, deep work and determination, everything is possible; simplicity is the way.”</span>
 </footer>
 <div class="spacer" style="width: 20px"></div>
@@ -10481,7 +10365,7 @@ function toggleCoordinates() {
     /* Set cursor color */
     h1 {
     padding-top: 10px;
-        cursor: block;
+        cursor: default;
     }
     
 .spacer {
@@ -10538,12 +10422,6 @@ function toggleCoordinates() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
 
     @media (orientation: landscape) {
@@ -10561,12 +10439,6 @@ function toggleCoordinates() {
         footer {
             font-size: 0.2em; /* Ensure footer text remains small */
         }
-        .split-input {
-            flex-direction: row; /* Ensure the input and label are in a row */
-        }
-        .split-input .placeholder-text {
-            flex: 0 0 45%; /* Stretch label part to the left */
-        }
     }
     
     .card {
@@ -10577,7 +10449,7 @@ function toggleCoordinates() {
         left: 50%;
         transform: translateX(-50%);
     }
-</style>
+</style> 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
@@ -10595,163 +10467,130 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 <script>
-function calculateANC() {
-    // Get the values of MTOW and DIST from input fields
-    let mtow = parseFloat(document.getElementById("mtow").value);
-    let dist = parseFloat(document.getElementById("dist").value);
+document.addEventListener("DOMContentLoaded", () => {
+    // Attach event listeners to buttons
+    document.getElementById("ancButton").addEventListener("click", calculateANC);
+    document.getElementById("pkgButton").addEventListener("click", calculatePKG);
+});
 
-    // Validate the inputs
-    if (isNaN(mtow) || isNaN(dist)) {
-        document.getElementById("ancDisplay").innerText = "Please enter valid numbers for MTOW and distance";
-        return;
-    }
+function displayResult(buttonId, placeholderText, result, isError = false) {
+    const button = document.getElementById(buttonId);
 
-    // Check if MTOW or DIST is 0
-    if (mtow === 0 || dist === 0) {
-        document.getElementById("ancDisplay").innerText = "ANC: 00 USD";
-        return;
-    }
+    // Save original styles and text
+    const originalText = button.innerText;
+    const originalBgColor = button.style.backgroundColor;
+    const originalBorder = button.style.border;
 
-    // Step 1: Calculate Weight Factor (wf)
-    let wf = Math.sqrt(mtow / 50);
+    // Update button style and text based on success or error
+    button.style.backgroundColor = isError ? "red" : "white";
+    button.style.color = isError ? "white" : "#004185"; // Numerical value in blue, error in white
+    button.style.border = isError ? "1px solid red" : "1px solid #6cb4ef";
+    button.innerText = result;
 
-    // Step 2: Distance Factor (df)
-    let df = dist / 100;
-
-    // Step 3: Calculate Resultant (r)
-    let r = wf * df;
-
-    // Step 4: Determine ANC based on resultant r
-    let anc;
-    if (r <= 1) {
-        anc = 60;
-    } else if (r <= 2) {
-        anc = 90;
-    } else if (r <= 4) {
-        anc = 140;
-    } else if (r <= 8) {
-        anc = 200;
-    } else if (r <= 12) {
-        anc = 235;
-    } else if (r <= 15) {
-        anc = 280;
-    } else if (r <= 20) {
-        anc = 320;
-    } else if (r <= 25) {
-        anc = 365;
-    } else {
-        anc = 400;
-    }
-
-    // Display the calculated ANC above the button
-    document.getElementById("ancDisplay").innerText = "ANC: " + anc + " " + "USD";
-} 
-</script>
-<script>
-function calculatePKG() {
-    // Retrieve input values
-    const arrivalTime = document.querySelector('input[id="Arrival_time"]').value;
-    const arrivalDate = document.getElementById("Arrival_date").value;
-    const departureTime = document.querySelector('input[id="Departure_time"]').value;
-    const departureDate = document.getElementById("Departure_date").value;
-    const mtowValue = document.getElementById("mtow").value;
-
-    // Validate input fields
-    if (!arrivalTime || !arrivalDate || !departureTime || !departureDate || !mtowValue) {
-        document.getElementById("ancDisplay").innerText = "Please fill in all fields for PKG calculation.";
-        return;
-    }
-
-    // Convert MTOW value to a number
-    if (isNaN(mtowValue) || mtowValue.trim() === "") {
-        document.getElementById("ancDisplay").innerText = "MTOW value is invalid or missing!";
-        return;
-    }
-
-    // Convert to Date objects
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
-    const departure = new Date(`${departureDate}T${departureTime}`);
-
-    // Validate date objects
-    if (isNaN(arrival.getTime()) || isNaN(departure.getTime())) {
-        document.getElementById("ancDisplay").innerText = "Invalid date or time format!";
-        return;
-    }
-
-    // Ensure departure is after arrival
-    if (departure <= arrival) {
-        document.getElementById("ancDisplay").innerText = "Departure must be after arrival!";
-        return;
-    }
-
-    // Calculate time differences
-    const totalDifference = departure - arrival;
-    const twoHoursInMs = 2 * 60 * 60 * 1000;
-
-    let pkg = 0;
-    if (totalDifference > twoHoursInMs) {
-        const parkingTimeMs = totalDifference - twoHoursInMs;
-        const totalParkingHours = Math.ceil(parkingTimeMs / (1000 * 60 * 60)); // Convert to hours
-
-        // PKG based on MTOW
-        if (mtowValue <= 20) {
-            pkg = Math.ceil(totalParkingHours / 12) * 5;
-        } else if (mtowValue > 20 && mtowValue <= 60) {
-            pkg = Math.ceil(totalParkingHours / 6) * 5;
-        } else {
-            pkg = Math.ceil(totalParkingHours) * 5;
-        }
-    }
-
-    // Display the result
-    document.getElementById("ancDisplay").innerText = "PKG: " + pkg + " " + "USD";
-}</script>
-</div>
-</div>
-</div>
-<script>
-// Function to display the loader with a full-page white background and execute after delay
-function showLoaderAndExecute(callback) {
-    // Create a full-page loader container
-    const loaderContainer = document.createElement('div');
-    loaderContainer.style.position = "fixed";
-    loaderContainer.style.top = "0";
-    loaderContainer.style.left = "0";
-    loaderContainer.style.width = "100%";
-    loaderContainer.style.height = "100%";
-    loaderContainer.style.backgroundColor = "white"; // Full-page white background
-    loaderContainer.style.zIndex = "9999";
-    loaderContainer.style.display = "flex";
-    loaderContainer.style.justifyContent = "center";
-    loaderContainer.style.alignItems = "center";
-
-    // Create the loader element
-    const loader = document.createElement('div');
-    loader.className = "loader";
-    loaderContainer.appendChild(loader);
-
-    // Append loader to body
-    document.body.appendChild(loaderContainer);
-
-    // Wait for 2 seconds, then remove loader and execute callback
+    // Reset after 2 seconds
     setTimeout(() => {
-        loaderContainer.remove(); // Remove loader from DOM
-        callback(); // Execute the original functionality
+        button.style.backgroundColor = originalBgColor;
+        button.style.border = originalBorder;
+        button.style.color = ""; // Reset color
+        button.innerText = placeholderText;
     }, 2000);
 }
 
-// Attach full-page loader functionality to both ANC and PKG buttons
-document.getElementById('ancButton').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent instant execution
-    showLoaderAndExecute(calculateANC);
-});
+function calculateANC() {
+    console.log("Calculating ANC..."); // Debugging log
+    const mtow = parseFloat(document.getElementById("mtow").value);
+    const dist = parseFloat(document.getElementById("dist").value);
 
-document.getElementById('pkgButton').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent instant execution
-    showLoaderAndExecute(calculatePKG);
-});
+    if (isNaN(mtow) || isNaN(dist) || mtow <= 0 || dist <= 0) {
+        console.error("Invalid input for ANC calculation"); // Debugging log
+        displayResult("ancButton", "ANC", "!", true);
+        return;
+    }
+
+    const wf = Math.sqrt(mtow / 50);
+    const df = dist / 100;
+    const r = wf * df;
+
+    const anc =
+        r <= 1 ? 60 :
+        r <= 2 ? 90 :
+        r <= 4 ? 140 :
+        r <= 8 ? 200 :
+        r <= 12 ? 235 :
+        r <= 15 ? 280 :
+        r <= 20 ? 320 :
+        r <= 25 ? 365 : 400;
+
+    displayResult("ancButton", "ANC", `${anc}`);
+}
+
+function calculatePKG() {
+    console.log("Calculating PKG..."); // Debugging log
+    const mtow = parseFloat(document.getElementById("mtow").value);
+    const arrivalDate = document.getElementById("Arrival_date").value;
+    const arrivalTime = document.getElementById("Arrival_time").value;
+    const departureDate = document.getElementById("Departure_date").value;
+    const departureTime = document.getElementById("Departure_time").value;
+
+    if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
+        console.error("Invalid input for PKG calculation"); // Debugging log
+        displayResult("pkgButton", "PKG", "!", true);
+        return;
+    }
+
+    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
+    const departure = new Date(`${departureDate}T${departureTime}`);
+    const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2;
+
+    if (parkingHours <= 0) {
+        console.error("Invalid parking duration"); // Debugging log
+        displayResult("pkgButton", "PKG", "!", true);
+        return;
+    }
+
+    const pkgFee =
+        mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 :
+        mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 :
+        Math.ceil(parkingHours) * 5;
+
+    displayResult("pkgButton", "PKG", `${pkgFee}`);
+}
+</script>
+
+<script>
+function displayResult(buttonId, placeholderText, result) {
+    const button = document.getElementById(buttonId);
+
+    // Save original state only once
+    if (!button.hasAttribute("data-original-class")) {
+        button.setAttribute("data-original-class", button.className);
+        button.setAttribute("data-original-text", button.innerText);
+    }
+
+    // Temporarily change the button
+    if (result === "!") {
+        button.innerText = result;
+        button.style.backgroundColor = "red";
+        button.style.color = "white";
+        button.style.border = "none";
+    } else {
+        button.innerText = result;
+        button.style.backgroundColor = "white";
+        button.style.color = "#004185";
+        button.style.border = "1px solid #6cb4ef";
+    }
+
+    // Reset the button to its original state after 2 seconds
+    setTimeout(() => {
+        button.className = button.getAttribute("data-original-class"); // Restore original class
+        button.innerText = button.getAttribute("data-original-text"); // Restore original text
+        button.style.backgroundColor = ""; // Clear inline styles
+        button.style.color = "";
+        button.style.border = "";
+    }, 2000);
+}
 </script>
 
 
-</body>
-</html>
+
+</div></div></div></body></html>
