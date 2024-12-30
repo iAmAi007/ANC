@@ -114,6 +114,8 @@
     }
 
 
+
+
     input[type="date"], 
     input[type="time"] {
         outline: none;
@@ -252,7 +254,7 @@
     
     h1 {
     padding-top: 10px;
-        font-family: 'Nunito';
+        font-family: 'SF Pro Display';
         letter-spacing: 3px;
         color: #222;
         font-size: 2rem;
@@ -8527,15 +8529,18 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 <div style="margin-bottom: 0;">
 <div style="display: flex; justify-content: space-between; gap: 7px;">
-<div class="split-input"><div class="placeholder-text">Arrival</div><input id="Arrival_time" style="flex: 1; font-family: 'SF Pro Display'; text-align:center; padding: 0;" type="time"></div>
-<div class="split-input"><input id="Arrival_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding: 0;" type="date"></div>
+<div class="split-input"><div class="placeholder-text">Arrival</div><input id="Arrival_time" style="flex: 1; font-family: 'SF Pro Display'; text-align:center; padding: 0; padding-right: 10px;" type="time"></div>
+<div class="split-input"><input id="Arrival_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding-left: 10px; padding-right: 40px;" type="date" placeholder="DD/MM/YYYY"></div>
 </div>
 </div>
+
 <div style="margin-bottom: 0;">
 <div style="display: flex; justify-content: space-between; gap: 7px;">
-<div class="split-input"><div class="placeholder-text">Departure</div><input id="Departure_time" style="flex:  1; font-family: 'SF Pro Display'; text-align:center; padding: 0;" type="time"></div>
-<div class="split-input"><input id="Departure_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding: 0;" type="date"></div>
+<div class="split-input"><div class="placeholder-text">Departure</div><input id="Departure_time" style="flex:  1; font-family: 'SF Pro Display'; text-align:center; padding: 0; padding-right: 10px;" type="time"></div>
+
+<div class="split-input"><input id="Departure_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding-left: 10px; padding-right: 40px;" type="date" placeholder="DD/MM/YYYY"></div>
 </div>
+
 </div>
 <!-- <p id="ancDisplay"></p> -->
 <!-- Buttons positioned below ancDisplay -->
@@ -10557,6 +10562,27 @@ function calculatePKG() {
 }
 </script>
 
+
+<script>
+function formatDateInput(inputId) {
+    document.getElementById(inputId).addEventListener("change", function () {
+        const dateValue = this.value; // Date in YYYY-MM-DD format
+        if (dateValue) {
+            const date = new Date(dateValue);
+            const day = String(date.getDate()).padStart(2, '0'); // Day as 2 digits
+            const month = date.toLocaleString('en-US', { month: 'short' }).toUpperCase(); // Month in uppercase
+            const year = date.getFullYear(); // Year
+            this.value = ${day} ${month} ${year}; // Set formatted value back
+        }
+    });
+}
+
+// Attach the event listener to both inputs
+formatDateInput("Arrival_date");
+formatDateInput("Departure_date");
+</script>
+
+
 <script>
 function displayResult(buttonId, placeholderText, result) {
     const button = document.getElementById(buttonId);
@@ -10593,5 +10619,4 @@ function displayResult(buttonId, placeholderText, result) {
 
 
 
-</div></div></div></body>
-</html>
+</div></div></div></body></html>
