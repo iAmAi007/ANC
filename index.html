@@ -8756,7 +8756,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const departure = new Date(`${departureDate}T${departureTime}`);
     const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2;
     if (parkingHours <= 0) {
-      return "Error: Invalid parking duration";
+      return "!";
     }
     return mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 : mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 : Math.ceil(parkingHours) * 5;
   }
