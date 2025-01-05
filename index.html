@@ -1,6 +1,4 @@
 <html lang="en"><head>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 <style>
 
     
@@ -48,6 +46,12 @@
         cursor: default;
     }
     
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('SFPRODISPLAY-REGULAR.TTF') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
 
     @font-face {
         font-family: 'SF Pro Display';
@@ -2717,84 +2721,10 @@ button#ancButton:active {
 }
 
 
-/*button#stlfButton {
-    background: #004185; 
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button#stlfButton:hover {
-    background: #0056b3; 
-}
-
-button#stlfButton:active {
-    background: #004185; 
-}
-
-
-
-button#ldgButton {
-    background: #004185;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button#ldgButton:hover {
-    background: #0056b3; 
-}
-
-button#ldgButton:active {
-    background: #004185; 
-}
-
-
-button#nldgButton {
-    background: #004185; 
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button#nldgButton:hover {
-    background: #0056b3; 
-}
-
-button#nldgButton:active {
-    background: #004185; 
-}*/
 </style>
 
 
 <style>
-button#CALCULATEButton {
-    background: #004185; /* Match the Distance button color */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-button#CALCULATEButton:hover {
-    background: #0056b3; /* Hover color */
-}
-
-button#CALCULATEButton:active {
-    background: #004185; /* Active color */
-}
-
 button#clearButton {
     background: red; /* Red background for the CLEAR button */
     color: white;
@@ -2991,49 +2921,10 @@ body {
 
 </style>
 <div class="full-page-card">
-<!-- <h1>ANC CALCULATOR</h1>
+<!-- <h1>ANC CALCULATOR</h1> 
 <div class="icon" style="margin: 0; align-items: center; align-content: center; justify-content: center; width: 100%; border-top-left-radius: 8px; border-top-right-radius: 8px; height: 100px; margin: 0 0 30px 0; overflow: hidden; display: flex;">
-<img src="IMG_4830.gif" style="clip-path: inset(40% 0 40% 0); -webkit-clip-path: inset(35% 0 35% 0 ); display: flex; object-fit: scale-down; padding-left: 70px;">-->
-</div>
-
-<!--<div class="station-selector" align="left" >
-    <label for="stationDropdown">STATION:</label>
-    <select id="stationDropdown" name="station">
-        <option>HTDA</option>
-        <option>HTMW</option>
-        <option>HTAR</option>
-        <option>Others</option>
-    </select>
-<style>
-.station-selector {
-    padding-bottom: 20px; 
-    display: flex;
-    width: 25%;
-    align-items: center;
-    text-align: center;
-    gap: 7px;
-    overflow: hidden;
-    position: relative;
-}
-
-/*.station-selector label {
-    font-weight: bold;
-}*/
-
-.station-selector select {
-    flex: 1;
-    text-align: center;
-    color: #004185;
-    padding: 10px 0;
-    border:solid #6cb4ef;
-    font-size: 16px;
-    box-sizing: border-box;
-} 
-</style>-->
-</div>
-
-<div id="space" style="width: 100%; height: 50px; top: 0;"></div>
-
+<img src="IMG_4830.GIF" style="clip-path: inset(40% 0 40% 0); -webkit-clip-path: inset(35% 0 35% 0 );d isplay: flex; object-fit: scale-down; padding-left: 70px;">
+</div>-->
 <div class="searchable-select">
 <input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text">
 <ul id="aircraftList" style="display: none;">
@@ -8650,159 +8541,26 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="split-input"><input id="Departure_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding-left: 10px; padding-right: 40px;" type="date" placeholder="DD/MM/YYYY"></div>
 </div>
 
+</div>
 <!-- <p id="ancDisplay"></p> -->
 <!-- Buttons positioned below ancDisplay -->
 <div id="buttonContainer">
-</div>
-
-<div id="SecondRowButtonContainer">
-<button id="CALCULATEButton">CALCULATE</button>
+<button id="ancButton" onclick="calculateANC()">ANC</button>
+<button id="pkgButton" onclick="calculatePKG()">PKG</button>
 <button id="clearButton" onclick="location.reload();">CLEAR</button>
 </div>
-
-<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(2px); background: rgba(0, 0, 0, 0.05); z-index: 1500;"></div>
-
-<!-- Popup Modal -->
-<div id="resultPopup" style="display: none; width: 250px; border-radius: 10px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; background: white; border: none; padding: 0; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);"> 
-  <!--<h2>Calculation Results</h2>-->
-  <div class="popup-header" style="background-color: #0078d4; border-top-left-radius: 10px; border-top-right-radius: 10px; color: #fff; height: 30px; width: 100%; padding: 0 0 20px 0; font-size: 18px; margin-bottom: 10px; font-weight: bold;"></div>
-
-    <div id="popupText" style="/*font-family: Disket Mono; font: Disket Mono*/ font-family: SFPRODISPLAY-MEDIUM.TTF; font: SFPRODISPLAY-MEDIUM.TTF; letter-spacing: 1px;  font-size: 18px; text-align: center;">
-      <p id="stlfFeeValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="ancValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="pkgFeeValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="landingValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="nightLandingValue"></p>
-    </div>
-
-
-  <div id="popupButtonsContainer">
-  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background-color: inherit; height: 50px; cursor: pointer; background: none; " class="close-icon" onclick="closePopup()">×</button>
-  <button onclick="copyContent()" style="height: 50px; bottom: 0; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; border-top-left-radius: 0; border-top-right-radius: 0;"><i class="fas fa-copy" onclick="copyContent()"></i></button>
-  </div>  
-
-  <style>
-    p{
-        margin: 1px 0;
-    }
-    hr{
-        background-color: #1358bf;
-        border: 0.1px solid #004185;
-    }
-  </style>
-
 <style>
-    #popupButtonsContainer {
-        display: flex;
-        margin-top: 10px; /* Space between #ancDisplay and the buttons */
-    }
-    </style>
-    <script>
-    function copyContent() {
-      const textToCopy = document.getElementById('popupText').innerText;
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        alert('Text copied to clipboard!');
-      }).catch(err => {
-        alert('Failed to copy text: ' + err);
-      });
-    }
-  </script>
-</div>
-
-<script>
-  // Reuse calculation functions
-  function calculateANC() {
-    const mtow = parseFloat(document.getElementById("mtow").value);
-    const dist = parseFloat(document.getElementById("dist").value);
-    if (isNaN(mtow) || isNaN(dist) || mtow <= 0 || dist <= 0) {
-      return "NIL";
-    }
-    const wf = Math.sqrt(mtow / 50);
-    const df = dist / 100;
-    const r = wf * df;
-    return r <= 1 ? 60 : r <= 2 ? 90 : r <= 4 ? 140 : r <= 8 ? 200 : r <= 12 ? 235 : r <= 15 ? 280 : r <= 20 ? 320 : r <= 25 ? 365 : 400;
-  }
-
-  function calculatePKG() {
-    const mtow = parseFloat(document.getElementById("mtow").value);
-    const arrivalDate = document.getElementById("Arrival_date").value;
-    const arrivalTime = document.getElementById("Arrival_time").value;
-    const departureDate = document.getElementById("Departure_date").value;
-    const departureTime = document.getElementById("Departure_time").value;
-    if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
-      return "NIL";
-    }
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
-    const departure = new Date(`${departureDate}T${departureTime}`);
-    const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2;
-    if (parkingHours <= 0) {
-      return "Error: Invalid parking duration";
-    }
-    return mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 : mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 : Math.ceil(parkingHours) * 5;
-  }
-
-  function calculateLDG() {
-    const mtow = parseFloat(document.getElementById("mtow").value);
-    if (isNaN(mtow) || mtow <= 0) {
-      return "NIL";
-    }
-    return mtow * 5;
-  }
-
-  function calculateSTLF() {
-    const mtow = parseFloat(document.getElementById("mtow").value);
-    if (isNaN(mtow) || mtow <= 0) {
-      return "NIL";
-    }
-    return mtow <= 5 ? 200 : mtow < 6 ? 400 : mtow <= 10 ? 800 : mtow <= 20 ? 1000 : 1500;
-  }
-
-  function calculateNLDG() {
-    const mtow = parseFloat(document.getElementById("mtow").value);
-    if (isNaN(mtow) || mtow <= 0) {
-      return "NIL";
-    }
-    return Math.ceil(mtow * 5 * 0.3);
-  }
-
-  // Display results in popup
-document.getElementById("CALCULATEButton").addEventListener("click", function () {
-    document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
-    document.getElementById("stlfFeeValue").innerHTML = `*STLF: ${calculateSTLF()}`;
-    document.getElementById("pkgFeeValue").innerHTML = `*PKG: ${calculatePKG()}`;
-    document.getElementById("landingValue").innerHTML = `LDG: ${calculateLDG()}`;
-    document.getElementById("nightLandingValue").innerHTML = `*NLDG: ${calculateNLDG()}`;
-
-    const popup = document.getElementById("resultPopup");
-    const overlay = document.getElementById("blurOverlay");
-
-    popup.style.display = "block"; // Show popup
-    blurOverlay.style.display = "block"; // Show blur overlay
-
-    //document.body.style.overflow = "hidden"; // Disable scrolling
-});
-
-  // Close popup
-  function closePopup() {
-    document.getElementById("resultPopup").style.display = "none";
-    blurOverlay.style.display = "none";
-    document.body.style.overflow = "auto";
-  }
-</script>
-
-<style>
-    #buttonContainer, #SecondRowButtonContainer {
+    #buttonContainer {
         display: flex;
         justify-content: center; /* Center align the buttons */
         gap: 7px; /* Space between the buttons */
         margin-top: 10px; /* Space between #ancDisplay and the buttons */
     }
-</style> 
 
+
+    
+
+</style> 
 <script>
         const waypoints = {
 "TG": { "lat": -5.0888333, "lon": 39.0733333 },
@@ -10473,7 +10231,7 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
             }
 
             document.getElementById('dist').value = totalDistanceKm.toFixed(2);
-    document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} nm)</p>`;
+    document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
                 
         }
 
@@ -10713,6 +10471,96 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Attach event listeners to buttons
+    document.getElementById("ancButton").addEventListener("click", calculateANC);
+    document.getElementById("pkgButton").addEventListener("click", calculatePKG);
+});
+
+function displayResult(buttonId, placeholderText, result, isError = false) {
+    const button = document.getElementById(buttonId);
+
+    // Save original styles and text
+    const originalText = button.innerText;
+    const originalBgColor = button.style.backgroundColor;
+    const originalBorder = button.style.border;
+
+    // Update button style and text based on success or error
+    button.style.backgroundColor = isError ? "red" : "white";
+    button.style.color = isError ? "white" : "#004185"; // Numerical value in blue, error in white
+    button.style.border = isError ? "1px solid red" : "1px solid #6cb4ef";
+    button.innerText = result;
+
+    // Reset after 2 seconds
+    setTimeout(() => {
+        button.style.backgroundColor = originalBgColor;
+        button.style.border = originalBorder;
+        button.style.color = ""; // Reset color
+        button.innerText = placeholderText;
+    }, 2000);
+}
+
+function calculateANC() {
+    console.log("Calculating ANC..."); // Debugging log
+    const mtow = parseFloat(document.getElementById("mtow").value);
+    const dist = parseFloat(document.getElementById("dist").value);
+
+    if (isNaN(mtow) || isNaN(dist) || mtow <= 0 || dist <= 0) {
+        console.error("Invalid input for ANC calculation"); // Debugging log
+        displayResult("ancButton", "ANC", "!", true);
+        return;
+    }
+
+    const wf = Math.sqrt(mtow / 50);
+    const df = dist / 100;
+    const r = wf * df;
+
+    const anc =
+        r <= 1 ? 60 :
+        r <= 2 ? 90 :
+        r <= 4 ? 140 :
+        r <= 8 ? 200 :
+        r <= 12 ? 235 :
+        r <= 15 ? 280 :
+        r <= 20 ? 320 :
+        r <= 25 ? 365 : 400;
+
+    displayResult("ancButton", "ANC", `${anc}`);
+}
+
+function calculatePKG() {
+    console.log("Calculating PKG..."); // Debugging log
+    const mtow = parseFloat(document.getElementById("mtow").value);
+    const arrivalDate = document.getElementById("Arrival_date").value;
+    const arrivalTime = document.getElementById("Arrival_time").value;
+    const departureDate = document.getElementById("Departure_date").value;
+    const departureTime = document.getElementById("Departure_time").value;
+
+    if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
+        console.error("Invalid input for PKG calculation"); // Debugging log
+        displayResult("pkgButton", "PKG", "!", true);
+        return;
+    }
+
+    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
+    const departure = new Date(`${departureDate}T${departureTime}`);
+    const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2;
+
+    if (parkingHours <= 0) {
+        console.error("Invalid parking duration"); // Debugging log
+        displayResult("pkgButton", "PKG", "!", true);
+        return;
+    }
+
+    const pkgFee =
+        mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 :
+        mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 :
+        Math.ceil(parkingHours) * 5;
+
+    displayResult("pkgButton", "PKG", `${pkgFee}`);
+}
+</script>
 
 
 <script>
@@ -10724,11 +10572,51 @@ function formatDateInput(inputId) {
             const day = String(date.getDate()).padStart(2, '0'); // Day as 2 digits
             const month = date.toLocaleString('en-US', { month: 'short' }).toUpperCase(); // Month in uppercase
             const year = date.getFullYear(); // Year
-            this.value = `${day} ${month} ${year}`; // Set formatted value back
+            this.value = ${day} ${month} ${year}; // Set formatted value back
         }
     });
+}
+
+// Attach the event listener to both inputs
+formatDateInput("Arrival_date");
+formatDateInput("Departure_date");
+</script>
+
+
+<script>
+function displayResult(buttonId, placeholderText, result) {
+    const button = document.getElementById(buttonId);
+
+    // Save original state only once
+    if (!button.hasAttribute("data-original-class")) {
+        button.setAttribute("data-original-class", button.className);
+        button.setAttribute("data-original-text", button.innerText);
+    }
+
+    // Temporarily change the button
+    if (result === "!") {
+        button.innerText = result;
+        button.style.backgroundColor = "white";
+        button.style.color = "red";
+        button.style.border = "1px solid red";
+    } else {
+        button.innerText = result;
+        button.style.backgroundColor = "white";
+        button.style.color = "#004185";
+        button.style.border = "1px solid #6cb4ef";
+    }
+
+    // Reset the button to its original state after 2 seconds
+    setTimeout(() => {
+        button.className = button.getAttribute("data-original-class"); // Restore original class
+        button.innerText = button.getAttribute("data-original-text"); // Restore original text
+        button.style.backgroundColor = ""; // Clear inline styles
+        button.style.color = "";
+        button.style.border = "";
+    }, 2000);
 }
 </script>
 
 
-</div></div></body></html>
+
+</div></div></div></body></html>
