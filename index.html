@@ -8785,13 +8785,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return Math.ceil(mtow * 5 * 0.3);
   }
 
-  // Display results in popup
+// Display results in popup
 document.getElementById("CALCULATEButton").addEventListener("click", function () {
-    document.getElementById("ancValue").innerHTML = `<b>ANC: ${calculateANC()}</b>`;
-    document.getElementById("stlfFeeValue").innerHTML = `*STLF: ${calculateSTLF()}`;
-    document.getElementById("pkgFeeValue").innerHTML = `*PKG: ${calculatePKG()}`;
-    document.getElementById("landingValue").innerHTML = `LDG: ${calculateLDG()}`;
-    document.getElementById("nightLandingValue").innerHTML = `*NLDG: ${calculateNLDG()}`;
+    document.getElementById("ancValue").innerHTML = `<span style="font-weight: 500;">ANC: ${calculateANC()}</span>`;
+    document.getElementById("stlfFeeValue").innerHTML = `<span style="font-weight: 500;">*STLF: ${calculateSTLF()}</span>`;
+    document.getElementById("pkgFeeValue").innerHTML = `<span style="font-weight: 500;">*PKG: ${calculatePKG()}</span>`;
+    document.getElementById("landingValue").innerHTML = `<span style="font-weight: 500;">LDG: ${calculateLDG()}</span>`;
+    document.getElementById("nightLandingValue").innerHTML = `<span style="font-weight: 500;">*NLDG: ${calculateNLDG()}</span>`;
+});
 
     const popup = document.getElementById("resultPopup");
     const overlay = document.getElementById("blurOverlay");
