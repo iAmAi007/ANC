@@ -8787,7 +8787,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display results in popup
 document.getElementById("CALCULATEButton").addEventListener("click", function () {
-    document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
+    document.getElementById("ancValue").innerHTML = `<b>ANC: ${calculateANC()}</b>`;
     document.getElementById("stlfFeeValue").innerHTML = `*STLF: ${calculateSTLF()}`;
     document.getElementById("pkgFeeValue").innerHTML = `*PKG: ${calculatePKG()}`;
     document.getElementById("landingValue").innerHTML = `LDG: ${calculateLDG()}`;
