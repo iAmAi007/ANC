@@ -8776,26 +8776,31 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
     const ancValueElement = document.getElementById("ancValue");
     ancValueElement.textContent = `ANC: ${calculateANC()}`;
     ancValueElement.style.fontWeight = "500";
+    ancValueElement.style.fontFamily = "inherit"
 
     // Update STLF Value
     const stlfValueElement = document.getElementById("stlfFeeValue");
     stlfValueElement.textContent = `*STLF: ${calculateSTLF()}`;
     stlfValueElement.style.fontWeight = "500";
+    ancValueElement.style.fontFamily = "inherit"
 
     // Update PKG Value
     const pkgValueElement = document.getElementById("pkgFeeValue");
     pkgValueElement.textContent = `*PKG: ${calculatePKG()}`;
     pkgValueElement.style.fontWeight = "500";
+    ancValueElement.style.fontFamily = "inherit"
 
     // Update LDG Value
     const landingValueElement = document.getElementById("landingValue");
     landingValueElement.textContent = `LDG: ${calculateLDG()}`;
     landingValueElement.style.fontWeight = "500";
+    ancValueElement.style.fontFamily = "inherit"
 
     // Update NLDG Value
     const nightLandingValueElement = document.getElementById("nightLandingValue");
     nightLandingValueElement.textContent = `*NLDG: ${calculateNLDG()}`;
     nightLandingValueElement.style.fontWeight = "500";
+    ancValueElement.style.fontFamily = "inherit"
 
     const popup = document.getElementById("resultPopup");
     const overlay = document.getElementById("blurOverlay");
