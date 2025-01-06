@@ -69,7 +69,7 @@
         margin-top: 0;
         margin-bottom: 20px; /* Snap the card to the top of the page */
         position: absolute;
-        top: 0;
+        top: 70px;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -295,7 +295,7 @@
         margin: 0;
         padding-top: 20px;
         padding-left: 20px;
-        padding-right: 20px;
+        padding-right: 20px;s
         padding-bottom: 100px;
         color: #004185;
         min-height: 100vh;
@@ -1862,7 +1862,7 @@ function clearPage() {
     .card {
         margin: 0 0 20px 0; /* Snap the card to the top of the page */
         position: absolute;
-        top: 0;
+        
         left: 50%;
         transform: translateX(-50%);
     }
@@ -3034,8 +3034,129 @@ body {
 
 <div id="space" style="width: 100%; height: 25px; top: 0;"></div>
 
+
+<!--Start of selectable text with drop-down and editable PAX values-->
+<div class="SelectableTextWithDropDown" style="text-align: left; width: 100%; margin-top: 15px; margin-bottom: 15px; position: relative;">
+  <style>
+    .editable {
+      font-family: 'SF Pro Display';
+      cursor: pointer;
+      font-size: 16px;
+      color: red;
+    }
+    .editable-number {
+      font-family: 'SF Pro Display';
+      cursor: pointer;
+      font-size: 16px;
+      color: red;
+      border: none;
+      box-shadow: none;
+      outline: none;
+      padding: 0;
+    }
+    .dropdown {
+      font-family: 'SF Pro Display';
+      display: none;
+      position: absolute;
+      background: rgba(255, 255, 255, 0.95);
+      text-align: center;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px;
+      z-index: 1000;
+      width: auto;
+    }
+    .dropdown-item {
+      font-size: 16px;
+      font-family: 'SF Pro Display';
+      padding: 5px;
+      cursor: pointer;
+    }
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+
+  <p>
+    LDG rate is <span class="editable" data-options="05,04,4.5,03">05</span>.
+    Local PAX <span class="editable-number" id="local-pax" contenteditable="true">00</span>. 
+    Intl PAX <span class="editable-number" id="intl-pax" contenteditable="true">00</span>.
+  </p>
+
+  <div class="dropdown" id="dropdown"></div>
+
+  <script>
+    // Global variables
+    let rate = 05; // Declare a global variable for the selected rate
+    let localPAX = 00; // Default Local PAX as a global variable
+    let intlPAX = 00; // Default Intl PAX as a global variable
+
+    document.addEventListener('click', function (e) {
+      // Handle dropdown for rate selection
+      if (e.target.classList.contains('editable')) {
+        const options = e.target.getAttribute('data-options').split(',');
+        dropdown.innerHTML = ''; // Clear previous options
+        options.forEach(option => {
+          const item = document.createElement('div');
+          item.textContent = option;
+          item.className = 'dropdown-item';
+          item.addEventListener('click', () => {
+            e.target.textContent = option; // Update the text
+            dropdown.style.display = 'none'; // Hide the dropdown
+
+            // Update the global rate variable
+            rate = parseFloat(option);
+          });
+
+          dropdown.appendChild(item);
+        });
+
+        // Position the dropdown just below the selected number
+        const rect = e.target.getBoundingClientRect();
+        const containerRect = e.target.closest('.SelectableTextWithDropDown').getBoundingClientRect();
+        dropdown.style.left = `${rect.left - containerRect.left}px`;
+        dropdown.style.top = `${rect.bottom - containerRect.top}px`;
+        dropdown.style.display = 'block'; // Show the dropdown
+      } else {
+        dropdown.style.display = 'none'; // Hide dropdown if clicking elsewhere
+      }
+
+      // Handle number editing for Local PAX and Intl PAX
+      if (e.target.classList.contains('editable-number')) {
+        const span = e.target;
+        span.contentEditable = true;
+        span.addEventListener('blur', () => {
+          const newValue = parseInt(span.textContent.trim(), 10);
+          if (!isNaN(newValue)) {
+            if (span.id === 'local-pax') {
+              localPAX = newValue; // Update global Local PAX
+            } else if (span.id === 'intl-pax') {
+              intlPAX = newValue; // Update global Intl PAX
+            }
+          } else {
+            // Reset to the previous value if invalid
+            span.textContent = span.id === 'local-pax' ? localPAX : intlPAX;
+          }
+        });
+      }
+    });
+
+    // Function to get PAX values
+    function getPAXValues() {
+      return {
+        localPAX,
+        intlPAX
+      };
+    }
+  </script>
+</div>
+<!--End of selectable text with drop-down and editable PAX values-->
+
 <div class="searchable-select">
-<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #0078d4" type="text">
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text">
+
+
 <ul id="aircraftList" style="display: none;">
 <li onclick="addAircraft('Jetcruzer-500')">
 <span style="color: #0078d4">Jetcruzer-500</span>  
@@ -8660,7 +8781,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <button id="clearButton" onclick="location.reload();">CLEAR</button>
 </div>
 
-<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; border: none; display: none; position: fixed; top: 0; left: 0; bottom: : 0; right: : 0; width: 100%; height: 100%; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); background: rgba(255, 255, 255, 0.7); z-index: 1500; ">
+<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; border: none; display: none; position: fixed; top: 0; left: 0; bottom: : 0; right: : 0; width: 100%; height: 100%; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); background: rgba(255, 255, 255, 0.5); z-index: 1500; ">
 
 <!-- code for lines pattern -->
     <!--<div class="lines"><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span></div>
@@ -8690,11 +8811,17 @@ document.addEventListener("DOMContentLoaded", () => {
       <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
       <p id="ancValue"></p>
       <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
+      <p id="safFeeValue"></p>
+      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
       <p id="pkgFeeValue"></p>
       <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
       <p id="landingValue"></p>
       <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
+      <p id="secFeeValue"></p>
+      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
       <p id="nightLandingValue"></p>
+      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
+      <p id="nightTakeOffValue"></p>
     </div>
 
 
@@ -8772,8 +8899,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isNaN(mtow) || mtow <= 0) {
       return "NIL";
     }
-    return mtow * 5;
+    return mtow * rate;
   }
+    function calculateSEC() {
+        if (intlPAX === 0 && localPAX === 0){
+             return "NIL";
+         }
+            return ((intlPAX * 5) + (localPAX * 3));
+  }
+    function calculateSAF() {
+        if (intlPAX === 0 && localPAX === 0){
+             return "NIL";
+        }
+            return ((intlPAX * 9) + (localPAX * 2)); 
+    }
 
   function calculateSTLF() {
     const mtow = parseFloat(document.getElementById("mtow").value);
@@ -8788,16 +8927,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isNaN(mtow) || mtow <= 0) {
       return "NIL";
     }
-    return Math.ceil(mtow * 5 * 0.3);
+    return Math.ceil(mtow * rate * 0.3);
   }
+    function calculateNTKOF() {
+    const mtow = parseFloat(document.getElementById("mtow").value);
+    if (isNaN(mtow) || mtow <= 0) {
+      return "NIL";
+    }
+    return Math.ceil(mtow * rate * 0.3);
+  }
+
 
   // Display results in popup
 document.getElementById("CALCULATEButton").addEventListener("click", function () {
     document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
-    document.getElementById("stlfFeeValue").innerHTML = `*STLF: ${calculateSTLF()}`;
-    document.getElementById("pkgFeeValue").innerHTML = `*PKG: ${calculatePKG()}`;
-    document.getElementById("landingValue").innerHTML = `LDG: ${calculateLDG()}`;
-    document.getElementById("nightLandingValue").innerHTML = `*NLDG: ${calculateNLDG()}`;
+    document.getElementById("stlfFeeValue").innerHTML = `STL: ${calculateSTLF()}`;
+    document.getElementById("pkgFeeValue").innerHTML = `PKG: ${calculatePKG()}`;
+    document.getElementById("landingValue").innerHTML = `LAN: ${calculateLDG()}`;
+    document.getElementById("nightLandingValue").innerHTML = `NLA: ${calculateNLDG()}`;
+    document.getElementById("nightTakeOffValue").innerHTML = `NTK: ${calculateNTKOF()}`;
+    document.getElementById("safFeeValue").innerHTML = `SAF: ${calculateSAF()}`;
+    document.getElementById("secFeeValue").innerHTML = `SEC: ${calculateSEC()}`;
 
     const popup = document.getElementById("resultPopup");
     const overlay = document.getElementById("blurOverlay");
@@ -10714,10 +10864,10 @@ function toggleCoordinates() {
     }
     
     .card {
-        margin-top: 0; /* Snap the card to the top of the page */
+        margin-top: 20px; /* Snap the card to the top of the page */
         position: absolute;
-        margin-bottom: 20px;
         top: 0;
+        margin-bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -10756,5 +10906,4 @@ function formatDateInput(inputId) {
 </script>
 
 
-</div></div></body>
-</html>
+</div></div></body></html>
