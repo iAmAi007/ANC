@@ -8924,7 +8924,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return mtow <= 5 ? 200 : mtow < 6 ? 400 : mtow <= 10 ? 800 : mtow <= 20 ? 1000 : 1500;
   }
 
-// Helper function to fetch sunset in UTC
+// Helper function to get sunset time for a specific date and location
 async function getSunsetForDate(date) {
     return new Promise(resolve => {
         if ("geolocation" in navigator) {
@@ -8940,9 +8940,9 @@ async function getSunsetForDate(date) {
                         .then(response => response.json())
                         .then(data => {
                             if (data.status === "OK") {
-                                const sunset = new Date(data.results.sunset); // Sunset already in UTC
-                                console.log("Sunset (UTC) for", date, ":", sunset.toISOString());
-                                resolve(sunset);
+                                const sunset = new Date(data.results.sunset);
+                                console.log("Sunset for", date, ":", sunset.toLocaleTimeString());
+                                resolve(sunset); // Return sunset time
                             } else {
                                 console.error("Failed to fetch sunset data:", data.status);
                                 resolve(null);
@@ -8975,9 +8975,9 @@ async function calculateNLDG() {
         return "NIL";
     }
 
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}Z`); // Interpret as UTC
+    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
 
-    // Get sunset time for the arrival date in UTC
+    // Get sunset time for the arrival date
     const sunset = await getSunsetForDate(arrivalDate);
 
     if (!sunset || arrival < sunset) {
@@ -8999,8 +8999,8 @@ async function calculateNTKOF() {
         return "NIL";
     }
 
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}Z`); // Interpret as UTC
-    const departure = new Date(`${departureDate}T${departureTime}Z`); // Interpret as UTC
+    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
+    const departure = new Date(`${departureDate}T${departureTime}`);
 
     if (arrivalDate === departureDate) {
         // Apply grace period if arrival and departure are on the same date
@@ -9009,7 +9009,7 @@ async function calculateNTKOF() {
             return "NIL";
         }
     } else {
-        // Check if departure time is after sunset for the specific departure date in UTC
+        // Check if departure time is after sunset for the specific departure date and location
         const sunset = await getSunsetForDate(departureDate);
         if (!sunset || departure < sunset) {
             return "NIL"; // Return NIL if departure is before sunset
@@ -9022,8 +9022,6 @@ async function calculateNTKOF() {
 
 
 document.getElementById("CALCULATEButton").addEventListener("click", async function () {
-    // Ensure all calculations align with UTC times
-
     // Update synchronous values
     document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
     document.getElementById("stlfFeeValue").innerHTML = `STL: ${calculateSTLF()}`;
@@ -9055,9 +9053,17 @@ document.getElementById("closePopupButton").addEventListener("click", function (
 
     popup.style.display = "none"; // Hide popup
     overlay.style.display = "none"; // Hide blur overlay
+
+    // document.body.style.overflow = "auto"; // Enable scrolling
 });
 
+  // Close popup
+  function closePopup() {
+    document.getElementById("resultPopup").style.display = "none";
+    blurOverlay.style.display = "none"; 
+    document.body.style.overflow = "auto";
 
+  }
 </script>
 
 <style>
