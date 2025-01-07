@@ -9020,26 +9020,41 @@ async function calculateNTKOF() {
 }
 
 
-  // Display results in popup
-document.getElementById("CALCULATEButton").addEventListener("click", function () {
+
+document.getElementById("CALCULATEButton").addEventListener("click", async function () {
+    // Update synchronous values
     document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
     document.getElementById("stlfFeeValue").innerHTML = `STL: ${calculateSTLF()}`;
     document.getElementById("pkgFeeValue").innerHTML = `PKG: ${calculatePKG()}`;
     document.getElementById("landingValue").innerHTML = `LAN: ${calculateLDG()}`;
-    document.getElementById("nightLandingValue").innerHTML = `NLA: ${calculateNLDG()}`;
-    document.getElementById("nightTakeOffValue").innerHTML = `NTK: ${calculateNTKOF()}`;
     document.getElementById("safFeeValue").innerHTML = `SAF: ${calculateSAF()}`;
     document.getElementById("secFeeValue").innerHTML = `SEC: ${calculateSEC()}`;
 
+    // Wait for asynchronous results
+    const nightLandingResult = await calculateNLDG();
+    const nightTakeOffResult = await calculateNTKOF();
+
+    // Update asynchronous values
+    document.getElementById("nightLandingValue").innerHTML = `NLA: ${nightLandingResult}`;
+    document.getElementById("nightTakeOffValue").innerHTML = `NTK: ${nightTakeOffResult}`;
+
+    // Show popup with results
     const popup = document.getElementById("resultPopup");
     const overlay = document.getElementById("blurOverlay");
 
     popup.style.display = "block"; // Show popup
-    blurOverlay.style.display = "block"; // Show blur overlay
+    overlay.style.display = "block"; // Show blur overlay
+});
 
+// Close popup function
+document.getElementById("closePopupButton").addEventListener("click", function () {
+    const popup = document.getElementById("resultPopup");
+    const overlay = document.getElementById("blurOverlay");
 
+    popup.style.display = "none"; // Hide popup
+    overlay.style.display = "none"; // Hide blur overlay
 
-    //document.body.style.overflow = "hidden"; // Disable scrolling
+    // document.body.style.overflow = "auto"; // Enable scrolling
 });
 
   // Close popup
