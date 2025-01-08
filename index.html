@@ -8924,52 +8924,71 @@ document.addEventListener("DOMContentLoaded", () => {
     return mtow <= 5 ? 200 : mtow < 6 ? 400 : mtow <= 10 ? 800 : mtow <= 20 ? 1000 : 1500;
   }
 
-// Helper function to adjust local time (UTC+3) to UTC
-function adjustToUTC(dateString, timeString, offset = 3) {
-    const localTime = new Date(`${dateString}T${timeString}`);
-    const utcTime = new Date(localTime.getTime() - offset * 60 * 60 * 1000); // Subtract offset for UTC+3
-    return utcTime;
+// Cache for sunset times to reduce redundant API calls
+const sunsetCache = {};
+
+// Cache for geolocation to reuse fetched coordinates
+let cachedLocation = null;
+
+// Helper function to get geolocation
+async function getGeolocation() {
+    if (cachedLocation) {
+        return cachedLocation;
+    }
+
+    if ("geolocation" in navigator) {
+        try {
+            const position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            });
+            cachedLocation = {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            };
+            return cachedLocation;
+        } catch (error) {
+            console.error("Geolocation error:", error.message);
+            return null;
+        }
+    } else {
+        console.error("Geolocation is not supported by your browser.");
+        return null;
+    }
 }
 
 // Helper function to get sunset time in UTC for a specific date and location
 async function getSunsetForDate(date) {
-    return new Promise(resolve => {
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                position => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
+    if (sunsetCache[date]) {
+        console.log(`Using cached sunset for ${date}`);
+        return sunsetCache[date];
+    }
 
-                    console.log("Detected Location:", latitude, longitude);
+    const location = await getGeolocation();
+    if (!location) {
+        return null;
+    }
 
-                    // Fetch sunrise and sunset data for the specific date
-                    fetch(`https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=${date}&formatted=0`)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.status === "OK") {
-                                const sunset = new Date(data.results.sunset); // Already in UTC
-                                console.log("Sunset (UTC) for", date, ":", sunset.toISOString());
-                                resolve(sunset);
-                            } else {
-                                console.error("Failed to fetch sunset data:", data.status);
-                                resolve(null);
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Error fetching sunset data:", error);
-                            resolve(null);
-                        });
-                },
-                error => {
-                    console.error("Error detecting location:", error.message);
-                    resolve(null);
-                }
-            );
+    const { latitude, longitude } = location;
+    console.log("Detected Location:", latitude, longitude);
+
+    try {
+        const response = await fetch(
+            `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=${date}&formatted=0`
+        );
+        const data = await response.json();
+        if (data.status === "OK") {
+            const sunset = new Date(data.results.sunset); // Sunset in UTC
+            sunsetCache[date] = sunset; // Cache the sunset time
+            console.log(`Sunset for ${date} (UTC):`, sunset.toISOString());
+            return sunset;
         } else {
-            console.error("Geolocation is not supported by your browser.");
-            resolve(null);
+            console.error("Failed to fetch sunset data:", data.status);
+            return null;
         }
-    });
+    } catch (error) {
+        console.error("Error fetching sunset data:", error.message);
+        return null;
+    }
 }
 
 // Function to calculate Night Landing (NLDG)
@@ -8982,13 +9001,19 @@ async function calculateNLDG() {
         return "NIL";
     }
 
-    // Adjust arrival time to UTC
-    const arrival = adjustToUTC(arrivalDate, arrivalTime, 3);
+    // Parse user-provided arrival time as UTC
+    const arrival = new Date(`${arrivalDate}T${arrivalTime}Z`); // Interpret input as UTC
+    console.log(`Arrival (UTC):`, arrival.toISOString());
 
     // Get sunset time for the arrival date in UTC
     const sunset = await getSunsetForDate(arrivalDate);
+    if (!sunset) {
+        return "NIL";
+    }
 
-    if (!sunset || arrival < sunset) {
+    console.log(`Sunset (UTC):`, sunset.toISOString());
+
+    if (arrival < sunset) {
         return "NIL"; // Return NIL if arrival is before sunset
     }
 
@@ -9007,9 +9032,12 @@ async function calculateNTKOF() {
         return "NIL";
     }
 
-    // Adjust arrival and departure times to UTC
-    const arrival = adjustToUTC(arrivalDate, arrivalTime, 3);
-    const departure = adjustToUTC(departureDate, departureTime, 3);
+    // Parse user-provided times as UTC
+    const arrival = new Date(`${arrivalDate}T${arrivalTime}Z`); // Interpret input as UTC
+    const departure = new Date(`${departureDate}T${departureTime}Z`); // Interpret input as UTC
+
+    console.log(`Arrival (UTC):`, arrival.toISOString());
+    console.log(`Departure (UTC):`, departure.toISOString());
 
     if (arrivalDate === departureDate) {
         // Apply grace period if arrival and departure are on the same date
@@ -9020,7 +9048,13 @@ async function calculateNTKOF() {
     } else {
         // Check if departure time is after sunset for the specific departure date in UTC
         const sunset = await getSunsetForDate(departureDate);
-        if (!sunset || departure < sunset) {
+        if (!sunset) {
+            return "NIL";
+        }
+
+        console.log(`Sunset (UTC):`, sunset.toISOString());
+
+        if (departure < sunset) {
             return "NIL"; // Return NIL if departure is before sunset
         }
     }
@@ -9039,8 +9073,10 @@ document.getElementById("CALCULATEButton").addEventListener("click", async funct
     document.getElementById("secFeeValue").innerHTML = `SEC: ${calculateSEC()}`;
 
     // Wait for asynchronous results
-    const nightLandingResult = await calculateNLDG();
-    const nightTakeOffResult = await calculateNTKOF();
+    const [nightLandingResult, nightTakeOffResult] = await Promise.all([
+        calculateNLDG(),
+        calculateNTKOF()
+    ]);
 
     // Update asynchronous values
     document.getElementById("nightLandingValue").innerHTML = `NLA: ${nightLandingResult}`;
@@ -9062,6 +9098,9 @@ document.getElementById("closePopupButton").addEventListener("click", function (
     popup.style.display = "none"; // Hide popup
     overlay.style.display = "none"; // Hide blur overlay
 });
+    
+    
+    
 </script>
 
 <style>
