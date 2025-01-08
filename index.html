@@ -8924,6 +8924,13 @@ document.addEventListener("DOMContentLoaded", () => {
     return mtow <= 5 ? 200 : mtow < 6 ? 400 : mtow <= 10 ? 800 : mtow <= 20 ? 1000 : 1500;
   }
 
+// Helper function to adjust local time (UTC+3) to UTC
+function adjustToUTC(dateString, timeString, offset = 3) {
+    const localTime = new Date(`${dateString}T${timeString}`);
+    const utcTime = new Date(localTime.getTime() - offset * 60 * 60 * 1000); // Subtract offset for UTC+3
+    return utcTime;
+}
+
 // Helper function to get sunset time in UTC for a specific date and location
 async function getSunsetForDate(date) {
     return new Promise(resolve => {
@@ -8942,7 +8949,7 @@ async function getSunsetForDate(date) {
                             if (data.status === "OK") {
                                 const sunset = new Date(data.results.sunset); // Already in UTC
                                 console.log("Sunset (UTC) for", date, ":", sunset.toISOString());
-                                resolve(sunset); // Return sunset time
+                                resolve(sunset);
                             } else {
                                 console.error("Failed to fetch sunset data:", data.status);
                                 resolve(null);
@@ -8975,7 +8982,8 @@ async function calculateNLDG() {
         return "NIL";
     }
 
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}Z`); // Treat input as UTC
+    // Adjust arrival time to UTC
+    const arrival = adjustToUTC(arrivalDate, arrivalTime, 3);
 
     // Get sunset time for the arrival date in UTC
     const sunset = await getSunsetForDate(arrivalDate);
@@ -8999,8 +9007,9 @@ async function calculateNTKOF() {
         return "NIL";
     }
 
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}Z`); // Treat input as UTC
-    const departure = new Date(`${departureDate}T${departureTime}Z`); // Treat input as UTC
+    // Adjust arrival and departure times to UTC
+    const arrival = adjustToUTC(arrivalDate, arrivalTime, 3);
+    const departure = adjustToUTC(departureDate, departureTime, 3);
 
     if (arrivalDate === departureDate) {
         // Apply grace period if arrival and departure are on the same date
