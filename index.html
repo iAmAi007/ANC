@@ -8958,7 +8958,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("CALCULATEButton").addEventListener("click", function () {
     document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
     document.getElementById("stlfFeeValue").innerHTML = `<span style="color: red;">*</span>STL: ${calculateSTLF()}`;
-    document.getElementById("pkgFeeValue").innerHTML = `PKG: ${calculatePKG()}`;
+    document.getElementById("pkgFeeValue").innerHTML = `<span style="color: red;">*</span>PKG: ${calculatePKG()}`;
     document.getElementById("landingValue").innerHTML = `LAN: ${calculateLDG()}`;
     document.getElementById("nightLandingValue").innerHTML = `<span style="color: red;">*</span>NLA: ${calculateNLDG()}`;
     document.getElementById("nightTakeOffValue").innerHTML = `<span style="color: red;">*</span>NTK: ${calculateNTKOF()}`;
