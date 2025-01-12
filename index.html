@@ -8926,24 +8926,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculateNLDG() {
     const mtow = parseFloat(document.getElementById("mtow").value);
-    if (!arrivalDate || !arrivalTime || isNaN(mtow) || mtow <= 0) {
-        return "NIL";
-    }
+    //if (!arrivalDate || !arrivalTime || isNaN(mtow) || mtow <= 0) {
+        //return "NIL";
+    //}
     return Math.ceil(mtow * rate * 0.3);
   }
+
     function calculateNTKOF() {
     const mtow = parseFloat(document.getElementById("mtow").value);
-    const arrivalDate = document.getElementById("Arrival_date").value;
-    const arrivalTime = document.getElementById("Arrival_time").value;
-    const departureDate = document.getElementById("Departure_date").value;
-    const departureTime = document.getElementById("Departure_time").value;
+    //const arrivalDate = document.getElementById("Arrival_date").value;
+    //const arrivalTime = document.getElementById("Arrival_time").value;
+    //const departureDate = document.getElementById("Departure_date").value;
+    //const departureTime = document.getElementById("Departure_time").value;
 
-    if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
-        return "NIL";
-    }
+    //if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
+        //return "NIL";
+    //}
 
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
-    const departure = new Date(`${departureDate}T${departureTime}`);
+    //const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
+    //const departure = new Date(`${departureDate}T${departureTime}`);
     //const timeDifference = (departure - arrival) / (1000 * 60 * 60); // Difference in hours
 
     //if (timeDifference <= 1) {
