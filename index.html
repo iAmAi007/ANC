@@ -8901,7 +8901,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isNaN(mtow) || mtow <= 0) {
       return "NIL";
     }
-    return mtow * rate;
+    return Math.ceil(mtow * rate);
   }
     function calculateSEC() {
         if (intlPAX === 0 && localPAX === 0){
