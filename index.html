@@ -8592,61 +8592,44 @@ body {
 <li onclick="addAircraft('TOBA')"><span style="color: #0078d4;">TOBA</span>  SOCATA Socata TB-10 Tobago <span style="color: #0078d4;">(2 Tonnes)</span></li>
 <li onclick="addAircraft('V22')"><span style="color: #0078d4;">V22</span>  BELL-BOEING Bell-Boeing V-22 Osprey <span style="color: #0078d4;">(28 Tonnes)</span></li>
 <li onclick="addAircraft('WW24')"><span style="color: #0078d4;">WW24</span>  IAI IAI 1124 Westwind <span style="color: #0078d4;">(11 Tonnes)</span></li>
-</ul></div>
-<script>
+</ul></div><script>
 document.addEventListener("DOMContentLoaded", () => {
-    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"][style="color: #6cb4ef;"]');
+    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
     const aircraftList = document.getElementById('aircraftList');
-    const aircraftItems = Array.from(aircraftList.querySelectorAll('li'));
+    const aircraftItems = aircraftList.querySelectorAll('li');
 
-    // Show the aircraft list when the search box is focused
     searchBox.addEventListener('focus', () => {
         aircraftList.style.display = 'block';
     });
 
-    // Add touchstart for mobile compatibility
-    searchBox.addEventListener('touchstart', () => {
-        aircraftList.style.display = 'block';
-    });
-
-    // Hide the aircraft list when the search box loses focus
     searchBox.addEventListener('blur', () => {
         setTimeout(() => {
             aircraftList.style.display = 'none';
         }, 200); // Delay to allow item click event
     });
 
-    // Filtering logic for the search box
+    // Filtering logic
     searchBox.addEventListener('input', () => {
         const filter = searchBox.value.toLowerCase();
         aircraftItems.forEach(item => {
             const text = item.textContent.toLowerCase();
             if (text.includes(filter)) {
-                item.style.display = ''; // Show matching items
+                item.style.display = '';
             } else {
-                item.style.display = 'none'; // Hide non-matching items
+                item.style.display = 'none';
             }
         });
     });
 
-    // Populate MTOW input field and handle item selection
+    // Populate MTOW input field when an aircraft is selected
     aircraftItems.forEach(item => {
         item.addEventListener('click', () => {
-            // Set selected aircraft in search box
             searchBox.value = item.textContent.trim();
-
-            // Extract and populate MTOW value
             const mtowMatch = item.textContent.match(/\((\d+) Tonnes\)/);
             if (mtowMatch) {
                 const mtowValue = parseFloat(mtowMatch[1]);
                 document.getElementById('mtow').value = mtowValue;
             }
-
-            // Hide the dropdown after selection
-            aircraftList.style.display = 'none';
-
-            // Manually blur the search box to close the keyboard on mobile
-            searchBox.blur();
         });
     });
 });
@@ -10944,4 +10927,5 @@ function formatDateInput(inputId) {
 </script>
 
 
-</div></div></body></html>
+</div></div></body>
+</html>
