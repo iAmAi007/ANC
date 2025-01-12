@@ -8926,8 +8926,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculateNLDG() {
     const mtow = parseFloat(document.getElementById("mtow").value);
-    if (isNaN(mtow) || mtow <= 0) {
-      return "NIL";
+    if (!arrivalDate || !arrivalTime || isNaN(mtow) || mtow <= 0) {
+        return "NIL";
     }
     return Math.ceil(mtow * rate * 0.3);
   }
