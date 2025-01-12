@@ -8592,11 +8592,12 @@ body {
 <li onclick="addAircraft('TOBA')"><span style="color: #0078d4;">TOBA</span>  SOCATA Socata TB-10 Tobago <span style="color: #0078d4;">(2 Tonnes)</span></li>
 <li onclick="addAircraft('V22')"><span style="color: #0078d4;">V22</span>  BELL-BOEING Bell-Boeing V-22 Osprey <span style="color: #0078d4;">(28 Tonnes)</span></li>
 <li onclick="addAircraft('WW24')"><span style="color: #0078d4;">WW24</span>  IAI IAI 1124 Westwind <span style="color: #0078d4;">(11 Tonnes)</span></li>
-</ul></div><script>
+</ul></div>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
+    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"][style="color: #6cb4ef;"]');
     const aircraftList = document.getElementById('aircraftList');
-    const aircraftItems = aircraftList.querySelectorAll('li');
+    const aircraftItems = Array.from(aircraftList.querySelectorAll('li'));
 
     searchBox.addEventListener('focus', () => {
         aircraftList.style.display = 'block';
@@ -8613,7 +8614,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const filter = searchBox.value.toLowerCase();
         aircraftItems.forEach(item => {
             const text = item.textContent.toLowerCase();
-            if (text.includes(filter)) {
+            if (text.includes(filter) && item.style.display !== 'none') {
                 item.style.display = '';
             } else {
                 item.style.display = 'none';
@@ -8621,15 +8622,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Populate MTOW input field when an aircraft is selected
+    // Populate MTOW input field and hide selected aircraft
     aircraftItems.forEach(item => {
         item.addEventListener('click', () => {
+            // Set the search box value
             searchBox.value = item.textContent.trim();
+
+            // Extract and populate MTOW
             const mtowMatch = item.textContent.match(/\((\d+) Tonnes\)/);
             if (mtowMatch) {
                 const mtowValue = parseFloat(mtowMatch[1]);
                 document.getElementById('mtow').value = mtowValue;
             }
+
+            // Hide the selected aircraft from the list
+            item.style.display = 'none';
+
+            // Clear the search box and refocus to trigger updated filtering
+            searchBox.value = '';
+            searchBox.focus();
         });
     });
 });
