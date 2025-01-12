@@ -8609,7 +8609,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 200); // Delay to allow item click event
     });
 
-    // Filtering logic
+    // Filtering logic for search box input
     searchBox.addEventListener('input', () => {
         const filter = searchBox.value.toLowerCase();
         aircraftItems.forEach(item => {
@@ -8622,26 +8622,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Populate MTOW input field and hide selected aircraft
+    // Handling item selection
     aircraftItems.forEach(item => {
         item.addEventListener('click', () => {
-            // Set the search box value
-            searchBox.value = item.textContent.trim();
+            // Populate search box and MTOW input
+            const selectedAircraft = item.textContent.trim();
+            searchBox.value = selectedAircraft;
 
-            // Extract and populate MTOW
-            const mtowMatch = item.textContent.match(/\((\d+) Tonnes\)/);
+            const mtowMatch = selectedAircraft.match(/\((\d+) Tonnes\)/);
             if (mtowMatch) {
                 const mtowValue = parseFloat(mtowMatch[1]);
                 document.getElementById('mtow').value = mtowValue;
             }
 
-            // Hide the selected aircraft from the list
+            // Hide selected aircraft from the list
             item.style.display = 'none';
 
-            // Clear the search box and refocus to trigger updated filtering
+            // Clear search box to avoid confusion
             searchBox.value = '';
-            searchBox.focus();
+            searchBox.blur(); // Explicitly blur to trigger hiding on mobile
         });
+    });
+
+    // Ensure list visibility toggles correctly on mobile
+    searchBox.addEventListener('touchstart', () => {
+        aircraftList.style.display = 'block';
     });
 });
 </script>
