@@ -8604,19 +8604,19 @@ document.addEventListener("DOMContentLoaded", () => {
         aircraftList.style.display = 'block';
     });
 
-    // Hide the aircraft list when the search box loses focus (with delay for selection)
-    searchBox.addEventListener('blur', () => {
-        setTimeout(() => {
-            aircraftList.style.display = 'none';
-        }, 200);
-    });
-
-    // Add touchstart to trigger dropdown for mobile devices
+    // Add touchstart for mobile compatibility
     searchBox.addEventListener('touchstart', () => {
         aircraftList.style.display = 'block';
     });
 
-    // Filtering logic
+    // Hide the aircraft list when the search box loses focus
+    searchBox.addEventListener('blur', () => {
+        setTimeout(() => {
+            aircraftList.style.display = 'none';
+        }, 200); // Delay to allow item click event
+    });
+
+    // Filtering logic for the search box
     searchBox.addEventListener('input', () => {
         const filter = searchBox.value.toLowerCase();
         aircraftItems.forEach(item => {
@@ -8629,27 +8629,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Handle selection and populate MTOW field
+    // Populate MTOW input field and handle item selection
     aircraftItems.forEach(item => {
         item.addEventListener('click', () => {
-            const selectedAircraft = item.textContent.trim();
-            searchBox.value = selectedAircraft; // Set selected aircraft in search box
+            // Set selected aircraft in search box
+            searchBox.value = item.textContent.trim();
 
             // Extract and populate MTOW value
-            const mtowMatch = selectedAircraft.match(/\((\d+) Tonnes\)/);
+            const mtowMatch = item.textContent.match(/\((\d+) Tonnes\)/);
             if (mtowMatch) {
                 const mtowValue = parseFloat(mtowMatch[1]);
                 document.getElementById('mtow').value = mtowValue;
             }
 
-            // Hide the selected item from the list
-            item.style.display = 'none';
-
-            // Clear search box and hide dropdown for better user experience
-            searchBox.value = '';
+            // Hide the dropdown after selection
             aircraftList.style.display = 'none';
 
-            // Manually blur to close the keyboard on mobile
+            // Manually blur the search box to close the keyboard on mobile
             searchBox.blur();
         });
     });
