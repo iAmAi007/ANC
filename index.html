@@ -8926,9 +8926,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculateNLDG() {
     const mtow = parseFloat(document.getElementById("mtow").value);
-    //if (!arrivalDate || !arrivalTime || isNaN(mtow) || mtow <= 0) {
-        //return "NIL";
-    //}
+    if (isNaN(mtow) || mtow <= 0) {
+        return "NIL";
+    }
     return Math.ceil(mtow * rate * 0.3);
   }
 
@@ -8950,6 +8950,10 @@ document.addEventListener("DOMContentLoaded", () => {
     //if (timeDifference <= 1) {
         //return "NIL";
     //}
+
+    if (isNaN(mtow) || mtow <= 0) {
+        return "NIL";
+    }
 
     return Math.ceil(mtow * rate * 0.3);
 }
