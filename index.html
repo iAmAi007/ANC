@@ -20,6 +20,15 @@
         line-height: 2rem;
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
+    ::-webkit-input-placeholder{
+            color: color-mix(in srgb, #ffffff 30%, #6cb4ef); /*lightening the said color by adding some percentage of white */
+        }
+    ::-ms-input-placeholder{
+        color: color-mix(in srgb, #ffffff 30%, #6cb4ef); /*lightening the said color by adding some percentage of white */
+    }
+    ::-moz-input-placeholder{
+        color: color-mix(in srgb, #ffffff 30%, #6cb4ef); /*lightening the said color by adding some percentage of white */
+    }
 
     .searchable-select p {
         margin-top: 50px; /* Increase space between paragraph and header */
