@@ -8915,7 +8915,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (parkingHours <= 0) {
       return "NIL";
     }
-    return mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 : mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 : Math.ceil(parkingHours) * 5;
+    return mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 : mtow > 20 || mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 : Math.ceil(parkingHours) * 5;
   }
 
   function calculateLDG() {
