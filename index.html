@@ -8900,23 +8900,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return r <= 1 ? 60 : r <= 2 ? 90 : r <= 4 ? 140 : r <= 8 ? 200 : r <= 12 ? 235 : r <= 15 ? 280 : r <= 20 ? 320 : r <= 25 ? 365 : 400;
   }
 
-  function calculatePKG() {
+function calculatePKG() {
     const mtow = parseFloat(document.getElementById("mtow").value);
     const arrivalDate = document.getElementById("Arrival_date").value;
     const arrivalTime = document.getElementById("Arrival_time").value;
     const departureDate = document.getElementById("Departure_date").value;
     const departureTime = document.getElementById("Departure_time").value;
+
+    // Basic validation
     if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
-      return "NIL";
+        return "NIL";
     }
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
-    const departure = new Date(`${departureDate}T${departureTime}`);
-    const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2;
+
+    // Calculate total parking hours
+    const arrival = new Date(${arrivalDate}T${arrivalTime});
+    const departure = new Date(${departureDate}T${departureTime});
+    const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2; // subtract 2 free hours
+
     if (parkingHours <= 0) {
-      return "NIL";
+        return "NIL";
     }
-    return mtow <= 20 ? Math.ceil(parkingHours / 12) * 5 : mtow > 20 || mtow <= 60 ? Math.ceil(parkingHours / 6) * 5 : Math.ceil(parkingHours) * 5;
-  }
+
+    // Charging logic by MTOW category
+    if (mtow <= 20) {
+        // Up to 20: billed per 12 hours
+        return Math.ceil(parkingHours / 12) * 5;
+    } else if (mtow > 20 && mtow <= 60) {
+        // 21–60: billed per 6 hours
+        return Math.ceil(parkingHours / 6) * 5;
+    } else {
+        // >60: billed hourly
+        return Math.ceil(parkingHours) * 5;
+    }
+}
 
   function calculateLDG() {
     const mtow = parseFloat(document.getElementById("mtow").value);
