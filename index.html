@@ -11106,5 +11106,162 @@ function formatDateInput(inputId) {
 </script>
 
 
+<script>
+// security.js
+(function () {
+  'use strict';
+
+  // Security Module
+  const Security = {
+    // Configuration
+    config: {
+      allowedDomains: ['example.com', 'www.example.com'], // Whitelist for redirections
+      maxInputLength: 1000, // Max length for user inputs
+      logEndpoint: '/api/log', // Endpoint for logging suspicious activities
+      csrfToken: null, // CSRF token storage
+    },
+
+    // Initialize the security module
+    init() {
+      this.setCsrfToken();
+      this.preventClickjacking();
+      this.bindFormSubmissions();
+      this.monitorWindowEvents();
+    },
+
+    // Set CSRF token (assumes token is available in meta tag or cookie)
+    setCsrfToken() {
+      const metaTag = document.querySelector('meta[name="csrf-token"]');
+      if (metaTag) {
+        this.config.csrfToken = metaTag.getAttribute('content');
+      }
+    },
+
+    // Prevent clickjacking by ensuring the page is not loaded in an iframe
+    preventClickjacking() {
+      if (window.top !== window.self) {
+        document.body.innerHTML = '<h1>Access Denied</h1>';
+        this.log('Clickjacking attempt detected');
+        return;
+      }
+      // Add X-Frame-Options equivalent via JavaScript
+      document.addEventListener('DOMContentLoaded', () => {
+        const style = document.createElement('style');
+        style.innerHTML = 'html { display: block !important; }';
+        document.head.appendChild(style);
+      });
+    },
+
+    // Sanitize user input to prevent XSS
+    sanitizeInput(input) {
+      if (typeof input !== 'string') return input;
+      if (input.length > this.config.maxInputLength) {
+        this.log(`Input too long: ${input.substring(0, 50)}...`);
+        return '';
+      }
+      // Basic sanitization: remove script tags, event handlers, and dangerous attributes
+      const div = document.createElement('div');
+      div.textContent = input;
+      let sanitized = div.innerHTML
+        .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+        .replace(/on\w+="[^"]*"/gi, '')
+        .replace(/javascript:/gi, '');
+      return sanitized;
+    },
+
+    // Validate redirection URLs to prevent open redirects
+    safeRedirect(url) {
+      try {
+        const parsedUrl = new URL(url, window.location.origin);
+        const hostname = parsedUrl.hostname.toLowerCase();
+        if (
+          this.config.allowedDomains.length &&
+          !this.config.allowedDomains.includes(hostname)
+        ) {
+          this.log(`Invalid redirect attempt to ${url}`);
+          return false;
+        }
+        window.location.href = parsedUrl.href;
+        return true;
+      } catch (e) {
+        this.log(`Malformed URL redirect attempt: ${url}`);
+        return false;
+      }
+    },
+
+    // Bind form submissions to include CSRF token and sanitize inputs
+    bindFormSubmissions() {
+      document.addEventListener('submit', (event) => {
+        const form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+
+        // Sanitize all inputs
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach((input) => {
+          if (input.type !== 'submit' && input.value) {
+            input.value = this.sanitizeInput(input.value);
+          }
+        });
+
+        // Add CSRF token to POST requests
+        if (form.method.toLowerCase() === 'post' && this.config.csrfToken) {
+          const csrfInput = document.createElement('input');
+          csrfInput.type = 'hidden';
+          csrfInput.name = '_csrf';
+          csrfInput.value = this.config.csrfToken;
+          form.appendChild(csrfInput);
+        }
+      });
+    },
+
+    // Monitor suspicious window events (e.g., script injection attempts)
+    monitorWindowEvents() {
+      window.addEventListener('error', (event) => {
+        if (event.message.includes('Script error') || event.message.includes('eval')) {
+          this.log(`Potential script injection detected: ${event.message}`);
+        }
+      }, true);
+
+      // Monitor dynamic script insertions
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.tagName === 'SCRIPT') {
+              this.log(`Dynamic script insertion detected: ${node.src || node.innerHTML}`);
+              node.remove(); // Remove unauthorized scripts
+            }
+          });
+        });
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    },
+
+    // Log suspicious activities to server or console
+    log(message) {
+      const logData = {
+        timestamp: new Date().toISOString(),
+        message: this.sanitizeInput(message),
+        url: window.location.href,
+      };
+      if (this.config.logEndpoint) {
+        fetch(this.config.logEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(logData),
+        }).catch(() => console.warn('Failed to log security event'));
+      }
+      console.warn('Security Alert:', logData);
+    },
+  };
+
+  // Expose Security module to global scope
+  window.Security = Security;
+
+  // Auto-initialize on page load
+  document.addEventListener('DOMContentLoaded', () => Security.init());
+})();
+</script>
+
+
 </div></div></body>
 </html>
