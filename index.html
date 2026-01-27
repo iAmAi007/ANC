@@ -10664,33 +10664,115 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
             return { km: distanceInKm, nm: distanceInNm };
         }
 
-        function calculateDistance() {
-            if (route.length < 2) {
-                document.getElementById("output").innerHTML = "<p>Please add at least two waypoints to calculate distance.</p>";
-                return;
-            }
+       // Helper: resolve a route token to a waypoint object.
+// If token already exists as a key in waypoints, return it.
+// If token looks like coordinates, create a temporary waypoint entry and replace occurrences in route.
+// Returns { id, wp } or null if cannot resolve.
+function resolveWaypointToken(token) {
+  if (!token) return null;
 
-            let totalDistanceKm = 0;
-            let totalDistanceNm = 0;
+  // If it's already a known waypoint key
+  if (waypoints[token]) {
+    return { id: token, wp: waypoints[token] };
+  }
 
-            for (let i = 0; i < route.length - 1; i++) {
-                const wp1 = waypoints[route[i]];
-                const wp2 = waypoints[route[i + 1]];
-                if (!wp1 || !wp2) {
-                    document.getElementById('dist').value = totalDistanceKm.toFixed(2);
-    document.getElementById("output").innerHTML = `<p>Invalid waypoint: ${!wp1 ? route[i] : route[i + 1]}</p>`;
-                    return;
-                }
+  // Try using your parser (exposed earlier)
+  const tryParse = window.__parseWaypointCoordinate || window.__parseWaypointCoordinate;
+  let parsed = null;
+  if (typeof tryParse === 'function') {
+    parsed = tryParse(token);
+  } else {
+    // Fallback: attempt to parse some common decimal pair form
+    const m = token.trim().match(/([+-]?\d+(?:\.\d+)?)\s*[ ,;]\s*([+-]?\d+(?:\.\d+)?)/);
+    if (m) {
+      parsed = { lat: parseFloat(m[1]), lon: parseFloat(m[2]), rawPacked: token };
+    }
+  }
 
-                const distance = euclideanDistance(wp1.lat, wp1.lon, wp2.lat, wp2.lon);
-                totalDistanceKm += distance.km;
-                totalDistanceNm += distance.nm;
-            }
+  if (parsed && typeof parsed.lat === 'number' && typeof parsed.lon === 'number' && !Number.isNaN(parsed.lat) && !Number.isNaN(parsed.lon)) {
+    // create a stable id for coordinate waypoints
+    const packed = parsed.rawPacked || (typeof parsed.lat === 'number' && typeof parsed.lon === 'number'
+      ? (function (lat, lon) {
+          const pad = (n, w = 2) => n.toString().padStart(w, '0');
+          const latSign = lat < 0 ? 'S' : 'N';
+          const lonSign = lon < 0 ? 'W' : 'E';
+          const latAbs = Math.abs(lat);
+          const lonAbs = Math.abs(lon);
+          const latDeg = Math.floor(latAbs);
+          const latMin = Math.round((latAbs - latDeg) * 60);
+          const lonDeg = Math.floor(lonAbs);
+          const lonMin = Math.round((lonAbs - lonDeg) * 60);
+          return `${pad(latDeg,2)}${pad(latMin,2)}${latSign}${pad(lonDeg,3)}${pad(lonMin,2)}${lonSign}`;
+        })(parsed.lat, parsed.lon)
+      : `WP_${Date.now()}`);
 
-            document.getElementById('dist').value = totalDistanceKm.toFixed(2);
-    document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
-                
-        }
+    // Ensure unique key if collision
+    let id = packed;
+    if (waypoints[id]) {
+      id = `${packed}_${Date.now()}`; // fallback unique id
+    }
+
+    // Add to waypoints map
+    waypoints[id] = {
+      lat: parsed.lat,
+      lon: parsed.lon,
+      name: parsed.pretty || id
+    };
+
+    // Replace any occurrences of original token in route with this new id
+    for (let i = 0; i < route.length; i++) {
+      if (route[i] === token) route[i] = id;
+    }
+
+    return { id, wp: waypoints[id] };
+  }
+
+  // Could not resolve
+  return null;
+}
+
+function calculateDistance() {
+  if (!Array.isArray(route) || route.length < 2) {
+    document.getElementById("output").innerHTML = "<p>Please add at least two waypoints to calculate distance.</p>";
+    return;
+  }
+
+  let totalDistanceKm = 0;
+  let totalDistanceNm = 0;
+
+  for (let i = 0; i < route.length - 1; i++) {
+    const key1 = route[i];
+    const key2 = route[i + 1];
+
+    // Try to get waypoints; if missing, try resolving them
+    let wp1 = waypoints[key1];
+    if (!wp1) {
+      const res = resolveWaypointToken(key1);
+      if (res) wp1 = res.wp;
+    }
+
+    let wp2 = waypoints[key2];
+    if (!wp2) {
+      const res = resolveWaypointToken(key2);
+      if (res) wp2 = res.wp;
+    }
+
+    if (!wp1 || !wp2) {
+      document.getElementById('dist').value = totalDistanceKm.toFixed(2);
+      const invalidToken = !wp1 ? key1 : key2;
+      document.getElementById("output").innerHTML = `<p>Invalid waypoint: ${invalidToken}</p>`;
+      return;
+    }
+
+    // euclideanDistance should return { km: ..., nm: ... } as in your code
+    const distance = euclideanDistance(wp1.lat, wp1.lon, wp2.lat, wp2.lon);
+    totalDistanceKm += distance.km;
+    totalDistanceNm += distance.nm;
+  }
+
+  document.getElementById('dist').value = totalDistanceKm.toFixed(2);
+  document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
+}
 
         function clearPage() {
             route = [];
@@ -11259,6 +11341,221 @@ function formatDateInput(inputId) {
 })();
 </script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  (function () {
+    const input = document.getElementById('searchInput');
+    const waypointList = document.getElementById('waypointList');
+
+    if (!input || !waypointList) return;
+
+    // Helpers
+    const pad = (n, w = 2) => n.toString().padStart(w, '0');
+
+    // Try many common coordinate forms. Return an object with canonical pieces or null.
+    function tryParseCoordinates(s) {
+      if (!s) return null;
+      const raw = s.trim().toUpperCase();
+
+      // 1) Packed DM form: 0742S03940E or with optional spaces: 07 42 S 039 40 E
+      let m = raw.match(/^\s*(\d{1,2})\s*([0-5]\d)\s*([NS])\s*?(\d{1,3})\s*([0-5]\d)\s*([EW])\s*$/i);
+      if (m) {
+        const latDeg = parseInt(m[1], 10);
+        const latMin = parseInt(m[2], 10);
+        const latHem = m[3];
+        const lonDeg = parseInt(m[4], 10);
+        const lonMin = parseInt(m[5], 10);
+        const lonHem = m[6];
+        return {
+          type: 'DM-packed',
+          lat: dmToDecimal(latDeg, latMin, latHem),
+          lon: dmToDecimal(lonDeg, lonMin, lonHem),
+          rawPacked: `${pad(latDeg,2)}${pad(latMin,2)}${latHem}${pad(lonDeg,3)}${pad(lonMin,2)}${lonHem}`,
+          pretty: `${pad(latDeg,2)}°${pad(latMin,2)}'${latHem} ${pad(lonDeg,3)}°${pad(lonMin,2)}'${lonHem}`
+        };
+      }
+
+      // 2) DMS with symbols and hemisphere letters: 07°42' S, 039°40' E or 07 42 S 039 40 E
+      m = raw.match(/^\s*(\d{1,2})\D+([0-5]?\d)\D*\s*([NS])\s*[,;\s]\s*(\d{1,3})\D+([0-5]?\d)\D*\s*([EW])\s*$/i);
+      if (m) {
+        const latDeg = parseInt(m[1],10);
+        const latMin = parseInt(m[2],10);
+        const latHem = m[3];
+        const lonDeg = parseInt(m[4],10);
+        const lonMin = parseInt(m[5],10);
+        const lonHem = m[6];
+        return {
+          type: 'DMS',
+          lat: dmToDecimal(latDeg, latMin, latHem),
+          lon: dmToDecimal(lonDeg, lonMin, lonHem),
+          rawPacked: `${pad(latDeg,2)}${pad(latMin,2)}${latHem}${pad(lonDeg,3)}${pad(lonMin,2)}${lonHem}`,
+          pretty: `${pad(latDeg,2)}°${pad(latMin,2)}'${latHem} ${pad(lonDeg,3)}°${pad(lonMin,2)}'${lonHem}`
+        };
+      }
+
+      // 3) Decimal degrees pair with hemisphere letters or signs:
+      //    examples:
+      //      -7.700,39.666
+      //      7.700S, 39.666E
+      //      7.700 S 39.666 E
+      m = raw.match(/^\s*([+-]?\d+(?:\.\d+)?)\s*([NS])?\s*[,;\s]\s*([+-]?\d+(?:\.\d+)?)\s*([EW])?\s*$/i);
+      if (m) {
+        let lat = parseFloat(m[1]);
+        let lon = parseFloat(m[3]);
+        const latHem = m[2];
+        const lonHem = m[4];
+        if (latHem) {
+          if (latHem === 'S') lat = -Math.abs(lat);
+          else lat = Math.abs(lat);
+        }
+        if (lonHem) {
+          if (lonHem === 'W') lon = -Math.abs(lon);
+          else lon = Math.abs(lon);
+        }
+        return {
+          type: 'decimal',
+          lat,
+          lon,
+          rawPacked: decimalToPackedDM(lat, lon),
+          pretty: `${lat.toFixed(5)}°, ${lon.toFixed(5)}°`
+        };
+      }
+
+      // 4) Try forgiving "signed lat lon" with whitespace only: "-7.7 39.66" or "7.7S 39.66E"
+      m = raw.match(/^\s*([+-]?\d+(?:\.\d+)?)\s+([+-]?\d+(?:\.\d+)?)(?:\s*([NS])\s*([EW])\s*)?$/i);
+      if (m) {
+        let lat = parseFloat(m[1]);
+        let lon = parseFloat(m[2]);
+        // if hemisphere letters were placed after, handle them (rare)
+        if (m[3]) {
+          if (m[3] === 'S') lat = -Math.abs(lat); else lat = Math.abs(lat);
+        }
+        if (m[4]) {
+          if (m[4] === 'W') lon = -Math.abs(lon); else lon = Math.abs(lon);
+        }
+        return {
+          type: 'decimal',
+          lat,
+          lon,
+          rawPacked: decimalToPackedDM(lat, lon),
+          pretty: `${lat.toFixed(5)}°, ${lon.toFixed(5)}°`
+        };
+      }
+
+      // If none matched, return null
+      return null;
+    }
+
+    function dmToDecimal(deg, min, hem) {
+      const sign = (hem === 'S' || hem === 'W') ? -1 : 1;
+      return sign * (Math.abs(deg) + (min / 60));
+    }
+
+    // Convert decimal to readable packed DM like 0742S03940E (best-effort)
+    function decimalToPackedDM(lat, lon) {
+      const latSign = lat < 0 ? 'S' : 'N';
+      const lonSign = lon < 0 ? 'W' : 'E';
+      const latAbs = Math.abs(lat);
+      const lonAbs = Math.abs(lon);
+      const latDeg = Math.floor(latAbs);
+      const latMin = Math.round((latAbs - latDeg) * 60);
+      const lonDeg = Math.floor(lonAbs);
+      const lonMin = Math.round((lonAbs - lonDeg) * 60);
+
+      // guard rounding overflow (e.g., 59.999 -> 60)
+      let latDegAdj = latDeg;
+      let latMinAdj = latMin;
+      if (latMinAdj >= 60) { latDegAdj += 1; latMinAdj = 0; }
+
+      let lonDegAdj = lonDeg;
+      let lonMinAdj = lonMin;
+      if (lonMinAdj >= 60) { lonDegAdj += 1; lonMinAdj = 0; }
+
+      return `${pad(latDegAdj,2)}${pad(latMinAdj,2)}${latSign}${pad(lonDegAdj,3)}${pad(lonMinAdj,2)}${lonSign}`;
+    }
+
+    // Create a temporary waypoint <li> and prepend to the waypointList so it behaves like other items
+    function createTemporaryWaypointItem(label, packed) {
+      try {
+        const li = document.createElement('li');
+        li.textContent = label;
+        li.style.fontWeight = '600';
+        li.style.color = '#1358bf';
+        li.title = `Coordinate waypoint: ${packed}`;
+        li.onclick = function () {
+          // If your app provides addWaypoint, call it
+          if (typeof window.addWaypoint === 'function') {
+            try {
+              window.addWaypoint(packed);
+            } catch (err) {
+              console.error('addWaypoint threw an error:', err);
+              // fallback: put into search box
+              input.value = packed;
+            }
+          } else {
+            // fallback: put into search box (so user can click other UI)
+            input.value = packed;
+          }
+        };
+        // Add it at top so user can see it
+        waypointList.insertBefore(li, waypointList.firstChild);
+        // auto-remove after some time (avoid clutter)
+        setTimeout(() => {
+          if (li && li.parentNode === waypointList) waypointList.removeChild(li);
+        }, 60_000); // remove after 60s
+        return li;
+      } catch (err) {
+        console.error('createTemporaryWaypointItem error', err);
+        return null;
+      }
+    }
+
+    // Main: listen for Enter and attempt parse
+    input.addEventListener('keydown', function (ev) {
+      if (ev.key !== 'Enter') return;
+      const v = input.value.trim();
+      if (!v) return;
+      const parsed = tryParseCoordinates(v);
+      if (!parsed) {
+        // not a coordinate - let existing search behaviour run
+        return;
+      }
+
+      ev.preventDefault();
+
+      const packed = parsed.rawPacked || (typeof parsed.lat === 'number' && typeof parsed.lon === 'number'
+        ? decimalToPackedDM(parsed.lat, parsed.lon)
+        : v);
+      const label = parsed.pretty || packed;
+
+      // Create a temp list item so UI is consistent
+      createTemporaryWaypointItem(label, packed);
+
+      // If addWaypoint exists, call it directly
+      if (typeof window.addWaypoint === 'function') {
+        try {
+          window.addWaypoint(packed);
+        } catch (err) {
+          console.error('addWaypoint failed for coordinate input', err);
+          // fallback: put into input for user
+          input.value = packed;
+        }
+      } else {
+        // fallback: place the packed coordinate into the input so user can click any 'add' button
+        input.value = packed;
+      }
+
+      // Clear the search input (common UX)
+      input.value = '';
+    });
+
+    // Expose small utility for debugging if needed
+    if (!window.__parseWaypointCoordinate) {
+      window.__parseWaypointCoordinate = tryParseCoordinates;
+    }
+  })();
+});
+</script>
 
 </div></div></body>
 </html>
