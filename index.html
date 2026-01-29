@@ -11667,13 +11667,32 @@ document.addEventListener('DOMContentLoaded', function () {
           color: #d00;
           font-size: 0.9em;
           padding: 12px;
-          margin: 8px 0 7px 0;
+          margin: 8px 0 5px 0;
           background-color: #fff8f8;
           border: 1px solid #ffcccc;
           border-radius: 6px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
           line-height: 1.4;
+          position: relative;
         ">
+          <div style="
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #999;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            transition: background-color 0.2s, color 0.2s;
+          " onclick="this.closest('.coordinate-error').remove()">
+            ✕
+          </div>
+          
           <div style="
             font-weight: 600;
             margin-bottom: 8px;
@@ -11681,6 +11700,7 @@ document.addEventListener('DOMContentLoaded', function () {
             display: flex;
             align-items: center;
             gap: 6px;
+            padding-right: 20px;
           ">
             <span style="font-size: 1.1em">⚠</span>
             <span>Invalid coordinate format</span>
@@ -11726,18 +11746,6 @@ document.addEventListener('DOMContentLoaded', function () {
               <span style="font-weight: normal;">-7.7 39.66</span>
             </div>
           </div>
-          
-          <div style="
-            margin-top: 12px;
-            font-size: 0.8em;
-            color: #888;
-            font-style: italic;
-            text-align: left;
-            padding-top: 8px;
-            border-top: 1px dashed #eee;
-          ">
-            This message will disappear in 8 seconds
-          </div>
         </div>
       `;
       
@@ -11754,17 +11762,16 @@ document.addEventListener('DOMContentLoaded', function () {
         errorMsg.style.transform = 'translateY(0)';
       }, 10);
       
-      setTimeout(() => {
-        if (errorMsg.parentNode) {
-          errorMsg.style.opacity = '0';
-          errorMsg.style.transform = 'translateY(-5px)';
-          setTimeout(() => {
-            if (errorMsg.parentNode) {
-              errorMsg.parentNode.removeChild(errorMsg);
-            }
-          }, 300);
-        }
-      }, 8000);
+      // Add hover effect to close button
+      const closeBtn = errorMsg.querySelector('div[onclick]');
+      closeBtn.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = '#ffebee';
+        this.style.color = '#d00';
+      });
+      closeBtn.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = '';
+        this.style.color = '#999';
+      });
     }
 
     // Main: listen for Enter
@@ -11826,4 +11833,3 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </div></div></body>
 </html>
-
