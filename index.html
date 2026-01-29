@@ -11349,160 +11349,303 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!input || !waypointList) return;
 
-    // Helpers
+    // Helper functions
     const pad = (n, w = 2) => n.toString().padStart(w, '0');
-
-    // Try many common coordinate forms. Return an object with canonical pieces or null.
-    function tryParseCoordinates(s) {
-      if (!s) return null;
-      const raw = s.trim().toUpperCase();
-
-      // 1) Packed DM form: 0742S03940E or with optional spaces: 07 42 S 039 40 E
-      let m = raw.match(/^\s*(\d{1,2})\s*([0-5]\d)\s*([NS])\s*?(\d{1,3})\s*([0-5]\d)\s*([EW])\s*$/i);
-      if (m) {
-        const latDeg = parseInt(m[1], 10);
-        const latMin = parseInt(m[2], 10);
-        const latHem = m[3];
-        const lonDeg = parseInt(m[4], 10);
-        const lonMin = parseInt(m[5], 10);
-        const lonHem = m[6];
-        return {
-          type: 'DM-packed',
-          lat: dmToDecimal(latDeg, latMin, latHem),
-          lon: dmToDecimal(lonDeg, lonMin, lonHem),
-          rawPacked: `${pad(latDeg,2)}${pad(latMin,2)}${latHem}${pad(lonDeg,3)}${pad(lonMin,2)}${lonHem}`,
-          pretty: `${pad(latDeg,2)}°${pad(latMin,2)}'${latHem} ${pad(lonDeg,3)}°${pad(lonMin,2)}'${lonHem}`
-        };
-      }
-
-      // 2) DMS with symbols and hemisphere letters: 07°42' S, 039°40' E or 07 42 S 039 40 E
-      m = raw.match(/^\s*(\d{1,2})\D+([0-5]?\d)\D*\s*([NS])\s*[,;\s]\s*(\d{1,3})\D+([0-5]?\d)\D*\s*([EW])\s*$/i);
-      if (m) {
-        const latDeg = parseInt(m[1],10);
-        const latMin = parseInt(m[2],10);
-        const latHem = m[3];
-        const lonDeg = parseInt(m[4],10);
-        const lonMin = parseInt(m[5],10);
-        const lonHem = m[6];
-        return {
-          type: 'DMS',
-          lat: dmToDecimal(latDeg, latMin, latHem),
-          lon: dmToDecimal(lonDeg, lonMin, lonHem),
-          rawPacked: `${pad(latDeg,2)}${pad(latMin,2)}${latHem}${pad(lonDeg,3)}${pad(lonMin,2)}${lonHem}`,
-          pretty: `${pad(latDeg,2)}°${pad(latMin,2)}'${latHem} ${pad(lonDeg,3)}°${pad(lonMin,2)}'${lonHem}`
-        };
-      }
-
-      // 3) Decimal degrees pair with hemisphere letters or signs:
-      //    examples:
-      //      -7.700,39.666
-      //      7.700S, 39.666E
-      //      7.700 S 39.666 E
-      m = raw.match(/^\s*([+-]?\d+(?:\.\d+)?)\s*([NS])?\s*[,;\s]\s*([+-]?\d+(?:\.\d+)?)\s*([EW])?\s*$/i);
-      if (m) {
-        let lat = parseFloat(m[1]);
-        let lon = parseFloat(m[3]);
-        const latHem = m[2];
-        const lonHem = m[4];
-        if (latHem) {
-          if (latHem === 'S') lat = -Math.abs(lat);
-          else lat = Math.abs(lat);
-        }
-        if (lonHem) {
-          if (lonHem === 'W') lon = -Math.abs(lon);
-          else lon = Math.abs(lon);
-        }
-        return {
-          type: 'decimal',
-          lat,
-          lon,
-          rawPacked: decimalToPackedDM(lat, lon),
-          pretty: `${lat.toFixed(5)}°, ${lon.toFixed(5)}°`
-        };
-      }
-
-      // 4) Try forgiving "signed lat lon" with whitespace only: "-7.7 39.66" or "7.7S 39.66E"
-      m = raw.match(/^\s*([+-]?\d+(?:\.\d+)?)\s+([+-]?\d+(?:\.\d+)?)(?:\s*([NS])\s*([EW])\s*)?$/i);
-      if (m) {
-        let lat = parseFloat(m[1]);
-        let lon = parseFloat(m[2]);
-        // if hemisphere letters were placed after, handle them (rare)
-        if (m[3]) {
-          if (m[3] === 'S') lat = -Math.abs(lat); else lat = Math.abs(lat);
-        }
-        if (m[4]) {
-          if (m[4] === 'W') lon = -Math.abs(lon); else lon = Math.abs(lon);
-        }
-        return {
-          type: 'decimal',
-          lat,
-          lon,
-          rawPacked: decimalToPackedDM(lat, lon),
-          pretty: `${lat.toFixed(5)}°, ${lon.toFixed(5)}°`
-        };
-      }
-
-      // If none matched, return null
-      return null;
+    
+    // Comprehensive validation functions
+    function validateLatitudeDMS(degrees, minutes, seconds) {
+      if (degrees < 0 || degrees > 90) return false;
+      if (degrees === 90 && (minutes !== 0 || Math.abs(seconds) > 0.0001)) return false;
+      if (minutes < 0 || minutes >= 60) return false;
+      if (seconds < 0 || seconds >= 60) return false;
+      return true;
+    }
+    
+    function validateLongitudeDMS(degrees, minutes, seconds) {
+      if (degrees < 0 || degrees > 180) return false;
+      if (degrees === 180 && (minutes !== 0 || Math.abs(seconds) > 0.0001)) return false;
+      if (minutes < 0 || minutes >= 60) return false;
+      if (seconds < 0 || seconds >= 60) return false;
+      return true;
+    }
+    
+    function validateDecimal(lat, lon) {
+      return Math.abs(lat) <= 90 && Math.abs(lon) <= 180;
+    }
+    
+    function validatePackedDM(latDeg, latMin, lonDeg, lonMin) {
+      return latDeg >= 0 && latDeg <= 90 && 
+             latMin >= 0 && latMin < 60 &&
+             lonDeg >= 0 && lonDeg <= 180 && 
+             lonMin >= 0 && lonMin < 60 &&
+             !(latDeg === 90 && latMin !== 0) &&
+             !(lonDeg === 180 && lonMin !== 0);
     }
 
+    // Conversion functions
     function dmToDecimal(deg, min, hem) {
       const sign = (hem === 'S' || hem === 'W') ? -1 : 1;
       return sign * (Math.abs(deg) + (min / 60));
     }
 
-    // Convert decimal to readable packed DM like 0742S03940E (best-effort)
-    function decimalToPackedDM(lat, lon) {
-      const latSign = lat < 0 ? 'S' : 'N';
-      const lonSign = lon < 0 ? 'W' : 'E';
-      const latAbs = Math.abs(lat);
-      const lonAbs = Math.abs(lon);
-      const latDeg = Math.floor(latAbs);
-      const latMin = Math.round((latAbs - latDeg) * 60);
-      const lonDeg = Math.floor(lonAbs);
-      const lonMin = Math.round((lonAbs - lonDeg) * 60);
-
-      // guard rounding overflow (e.g., 59.999 -> 60)
-      let latDegAdj = latDeg;
-      let latMinAdj = latMin;
-      if (latMinAdj >= 60) { latDegAdj += 1; latMinAdj = 0; }
-
-      let lonDegAdj = lonDeg;
-      let lonMinAdj = lonMin;
-      if (lonMinAdj >= 60) { lonDegAdj += 1; lonMinAdj = 0; }
-
-      return `${pad(latDegAdj,2)}${pad(latMinAdj,2)}${latSign}${pad(lonDegAdj,3)}${pad(lonMinAdj,2)}${lonSign}`;
+    function dmsToDecimal(deg, min, sec, hem) {
+      const sign = (hem === 'S' || hem === 'W') ? -1 : 1;
+      return sign * (Math.abs(deg) + (min / 60) + (sec / 3600));
     }
 
-    // Create a temporary waypoint <li> and prepend to the waypointList so it behaves like other items
-    function createTemporaryWaypointItem(label, packed) {
+    // Convert ANY format to DDMMSS format with EXACT values including decimal seconds
+    function toDDMMSSFormat(latDeg, latMin, latSec, latHem, lonDeg, lonMin, lonSec, lonHem) {
+      // Format seconds: if whole number, show as 2 digits, if decimal, show up to 2 decimal places
+      const formatSeconds = (seconds) => {
+        const floorSec = Math.floor(seconds);
+        const decimalPart = seconds - floorSec;
+        
+        if (Math.abs(decimalPart) < 0.0001) {
+          // Whole number
+          return pad(floorSec, 2);
+        } else {
+          // Decimal seconds, format to 2 decimal places
+          const formatted = seconds.toFixed(2);
+          // Ensure at least 2 digits before decimal
+          const parts = formatted.split('.');
+          const intPart = pad(parseInt(parts[0]), 2);
+          return `${intPart}.${parts[1]}`;
+        }
+      };
+      
+      return `${pad(latDeg,2)}°${pad(latMin,2)}'${formatSeconds(latSec)}"${latHem} ${pad(lonDeg,3)}°${pad(lonMin,2)}'${formatSeconds(lonSec)}"${lonHem}`;
+    }
+
+    // Convert decimal degrees to DMS components (exact, with decimal seconds)
+    function decimalToDMS(decimal, isLongitude = false) {
+      const absDecimal = Math.abs(decimal);
+      const degrees = Math.floor(absDecimal);
+      const minutesDecimal = (absDecimal - degrees) * 60;
+      const minutes = Math.floor(minutesDecimal);
+      const seconds = (minutesDecimal - minutes) * 60;
+      
+      // Get hemisphere
+      let hemisphere;
+      if (isLongitude) {
+        hemisphere = decimal >= 0 ? 'E' : 'W';
+      } else {
+        hemisphere = decimal >= 0 ? 'N' : 'S';
+      }
+      
+      return {
+        degrees: Math.abs(degrees),
+        minutes: minutes,
+        seconds: seconds,
+        hemisphere: hemisphere
+      };
+    }
+
+    // ONLY accept these exact formats with full validation:
+    function tryParseCoordinates(s) {
+      if (!s) return null;
+      const raw = s.trim();
+      
+      // Format 1: Packed DM form EXACT: 0742S03940E (no spaces)
+      let m = raw.match(/^(\d{2})(\d{2})([NS])(\d{3})(\d{2})([EW])$/i);
+      if (m) {
+        const latDeg = parseInt(m[1], 10);
+        const latMin = parseInt(m[2], 10);
+        const latHem = m[3].toUpperCase();
+        const lonDeg = parseInt(m[4], 10);
+        const lonMin = parseInt(m[5], 10);
+        const lonHem = m[6].toUpperCase();
+        
+        // FULL VALIDATION
+        if (!validatePackedDM(latDeg, latMin, lonDeg, lonMin)) {
+          return null;
+        }
+        
+        // Convert to DMS with seconds = 0
+        const latSec = 0;
+        const lonSec = 0;
+        
+        const lat = dmToDecimal(latDeg, latMin, latHem);
+        const lon = dmToDecimal(lonDeg, lonMin, lonHem);
+        const ddmmss = toDDMMSSFormat(latDeg, latMin, latSec, latHem, lonDeg, lonMin, lonSec, lonHem);
+        
+        return {
+          type: 'DM-packed',
+          lat,
+          lon,
+          ddmmss: ddmmss,
+          pretty: ddmmss,
+          valid: true
+        };
+      }
+
+      // Format 2: DM with symbols EXACT: 07°42'S 039°40'E (single space between)
+      m = raw.match(/^(\d{1,2})°(\d{1,2})'([NS])\s+(\d{1,3})°(\d{1,2})'([EW])$/i);
+      if (m) {
+        const latDeg = parseInt(m[1], 10);
+        const latMin = parseInt(m[2], 10);
+        const latHem = m[3].toUpperCase();
+        const lonDeg = parseInt(m[4], 10);
+        const lonMin = parseInt(m[5], 10);
+        const lonHem = m[6].toUpperCase();
+        
+        // FULL VALIDATION
+        if (!validateLatitudeDMS(latDeg, latMin, 0) || 
+            !validateLongitudeDMS(lonDeg, lonMin, 0)) {
+          return null;
+        }
+        
+        // Convert to DMS with seconds = 0
+        const latSec = 0;
+        const lonSec = 0;
+        
+        const lat = dmToDecimal(latDeg, latMin, latHem);
+        const lon = dmToDecimal(lonDeg, lonMin, lonHem);
+        const ddmmss = toDDMMSSFormat(latDeg, latMin, latSec, latHem, lonDeg, lonMin, lonSec, lonHem);
+        
+        return {
+          type: 'DM-symbols',
+          lat,
+          lon,
+          ddmmss: ddmmss,
+          pretty: ddmmss,
+          valid: true
+        };
+      }
+
+      // Format 3: DMS with symbols INCLUDING decimal seconds: 6°53'16.82"S 39°11'33.77"E
+      // Also supports: 07°42'22"S 039°40'43"E (integer seconds)
+      m = raw.match(/^(\d{1,2})°(\d{1,2})'(\d{1,2}(?:\.\d+)?)"([NS])\s+(\d{1,3})°(\d{1,2})'(\d{1,2}(?:\.\d+)?)"([EW])$/i);
+      if (m) {
+        const latDeg = parseInt(m[1], 10);
+        const latMin = parseInt(m[2], 10);
+        const latSec = parseFloat(m[3]);
+        const latHem = m[4].toUpperCase();
+        const lonDeg = parseInt(m[5], 10);
+        const lonMin = parseInt(m[6], 10);
+        const lonSec = parseFloat(m[7]);
+        const lonHem = m[8].toUpperCase();
+        
+        // FULL VALIDATION
+        if (!validateLatitudeDMS(latDeg, latMin, latSec) || 
+            !validateLongitudeDMS(lonDeg, lonMin, lonSec)) {
+          return null;
+        }
+        
+        const lat = dmsToDecimal(latDeg, latMin, latSec, latHem);
+        const lon = dmsToDecimal(lonDeg, lonMin, lonSec, lonHem);
+        const ddmmss = toDDMMSSFormat(latDeg, latMin, latSec, latHem, lonDeg, lonMin, lonSec, lonHem);
+        
+        return {
+          type: 'DMS-symbols',
+          lat,
+          lon,
+          ddmmss: ddmmss,
+          pretty: ddmmss,
+          originalInput: raw,
+          valid: true
+        };
+      }
+
+      // Format 4: Signed decimal pair EXACT: -7.7 39.66 (single space between, no commas)
+      m = raw.match(/^(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)$/);
+      if (m) {
+        const lat = parseFloat(m[1]);
+        const lon = parseFloat(m[2]);
+        
+        // FULL VALIDATION
+        if (!validateDecimal(lat, lon)) {
+          return null;
+        }
+        
+        // Convert decimal to DMS components (with possible decimal seconds)
+        const latDMS = decimalToDMS(lat, false);
+        const lonDMS = decimalToDMS(lon, true);
+        
+        const ddmmss = toDDMMSSFormat(
+          latDMS.degrees, latDMS.minutes, latDMS.seconds, latDMS.hemisphere,
+          lonDMS.degrees, lonDMS.minutes, lonDMS.seconds, lonDMS.hemisphere
+        );
+        
+        return {
+          type: 'decimal',
+          lat,
+          lon,
+          ddmmss: ddmmss,
+          pretty: ddmmss,
+          valid: true
+        };
+      }
+
+      // No match - invalid format
+      return null;
+    }
+
+    // Create a temporary waypoint item
+    function createTemporaryWaypointItem(ddmmss, lat, lon, originalInput) {
       try {
         const li = document.createElement('li');
-        li.textContent = label;
-        li.style.fontWeight = '600';
-        li.style.color = '#1358bf';
-        li.title = `Coordinate waypoint: ${packed}`;
+        
+        const content = document.createElement('div');
+        content.style.display = 'flex';
+        content.style.flexDirection = 'column';
+        content.style.width = '100%';
+        
+        const formatSpan = document.createElement('span');
+        formatSpan.textContent = ddmmss;
+        formatSpan.style.fontWeight = '600';
+        formatSpan.style.color = '#1358bf';
+        formatSpan.style.fontFamily = 'monospace';
+        formatSpan.style.fontSize = '0.95em';
+        
+        const decimalSpan = document.createElement('span');
+        decimalSpan.textContent = `(${lat >= 0 ? '+' : ''}${lat.toFixed(6)}, ${lon >= 0 ? '+' : ''}${lon.toFixed(6)})`;
+        decimalSpan.style.fontSize = '0.8em';
+        decimalSpan.style.color = '#666';
+        decimalSpan.style.fontFamily = 'monospace';
+        
+        const originalSpan = document.createElement('span');
+        originalSpan.textContent = `Input: ${originalInput}`;
+        originalSpan.style.fontSize = '0.75em';
+        originalSpan.style.color = '#999';
+        originalSpan.style.fontStyle = 'italic';
+        
+        content.appendChild(formatSpan);
+        content.appendChild(decimalSpan);
+        content.appendChild(originalSpan);
+        li.appendChild(content);
+        
+        li.title = `DDMMSS: ${ddmmss}\nDecimal: ${lat.toFixed(6)}, ${lon.toFixed(6)}\nOriginal: ${originalInput}`;
+        li.style.cursor = 'pointer';
+        li.style.padding = '6px 8px';
+        li.style.borderBottom = '1px solid #eee';
+        li.style.transition = 'background-color 0.2s';
+        
         li.onclick = function () {
-          // If your app provides addWaypoint, call it
           if (typeof window.addWaypoint === 'function') {
             try {
-              window.addWaypoint(packed);
+              // Pass DDMMSS format to addWaypoint
+              window.addWaypoint(ddmmss);
+              li.style.backgroundColor = '#e8f4fd';
+              setTimeout(() => {
+                if (li.parentNode) li.style.backgroundColor = '';
+              }, 500);
             } catch (err) {
-              console.error('addWaypoint threw an error:', err);
-              // fallback: put into search box
-              input.value = packed;
+              console.error('addWaypoint error:', err);
+              input.value = ddmmss;
             }
           } else {
-            // fallback: put into search box (so user can click other UI)
-            input.value = packed;
+            input.value = ddmmss;
           }
         };
-        // Add it at top so user can see it
+        
         waypointList.insertBefore(li, waypointList.firstChild);
-        // auto-remove after some time (avoid clutter)
+        
         setTimeout(() => {
-          if (li && li.parentNode === waypointList) waypointList.removeChild(li);
-        }, 60_000); // remove after 60s
+          if (li && li.parentNode === waypointList) {
+            waypointList.removeChild(li);
+          }
+        }, 60000);
+        
         return li;
       } catch (err) {
         console.error('createTemporaryWaypointItem error', err);
@@ -11510,46 +11653,87 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // Main: listen for Enter and attempt parse
+    // Show error message
+    function showFormatError() {
+      const existingError = input.parentNode.querySelector('.coordinate-error');
+      if (existingError) {
+        existingError.remove();
+      }
+      
+      const errorMsg = document.createElement('div');
+      errorMsg.className = 'coordinate-error';
+      errorMsg.innerHTML = `
+        <div style="color: #d00; font-size: 0.85em; padding: 8px; margin-top: 4px; 
+                    background-color: #fff0f0; border: 1px solid #ffcccc; border-radius: 4px;">
+          <strong>Invalid format. Accepted formats:</strong>
+          <div style="margin-top: 4px; font-family: monospace; font-size: 0.9em;">
+            <div>• 0742S03940E</div>
+            <div>• 07°42'S 039°40'E</div>
+            <div>• 07°42'22"S 039°40'43"E (or with decimal seconds: 07°42'22.5"S)</div>
+            <div>• -7.7 39.66</div>
+          </div>
+        </div>
+      `;
+      
+      input.parentNode.appendChild(errorMsg);
+      
+      setTimeout(() => {
+        if (errorMsg.parentNode) {
+          errorMsg.parentNode.removeChild(errorMsg);
+        }
+      }, 8000);
+    }
+
+    // Main: listen for Enter
     input.addEventListener('keydown', function (ev) {
       if (ev.key !== 'Enter') return;
       const v = input.value.trim();
       if (!v) return;
+      
       const parsed = tryParseCoordinates(v);
       if (!parsed) {
-        // not a coordinate - let existing search behaviour run
+        showFormatError();
         return;
       }
 
       ev.preventDefault();
 
-      const packed = parsed.rawPacked || (typeof parsed.lat === 'number' && typeof parsed.lon === 'number'
-        ? decimalToPackedDM(parsed.lat, parsed.lon)
-        : v);
-      const label = parsed.pretty || packed;
-
-      // Create a temp list item so UI is consistent
-      createTemporaryWaypointItem(label, packed);
-
-      // If addWaypoint exists, call it directly
+      // Create temporary waypoint item with DDMMSS format
+      createTemporaryWaypointItem(parsed.ddmmss, parsed.lat, parsed.lon, v);
+      
+      // Add waypoint if function exists - pass DDMMSS format
       if (typeof window.addWaypoint === 'function') {
         try {
-          window.addWaypoint(packed);
+          window.addWaypoint(parsed.ddmmss);
         } catch (err) {
-          console.error('addWaypoint failed for coordinate input', err);
-          // fallback: put into input for user
-          input.value = packed;
+          console.error('addWaypoint failed:', err);
+          input.value = parsed.ddmmss;
         }
       } else {
-        // fallback: place the packed coordinate into the input so user can click any 'add' button
-        input.value = packed;
+        input.value = parsed.ddmmss;
       }
-
-      // Clear the search input (common UX)
+      
+      // Clear input
       input.value = '';
     });
 
-    // Expose small utility for debugging if needed
+    // Parse on paste and convert to DDMMSS
+    input.addEventListener('paste', function (ev) {
+      setTimeout(() => {
+        const v = input.value.trim();
+        if (!v) return;
+        
+        const parsed = tryParseCoordinates(v);
+        if (parsed) {
+          input.value = parsed.ddmmss;
+          setTimeout(() => input.select(), 10);
+        } else {
+          showFormatError();
+        }
+      }, 10);
+    });
+
+    // Expose for debugging
     if (!window.__parseWaypointCoordinate) {
       window.__parseWaypointCoordinate = tryParseCoordinates;
     }
@@ -11559,3 +11743,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </div></div></body>
 </html>
+
