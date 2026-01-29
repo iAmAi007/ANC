@@ -11653,7 +11653,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    // Show error message
+// Show error message
     function showFormatError() {
       const existingError = input.parentNode.querySelector('.coordinate-error');
       if (existingError) {
@@ -11663,23 +11663,106 @@ document.addEventListener('DOMContentLoaded', function () {
       const errorMsg = document.createElement('div');
       errorMsg.className = 'coordinate-error';
       errorMsg.innerHTML = `
-        <div style="color: #d00; font-size: 0.85em; padding: 8px; margin-top: 4px; 
-                    background-color: #fff0f0; border: 1px solid #ffcccc; border-radius: 4px;">
-          <strong>Invalid format. Accepted formats:</strong>
-          <div style="margin-top: 4px; font-family: monospace; font-size: 0.9em;">
-            <div>• 0742S03940E</div>
-            <div>• 07°42'S 039°40'E</div>
-            <div>• 07°42'22"S 039°40'43"E (or with decimal seconds: 07°42'22.5"S)</div>
-            <div>• -7.7 39.66</div>
+        <div style="
+          color: #d00;
+          font-size: 0.9em;
+          padding: 12px;
+          margin: 8px 0 7px 0;
+          background-color: #fff8f8;
+          border: 1px solid #ffcccc;
+          border-radius: 6px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          line-height: 1.4;
+        ">
+          <div style="
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b00;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+          ">
+            <span style="font-size: 1.1em">⚠</span>
+            <span>Invalid coordinate format</span>
+          </div>
+          
+          <div style="
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: normal;
+          ">
+            Please use one of these formats:
+          </div>
+          
+          <div style="
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 12px;
+            line-height: 1.6;
+          ">
+            <div style="display: flex; align-items: baseline; margin-bottom: 6px;">
+              <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">1.</span>
+              <span style="font-weight: normal;">0742S03940E</span>
+            </div>
+            <div style="display: flex; align-items: baseline; margin-bottom: 6px;">
+              <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">2.</span>
+              <span style="font-weight: normal;">07°42'S 039°40'E</span>
+            </div>
+            <div style="display: flex; align-items: baseline; margin-bottom: 6px;">
+              <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">3.</span>
+              <span style="font-weight: normal;">07°42'22"S 039°40'43"E</span>
+            </div>
+            <div style="display: flex; align-items: baseline; margin-bottom: 6px;">
+              <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">4.</span>
+              <span style="font-weight: normal;">6°53'16.82"S 39°11'33.77"E</span>
+            </div>
+            <div style="display: flex; align-items: baseline;">
+              <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">5.</span>
+              <span style="font-weight: normal;">-7.7 39.66</span>
+            </div>
+          </div>
+          
+          <div style="
+            margin-top: 12px;
+            font-size: 0.8em;
+            color: #888;
+            font-style: italic;
+            text-align: left;
+            padding-top: 8px;
+            border-top: 1px dashed #eee;
+          ">
+            This message will disappear in 8 seconds
           </div>
         </div>
       `;
       
+      // Add animation
+      errorMsg.style.opacity = '0';
+      errorMsg.style.transform = 'translateY(-5px)';
+      errorMsg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      
       input.parentNode.appendChild(errorMsg);
+      
+      // Trigger animation
+      setTimeout(() => {
+        errorMsg.style.opacity = '1';
+        errorMsg.style.transform = 'translateY(0)';
+      }, 10);
       
       setTimeout(() => {
         if (errorMsg.parentNode) {
-          errorMsg.parentNode.removeChild(errorMsg);
+          errorMsg.style.opacity = '0';
+          errorMsg.style.transform = 'translateY(-5px)';
+          setTimeout(() => {
+            if (errorMsg.parentNode) {
+              errorMsg.parentNode.removeChild(errorMsg);
+            }
+          }, 300);
         }
       }, 8000);
     }
