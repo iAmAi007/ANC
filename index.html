@@ -11341,11 +11341,6 @@ function formatDateInput(inputId) {
 })();
 </script>
 
-
-
-
-
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   (function () {
@@ -11445,10 +11440,18 @@ document.addEventListener('DOMContentLoaded', function () {
       };
     }
 
+    // Function to normalize minus signs (handles both U+002D and U+2212)
+    function normalizeMinusSign(str) {
+      return str.replace(/−/g, '-'); // Replace Unicode minus with ASCII minus
+    }
+
     // ONLY accept these exact formats with full validation:
     function tryParseCoordinates(s) {
       if (!s) return null;
-      const raw = s.trim();
+      
+      // First normalize minus signs
+      const normalized = normalizeMinusSign(s.trim());
+      const raw = normalized;
       
       // Format 1: Packed DM form EXACT: 0742S03940E (no spaces)
       let m = raw.match(/^(\d{2})(\d{2})([NS])(\d{3})(\d{2})([EW])$/i);
@@ -11551,18 +11554,17 @@ document.addEventListener('DOMContentLoaded', function () {
         };
       }
 
-      // Format 4: Signed decimal pair with ANY number of decimal places: -6.841076 39.150375
-      // This handles: -7.7 39.66, -6.841076 39.150375, 6.84 39.15, etc.
-      // Pattern explanation:
-      // - ^(-?\d+)?: Optional negative sign, then digits (integer part)
-      // - (?:\.\d+)?: Optional decimal part with any number of digits
-      // - \s+: One or more spaces
-      // - (-?\d+)?: Same for longitude
-      // - (?:\.\d+)?: Same decimal part for longitude
-      m = raw.match(/^(-?\d+(?:\.\d+)?)\s+(-?\d+(?:\.\d+)?)$/);
+      // Format 4: Signed decimal pair with ANY number of decimal places - SPACE SEPARATED
+      // Handles both regular minus (-) and Unicode minus (−)
+      // Pattern accepts both minus signs, space separated
+      m = raw.match(/^([−-]?\d+(?:\.\d+)?)\s+([−-]?\d+(?:\.\d+)?)$/);
       if (m) {
-        const lat = parseFloat(m[1]);
-        const lon = parseFloat(m[2]);
+        // Convert captured values (may contain Unicode minus) to regular minus
+        let latStr = m[1].replace(/−/g, '-');
+        let lonStr = m[2].replace(/−/g, '-');
+        
+        const lat = parseFloat(latStr);
+        const lon = parseFloat(lonStr);
         
         // FULL VALIDATION
         if (!validateDecimal(lat, lon)) {
@@ -11579,7 +11581,43 @@ document.addEventListener('DOMContentLoaded', function () {
         );
         
         return {
-          type: 'decimal',
+          type: 'decimal-space',
+          lat,
+          lon,
+          ddmmss: ddmmss,
+          pretty: ddmmss,
+          valid: true
+        };
+      }
+
+      // Format 5: Signed decimal pair with ANY number of decimal places - COMMA SEPARATED (Google Maps format)
+      // Handles both regular minus (-) and Unicode minus (−)
+      // Pattern accepts both minus signs, comma separated (with optional spaces)
+      m = raw.match(/^([−-]?\d+(?:\.\d+)?)\s*,\s*([−-]?\d+(?:\.\d+)?)$/);
+      if (m) {
+        // Convert captured values (may contain Unicode minus) to regular minus
+        let latStr = m[1].replace(/−/g, '-');
+        let lonStr = m[2].replace(/−/g, '-');
+        
+        const lat = parseFloat(latStr);
+        const lon = parseFloat(lonStr);
+        
+        // FULL VALIDATION
+        if (!validateDecimal(lat, lon)) {
+          return null;
+        }
+        
+        // Convert decimal to DMS components (with possible decimal seconds)
+        const latDMS = decimalToDMS(lat, false);
+        const lonDMS = decimalToDMS(lon, true);
+        
+        const ddmmss = toDDMMSSFormat(
+          latDMS.degrees, latDMS.minutes, latDMS.seconds, latDMS.hemisphere,
+          lonDMS.degrees, lonDMS.minutes, lonDMS.seconds, lonDMS.hemisphere
+        );
+        
+        return {
+          type: 'decimal-comma',
           lat,
           lon,
           ddmmss: ddmmss,
@@ -11753,9 +11791,13 @@ document.addEventListener('DOMContentLoaded', function () {
               <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">4.</span>
               <span style="font-weight: normal;">6°53'16.82"S 39°11'33.77"E</span>
             </div>
-            <div style="display: flex; align-items: baseline;">
+            <div style="display: flex; align-items: baseline; margin-bottom: 6px;">
               <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">5.</span>
-              <span style="font-weight: normal;">-6.841076 39.150375</span>
+              <span style="font-weight: normal;">-6.78 39.20 (space separated)</span>
+            </div>
+            <div style="display: flex; align-items: baseline;">
+              <span style="color: #666; font-weight: 600; min-width: 22px; text-align: right; margin-right: 8px;">6.</span>
+              <span style="font-weight: normal;">-6.841076,39.150375 (comma separated)</span>
             </div>
           </div>
         </div>
