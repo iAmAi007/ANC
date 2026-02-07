@@ -40,30 +40,7 @@
     }
     
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    @font-face {
+@font-face {
         font-family: 'SF Pro Display';
         src: url('SFPRODISPLAY-REGULAR.TTF') format('truetype');
         font-weight: normal;
@@ -87,12 +64,16 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
+        max-width: 600px; /* Constrain width */
+        width: 90vw; /* Responsive width */
+        overflow-x: hidden; /* Prevent horizontal overflow */
+        box-sizing: border-box;
     }
 
 
     .route {
         text-align: center;       /* Align content to the center */
-        border: 1px solid #6cb4ef;   /* Keep the bounding box */
+        border: 1px solid #0ea5e9;   /* Keep the bounding box */
         padding: 10px;
         box-sizing: border-box;
         display: block;
@@ -112,8 +93,64 @@
 
 
     #routeWaypoints {
-        display: block;
-        text-align: left;
+        border: 1px solid var(--border-strong);
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 5px;
+        display: inline-block;
+        cursor: grab;
+        text-align: center;
+        font-size: 14px;
+        }
+
+    /* Added waypoints styling */
+    #routeWaypoints {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      align-items: flex-start;
+    }
+    
+    #routeWaypoints span {
+      background: #e3f2fd;
+      border: 1px solid #1976d2;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: grab;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    /* Info icon styling */
+    .info-icon {
+      width: 16px;
+      height: 16px;
+      background: #ff6b35;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: help;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .info-icon:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      background: #0078d4;
+      color: white;
+      padding: 4px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      white-space: nowrap;
+      z-index: 1000;
+      font-weight: normal;
     }
 
 
@@ -122,7 +159,9 @@
         display: flex;
         align-items: center;
         gap: 7px; /* Add a small gap between the elements */
+        position: relative;
     }
+
 
 
 
@@ -131,7 +170,7 @@
     input[type="time"] {
         outline: none !important;
         height: 60px;
-        border: none!important;
+        border: 1px solid #0ea5e9 !important;
         color: #004185;
     }
 
@@ -155,30 +194,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    button:nth-of-type(odd) {
+button:nth-of-type(odd) {
         background-color: #1358bf;  /* Original button color */
         color: #fff;
     }
@@ -209,30 +225,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    h1, #ancDisplay {
+h1, #ancDisplay {
         color: #004185 !important;
     }
 
@@ -279,16 +272,6 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
     /* Cursor blink effect */
     @keyframes blink {
         50% {
@@ -296,12 +279,6 @@
         }
     }
 
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
 
     body {
         letter-spacing: 0.5px;
@@ -333,12 +310,12 @@
 
     #routeDisplay {
         background: #fff;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 8px;
-        padding: 20px;
+        padding: 10px;
         width: 100%;
         max-width: 600px;
-        margin: 20px 0;
+        margin: 0px 0;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
@@ -348,7 +325,7 @@
         padding: 10px;
         width: 100%;
         background: #ffffff;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 4px;
         color: #004185;
         font-size: 16px;
@@ -362,10 +339,10 @@
 
     .route-waypoint {
         display: inline-block;
-        margin: 5px;
-        padding: 8px 12px;
-        background: #c5edff;
-        color: #004185;
+        margin: 2px;
+        padding: 2px 4px;
+        background: var(--bg-muted);
+        border: 1px solid var(--border-strong);
         border-radius: 4px;
         font-size: 14px;
         cursor: grab;
@@ -395,66 +372,168 @@
         text-align: center;
         font-size: 0.2em;
         color: #004185;
-
-    }
-
-    @media screen and (max-width: 600px) {
-        body {
-        letter-spacing: 0.5px;
-            padding: 10px;
         }
-        button {
-        letter-spacing: 0.5px;
-            width: 100%;
+        
+        h1, #ancDisplay {
+            color: #004185 !important;
         }
-    }
 
 
     .searchable-select {
         position: relative;
         width: 100%;
         max-width: 300px;
+        margin: 10px 0;
     }
 
     .searchable-select input {
         letter-spacing: 0.5px;
         width: 100%;
-        padding: 10px;
-        border: 1px solid #6cb4ef;
-        border-radius: 6px;
-        box-sizing: border-box;
+        padding: 12px 16px;
+        border: 2px solid #6cb4ef;
+        background-color: #ffffff;
+        color: #6cb4ef;
         font-size: 16px;
+        font-weight: 500;
+        border-radius: 8px;
+        outline: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: none;
+    }
+
+    .searchable-select input:focus {
+        border-color: #0ea5e9;
+        background-color: #ffffff;
+        box-shadow: none;
+        transform: translateY(-1px);
+    }
+
+    .searchable-select input::placeholder {
+        color: #0ea5e9;
+        font-weight: 400;
     }
 
     .searchable-select ul {
         position: absolute;
-        width: 100%;
-        max-height: 200px;
-        background: #fff;
-        border: 1px solid #6cb4ef;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        margin: 0;
-        padding: 0;
+        width: calc(100% - 4px);
+        max-height: 300px;
         overflow-y: auto;
-        z-index: 1000;
-        list-style: none;  /* Remove bullet points */
+        background-color: #ffffff;
+        border: 1px solid #0ea5e9;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+        z-index: 100002;
+        list-style: none;
+        margin-top: 8px;
+        padding: 8px;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+    }
+
+    .searchable-select ul::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .searchable-select ul::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    .searchable-select ul::-webkit-scrollbar-thumb {
+        background: #ff6b35;
+        border-radius: 0;
+    }
+
+    .searchable-select ul::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
     }
 
     .searchable-select ul li {
-        padding: 10px;
+        padding: 12px 16px;
         cursor: pointer;
-        transition: background-color 0.2s ease-in-out;
-        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 8px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid rgba(108, 180, 239, 0.15);
+        border-radius: 0;
+        font-weight: 500;
+        color: #0078d4;
+        position: relative;
+        overflow: hidden;
     }
 
-    .searchable-select ul li:last-child {
-        border-bottom: none;
+    .searchable-select ul li::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(108, 180, 239, 0.1), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .searchable-select ul li:hover::before {
+        left: 100%;
     }
 
     .searchable-select ul li:hover {
-        background-color: #BDDDFC;
-        color: inherit;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        color: #6cb4ef;
+        transform: translateX(4px);
+        box-shadow: 0 2px 8px rgba(108, 180, 239, 0.15);
+    }
+
+    .searchable-select ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    .searchable-select ul li:active {
+        transform: translateX(2px) scale(0.98);
+        transition: all 0.1s ease;
+    }
+
+    /* Special styling for aircraft dropdown */
+    #aircraftList li {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    #aircraftList li span:first-child {
+        font-weight: 600;
+        color: #0078d4;
+    }
+
+    #aircraftList li span:not(:first-child) {
+        font-weight: 400;
+        color: #6cb4ef;
+    }
+
+    /* Special styling for waypoint dropdown */
+    #waypointList li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #waypointList li span {
+        font-weight: 400;
+        color: #0078d4;
+    }
+
+    /* Route item styling */
+    .route-name {
+        font-weight: 600;
+        color: #0078d4;
+    }
+
+    .route-distance {
+        font-weight: 500;
+        color: #0078d4;
+        padding: 2px 8px;
+        border-radius: 12px;
     }
 
 
@@ -464,7 +543,7 @@
         margin: 0;
         background: #f5f5f5;
         color: #004185;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 6px;
         cursor: pointer;
         font-size: 16px;
@@ -492,7 +571,7 @@
         margin: 0;
         background: #1358bf;
         color: #222;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 6px;
         cursor: pointer;
         font-size: 16px;
@@ -517,7 +596,7 @@
     }
 
     .searchable-select ul li:hover {
-        background-color: #d1e8ff;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         color: inherit;
     }
 
@@ -544,16 +623,6 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
     /* Cursor blink effect */
     @keyframes blink {
         50% {
@@ -561,41 +630,12 @@
         }
     }
 
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    body {
-        letter-spacing: 0.5px;
-        font-family: 'SF Pro Display';
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 20px;
-        color: #004185;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-    }
 </style>
 <style>
-    h1 {
-        padding-top: 10px;
-        letter-spacing: 2px;
-        color: #222;
-        font-size: 2em;
-        font-weight: bold;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .card {
+.card {
         background: linear-gradient(145deg, #ffffff, #e6e6e6);
         border-radius: 15px;
+        border: 1px solid #0ea5e9;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
         padding: 20px;
         padding-bottom: 100px;
@@ -627,7 +667,7 @@
         width: 100%;
         padding: 0px;
         margin-bottom: 20px;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 10px;
         font-size: 1em;
     }
@@ -635,13 +675,7 @@
 
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: portrait) {
+@media (orientation: portrait) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -678,32 +712,9 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    #aircraftList {
+#aircraftList {
         display: none;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         max-height: 200px;
         overflow-y: auto;
         background-color: white;
@@ -712,13 +723,18 @@
         z-index: 1000;
     }
 
+    #aircraftList::-webkit-scrollbar-thumb {
+        background: #ff6b35;
+        border-radius: 0;
+    }
+
     #aircraftList li {
         padding: 8px;
         cursor: pointer;
     }
 
     #aircraftList li:hover {
-        background-color: #d1e8ff;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
     }
    
 
@@ -740,30 +756,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    #aircraftSearchInput {
+#aircraftSearchInput {
         width: 100% !important;
         max-width: 100% !important;
     }
@@ -806,30 +799,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    #aircraftSearchInput, #searchInput {
+#aircraftSearchInput, #searchInput {
         width: 100% !important;
         max-width: 100% !important;
     }
@@ -864,30 +834,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .searchable-select {
+.searchable-select {
         width: 100% !important;
         max-width: 100% !important;
     }
@@ -898,13 +845,7 @@
 
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -913,25 +854,7 @@
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -970,41 +893,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    /* General body styling */
-    body {
-        letter-spacing: 0.5px;
-        margin: 0;
-        padding: 0;
-        font-family: 'SF Pro Display';
-        background-color: #f4f7fa;
-        color: #004185;
-        line-height: 1.6;
-    }
-
-    /* Centered Container */
+/* Centered Container */
 
 
     /* Modern Heading */
@@ -1143,30 +1032,7 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    button {
+button {
         letter-spacing: 0.5px;
         padding: 10px 20px;
         margin: 0;
@@ -1191,13 +1057,7 @@
 
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1206,25 +1066,7 @@
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1263,50 +1105,83 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    #routeDisplay {
+#routeDisplay {
         background: #fff;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 0; /* Remove rounded corners */
-        padding: 20px;
+        padding: 10px;
         width: 100%;
         max-width: 600px; /* Match other element widths */
-        margin: 0 0 20px 0;
+        margin: 0;
         box-sizing: border-box;
     }
 
-
-
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
+    /* Aggressive media query for small screens - block page display */
+    @media screen and (max-width: 480px) {
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: #ff0000 !important;
+            z-index: 999999 !important;
+        }
+        
+        body * {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        
+        body::before {
+            content: "" !important;
+            display: block !important;
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            width: 120px !important;
+            height: 120px !important;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='4.93' y1='4.93' x2='19.07' y2='19.07'/%3E%3C/svg%3E") no-repeat center !important;
+            background-size: contain !important;
+            z-index: 1000000 !important;
+        }
+        
+        /* Fix --> --> --> z-index issue */
+        style, script, style::before, style::after, script::before, script::after {
+            z-index: -999999 !important;
+            position: relative !important;
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            color: transparent !important;
+            background: transparent !important;
+        }
+        
+        /* Hide any text nodes or comments */
+        * {
+            color: transparent !important;
+        }
+        
+        /* Specifically target any remaining visible text */
+        body, html, *::before, *::after {
+            text-shadow: 0 0 0 transparent !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+        
+        /* Hide any remaining text content */
+        body::after {
+            display: none !important;
         }
     }
 
-    @media (orientation: landscape) {
+
+
+
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1315,25 +1190,7 @@
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1372,32 +1229,9 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    input, .searchable-select input, #aircraftSearchInput {
+input, .searchable-select input, #aircraftSearchInput {
         border-radius: 0; /* Remove rounded edges */
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         padding: 10px;
         font-size: 16px;
         box-sizing: border-box;
@@ -1410,13 +1244,7 @@
 
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1425,25 +1253,7 @@
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1493,16 +1303,6 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
     /* Cursor blink effect */
     @keyframes blink {
         50% {
@@ -1510,12 +1310,6 @@ function clearPage() {
         }
     }
 
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
 
     #ancDisplay {
         font-size: 1.2em;
@@ -1529,13 +1323,7 @@ function clearPage() {
         text-align: center;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1544,25 +1332,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1601,30 +1371,7 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .split-input {
+.split-input {
         letter-spacing: 0.5px;
         display: flex;
         justify-content: center; 
@@ -1682,13 +1429,7 @@ function clearPage() {
         border-left: 1px solid #6cb4ef;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1697,25 +1438,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1754,35 +1477,12 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .split-input {
+.split-input {
         letter-spacing: 0.5px;
         display: flex;
         align-items: stretch; /* Align items to stretch vertically */
         width: 100%;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 4px;
         background-color: #ffffff;
         overflow: hidden;
@@ -1824,13 +1524,7 @@ function clearPage() {
         box-shadow: none;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1839,25 +1533,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1901,42 +1577,13 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .split-input .placeholder-text,
+.split-input .placeholder-text,
     .split-input input[type="number"] {
         font-size: 16px; /* Match CLEAR button font size */
         font-size: 16px; /* Match CLEAR button font size */
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -1945,25 +1592,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2002,42 +1631,13 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .split-input input[type="number"],
+.split-input input[type="number"],
     .split-input .placeholder-text {
         display: flex;
         align-items: center;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2046,25 +1646,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2103,30 +1685,7 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .split-input .placeholder-text {
+.split-input .placeholder-text {
         color: #1358bf; /* Light gray for the label text */
         background-color: #fff; /* White background for the gray box below label */
     }
@@ -2135,13 +1694,7 @@ function clearPage() {
         background-color: #fff; /* Ensure input box background remains white */
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2150,25 +1703,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2207,34 +1742,11 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
-    /* Cursor blink effect */
-    @keyframes blink {
-        50% {
-            border-color: transparent;
-        }
-    }
-
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
-    .split-input {
+.split-input {
         letter-spacing: 0.5px;
         display: flex;
         align-items: stretch;
-        border: 1px solid #6cb4ef; /* General border to match stroke color */
+        border: 1px solid #0ea5e9; /* General border to match stroke color */
     }
 
     .split-input .placeholder-text {
@@ -2253,7 +1765,7 @@ function clearPage() {
         top: 0;
         bottom: 0;
         width: 1px;
-        background-color: #6cb4ef; /* Separator line matches border color */
+        background-color: #f4f4f4; /* Separator line matches border color */
     }
 
     .split-input input[type="number"] {
@@ -2266,13 +1778,7 @@ function clearPage() {
         outline: none;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2281,25 +1787,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2338,16 +1826,6 @@ function clearPage() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
     /* Cursor blink effect */
     @keyframes blink {
         50% {
@@ -2355,12 +1833,6 @@ function clearPage() {
         }
     }
 
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
 
     .searchable-select input {
         border-radius: 0 !important;
@@ -2375,13 +1847,7 @@ function clearPage() {
     }
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2390,25 +1856,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2435,19 +1883,13 @@ function clearPage() {
         max-width: 600px;
         width: 100%;
         margin: 0 0 20px 0;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 8px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2456,25 +1898,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2495,25 +1919,7 @@ function clearPage() {
 
 </style>
 <style>
-    body {
-        font-family: 'SF Pro Display', Arial, sans-serif;
-        background: #fdfdfd;
-        color: #004185;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2522,25 +1928,7 @@ function clearPage() {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2574,13 +1962,7 @@ button#toggleCoordinatesButton {
 }
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2589,25 +1971,7 @@ button#toggleCoordinatesButton {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2651,84 +2015,126 @@ button#toggleCoordinatesButton {
 <style>
 /* Default button styles */
 .button-original {
-    letter-spacing: 0.5px;
-    padding: 10px 20px;
+    letter-spacing: 0.3px;
+    padding: 12px 24px;
     margin: 0;
-    background: #1358bf; /* Default button background */
+    background: #0078d4;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, border-color 0.3s;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Hover effect */
 .button-original:hover {
-    background: #0056b3;
+    background: #005a9e;
+    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.25);
+    transform: translateY(-1px);
 }
 
 /* Active button state */
 .button-original:active {
-    background: #004185;
-    transform: translateY(1px);
+    background: #004578;
+    box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+    transform: translateY(0);
 }
 </style>
 
 
 <style>
 button#toggleCoordinatesButton {
-    background: #0078d4; /* Match the Distance button color */
+    background: #0078d4;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button#toggleCoordinatesButton:hover {
-    background: #1358bf; /* Hover color */
+    background: #005a9e;
+    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.25);
+    transform: translateY(-1px);
 }
 
 button#toggleCoordinatesButton:active {
-    background: #0078d4; /* Active color */
+    background: #004578;
+    box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+    transform: translateY(0);
 }
 
 button#calculateDistanceButton {
-    background: #0078d4; /* Match the Distance button color */
+    background: #0078d4;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button#calculateDistanceButton:hover {
-    background: #1358bf; /* Hover color */
+    background: #005a9e;
+    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.25);
+    transform: translateY(-1px);
 }
 
 button#calculateDistanceButton:active {
-    background: #0078d4; /* Active color */
+    background: #004578;
+    box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+    transform: translateY(0);
 }
 
 button#ancButton {
-    background: #004185; /* Match the Distance button color */
+    background: #0078d4;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button#ancButton:hover {
-    background: #0056b3; /* Hover color */
+    background: #005a9e;
+    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.25);
+    transform: translateY(-1px);
 }
 
 button#ancButton:active {
-    background: #004185; /* Active color */
+    background: #004578;
+    box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+    transform: translateY(0);
 }
 
 
@@ -2793,40 +2199,101 @@ button#nldgButton:active {
 
 <style>
 button#CALCULATEButton {
-    background: #1358bf; /* Match the Distance button color */
+    background: #0078d4;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button#CALCULATEButton:hover {
-    background: #0078d4; /* Hover color */
+    background: #005a9e;
+    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.25);
+    transform: translateY(-1px);
 }
 
 button#CALCULATEButton:active {
-    background: #1358bf; /* Active color */
+    background: #004578;
+    box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+    transform: translateY(0);
 }
 
+/* CLEAR button styles - activated */
 button#clearButton {
-    background: red; /* Red background for the CLEAR button */
+    --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+    --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin: 0;
+    width: 100%;
+    background: #dc3545;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button#clearButton:hover {
-    background: darkred; /* Darker red on hover */
+    background: #c82333;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.25);
+    transform: translateY(-1px);
 }
 
 button#clearButton:active {
-    background: crimson; /* Slightly different shade on active */
+    background: #bd2130;
+    box-shadow: 0 1px 2px rgba(220, 53, 69, 0.2);
+    transform: translateY(0);
 }
+
+/* CLEAR button CSS - New Red Color Scheme - commented out
+button#clearButton {
+    background: #FDE7E9;
+    color: #A4262C;
+    border: 1px solid #F1AEB5;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(244, 67, 54, 0.15);
+    min-height: 44px;
+    min-width: 44px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button#clearButton:hover {
+    background: #FBCFD3;
+    box-shadow: 0 4px 8px rgba(244, 67, 54, 0.25);
+    transform: translateY(-1px);
+}
+
+button#clearButton:active {
+    background: #F1AEB5;
+    box-shadow: 0 1px 2px rgba(244, 67, 54, 0.2);
+    transform: translateY(0);
+}
+*/
 </style>
 
 
@@ -2837,20 +2304,14 @@ button#clearButton:active {
         padding: 20px;
         max-width: 500px;
         width: 100%;
-        border: 1px solid #6cb4ef;
+        border: 1px solid #0ea5e9;
         border-radius: 8px;
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
         margin: 20px auto;
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2859,25 +2320,7 @@ button#clearButton:active {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2917,16 +2360,6 @@ button#clearButton:active {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
     /* Cursor blink effect */
     @keyframes blink {
         50% {
@@ -2934,25 +2367,9 @@ button#clearButton:active {
         }
     }
 
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
 /* Full-width rectangular card styling */
 
-body {
-    letter-spacing: 0.5px;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; /* Subtle contrast */
-}
-
-
-
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -2967,25 +2384,7 @@ body {
         }
     }
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
@@ -3080,7 +2479,7 @@ body {
       border: 1px solid #ccc;
       border-radius: 4px;
       padding: 5px;
-      z-index: 1000;
+      z-index: 10001;
       width: auto;
       /*width: 202px;*/
       overflow: hidden;
@@ -3090,9 +2489,11 @@ body {
       font-family: 'SF Pro Display';
       padding: 5px;
       cursor: pointer;
+      color: #0078d4;
+      font-weight: 600;
     }
     .dropdown-item:hover {
-      background-color: #f0f0f0;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
     }
   </style>
 
@@ -3102,11 +2503,25 @@ body {
 </div>
                  
   <p>&nbsp;</p>
-  <p>
-    Rate: <span class="editable" data-options="5.0,4.5,4.0,3.0">5.0</span> USD |
-    Local PAX <span class="editable-number" id="local-pax" contenteditable="true">00</span> | 
-    Intl PAX <span class="editable-number" id="intl-pax" contenteditable="true">00</span>
-  </p>
+  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 100%; padding: 12px 16px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px; border: 1px solid #0ea5e9; box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15); box-sizing: border-box; position: relative; z-index: 10000;">
+    <div style="text-align: left;">
+      <span style="font-size: 9.72px; color: #0369a1; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9;">Rate</span>
+      <div style="margin-top: 2px;">
+        <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 18px; font-weight: 700; color: #0284c7; cursor: pointer; transition: all 0.3s ease; opacity: 1;">5.0</span>
+        <span style="font-size: 14px; color: #0ea5e9; margin-left: 4px; opacity: 0.85;">USD</span>
+      </div>
+    </div>
+    <div style="text-align: left;">
+      <span style="font-size: 9.72px; color: #0369a1; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9;">Passengers</span>
+      <div style="margin-top: 2px;">
+        <span style="font-size: 12px; color: #0ea5e9; opacity: 0.85;">Local:</span>
+        <span class="editable-number" id="local-pax" contenteditable="true" style="font-size: 16px; font-weight: 700; color: #0284c7; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid #0ea5e9; min-width: 30px; display: inline-block; text-align: center; margin: 0 4px; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1);">00</span>
+        <span style="margin: 0 8px; color: #0ea5e9; opacity: 0.7;">|</span>
+        <span style="font-size: 12px; color: #0ea5e9; opacity: 0.85;">Intl:</span>
+        <span class="editable-number" id="intl-pax" contenteditable="true" style="font-size: 16px; font-weight: 700; color: #0284c7; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid #0ea5e9; min-width: 30px; display: inline-block; text-align: center; margin-left: 4px; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1);">00</span>
+      </div>
+    </div>
+  </div>
 
   <div class="dropdown" id="dropdown"></div>
 
@@ -3136,12 +2551,19 @@ body {
           dropdown.appendChild(item);
         });
 
-        // Position the dropdown just below the selected number
+        // Position the dropdown centered below the selected number
         const rect = e.target.getBoundingClientRect();
         const containerRect = e.target.closest('.SelectableTextWithDropDown').getBoundingClientRect();
-        dropdown.style.left = `${rect.left - containerRect.left}px`;
+        
+        // Show dropdown first to get actual width
+        dropdown.style.display = 'block';
+        dropdown.style.visibility = 'hidden';
+        
+        const dropdownWidth = dropdown.offsetWidth;
+        const centerPosition = (rect.left - containerRect.left) + (rect.width / 2) - (dropdownWidth / 2);
+        dropdown.style.left = `${centerPosition}px`;
         dropdown.style.top = `${rect.bottom - containerRect.top}px`;
-        dropdown.style.display = 'block'; // Show the dropdown
+        dropdown.style.visibility = 'visible';
       } else {
         dropdown.style.display = 'none'; // Hide dropdown if clicking elsewhere
       }
@@ -3178,7 +2600,7 @@ body {
 <!--End of selectable text with drop-down and editable PAX values-->
 
 <div class="searchable-select">
-<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text">
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text" autocomplete="off">
 
 
 <ul id="aircraftList" style="display: none;">
@@ -8660,63 +8082,68 @@ document.addEventListener("DOMContentLoaded", () => {
 <input id="searchInput" oninput="filterWaypoints()" placeholder="Search waypoints to build a route" style="color: #6cb4ef" type="text">
 <ul id="waypointList" style="display: none;"><li onclick="addWaypoint('AKUMU')">AKUMU</li><li onclick="addWaypoint('ALSAR')">ALSAR</li><li onclick="addWaypoint('AMSAD')">AMSAD</li><li onclick="addWaypoint('ANTIM')">ANTIM</li><li onclick="addWaypoint('ANVOX')">ANVOX</li><li onclick="addWaypoint('ANVUN')">ANVUN</li><li onclick="addWaypoint('APDIK')">APDIK</li><li onclick="addWaypoint('APDOT')">APDOT</li><li onclick="addWaypoint('APGEN')">APGEN</li><li onclick="addWaypoint('APKOL')">APKOL</li><li onclick="addWaypoint('APLOG')">APLOG</li><li onclick="addWaypoint('APMIT')">APMIT</li><li onclick="addWaypoint('APNAD')">APNAD</li><li onclick="addWaypoint('APNOL')">APNOL</li><li onclick="addWaypoint('ATUNU')">ATUNU</li><li onclick="addWaypoint('ATUPA')">ATUPA</li><li onclick="addWaypoint('AVATU')">AVATU</li><li onclick="addWaypoint('AVEKI')">AVEKI</li><li onclick="addWaypoint('AVETA')">AVETA</li><li onclick="addWaypoint('AVIGO')">AVIGO</li><li onclick="addWaypoint('AVIRI')">AVIRI</li><li onclick="addWaypoint('AVITA')">AVITA</li><li onclick="addWaypoint('AVUNO')">AVUNO</li><li onclick="addWaypoint('AXOSI')">AXOSI</li><li onclick="addWaypoint('BILAK')">BILAK</li><li onclick="addWaypoint('BONAP')">BONAP</li><li onclick="addWaypoint('BOSAD')">BOSAD</li><li onclick="addWaypoint('BOTEN')">BOTEN</li><li onclick="addWaypoint('BUJUMBURA CVOR')">BJA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bujumbura CVOR</span></li><li onclick="addWaypoint('DARAS')">DARAS</li><li onclick="addWaypoint('DASTA')">DASTA</li><li onclick="addWaypoint('DATAN')">DATAN</li><li onclick="addWaypoint('DO')">DO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dodoma NDB</span></li><li onclick="addWaypoint('DUDGA')">DUDGA</li><li onclick="addWaypoint('DUMA')">DUMA</li><li onclick="addWaypoint('DUMPA')">DUMPA</li><li onclick="addWaypoint('DUNDO')">DUNDO</li><li onclick="addWaypoint('DUSKA')">DUSKA</li><li onclick="addWaypoint('DV')">DV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dar es salaam DVOR</span></li><li onclick="addWaypoint('EGLOX')">EGLOX</li><li onclick="addWaypoint('EGMIL')">EGMIL</li><li onclick="addWaypoint('EGNUM')">EGNUM</li><li onclick="addWaypoint('EGPET')">EGPET</li><li onclick="addWaypoint('EGSEM')">EGSEM</li><li onclick="addWaypoint('EGSIX')">EGSIX</li><li onclick="addWaypoint('EGTAN')">EGTAN</li><li onclick="addWaypoint('ELAVA')">ELAVA</li><li onclick="addWaypoint('EPMAB')">EPMAB</li><li onclick="addWaypoint('EPMIN')">EPMIN</li><li onclick="addWaypoint('EPTAN')">EPTAN</li><li onclick="addWaypoint('EPTEL')">EPTEL</li><li onclick="addWaypoint('EPTIK')">EPTIK</li><li onclick="addWaypoint('ERBOK')">ERBOK</li><li onclick="addWaypoint('ERDEN')">ERDEN</li><li onclick="addWaypoint('ESPUX')">ESPUX</li><li onclick="addWaypoint('ESRES')">ESRES</li><li onclick="addWaypoint('ESVIM')">ESVIM</li><li onclick="addWaypoint('ETIVO')">ETIVO</li><li onclick="addWaypoint('ETLEK')">ETLEK</li><li onclick="addWaypoint('ETMIS')">ETMIS</li><li onclick="addWaypoint('ETMIX')">ETMIX</li><li onclick="addWaypoint('ETMOV')">ETMOV</li><li onclick="addWaypoint('ETUXI')">ETUXI</li><li onclick="addWaypoint('EVASI')">EVASI</li><li onclick="addWaypoint('EVATO')">EVATO</li><li onclick="addWaypoint('EXELU')">EXELU</li><li onclick="addWaypoint('EXEMI')">EXEMI</li><li onclick="addWaypoint('GABSO')">GABSO</li><li onclick="addWaypoint('GAVDA')">GAVDA</li><li onclick="addWaypoint('GEREN')">GEREN</li><li onclick="addWaypoint('GERUD')">GERUD</li><li onclick="addWaypoint('GESAT')">GESAT</li><li onclick="addWaypoint('GETAB')">GETAB</li><li onclick="addWaypoint('GETUX')">GETUX</li><li onclick="addWaypoint('HTAI')">HTAI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lamai</span></li><li onclick="addWaypoint('HTAL')">HTAL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Allience</span></li><li onclick="addWaypoint('HTAR')">HTAR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Arusha</span></li><li onclick="addWaypoint('HTAS')">HTAS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mashado</span></li><li onclick="addWaypoint('HTBA')">HTBA</li><li onclick="addWaypoint('HTBB')">HTBB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kiba (Kibambawe)</span></li><li onclick="addWaypoint('HTBE')">HTBE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Berega</span></li><li onclick="addWaypoint('HTBF')">HTBF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buckreef</span></li><li onclick="addWaypoint('HTBG')">HTBG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kikoboga</span></li><li onclick="addWaypoint('HTBH')">HTBH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Biharamulo</span></li><li onclick="addWaypoint('HTBJ')">HTBJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kabojo</span></li><li onclick="addWaypoint('HTBM')">HTBM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bagamoyo</span></li><li onclick="addWaypoint('HTBN')">HTBN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bulyankhulu</span></li><li onclick="addWaypoint('HTBO')">HTBO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Behobeho</span></li><li onclick="addWaypoint('HTBS')">HTBS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbesa</span></li><li onclick="addWaypoint('HTBT')">HTBT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buturi</span></li><li onclick="addWaypoint('HTBU')">HTBU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bukoba</span></li><li onclick="addWaypoint('HTBV')">HTBV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Yaeda Chini</span></li><li onclick="addWaypoint('HTBX')">HTBX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Мaboxi</span></li><li onclick="addWaypoint('HTBY')">HTBY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbamba Bay</span></li><li onclick="addWaypoint('HTCF')">HTCF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Catfish</span></li><li onclick="addWaypoint('HTCH')">HTCH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chunya</span></li><li onclick="addWaypoint('HTCM')">HTCM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chemchem</span></li><li onclick="addWaypoint('HTCV')">HTCV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chivanjee</span></li><li onclick="addWaypoint('HTDA')">HTDA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dar es Salaam</span></li><li onclick="addWaypoint('HTDB')">HTDB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Madaba</span></li><li onclick="addWaypoint('HTDG')">HTDG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dolly</span></li><li onclick="addWaypoint('HTDK')">HTDK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dakawa</span></li><li onclick="addWaypoint('HTDN')">HTDN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Saadani</span></li><li onclick="addWaypoint('HTDO')">HTDO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dodoma</span></li><li onclick="addWaypoint('HTDU')">HTDU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibidula</span></li><li onclick="addWaypoint('HTDY')">HTDY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dorman</span></li><li onclick="addWaypoint('HTEB')">HTEB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sengerema</span></li><li onclick="addWaypoint('HTEE')">HTEE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mlele Ram</span></li><li onclick="addWaypoint('HTEJ')">HTEJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shama</span></li><li onclick="addWaypoint('HTEN')">HTEN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Enduleni</span></li><li onclick="addWaypoint('HTEQ')">HTEQ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shughuli</span></li><li onclick="addWaypoint('HTER')">HTER &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtera</span></li><li onclick="addWaypoint('HTES')">HTES &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Engorika</span></li><li onclick="addWaypoint('HTEY')">HTEY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sikonge</span></li><li onclick="addWaypoint('HTFE')">HTFE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Fish Eagle</span></li><li onclick="addWaypoint('HTFI')">HTFI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Fort Ikoma</span></li><li onclick="addWaypoint('HTFR')">HTFR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kifura</span></li><li onclick="addWaypoint('HTGA')">HTGA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbuga/Ilonga</span></li><li onclick="addWaypoint('HTGE')">HTGE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Geita</span></li><li onclick="addWaypoint('HTGL')">HTGL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Gerai Lumbwa</span></li><li onclick="addWaypoint('HTGM')">HTGM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magambua</span></li><li onclick="addWaypoint('HTGO')">HTGO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kizigo</span></li><li onclick="addWaypoint('HTGP')">HTGP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Golden Pride</span></li><li onclick="addWaypoint('HTGR')">HTGR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Grumet</span></li><li onclick="addWaypoint('HTGS')">HTGS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Malagarasi</span></li><li onclick="addWaypoint('HTGT')">HTGT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Gelai East</span></li><li onclick="addWaypoint('HTGU')">HTGU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Miguruwe</span></li><li onclick="addWaypoint('HTGV')">HTGV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">George Vineyard Memorial (Kipili)</span></li><li onclick="addWaypoint('HTGW')">HTGW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songwe</span></li><li onclick="addWaypoint('HTGZ')">HTGZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magazini</span></li><li onclick="addWaypoint('HTHB')">HTHB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Muhuba</span></li><li onclick="addWaypoint('HTHG')">HTHG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilumbi</span></li><li onclick="addWaypoint('HTHI')">HTHI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mlay/Mlahi</span></li><li onclick="addWaypoint('HTHM')">HTHM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwambesi</span></li><li onclick="addWaypoint('HTHR')">HTHR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Heri Hospital</span></li><li onclick="addWaypoint('HTHS')">HTHS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Muhesi</span></li><li onclick="addWaypoint('HTHY')">HTHY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Hydom</span></li><li onclick="addWaypoint('HTI')">HTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lesirwai</span></li><li onclick="addWaypoint('HTIA')">HTIA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ifakara</span></li><li onclick="addWaypoint('HTIF')">HTIF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ifunda Farm</span></li><li onclick="addWaypoint('HTIH')">HTIH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarime (Sasi)</span></li><li onclick="addWaypoint('HTIK')">HTIK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Iku-Lake Chada</span></li><li onclick="addWaypoint('HTIL')">HTIL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lila</span></li><li onclick="addWaypoint('HTIR')">HTIR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Iringa</span></li><li onclick="addWaypoint('HTIW')">HTIW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liwale</span></li><li onclick="addWaypoint('HTIY')">HTIY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Inyonga</span></li><li onclick="addWaypoint('HTJN')">HTJN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kwajoni</span></li><li onclick="addWaypoint('HTJO')">HTJO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Jongomero</span></li><li onclick="addWaypoint('HTJR')">HTJR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mkwaja Ranch</span></li><li onclick="addWaypoint('HTKA')">HTKA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigoma</span></li><li onclick="addWaypoint('HTKB')">HTKB</li><li onclick="addWaypoint('HTKC')">HTKC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kleins Camp</span></li><li onclick="addWaypoint('HTKD')">HTKD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kondoa</span></li><li onclick="addWaypoint('HTKE')">HTKE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ketumbeine</span></li><li onclick="addWaypoint('HTKF')">HTKF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibebe Farm</span></li><li onclick="addWaypoint('HTKG')">HTKG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Namkongo</span></li><li onclick="addWaypoint('HTKH')">HTKH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Кahama</span></li><li onclick="addWaypoint('HTKI')">HTKI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilwa Masoko</span></li><li onclick="addWaypoint('HTKJ')">HTKJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimanjaro</span></li><li onclick="addWaypoint('HTKL')">HTKL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kirondatal</span></li><li onclick="addWaypoint('HTKM')">HTKM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilombero</span></li><li onclick="addWaypoint('HTKN')">HTKN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasense</span></li><li onclick="addWaypoint('HTKO')">HTKO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kongwa</span></li><li onclick="addWaypoint('HTKP')">HTKP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kingupira</span></li><li onclick="addWaypoint('HTKR')">HTKR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kingupira</span></li><li onclick="addWaypoint('HTKS')">HTKS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilosa</span></li><li onclick="addWaypoint('HTKT')">HTKT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimatinde</span></li><li onclick="addWaypoint('HTKU')">HTKU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasulu</span></li><li onclick="addWaypoint('HTKX')">HTKX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kitemela</span></li><li onclick="addWaypoint('HTLA')">HTLA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukula</span></li><li onclick="addWaypoint('HTLB')">HTLB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Malambo</span></li><li onclick="addWaypoint('HTLD')">HTLD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Loliondo</span></li><li onclick="addWaypoint('HTLE')">HTLE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ilembula</span></li><li onclick="addWaypoint('HTLI')">HTLI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lindi</span></li><li onclick="addWaypoint('HTLJ')">HTLJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lualanje</span></li><li onclick="addWaypoint('HTLK')">HTLK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luika</span></li><li onclick="addWaypoint('HTLL')">HTLL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liuli</span></li><li onclick="addWaypoint('HTLM')">HTLM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lake Manyara</span></li><li onclick="addWaypoint('HTLN')">HTLN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukwati</span></li><li onclick="addWaypoint('HTLO')">HTLO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lobo Wild Life Lodge</span></li><li onclick="addWaypoint('HTLP')">HTLP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lupa</span></li><li onclick="addWaypoint('HTLR')">HTLR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukuliro</span></li><li onclick="addWaypoint('HTLS')">HTLS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lesingita</span></li><li onclick="addWaypoint('HTLT')">HTLT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lunda Wma</span></li><li onclick="addWaypoint('HTLU')">HTLU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lunda</span></li><li onclick="addWaypoint('HTLV')">HTLV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liveria</span></li><li onclick="addWaypoint('HTLW')">HTLW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luwegu</span></li><li onclick="addWaypoint('HTLY')">HTLY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luwele</span></li><li onclick="addWaypoint('HTMA')">HTMA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mafia</span></li><li onclick="addWaypoint('HTMD')">HTMD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buhemba Gold Mining</span></li><li onclick="addWaypoint('HTME')">HTME &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matambwe</span></li><li onclick="addWaypoint('HTMF')">HTMF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mufindi</span></li><li onclick="addWaypoint('HTMG')">HTMG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Morogoro</span></li><li onclick="addWaypoint('HTMH')">HTMH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Makau</span></li><li onclick="addWaypoint('HTMI')">HTMI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masasi</span></li><li onclick="addWaypoint('HTMJ')">HTMJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Maji Moto</span></li><li onclick="addWaypoint('HTMK')">HTMK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mikumi</span></li><li onclick="addWaypoint('HTML')">HTML &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mahale</span></li><li onclick="addWaypoint('HTMM')">HTMM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mamarehe</span></li><li onclick="addWaypoint('HTMN')">HTMN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matemanga</span></li><li onclick="addWaypoint('HTMO')">HTMO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mombo</span></li><li onclick="addWaypoint('HTMP')">HTMP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpanda</span></li><li onclick="addWaypoint('HTMR')">HTMR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msembe Ruaha</span></li><li onclick="addWaypoint('HTMS')">HTMS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Moshi</span></li><li onclick="addWaypoint('HTMT')">HTMT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtwara</span></li><li onclick="addWaypoint('HTMU')">HTMU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Musoma</span></li><li onclick="addWaypoint('HTMV')">HTMV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mvumi</span></li><li onclick="addWaypoint('HTMW')">HTMW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwanza</span></li><li onclick="addWaypoint('HTMX')">HTMX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpwapwa</span></li><li onclick="addWaypoint('HTMY')">HTMY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbuyu</span></li><li onclick="addWaypoint('HTNA')">HTNA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nachingwea</span></li><li onclick="addWaypoint('HTNB')">HTNB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Naberera</span></li><li onclick="addWaypoint('HTND')">HTND &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ndutu</span></li><li onclick="addWaypoint('HTNF')">HTNF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nkonje</span></li><li onclick="addWaypoint('HTNG')">HTNG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngerengere</span></li><li onclick="addWaypoint('HTNH')">HTNH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ndolo</span></li><li onclick="addWaypoint('HTNJ')">HTNJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Njombe</span></li><li onclick="addWaypoint('HTNK')">HTNK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nkinga</span></li><li onclick="addWaypoint('HTNM')">HTNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">North Mara</span></li><li onclick="addWaypoint('HTNN')">HTNN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngorongoro</span></li><li onclick="addWaypoint('HTNO')">HTNO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbono</span></li><li onclick="addWaypoint('HTNR')">HTNR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngara</span></li><li onclick="addWaypoint('HTNW')">HTNW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngwazi</span></li><li onclick="addWaypoint('HTNY')">HTNY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kinyanguru</span></li><li onclick="addWaypoint('HTNZ')">HTNZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nzega</span></li><li onclick="addWaypoint('HTOM')">HTOM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Olemilei</span></li><li onclick="addWaypoint('HTON')">HTON &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mishamo</span></li><li onclick="addWaypoint('HTOP')">HTOP</li><li onclick="addWaypoint('HTOR')">HTOR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Olepakashi/Engaresero</span></li><li onclick="addWaypoint('HTOZ')">HTOZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigosa 1/Kigozi</span></li><li onclick="addWaypoint('HTPD')">HTPD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpunde</span></li><li onclick="addWaypoint('HTPE')">HTPE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Pemba</span></li><li onclick="addWaypoint('HTPP')">HTPP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kapunga</span></li><li onclick="addWaypoint('HTPT')">HTPT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Piti/Kitemela</span></li><li onclick="addWaypoint('HTPW')">HTPW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matipwili</span></li><li onclick="addWaypoint('HTRA')">HTRA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mkangire</span></li><li onclick="addWaypoint('HTRB')">HTRB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Rubondo</span></li><li onclick="addWaypoint('HTRE')">HTRE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Pemba</span></li><li onclick="addWaypoint('HTRG')">HTRG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Rungwa</span></li><li onclick="addWaypoint('HTRL')">HTRL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbarali</span></li><li onclick="addWaypoint('HTRN')">HTRN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Barani</span></li><li onclick="addWaypoint('HTRS')">HTRS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibesa</span></li><li onclick="addWaypoint('HTRU')">HTRU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mchauru</span></li><li onclick="addWaypoint('HTRX')">HTRX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tango One</span></li><li onclick="addWaypoint('HTRZ')">HTRZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kirumira</span></li><li onclick="addWaypoint('HTSA')">HTSA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Makwasa</span></li><li onclick="addWaypoint('HTSB')">HTSB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kagera Sugar</span></li><li onclick="addWaypoint('HTSD')">HTSD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Singida</span></li><li onclick="addWaypoint('HTSE')">HTSE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Same</span></li><li onclick="addWaypoint('HTSG')">HTSG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Stiglers Gorge</span></li><li onclick="addWaypoint('HTSH')">HTSH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mafinga</span></li><li onclick="addWaypoint('HTSI')">HTSI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kihansi</span></li><li onclick="addWaypoint('HTSJ')">HTSJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Simanjiro</span></li><li onclick="addWaypoint('HTSK')">HTSK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sitalike</span></li><li onclick="addWaypoint('HTSL')">HTSL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msolwa</span></li><li onclick="addWaypoint('HTSM')">HTSM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masimba</span></li><li onclick="addWaypoint('HTSN')">HTSN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Seronera</span></li><li onclick="addWaypoint('HTSO')">HTSO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songea</span></li><li onclick="addWaypoint('HTSS')">HTSS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songosongo</span></li><li onclick="addWaypoint('HTST')">HTST &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Serengeti South</span></li><li onclick="addWaypoint('HTSU')">HTSU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sumbawanga</span></li><li onclick="addWaypoint('HTSW')">HTSW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kiswa</span></li><li onclick="addWaypoint('HTSY')">HTSY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shinyanga - Ibadakuli</span></li><li onclick="addWaypoint('HTTA')">HTTA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mngeta</span></li><li onclick="addWaypoint('HTTB')">HTTB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tabora</span></li><li onclick="addWaypoint('HTTC')">HTTC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Трс</span></li><li onclick="addWaypoint('HTTE')">HTTE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtemere</span></li><li onclick="addWaypoint('HTTF')">HTTF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwadui</span></li><li onclick="addWaypoint('HTTG')">HTTG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tanga</span></li><li onclick="addWaypoint('HTTJ')">HTTJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Handajega</span></li><li onclick="addWaypoint('HTTL')">HTTL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tulawaka</span></li><li onclick="addWaypoint('HTTN')">HTTN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magangwe</span></li><li onclick="addWaypoint('HTTO')">HTTO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kogatende</span></li><li onclick="addWaypoint('HTTR')">HTTR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarangire</span></li><li onclick="addWaypoint('HTTS')">HTTS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Milembwe</span></li><li onclick="addWaypoint('HTTU')">HTTU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tunduru</span></li><li onclick="addWaypoint('HTTV')">HTTV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msima</span></li><li onclick="addWaypoint('HTTX')">HTTX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarime</span></li><li onclick="addWaypoint('HTTY')">HTTY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Manyara South</span></li><li onclick="addWaypoint('HTTZ')">HTTZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tura</span></li><li onclick="addWaypoint('HTTI')">HTTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtibwa</span></li><li onclick="addWaypoint('HTUC')">HTUC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Turiani</span></li><li onclick="addWaypoint('HTUF')">HTUF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ugalla</span></li><li onclick="addWaypoint('HTUG')">HTUG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lugala</span></li><li onclick="addWaypoint('HTUK')">HTUK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ukerewe - Nansio</span></li><li onclick="addWaypoint('HTUN')">HTUN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Murungu</span></li><li onclick="addWaypoint('HTUO')">HTUO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Merugoi</span></li><li onclick="addWaypoint('HTUP')">HTUP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtemaupinde</span></li><li onclick="addWaypoint('HTUR')">HTUR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Urambo</span></li><li onclick="addWaypoint('HTUS')">HTUS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masusu</span></li><li onclick="addWaypoint('HTUT')">HTUT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Utete</span></li><li onclick="addWaypoint('HTUU')">HTUU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kalulu</span></li><li onclick="addWaypoint('HTUV')">HTUV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Uvinza</span></li><li onclick="addWaypoint('HTUW')">HTUW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nungwi</span></li><li onclick="addWaypoint('HTUZ')">HTUZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kuro</span></li><li onclick="addWaypoint('HTVR')">HTVR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buger</span></li><li onclick="addWaypoint('HTWA')">HTWA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sasakwa</span></li><li onclick="addWaypoint('HTWB')">HTWB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwiba</span></li><li onclick="addWaypoint('HTWH')">HTWH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Wazo Hill</span></li><li onclick="addWaypoint('HTWI')">HTWI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mchukwi</span></li><li onclick="addWaypoint('HTWK')">HTWK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">West Kilimanjaro</span></li><li onclick="addWaypoint('HTWS')">HTWS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kwamsisi</span></li><li onclick="addWaypoint('HTYA')">HTYA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibaya</span></li><li onclick="addWaypoint('HTYE')">HTYE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nyamonge</span></li><li onclick="addWaypoint('HTYO')">HTYO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Moyowosi</span></li><li onclick="addWaypoint('HTYW')">HTYW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Likuyu</span></li><li onclick="addWaypoint('HTYY')">HTYY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Yeye 2</span></li><li onclick="addWaypoint('HTZA')">HTZA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Zanzibar</span></li><li onclick="addWaypoint('HTZI')">HTZI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kisima (Mkomazi)</span></li><li onclick="addWaypoint('HTZW')">HTZW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ziwandu</span></li><li onclick="addWaypoint('IBGEN')">IBGEN</li><li onclick="addWaypoint('IBKOB')">IBKOB</li><li onclick="addWaypoint('IBMAR')">IBMAR</li><li onclick="addWaypoint('IBROP')">IBROP</li><li onclick="addWaypoint('IMDOM')">IMDOM</li><li onclick="addWaypoint('IMGEX')">IMGEX</li><li onclick="addWaypoint('IMKIX')">IMKIX</li><li onclick="addWaypoint('IMLAK')">IMLAK</li><li onclick="addWaypoint('IMPIL')">IMPIL</li><li onclick="addWaypoint('IMRAX')">IMRAX</li><li onclick="addWaypoint('IMROD')">IMROD</li><li onclick="addWaypoint('IMSAT')">IMSAT</li><li onclick="addWaypoint('ITBEX')">ITBEX</li><li onclick="addWaypoint('ITBOS')">ITBOS</li><li onclick="addWaypoint('ITGOP')">ITGOP</li><li onclick="addWaypoint('ITLAN')">ITLAN</li><li onclick="addWaypoint('ITMEN')">ITMEN</li><li onclick="addWaypoint('ITNOV')">ITNOV</li><li onclick="addWaypoint('ITOBO')">ITOBO</li><li onclick="addWaypoint('ITROM')">ITROM</li><li onclick="addWaypoint('ITSEV')">ITSEV</li><li onclick="addWaypoint('ITSOK')">ITSOK</li><li onclick="addWaypoint('IXAPA')">IXAPA</li><li onclick="addWaypoint('KASAMA NDB')">KS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasama NDB</span></li><li onclick="addWaypoint('KASIM')">KASIM</li><li onclick="addWaypoint('KB')">KB</li><li onclick="addWaypoint('KG')">KG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigoma NDB</span></li><li onclick="addWaypoint('KNM')">KNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigali DVOR</span></li><li onclick="addWaypoint('KINAN')">KINAN</li><li onclick="addWaypoint('KIRAWIRA A')">KIRAWIRA A</li><li onclick="addWaypoint('KISIR')">KISIR</li><li onclick="addWaypoint('KIVUR')">KIVUR</li><li onclick="addWaypoint('KL')">KL</li><li onclick="addWaypoint('KO')">KO</li><li onclick="addWaypoint('KOBEL')">KOBEL</li><li onclick="addWaypoint('KOGUT')">KOGUT</li><li onclick="addWaypoint('KV')">KV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimanjaro DVOR</span></li><li onclick="addWaypoint('LABAT')">LABAT</li><li onclick="addWaypoint('LOSIN')">LOSIN</li><li onclick="addWaypoint('LUGAP')">LUGAP</li><li onclick="addWaypoint('LUSOB')">LUSOB</li><li onclick="addWaypoint('MAGAD')">MAGAD</li><li onclick="addWaypoint('MB')">MB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbeya NDB</span></li><li onclick="addWaypoint('MIWAS')">MIWAS</li><li onclick="addWaypoint('MORU')">MORU</li><li onclick="addWaypoint('MPULULU')">MPULULU</li><li onclick="addWaypoint('MT')">MT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtwara NDB</span></li><li onclick="addWaypoint('MUMTU')">MUMTU</li><li onclick="addWaypoint('MV')">MV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwanza VOR</span></li><li onclick="addWaypoint('NAGON')">NAGON</li><li onclick="addWaypoint('NESAL')">NESAL</li><li onclick="addWaypoint('NESOX')">NESOX</li><li onclick="addWaypoint('NEXAD')">NEXAD</li><li onclick="addWaypoint('NIBOT')">NIBOT</li><li onclick="addWaypoint('NIDED')">NIDED</li><li onclick="addWaypoint('NIDEL')">NIDEL</li><li onclick="addWaypoint('NIDEX')">NIDEX</li><li onclick="addWaypoint('ODGAT')">ODGAT</li><li onclick="addWaypoint('OKDAS')">OKDAS</li><li onclick="addWaypoint('OKLOM')">OKLOM</li><li onclick="addWaypoint('OKMAS')">OKMAS</li><li onclick="addWaypoint('OKNES')">OKNES</li><li onclick="addWaypoint('OKPAB')">OKPAB</li><li onclick="addWaypoint('OKSIS')">OKSIS</li><li onclick="addWaypoint('OKSOT')">OKSOT</li><li onclick="addWaypoint('OKTEX')">OKTEX</li><li onclick="addWaypoint('OPDET')">OPDET</li><li onclick="addWaypoint('ORLIM')">ORLIM</li><li onclick="addWaypoint('OVANA')">OVANA</li><li onclick="addWaypoint('PARIN')">PARIN</li><li onclick="addWaypoint('PENOD')">PENOD</li><li onclick="addWaypoint('ROVUM')">ROVUM</li><li onclick="addWaypoint('SELRU')">SELRU</li><li onclick="addWaypoint('SINGI')">SINGI</li><li onclick="addWaypoint('TABNO')">TABNO</li><li onclick="addWaypoint('TABORA B')">TABORA B</li><li onclick="addWaypoint('TARANGILE 1')">TARANGILE 1</li><li onclick="addWaypoint('TB')">TB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tabora NDB</span></li><li onclick="addWaypoint('TEBLU')">TEBLU</li><li onclick="addWaypoint('THANDA')">THANDA&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Thanda Island Helipad</span></li><li onclick="addWaypoint('TIKAN')">TIKAN</li><li onclick="addWaypoint('UDMAM')">UDMAM</li><li onclick="addWaypoint('UDNOT')">UDNOT</li><li onclick="addWaypoint('UMTAP')">UMTAP</li><li onclick="addWaypoint('UNLEN')">UNLEN</li><li onclick="addWaypoint('USUBU')">USUBU</li><li onclick="addWaypoint('UTATA')">UTATA</li><li onclick="addWaypoint('UTEMA')">UTEMA</li><li onclick="addWaypoint('UTINA')">UTINA</li><li onclick="addWaypoint('UTOVU')">UTOVU</li><li onclick="addWaypoint('UVBOX')">UVBOX</li><li onclick="addWaypoint('UVDIX')">UVDIX</li><li onclick="addWaypoint('UVKAT')">UVKAT</li><li onclick="addWaypoint('UVKOD')">UVKOD</li><li onclick="addWaypoint('UVLED')">UVLED</li><li onclick="addWaypoint('UVMAN')">UVMAN</li><li onclick="addWaypoint('UVMEX')">UVMEX</li><li onclick="addWaypoint('UVMID')">UVMID</li><li onclick="addWaypoint('UVORA')">UVORA</li><li onclick="addWaypoint('UVUKO')">UVUKO</li><li onclick="addWaypoint('UVUMI')">UVUMI</li><li onclick="addWaypoint('XAKRI')">XAKRI</li><li onclick="addWaypoint('XINDA')">XINDA</li><li onclick="addWaypoint('ZV')">ZV</li><li onclick="addWaypoint('НТКВ')">НТКВ</li><li onclick="addWaypoint('SG')">SG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songea NDB</span></li>
 <li onclick="addWaypoint('TG')">TG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tanga NDB</span></li>
-<li data-distance="243.61" onclick="document.getElementById('dist').value = '243.61';"><span class="route-name">DV UA407 UVUKO</span><span class="route-distance"> (243.61 km)</span></li><li data-distance="277.80" onclick="document.getElementById('dist').value = '277.80';"><span class="route-name">DV UB400 NIDED</span><span class="route-distance"> (277.80 km)</span></li><li data-distance="424.92" onclick="document.getElementById('dist').value = '424.92';"><span class="route-name">DV UG424 AVIGO</span><span class="route-distance"> (424.92 km)</span></li><li data-distance="303.78" onclick="document.getElementById('dist').value = '303.78';"><span class="route-name">DV DCT ITSIR</span><span class="route-distance"> (303.78 km)</span></li><li data-distance="623.92" onclick="document.getElementById('dist').value = '623.92';"><span class="route-name">DV UG661 TABNO</span><span class="route-distance"> (623.92 km)</span></li><li data-distance="555.88" onclick="document.getElementById('dist').value = '555.88';"><span class="route-name">DV UA401 KINAN</span><span class="route-distance"> (555.88 km)</span></li><li data-distance="429.39" onclick="document.getElementById('dist').value = '429.39';"><span class="route-name">DV NAGON UT427 DUSKA</span><span class="route-distance"> (429.39 km)</span></li><li data-distance="473.43" onclick="document.getElementById('dist').value = '473.43';"><span class="route-name">DV UB533 EGTAN</span><span class="route-distance"> (473.43 km)</span></li><li data-distance="551.49" onclick="document.getElementById('dist').value = '551.49';"><span class="route-name">DV UG657 BONAP</span><span class="route-distance"> (551.49 km)</span></li><li data-distance="657.00" onclick="document.getElementById('dist').value = '657.00';"><span class="route-name">DV UB400 ROVUM</span><span class="route-distance"> (657.00 km)</span></li><li data-distance="677.02" onclick="document.getElementById('dist').value = '677.02';"><span class="route-name">DV UA407 ORLIM</span><span class="route-distance"> (677.02 km)</span></li><li data-distance="732.10" onclick="document.getElementById('dist').value = '732.10';"><span class="route-name">DV UG424 GESAT</span><span class="route-distance"> (732.10 km)</span></li><li data-distance="1046.94" onclick="document.getElementById('dist').value = '1046.94';"><span class="route-name">DV UB607 UDMAM</span><span class="route-distance"> (1046.94 km)</span></li><li data-distance="1082.75" onclick="document.getElementById('dist').value = '1082.75';"><span class="route-name">DV UW305 UB531 DATAN</span><span class="route-distance"> (1082.75 km)</span></li><li data-distance="910.33" onclick="document.getElementById('dist').value = '910.33';"><span class="route-name">DV UA401 LABAT</span><span class="route-distance"> (910.33 km)</span></li><li data-distance="529.45" onclick="document.getElementById('dist').value = '529.45';"><span class="route-name">DV DCT KV UTATA</span><span class="route-distance"> (529.45 km)</span></li><li data-distance="366.10" onclick="document.getElementById('dist').value = '366.10';"><span class="route-name">DV UL445 OKPAB</span><span class="route-distance"> (366.10 km)</span></li><li data-distance="447.09" onclick="document.getElementById('dist').value = '447.09';"><span class="route-name">DV MUMTU UT427 KV</span><span class="route-distance"> (447.09 km)</span></li><li data-distance="852.77" onclick="document.getElementById('dist').value = '852.77';"><span class="route-name">DV UW305 MZ</span><span class="route-distance"> (852.77 km)</span></li><li data-distance="482.56" onclick="document.getElementById('dist').value = '482.56';"><span class="route-name">DV MUMTU DCT AR</span><span class="route-distance"> (482.56 km)</span></li><li data-distance="1027.29" onclick="document.getElementById('dist').value = '1027.29';"><span class="route-name">DV UW305 DCT BK</span><span class="route-distance"> (1027.29 km)</span></li><li data-distance="414.61" onclick="document.getElementById('dist').value = '414.61';"><span class="route-name">DV IMSAT DCT DO</span><span class="route-distance"> (414.61 km)</span></li><li data-distance="395.07" onclick="document.getElementById('dist').value = '395.07';"><span class="route-name">DV DCT HTIR</span><span class="route-distance"> (395.07 km)</span></li><li data-distance="1100.64" onclick="document.getElementById('dist').value = '1100.64';"><span class="route-name">DV V282 HTKA</span><span class="route-distance"> (1100.64 km)</span></li><li data-distance="749.56" onclick="document.getElementById('dist').value = '749.56';"><span class="route-name">DV V282 HTTB</span><span class="route-distance"> (749.56 km)</span></li><li data-distance="199.40" onclick="document.getElementById('dist').value = '199.40';"><span class="route-name">DV DCT HTTG</span><span class="route-distance"> (199.40 km)</span></li><li data-distance="732.43" onclick="document.getElementById('dist').value = '732.43';"><span class="route-name">DV J228 HTSY</span><span class="route-distance"> (732.43 km)</span></li><li data-distance="396.27" onclick="document.getElementById('dist').value = '396.27';"><span class="route-name">DV T427/UT427 MT</span><span class="route-distance"> (396.27 km)</span></li><li data-distance="577.58" onclick="document.getElementById('dist').value = '577.58';"><span class="route-name">DV DCT HTSO</span><span class="route-distance"> (577.58 km)</span></li><li data-distance="192.94" onclick="document.getElementById('dist').value = '192.94';"><span class="route-name">DV DCT HTPE</span><span class="route-distance"> (192.94 km)</span></li><li data-distance="71.36" onclick="document.getElementById('dist').value = '71.36';"><span class="route-name">DV DCT HTZA</span><span class="route-distance"> (71.36 km)</span></li><li data-distance="82.36" onclick="document.getElementById('dist').value = '82.36';"><span class="route-name">KV UA727 UTATA</span><span class="route-distance"> (82.36 km)</span></li><li data-distance="190.11" onclick="document.getElementById('dist').value = '190.11';"><span class="route-name">KV UL434 ANVOX UM441 XAKRI</span><span class="route-distance"> (190.11 km)</span></li><li data-distance="90.17" onclick="document.getElementById('dist').value = '90.17';"><span class="route-name">KV UA610 OKNES</span><span class="route-distance"> (90.17 km)</span></li><li data-distance="1070.46" onclick="document.getElementById('dist').value = '1070.46';"><span class="route-name">KV DV UN306 UG661 TABNO</span><span class="route-distance"> (1070.46 km)</span></li><li data-distance="1002.97" onclick="document.getElementById('dist').value = '1002.97';"><span class="route-name">KV DV  UN306 UA401 KINAN</span><span class="route-distance"> (1002.97 km)</span></li><li data-distance="876.48" onclick="document.getElementById('dist').value = '876.48';"><span class="route-name">KV DV UN306 MT DUSKA</span><span class="route-distance"> (876.48 km)</span></li><li data-distance="903.46" onclick="document.getElementById('dist').value = '903.46';"><span class="route-name">KV DCT UTINA</span><span class="route-distance"> (903.46 km)</span></li><li data-distance="801.49" onclick="document.getElementById('dist').value = '801.49';"><span class="route-name">KV DCT MB UR779 GESAT</span><span class="route-distance"> (801.49 km)</span></li><li data-distance="794.03" onclick="document.getElementById('dist').value = '794.03';"><span class="route-name">KV DCT MB APKOL</span><span class="route-distance"> (794.03 km)</span></li><li data-distance="722.26" onclick="document.getElementById('dist').value = '722.26';"><span class="route-name">KV UB531 MV UM306 GETAB</span><span class="route-distance"> (722.26 km)</span></li><li data-distance="450.59" onclick="document.getElementById('dist').value = '450.59';"><span class="route-name">KV UA610 NESAL</span><span class="route-distance"> (450.59 km)</span></li><li data-distance="706.48" onclick="document.getElementById('dist').value = '706.48';"><span class="route-name">KV UB531 DATAN</span><span class="route-distance"> (706.48 km)</span></li><li data-distance="743.63" onclick="document.getElementById('dist').value = '743.63';"><span class="route-name">KV UB531 DCT ALSAR</span><span class="route-distance"> (743.63 km)</span></li><li data-distance="53.97" onclick="document.getElementById('dist').value = '53.97';"><span class="route-name">KV DCT AR</span><span class="route-distance"> (53.97 km)</span></li><li data-distance="338.58" onclick="document.getElementById('dist').value = '338.58';"><span class="route-name">KV DCT DO</span><span class="route-distance"> (338.58 km)</span></li><li data-distance="841.22" onclick="document.getElementById('dist').value = '841.22';"><span class="route-name">KV DCT HTKA</span><span class="route-distance"> (841.22 km)</span></li><li data-distance="476.50" onclick="document.getElementById('dist').value = '476.50';"><span class="route-name">KV UB531 HTMW</span><span class="route-distance"> (476.50 km)</span></li><li data-distance="843.68" onclick="document.getElementById('dist').value = '843.68';"><span class="route-name">KV UN306 HTMT</span><span class="route-distance"> (843.68 km)</span></li><li data-distance="508.50" onclick="document.getElementById('dist').value = '508.50';"><span class="route-name">KV DCT HTTB</span><span class="route-distance"> (508.50 km)</span></li><li data-distance="285.28" onclick="document.getElementById('dist').value = '285.28';"><span class="route-name">KV DCT HTTG</span><span class="route-distance"> (285.28 km)</span></li><li data-distance="362.34" onclick="document.getElementById('dist').value = '362.34';"><span class="route-name">KV DCT HTPE</span><span class="route-distance"> (362.34 km)</span></li><li data-distance="390.25" onclick="document.getElementById('dist').value = '390.25';"><span class="route-name">KV DCT GEREN DCT ZV</span><span class="route-distance"> (390.25 km)</span></li><li data-distance="920.52" onclick="document.getElementById('dist').value = '920.52';"><span class="route-name">KV UN306 DV UB533 EGTAN</span><span class="route-distance"> (920.52 km)</span></li><li data-distance="173.12" onclick="document.getElementById('dist').value = '173.12';"><span class="route-name">ZV DCT UVUKO</span><span class="route-distance"> (173.12 km)</span></li><li data-distance="220.59" onclick="document.getElementById('dist').value = '220.59';"><span class="route-name">ZV DCT NIDED</span><span class="route-distance"> (220.59 km)</span></li><li data-distance="200.90" onclick="document.getElementById('dist').value = '200.90';"><span class="route-name">ZV DCT AVIGO</span><span class="route-distance"> (200.90 km)</span></li><li data-distance="299.34" onclick="document.getElementById('dist').value = '299.34';"><span class="route-name">ZV DCT ITSIR</span><span class="route-distance"> (299.34 km)</span></li><li data-distance="695.28" onclick="document.getElementById('dist').value = '695.28';"><span class="route-name">ZV DV TABNO</span><span class="route-distance"> (695.28 km)</span></li><li data-distance="627.24" onclick="document.getElementById('dist').value = '627.24';"><span class="route-name">ZV DV KINAN</span><span class="route-distance"> (627.24 km)</span></li><li data-distance="500.74" onclick="document.getElementById('dist').value = '500.74';"><span class="route-name">ZV DCT NAGON UN306 DUSKA</span><span class="route-distance"> (500.74 km)</span></li><li data-distance="622.85" onclick="document.getElementById('dist').value = '622.85';"><span class="route-name">ZV DCT BONAP</span><span class="route-distance"> (622.85 km)</span></li><li data-distance="728.39" onclick="document.getElementById('dist').value = '728.39';"><span class="route-name">ZV DCT ROVUM</span><span class="route-distance"> (728.39 km)</span></li><li data-distance="748.37" onclick="document.getElementById('dist').value = '748.37';"><span class="route-name">ZV DCT ORLIM</span><span class="route-distance"> (748.37 km)</span></li><li data-distance="1017.99" onclick="document.getElementById('dist').value = '1017.99';"><span class="route-name">ZV DCT ITGOP UDMAM</span><span class="route-distance"> (1017.99 km)</span></li><li data-distance="1053.81" onclick="document.getElementById('dist').value = '1053.81';"><span class="route-name">ZV DCT MZ DATAN</span><span class="route-distance"> (1053.81 km)</span></li><li data-distance="881.39" onclick="document.getElementById('dist').value = '881.39';"><span class="route-name">ZV DCT LABAT</span><span class="route-distance"> (881.39 km)</span></li><li data-distance="302.95" onclick="document.getElementById('dist').value = '302.95';"><span class="route-name">ZV DCT GEREN LUDOL</span><span class="route-distance"> (302.95 km)</span></li><li data-distance="264.84" onclick="document.getElementById('dist').value = '264.84';"><span class="route-name">ZV UT913 DUNDO DCT EPTEL</span><span class="route-distance"> (264.84 km)</span></li><li data-distance="237.06" onclick="document.getElementById('dist').value = '237.06';"><span class="route-name">EPTEL  UT913 TG DCT ZV</span><span class="route-distance"> (237.06 km)</span></li><li data-distance="544.78" onclick="document.getElementById('dist').value = '544.78';"><span class="route-name">ZV DV UB533</span><span class="route-distance"> (544.78 km)</span></li><li data-distance="429.85" onclick="document.getElementById('dist').value = '429.85';"><span class="route-name">ZV DCT AR</span><span class="route-distance"> (429.85 km)</span></li><li data-distance="823.83" onclick="document.getElementById('dist').value = '823.83';"><span class="route-name">ZV DCT ITGOP UW305 MZ</span><span class="route-distance"> (823.83 km)</span></li><li data-distance="126.81" onclick="document.getElementById('dist').value = '126.81';"><span class="route-name">ZV DCT HTPE</span><span class="route-distance"> (126.81 km)</span></li><li data-distance="1071.75" onclick="document.getElementById('dist').value = '1071.75';"><span class="route-name">ZV ITGOP HTKA</span><span class="route-distance"> (1071.75 km)</span></li><li data-distance="720.63" onclick="document.getElementById('dist').value = '720.63';"><span class="route-name">ZV ITGOP HTTB</span><span class="route-distance"> (720.63 km)</span></li><li data-distance="180.87" onclick="document.getElementById('dist').value = '180.87';"><span class="route-name">MZ UG656 APNAD</span><span class="route-distance"> (180.87 km)</span></li><li data-distance="280.78" onclick="document.getElementById('dist').value = '280.78';"><span class="route-name">MZ UG450 PARIN</span><span class="route-distance"> (280.78 km)</span></li><li data-distance="566.42" onclick="document.getElementById('dist').value = '566.42';"><span class="route-name">MZ UB531 UA610 OKNES</span><span class="route-distance"> (566.42 km)</span></li><li data-distance="1476.69" onclick="document.getElementById('dist').value = '1476.69';"><span class="route-name">MZ UW305 UG661 TABNO</span><span class="route-distance"> (1476.69 km)</span></li><li data-distance="1408.65" onclick="document.getElementById('dist').value = '1408.65';"><span class="route-name">MZ UW305 UA401 KINAN</span><span class="route-distance"> (1408.65 km)</span></li><li data-distance="1282.16" onclick="document.getElementById('dist').value = '1282.16';"><span class="route-name">MZ UW305 DV UN306 DUSKA</span><span class="route-distance"> (1282.16 km)</span></li><li data-distance="1053.97" onclick="document.getElementById('dist').value = '1053.97';"><span class="route-name">MZ DCT ROVOM</span><span class="route-distance"> (1053.97 km)</span></li><li data-distance="796.17" onclick="document.getElementById('dist').value = '796.17';"><span class="route-name">MZ UG656 OVANA</span><span class="route-distance"> (796.17 km)</span></li><li data-distance="783.43" onclick="document.getElementById('dist').value = '783.43';"><span class="route-name">MZ UG656 UA405 APKOL</span><span class="route-distance"> (783.43 km)</span></li><li data-distance="790.90" onclick="document.getElementById('dist').value = '790.90';"><span class="route-name">MZ UG656 UR779 GESAT</span><span class="route-distance"> (790.90 km)</span></li><li data-distance="640.40" onclick="document.getElementById('dist').value = '640.40';"><span class="route-name">MZ UR784 UVORA</span><span class="route-distance"> (640.40 km)</span></li><li data-distance="199.89" onclick="document.getElementById('dist').value = '199.89';"><span class="route-name">MZ UT146 AKUMU</span><span class="route-distance"> (199.89 km)</span></li><li data-distance="245.56" onclick="document.getElementById('dist').value = '245.56';"><span class="route-name">MZ UG450 GETAB</span><span class="route-distance"> (245.56 km)</span></li><li data-distance="230.13" onclick="document.getElementById('dist').value = '230.13';"><span class="route-name">MZ UB531 DATAN</span><span class="route-distance"> (230.13 km)</span></li><li data-distance="267.13" onclick="document.getElementById('dist').value = '267.13';"><span class="route-name">MZ DCT ALSAR</span><span class="route-distance"> (267.13 km)</span></li><li data-distance="290.10" onclick="document.getElementById('dist').value = '290.10';"><span class="route-name">MZ DCT HTTB</span><span class="route-distance"> (290.10 km)</span></li><li data-distance="452.04" onclick="document.getElementById('dist').value = '452.04';"><span class="route-name">MZ DCT HTKA</span><span class="route-distance"> (452.04 km)</span></li><li data-distance="476.50" onclick="document.getElementById('dist').value = '476.50';"><span class="route-name">MZ DCT HTKJ</span><span class="route-distance"> (476.50 km)</span></li><li data-distance="742.00" onclick="document.getElementById('dist').value = '742.00';"><span class="route-name">MZ DCT TG</span><span class="route-distance"> (742.00 km)</span></li><li data-distance="717.24" onclick="document.getElementById('dist').value = '717.24';"><span class="route-name">MZ UG656 HTGW</span><span class="route-distance"> (717.24 km)</span></li><li data-distance="422.83" onclick="document.getElementById('dist').value = '422.83';"><span class="route-name">MZ DCT AR</span><span class="route-distance"> (422.83 km)</span></li><li data-distance="824.77" onclick="document.getElementById('dist').value = '824.77';"><span class="route-name">MZ DCT HTPE</span><span class="route-distance"> (824.77 km)</span></li><li data-distance="1053.81" onclick="document.getElementById('dist').value = '1053.81';"><span class="route-name">MZ DATAN DCT ZV</span><span class="route-distance"> (1053.81 km)</span></li><li data-distance="516.93" onclick="document.getElementById('dist').value = '516.93';"><span class="route-name">MZ DCT DO</span><span class="route-distance"> (516.93 km)</span></li><li data-distance="1249.04" onclick="document.getElementById('dist').value = '1249.04';"><span class="route-name">MZ UW305 ITGOP DV UN306 MT</span><span class="route-distance"> (1249.04 km)</span></li><li data-distance="1053.97" onclick="document.getElementById('dist').value = '1053.97';"><span class="route-name">MZ DCT HTSO</span><span class="route-distance"> (1053.97 km)</span></li><li data-distance="657.70" onclick="document.getElementById('dist').value = '657.70';"><span class="route-name">MZ DCT HTIR</span><span class="route-distance"> (657.70 km)</span></li><li data-distance="820.55" onclick="document.getElementById('dist').value = '820.55';"><span class="route-name">SW MB UP312 LOSIN EVATO</span><span class="route-distance"> (820.55 km)</span></li><li data-distance="951.32" onclick="document.getElementById('dist').value = '951.32';"><span class="route-name">SW MB UG656 UB531 DATAN</span><span class="route-distance"> (951.32 km)</span></li><li data-distance="902.07" onclick="document.getElementById('dist').value = '902.07';"><span class="route-name">SW MB UG656 APNAD</span><span class="route-distance"> (902.07 km)</span></li><li data-distance="808.32" onclick="document.getElementById('dist').value = '808.32';"><span class="route-name">SW MB UG656 UB607 UDMAM</span><span class="route-distance"> (808.32 km)</span></li><li data-distance="97.49" onclick="document.getElementById('dist').value = '97.49';"><span class="route-name">SW UG656 OVANA</span><span class="route-distance"> (97.49 km)</span></li><li data-distance="62.93" onclick="document.getElementById('dist').value = '62.93';"><span class="route-name">SW UA405 APKOL</span><span class="route-distance"> (62.93 km)</span></li><li data-distance="62.19" onclick="document.getElementById('dist').value = '62.19';"><span class="route-name">SW UR779 GESAT</span><span class="route-distance"> (62.19 km)</span></li><li data-distance="70.91" onclick="document.getElementById('dist').value = '70.91';"><span class="route-name">SW UB530 UTEMA</span><span class="route-distance"> (70.91 km)</span></li><li data-distance="598.14" onclick="document.getElementById('dist').value = '598.14';"><span class="route-name">SW DCT HTKA</span><span class="route-distance"> (598.14 km)</span></li><li data-distance="717.24" onclick="document.getElementById('dist').value = '717.24';"><span class="route-name">SW UG656 MZ</span><span class="route-distance"> (717.24 km)</span></li><li data-distance="778.45" onclick="document.getElementById('dist').value = '778.45';"><span class="route-name">SW UP312 NIDEX HTKJ</span><span class="route-distance"> (778.45 km)</span></li><li data-distance="737.74" onclick="document.getElementById('dist').value = '737.74';"><span class="route-name">SW UP312 NIDEX DCT AR</span><span class="route-distance"> (737.74 km)</span></li><li data-distance="694.00" onclick="document.getElementById('dist').value = '694.00';"><span class="route-name">SW DCT HTDA</span><span class="route-distance"> (694.00 km)</span></li><li data-distance="886.89" onclick="document.getElementById('dist').value = '886.89';"><span class="route-name">SW DCT HTPE</span><span class="route-distance"> (886.89 km)</span></li><li data-distance="765.36" onclick="document.getElementById('dist').value = '765.36';"><span class="route-name">SW DCT HTZA</span><span class="route-distance"> (765.36 km)</span></li><li data-distance="893.40" onclick="document.getElementById('dist').value = '893.40';"><span class="route-name">SW DCT HTTG</span><span class="route-distance"> (893.40 km)</span></li><li data-distance="415.87" onclick="document.getElementById('dist').value = '415.87';"><span class="route-name">SW DCT DO</span><span class="route-distance"> (415.87 km)</span></li><li data-distance="308.14" onclick="document.getElementById('dist').value = '308.14';"><span class="route-name">SW DCT HTIR</span><span class="route-distance"> (308.14 km)</span></li><li data-distance="774.80" onclick="document.getElementById('dist').value = '774.80';"><span class="route-name">SW DCT HTMT</span><span class="route-distance"> (774.80 km)</span></li><li data-distance="323.84" onclick="document.getElementById('dist').value = '323.84';"><span class="route-name">SW DCT HTSO</span><span class="route-distance"> (323.84 km)</span></li><li data-distance="212.35" onclick="document.getElementById('dist').value = '212.35';"><span class="route-name">SW DCT SUMBAWANGA(HTSU)</span><span class="route-distance"> (212.35 km)</span></li><li data-distance="372.59" onclick="document.getElementById('dist').value = '372.59';"><span class="route-name">SW DCT MPANDA(HTMP)</span><span class="route-distance"> (372.59 km)</span></li><li data-distance="455.07" onclick="document.getElementById('dist').value = '455.07';"><span class="route-name">SW DCT UG656 PENOD DCT TB</span><span class="route-distance"> (455.07 km)</span></li><li data-distance="431.52" onclick="document.getElementById('dist').value = '431.52';"><span class="route-name">DO UM315 LOSIN UP312 EVATO</span><span class="route-distance"> (431.52 km)</span></li><li data-distance="570.42" onclick="document.getElementById('dist').value = '570.42';"><span class="route-name">DO UM315 UTINA</span><span class="route-distance"> (570.42 km)</span></li><li data-distance="455.59" onclick="document.getElementById('dist').value = '455.59';"><span class="route-name">DO DCT APKOL</span><span class="route-distance"> (455.59 km)</span></li><li data-distance="466.70" onclick="document.getElementById('dist').value = '466.70';"><span class="route-name">DO DCT GESAT</span><span class="route-distance"> (466.70 km)</span></li><li data-distance="455.59" onclick="document.getElementById('dist').value = '455.59';"><span class="route-name">DO DCT OVANA</span><span class="route-distance"> (455.59 km)</span></li><li data-distance="481.52" onclick="document.getElementById('dist').value = '481.52';"><span class="route-name">DO MB UB530 UTEMA</span><span class="route-distance"> (481.52 km)</span></li><li data-distance="494.48" onclick="document.getElementById('dist').value = '494.48';"><span class="route-name">DO DCT BILAK</span><span class="route-distance"> (494.48 km)</span></li><li data-distance="514.86" onclick="document.getElementById('dist').value = '514.86';"><span class="route-name">DO DCT UDNOT</span><span class="route-distance"> (514.86 km)</span></li><li data-distance="651.90" onclick="document.getElementById('dist').value = '651.90';"><span class="route-name">DO DCT UDMAM</span><span class="route-distance"> (651.90 km)</span></li><li data-distance="701.91" onclick="document.getElementById('dist').value = '701.91';"><span class="route-name">DO DCT DATAN</span><span class="route-distance"> (701.91 km)</span></li><li data-distance="696.35" onclick="document.getElementById('dist').value = '696.35';"><span class="route-name">DO MZ ITROM UG656 APNAD</span><span class="route-distance"> (696.35 km)</span></li><li data-distance="418.55" onclick="document.getElementById('dist').value = '418.55';"><span class="route-name">DO UT912 APDIK</span><span class="route-distance"> (418.55 km)</span></li><li data-distance="653.76" onclick="document.getElementById('dist').value = '653.76';"><span class="route-name">DO DCT GETAB</span><span class="route-distance"> (653.76 km)</span></li><li data-distance="616.72" onclick="document.getElementById('dist').value = '616.72';"><span class="route-name">DO DCT HTSU DCT ESRES</span><span class="route-distance"> (616.72 km)</span></li><li data-distance="342.62" onclick="document.getElementById('dist').value = '342.62';"><span class="route-name">DO DCT HTTB</span><span class="route-distance"> (342.62 km)</span></li><li data-distance="324.10" onclick="document.getElementById('dist').value = '324.10';"><span class="route-name">DO DCT HTAR</span><span class="route-distance"> (324.10 km)</span></li><li data-distance="388.92" onclick="document.getElementById('dist').value = '388.92';"><span class="route-name">DO DCT HTTG</span><span class="route-distance"> (388.92 km)</span></li><li data-distance="383.36" onclick="document.getElementById('dist').value = '383.36';"><span class="route-name">DO ITGOP DCT HTZA</span><span class="route-distance"> (383.36 km)</span></li><li data-distance="483.37" onclick="document.getElementById('dist').value = '483.37';"><span class="route-name">DO ITGOP DCT HTPE</span><span class="route-distance"> (483.37 km)</span></li><li data-distance="500.04" onclick="document.getElementById('dist').value = '500.04';"><span class="route-name">DO DCT HTSO</span><span class="route-distance"> (500.04 km)</span></li><li data-distance="688.94" onclick="document.getElementById('dist').value = '688.94';"><span class="route-name">DO DCT HTKA</span><span class="route-distance"> (688.94 km)</span></li><li data-distance="809.32" onclick="document.getElementById('dist').value = '809.32';"><span class="route-name">DO IMSAT DV DCT HTMT</span><span class="route-distance"> (809.32 km)</span></li><li data-distance="331.51" onclick="document.getElementById('dist').value = '331.51';"><span class="route-name">DO DCT MPANDA(HTMP)</span><span class="route-distance"> (331.51 km)</span></li><li data-distance="187.05" onclick="document.getElementById('dist').value = '187.05';"><span class="route-name">DO DCT HTSD(SINGIDA)</span><span class="route-distance"> (187.05 km)</span></li><li data-distance="375.96" onclick="document.getElementById('dist').value = '375.96';"><span class="route-name">DO DCT HTSY(SHINYANGA)</span><span class="route-distance"> (375.96 km)</span></li><li data-distance="33.34" onclick="document.getElementById('dist').value = '33.34';"><span class="route-name">MT DUSKA</span><span class="route-distance"> (33.34 km)</span></li><li data-distance="633.38" onclick="document.getElementById('dist').value = '633.38';"><span class="route-name">MT DCT SG ORLIM</span><span class="route-distance"> (633.38 km)</span></li><li data-distance="251.87" onclick="document.getElementById('dist').value = '251.87';"><span class="route-name">MT DCT KINAN</span><span class="route-distance"> (251.87 km)</span></li><li data-distance="761.17" onclick="document.getElementById('dist').value = '761.17';"><span class="route-name">MT UT427 DV UB533 LUDOL</span><span class="route-distance"> (761.17 km)</span></li><li data-distance="644.50" onclick="document.getElementById('dist').value = '644.50';"><span class="route-name">MT UT427 DV UA407 UVUKO</span><span class="route-distance"> (644.50 km)</span></li><li data-distance="635.24" onclick="document.getElementById('dist').value = '635.24';"><span class="route-name">MT UT427 DV UG424 AVIGO</span><span class="route-distance"> (635.24 km)</span></li><li data-distance="1305.66" onclick="document.getElementById('dist').value = '1305.66';"><span class="route-name">MT UT427 DV UA401 LABAT</span><span class="route-distance"> (1305.66 km)</span></li><li data-distance="464.85" onclick="document.getElementById('dist').value = '464.85';"><span class="route-name">MT UT427 DV HTZA</span><span class="route-distance"> (464.85 km)</span></li><li data-distance="505.60" onclick="document.getElementById('dist').value = '505.60';"><span class="route-name">MT DCT HTSO</span><span class="route-distance"> (505.60 km)</span></li><li data-distance="563.01" onclick="document.getElementById('dist').value = '563.01';"><span class="route-name">MT DCT HTPE</span><span class="route-distance"> (563.01 km)</span></li><li data-distance="600.05" onclick="document.getElementById('dist').value = '600.05';"><span class="route-name">MT DCT ZV HTTG</span><span class="route-distance"> (600.05 km)</span></li><li data-distance="811.18" onclick="document.getElementById('dist').value = '811.18';"><span class="route-name">MT DV ITGOP IMSAT DO</span><span class="route-distance"> (811.18 km)</span></li><li data-distance="976.00" onclick="document.getElementById('dist').value = '976.00';"><span class="route-name">MT DV ITGOP IMSAT DO DCT IR</span><span class="route-distance"> (976.00 km)</span></li></ul>
+</ul>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
         const waypointList = document.getElementById('waypointList');
-        if (waypointList) {
+        
+        // Global error handler to hide waypoints list on JavaScript errors
+        window.addEventListener('error', function(event) {
+            if (waypointList) {
+                waypointList.style.display = 'none';
+            }
+        });
+        
+        // Also handle unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(event) {
+            if (waypointList) {
+                waypointList.style.display = 'none';
+            }
+        });
+        
+        if (searchInput && waypointList) {
+            // Hide waypoint list when input loses focus
+            searchInput.addEventListener('blur', function() {
+                setTimeout(() => {
+                    waypointList.style.display = 'none';
+                }, 200); // Small delay to allow clicking on list items
+            });
+            
+            // Show waypoint list when input gains focus
+            searchInput.addEventListener('focus', function() {
+                if (searchInput.value.trim() !== '') {
+                    waypointList.style.display = 'block';
+                }
+            });
+            
+            // Hide waypoint list when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!searchInput.contains(event.target) && !waypointList.contains(event.target)) {
+                    waypointList.style.display = 'none';
+                }
+            });
+            
+            // Hide waypoint list when clicking on list items
             waypointList.addEventListener('click', function(event) {
                 if (event.target && event.target.tagName === 'LI') {
                     waypointList.style.display = 'none';
+                    searchInput.value = ''; // Clear search input
                 }
             });
         }
     });
-    </script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const waypointList = document.getElementById('waypointList');
-        const routeDisplay = document.getElementById('routeDisplay');
-        const typedInput = document.getElementById('searchInput'); // Assuming the input box has id 'searchInput'
-
-        if (waypointList) {
-            waypointList.addEventListener('click', function(event) {
-                if (event.target.tagName === 'LI' || event.target.parentElement.tagName === 'LI') {
-                    const selectedLi = event.target.tagName === 'LI' ? event.target : event.target.parentElement;
-                    const routeName = selectedLi.querySelector('.route-name').textContent.trim();
-                    const routeDistance = selectedLi.querySelector('.route-distance').textContent.trim();
-
-                    // Set the route display to show only the route name
-                    if (routeDisplay) {
-                        routeDisplay.textContent = routeName;
-                    }
-
-                    // Hide the dropdown list
-                    waypointList.style.display = 'none';
-
-                    // Populate the distance in the input field (if exists)
-                    const distInput = document.getElementById('dist');
-                    if (distInput) {
-                        distInput.value = routeDistance.replace(/[()km]/g, '').trim();
-                    }
-
-                    // Clear the typed input field
-                    if (typedInput) {
-                        typedInput.value = '';
-                    }
-                }
-            });
-        }
-    });
-    </script>
+</script>
 
 <div id="routeDisplay">
-<div class="route-container"><strong>Route:</strong>
-<span id="routeWaypoints">None</span></div>
-<p class="instructions">(Drag to rearrange waypoints. Click to remove waypoints.)</p>
+<div class="route-container">
+<div class="info-icon" data-tooltip="Drag to rearrange waypoints. Click to remove waypoints.">i</div>
+<strong>Route:</strong>
+<span id="routeWaypoints"><span>NONE</span></span>
 </div>
-<div id="output" style="margin: 30px 0 30px 0;"></div>
+</div>
+<div id="output" style="margin: 30px 0 30px 0; z-index: 100002;"></div>
 <div id="actionContainer">
 <button id="calculateDistanceButton" onclick="calculateDistance()">Distance</button>
 <button id="toggleCoordinatesButton" onclick="toggleCoordinates()">Coordinates</button>
@@ -8732,19 +8159,128 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </style>
 </div>
-<div id="split-inputContainer">
-<div class="split-input">
-<span class="placeholder-text">MTOW</span>
-<input id="mtow" placeholder="" style="text-align: center; justify-content: center; vertical-align: middle;" type="number">
+<style>
+    /* Mobile-specific fixes for input layout */
+    @media (max-width: 480px) {
+        /* Override #split-inputContainer completely */
+        #split-inputContainer {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 15px !important;
+            width: 100% !important;
+            margin: 20px 0 20px 0 !important;
+            height: auto !important;
+        }
+        
+        /* Target ALL flex containers with our input structure */
+        #split-inputContainer > div,
+        div[style*="display: flex"][style*="justify-content: space-between"],
+        div[style*="margin-bottom: 15px"] > div,
+        div[style*="margin-top: 15px"] > div {
+            flex-direction: row !important;
+            gap: 10px !important;
+            width: 100% !important;
+            justify-content: space-between !important;
+            margin: 0 !important;
+        }
+        
+        /* Force all arrival/departure containers to have consistent spacing */
+        div[style*="margin-bottom: 15px"],
+        div[style*="margin-top: 15px"] {
+            margin: 0 0 20px 0 !important;
+        }
+        
+        /* Specifically target the exact containers */
+        div[style*="margin-bottom: 15px;"] > div,
+        div[style*="margin-top: 15px;"] > div {
+            flex-direction: row !important;
+            gap: 10px !important;
+            width: 100% !important;
+            justify-content: space-between !important;
+        }
+        
+        /* Force ALL input containers to equal width on mobile */
+        #split-inputContainer > div > div,
+        div[style*="display: flex"] > div[style*="position: relative"],
+        div[style*="position: relative"] {
+            position: relative !important;
+            flex: 1 !important;
+            width: calc(50% - 7.5px) !important;
+            max-width: calc(50% - 7.5px) !important;
+            min-width: calc(50% - 7.5px) !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Ensure all inputs display properly in their containers */
+        input[type="text"], input[type="number"], input[type="time"], input[type="date"] {
+            width: 100% !important;
+            height: 60px !important;
+            font-family: 'SF Pro Display' !important;
+            text-align: center !important;
+            border: 1px solid #0ea5e9 !important;
+            border-radius: 4px !important;
+            box-sizing: border-box !important;
+            outline: none !important;
+            font-size: 16px !important;
+        }
+        
+        /* Override any flex: 2 with !important */
+        div[style*="flex: 2"],
+        div[style*="position: relative"][style*="flex: 2"],
+        div[style*="flex: 2"] {
+            flex: 1 !important;
+            width: calc(50% - 7.5px) !important;
+            max-width: calc(50% - 7.5px) !important;
+            min-width: calc(50% - 7.5px) !important;
+        }
+        
+        /* Override all split-input CSS on mobile */
+        .split-input,
+        .split-input *,
+        .split-input > *,
+        .split-input input,
+        .split-input .placeholder-text {
+            flex: 1 !important;
+            width: calc(50% - 7.5px) !important;
+            max-width: calc(50% - 7.5px) !important;
+            border: 1px solid #0ea5e9 !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Force all inputs to use equal width */
+        #Arrival_time, #Arrival_date, #Departure_time, #Departure_date,
+        #Arrival_time ~ *, #Arrival_date ~ *, #Departure_time ~ *, #Departure_date ~ * {
+            flex: 1 !important;
+            width: calc(50% - 7.5px) !important;
+            max-width: calc(50% - 7.5px) !important;
+        }
+        
+        /* Target the specific input containers */
+        #Arrival_time, #Arrival_date, #Departure_time, #Departure_date {
+            flex: 1 !important;
+        }
+        
+        #Arrival_time ~ div, #Arrival_date ~ div, #Departure_time ~ div, #Departure_date ~ div {
+            flex: 1 !important;
+            width: calc(50% - 7.5px) !important;
+        }
+    }
+</style>
+<div id="split-inputContainer" style="margin-bottom: 15px; width: 100%; overflow: visible; box-sizing: border-box; position: relative; z-index: 99998;">
+<div style="display: flex; justify-content: space-between; gap: 7px; width: 100%; overflow: visible; box-sizing: border-box;">
+<div style="position: relative; flex: 1 !important;">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 100001;">MTOW (tonnes)</label>
+    <input id="mtow" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="number">
 </div>
-<div class="split-input">
-<span class="placeholder-text">DIST</span>
-<input id="dist" placeholder="" style="text-align: center;  justify-content: center;vertical-align: middle;" type="number">
+<div style="position: relative; flex: 1 !important;">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 100001;">DIST (km)</label>
+    <input id="dist" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="number">
+</div>
 </div>
 <style>
         #split-inputContainer {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             appearance: none; 
             align-items: center;    
             gap: 7px; 
@@ -8781,18 +8317,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </style>
 </div>
-<div style="margin-bottom: 0;">
-<div style="display: flex; justify-content: space-between; gap: 7px;">
-<div class="split-input"><div class="placeholder-text">Arrival</div><input id="Arrival_time" style="flex: 1; font-family: 'SF Pro Display'; text-align:center; padding: 0; padding-right: 10px;" type="time"></div>
-<div class="split-input"><input id="Arrival_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding-left: 10px; padding-right: 40px;" type="date" placeholder="DD/MM/YYYY"></div>
+<div style="margin-bottom: 15px;">
+<div style="display: flex; justify-content: space-between; gap: 7px !important;">
+<div style="position: relative; flex: 1 !important;">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Arrival Time</label>
+    <input id="Arrival_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="time">
+</div>
+<div style="position: relative; flex: 1 !important;">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Arrival Date</label>
+    <input id="Arrival_date" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
+</div>
 </div>
 </div>
 
-<div style="margin-bottom: 0;">
-<div style="display: flex; justify-content: space-between; gap: 7px;">
-<div class="split-input"><div class="placeholder-text">Departure</div><input id="Departure_time" style="flex:  1; font-family: 'SF Pro Display'; text-align:center; padding: 0; padding-right: 10px;" type="time"></div>
-
-<div class="split-input"><input id="Departure_date" style="flex: 2; font-family: 'SF Pro Display'; text-align:center; color: #004185; padding-left: 10px; padding-right: 40px;" type="date" placeholder="DD/MM/YYYY"></div>
+<div style="margin-top: 15px;">
+<div style="display: flex; justify-content: space-between; gap: 7px !important;">
+<div style="position: relative; flex: 1 !important;">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Departure Time</label>
+    <input id="Departure_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="time">
+</div>
+<div style="position: relative; flex: 1 !important;">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Departure Date</label>
+    <input id="Departure_date" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
+</div>
 </div>
 
 <!-- <p id="ancDisplay"></p> -->
@@ -8805,7 +8352,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <button id="clearButton" onclick="location.reload();">CLEAR</button>
 </div>
 
-<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; border: none; display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); background: rgba(255, 255, 255, 0.5); z-index: 1500; ">
+<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; border: none; display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); background: rgba(255, 255, 255, 0.7); z-index: 999998; pointer-events: all; cursor: not-allowed;">
 
 <!-- code for lines pattern -->
     <!--<div class="lines"><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span></div>
@@ -8824,38 +8371,39 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <!-- Popup Modal -->
-<div id="resultPopup" style="position: fixed; display: none; width: 250px; border-radius: 10px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background: white; border: none; padding: 0; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);"> 
+<div id="resultPopup" style="position: fixed; display: none; width: 250px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000000; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #1976d2; padding: 0; box-shadow: 0px 4px 15px rgba(25, 118, 210, 0.3);"> 
 
 
   <!--<h2>Calculation Results</h2>-->
-  <div class="popup-header" style="background-color: #0078d4; border-top-left-radius: 10px; border-top-right-radius: 10px; color: #fff; height: 30px; width: 100%; padding: 0 0 20px 0; font-size: 18px; margin-bottom: 10px; font-weight: bold;"></div>
+  <div class="popup-header" style="background: linear-gradient(135deg, #0078d4 0%, #1358bf 100%); color: #fff; height: 40px; width: 100%; padding: 0; font-size: 16px; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);">
+  </div>
 
-    <div id="popupText" style="/*font-family: Disket Mono; font: Disket Mono*/ font-family: 'SF Pro Display'; letter-spacing: 1px;  font-size: 18px; text-align: center;">
-      <p id="stlfFeeValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="ancValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="safFeeValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="pkgFeeValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="landingValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="secFeeValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="nightLandingValue"></p>
-      <span style="display: block; width: 100%; height: 0.5px; background-color: #6cb4ef; margin: 10px 0;"></span>
-      <p id="nightTakeOffValue"></p>
+    <div id="popupText" style="font-family: 'SF Pro Display'; letter-spacing: 0.8px; font-size: 16px; text-align: center; padding: 0 15px;">
+      <div style="margin: 8px 0; font-weight: 500; color: #004185; padding-top: 8px;">STL: <span id="stlValue"></span><span style="color: red;">*</span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">ANC: <span id="ancValue"></span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">PKG: <span id="pkgValue"></span><span style="color: red;">*</span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">LAN: <span id="lanValue"></span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">SAF: <span id="safValue"></span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">SEC: <span id="secValue"></span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">NLA: <span id="nlaValue"></span><span style="color: red;">*</span></div>
+      <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
+      <div style="margin: 8px 0; font-weight: 500; color: #004185;">NTK: <span id="ntkValue"></span><span style="color: red;">*</span></div>
     </div>
 
 
   <div id="popupButtonsContainer">
-  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background-color: #0078d4; height: 50px; cursor: pointer; background: none; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0;" class="close-icon" onclick="closePopup()" onmouseover="this.style.backgroundColor='#1358bf';" onmouseout="this.style.backgroundColor='#0078d4';">
+  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background: #0078d4; height: 40px; cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);" class="close-icon" onclick="closePopup()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: block; margin: 0 auto;">
       <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
-  <button onclick="copyContent()" style="height: 50px; background-color: #0078d4; border-bottom-left-radius: 10px; bottom: 0; border-bottom-right-radius: 10px; border-top-left-radius: 0; border-top-right-radius: 0;" id="copyButton" onmouseover="this.style.backgroundColor='#1358bf';" onmouseout="this.style.backgroundColor='#0078d4';">
+  <button onclick="copyContent()" style="height: 40px; background: #0078d4; border: none; border-radius: 0; color: white; font-weight: 500; letter-spacing: 0.5px; box-shadow: 0 -2px 8px rgba(0, 120, 212, 0.2);" id="copyButton">
     <i class="fas fa-copy"></i>
   </button>
   </div>  
@@ -8985,15 +8533,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Display results in popup
 document.getElementById("CALCULATEButton").addEventListener("click", function () {
-    document.getElementById("ancValue").innerHTML = `ANC: ${calculateANC()}`;
-    document.getElementById("stlfFeeValue").innerHTML = `<span style="color: red;">*</span>STL: ${calculateSTLF()}`;
-    document.getElementById("pkgFeeValue").innerHTML = `<span style="color: red;">*</span>PKG: ${calculatePKG()}`;
-    document.getElementById("landingValue").innerHTML = `LAN: ${calculateLDG()}`;
-    document.getElementById("nightLandingValue").innerHTML = `<span style="color: red;">*</span>NLA: ${calculateNLDG()}`;
-    document.getElementById("nightTakeOffValue").innerHTML = `<span style="color: red;">*</span>NTK: ${calculateNTKOF()}`;
-    document.getElementById("safFeeValue").innerHTML = `SAF: ${calculateSAF()}`;
-    document.getElementById("secFeeValue").innerHTML = `SEC: ${calculateSEC()}`;
-
+    // Update calculation values
+    document.getElementById("stlValue").textContent = calculateSTLF();
+    document.getElementById("ancValue").textContent = calculateANC();
+    document.getElementById("pkgValue").textContent = calculatePKG();
+    document.getElementById("lanValue").textContent = calculateLDG();
+    document.getElementById("safValue").textContent = calculateSAF();
+    document.getElementById("secValue").textContent = calculateSEC();
+    document.getElementById("nlaValue").textContent = calculateNLDG();
+    document.getElementById("ntkValue").textContent = calculateNTKOF();
+    
     const popup = document.getElementById("resultPopup");
     const overlay = document.getElementById("blurOverlay");
 
@@ -9009,7 +8558,7 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
   function closePopup() {
     document.getElementById("resultPopup").style.display = "none";
     blurOverlay.style.display = "none"; 
-    document.body.style.overflow = "auto";
+    document.body.style.overflow = "auto"; // Enable page scrolling
 
   }
 </script>
@@ -10735,7 +10284,8 @@ function resolveWaypointToken(token) {
 
 function calculateDistance() {
   if (!Array.isArray(route) || route.length < 2) {
-    document.getElementById("output").innerHTML = "<p>Please add at least two waypoints to calculate distance.</p>";
+    document.getElementById("output").innerHTML = "<p style='color: red;'>Please add at least two waypoints to calculate distance.</p>";
+    setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
     return;
   }
 
@@ -10762,7 +10312,7 @@ function calculateDistance() {
     if (!wp1 || !wp2) {
       document.getElementById('dist').value = totalDistanceKm.toFixed(2);
       const invalidToken = !wp1 ? key1 : key2;
-      document.getElementById("output").innerHTML = `<p>Invalid waypoint: ${invalidToken}</p>`;
+      document.getElementById("output").innerHTML = `<p style='color: #0078d4;'>Invalid waypoint: ${invalidToken}</p>`;
       return;
     }
 
@@ -10774,6 +10324,7 @@ function calculateDistance() {
 
   document.getElementById('dist').value = totalDistanceKm.toFixed(2);
   document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
+  setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
 }
 
         function clearPage() {
@@ -10891,16 +10442,6 @@ function toggleCoordinates() {
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
 
-    /* Typewriter animation */
-    @keyframes typing {
-        from {
-            width: 0;
-        }
-        to {
-            width: 100%;
-        }
-    }
-
     /* Cursor blink effect */
     @keyframes blink {
         50% {
@@ -10908,12 +10449,6 @@ function toggleCoordinates() {
         }
     }
 
-    /* Set cursor color */
-    h1 {
-    padding-top: 10px;
-        cursor: default;
-    }
-    
 .spacer {
     height: 40px; /* Adjust this height to create the desired extra space */
     width: 100%;
@@ -10937,27 +10472,12 @@ function toggleCoordinates() {
     }
 
 
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-    }
-
-    @media (orientation: landscape) {
+@media (orientation: landscape) {
         .card button {
             width: 100%; /* Stretch button width to the card's edges in landscape orientation */
         }
         footer {
             font-size: 0.2em; /* Ensure footer text remains even smaller */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
-        footer {
-            font-size: 0.2em; /* Make footer text even smaller */
         }
     }
 
@@ -11338,9 +10858,6 @@ function formatDateInput(inputId) {
   // Expose Security module to global scope
   window.Security = Security;
 
-  // Auto-initialize on page load
-  document.addEventListener('DOMContentLoaded', () => Security.init());
-})();
 </script>
 
 <script>
@@ -11639,8 +11156,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         const content = document.createElement('div');
         content.style.display = 'flex';
-        content.style.flexDirection = 'column';
+        content.style.justifyContent = 'space-between';
         content.style.width = '100%';
+        
+        const leftDiv = document.createElement('div');
+        leftDiv.style.display = 'flex';
+        leftDiv.style.flexDirection = 'column';
         
         const formatSpan = document.createElement('span');
         formatSpan.textContent = ddmmss;
@@ -11655,15 +11176,22 @@ document.addEventListener('DOMContentLoaded', function () {
         decimalSpan.style.color = '#666';
         decimalSpan.style.fontFamily = 'monospace';
         
+        leftDiv.appendChild(formatSpan);
+        leftDiv.appendChild(decimalSpan);
+        
+        const rightDiv = document.createElement('div');
+        rightDiv.style.textAlign = 'right';
+        
         const originalSpan = document.createElement('span');
         originalSpan.textContent = `Input: ${originalInput}`;
         originalSpan.style.fontSize = '0.75em';
         originalSpan.style.color = '#999';
         originalSpan.style.fontStyle = 'italic';
         
-        content.appendChild(formatSpan);
-        content.appendChild(decimalSpan);
-        content.appendChild(originalSpan);
+        rightDiv.appendChild(originalSpan);
+        
+        content.appendChild(leftDiv);
+        content.appendChild(rightDiv);
         li.appendChild(content);
         
         li.title = `DDMMSS: ${ddmmss}\nDecimal: ${lat.toFixed(6)}, ${lon.toFixed(6)}\nOriginal: ${originalInput}`;
@@ -11727,7 +11255,7 @@ document.addEventListener('DOMContentLoaded', function () {
           line-height: 1.4;
           position: relative;
         ">
-          <div style="
+          <div class="close-btn" style="
             position: absolute;
             top: 8px;
             right: 8px;
@@ -11741,10 +11269,8 @@ document.addEventListener('DOMContentLoaded', function () {
             justify-content: center;
             border-radius: 3px;
             transition: background-color 0.2s, color 0.2s;
-          " onclick="this.closest('.coordinate-error').remove()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: block;">
-              <path d="M18 6L6 18M6 6l12 12" stroke="#999" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+          ">
+            ×
           </div>
           
           <div style="
@@ -11756,10 +11282,10 @@ document.addEventListener('DOMContentLoaded', function () {
             gap: 6px;
             padding-right: 20px;
           ">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink: 0;">
-              <circle cx="12" cy="12" r="10" fill="#ef4444" stroke="#dc2626" stroke-width="1"/>
-              <path d="M12 8v4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-              <circle cx="12" cy="16" r="1" fill="#fff"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
             </svg>
             <span>Invalid input or coordinate format</span>
           </div>
@@ -11888,8 +11414,17 @@ document.addEventListener('DOMContentLoaded', function () {
         errorMsg.style.transform = 'translateY(0)';
       }, 10);
       
+      // Set input margin to 0
+      input.style.marginBottom = '0px';
+      
+      // Set close button handler
+      const closeBtn = errorMsg.querySelector('.close-btn');
+      closeBtn.onclick = function() {
+        this.closest('.coordinate-error').remove();
+        input.style.marginBottom = '';
+      };
+      
       // Add hover effect to close button
-      const closeBtn = errorMsg.querySelector('div[onclick]');
       closeBtn.addEventListener('mouseenter', function() {
         this.style.backgroundColor = '#ffebee';
         this.style.color = '#d00';
@@ -11909,6 +11444,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const parsed = tryParseCoordinates(v);
       if (!parsed) {
         showFormatError();
+        waypointList.style.display = 'none';
         return;
       }
 
@@ -11945,16 +11481,45 @@ document.addEventListener('DOMContentLoaded', function () {
           setTimeout(() => input.select(), 10);
         } else {
           showFormatError();
+          waypointList.style.display = 'none';
         }
       }, 10);
+    });
+
+    // Hide error message when user types or clears input
+    input.addEventListener('input', function () {
+      const existingError = input.parentNode.querySelector('.coordinate-error');
+      if (existingError) {
+        existingError.remove();
+        input.style.marginBottom = '';
+      }
+
+      // Filter waypoints
+      const query = input.value.toLowerCase().trim();
+      let hasVisible = false;
+      const lis = waypointList.querySelectorAll('li');
+      lis.forEach(li => {
+        const text = li.textContent.toLowerCase();
+        if (text.includes(query)) {
+          li.style.display = 'block';
+          hasVisible = true;
+        } else {
+          li.style.display = 'none';
+        }
+      });
+      if (hasVisible && query !== '') {
+        waypointList.style.display = 'block';
+      } else {
+        waypointList.style.display = 'none';
+      }
     });
 
     // Expose for debugging
     if (!window.__parseWaypointCoordinate) {
       window.__parseWaypointCoordinate = tryParseCoordinates;
     }
-    })();
-    });
+  })();
+});
 </script>
 
 </div></div></body>
