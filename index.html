@@ -10670,9 +10670,30 @@ function toggleCoordinates() {
 }
 </script>
 <footer style="text-align: center; margin-top: 50px; font-size: 11px;">
-<span style="color: #6cb4ef;">© 2024 Albright Machumu</span><br>
-<span style="color: #6cb4ef;">“With commitment, deep work and determination, everything is possible; simplicity is the way.”</span>
+<span style="color: #6cb4ef;">&copy; 2024 Albright Machumu</span><br>
+<span id="rotatingQuote" style="color: #6cb4ef; display: block; min-height: 40px; margin-top: 5px;"></span>
 </footer>
+
+<script>
+    const quotes = [
+        "We turn kilometers, MTOW, time, and number of passengers into very serious math.",
+        "Day landing: normal math. Night landing: same math, with a 30% personality.",
+        "If your aircraft exists, moves, stops, or waits politely on the ground—there's a charge, and we already found it.",
+        "Even the airspace can tell we've done our math properly."
+    ];
+
+    function updateQuote() {
+        const quoteElement = document.getElementById('rotatingQuote');
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        quoteElement.textContent = `"${quotes[randomIndex]}"`;
+    }
+
+    // Update quote on page load
+    document.addEventListener('DOMContentLoaded', updateQuote);
+    
+    // Update quote every minute
+    setInterval(updateQuote, 60000);
+</script>
 <div class="spacer" style="width: 20px"></div>
 <style>
 
