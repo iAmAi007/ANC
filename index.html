@@ -1,4 +1,162 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        // Array of valid passwords
+        const validPasswords = ['HTDA8400', 'HTZA8585', 'HTKJ8126', 'HTDO7910', 'HTMTAnnext10', 'HTARAnnex15'];
+        
+        // Function to check password and show calculator
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            const passwordInput = document.getElementById('password');
+            
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            passwordInput.classList.add('error');
+            
+            // Remove error state after animation
+            setTimeout(() => {
+                passwordInput.classList.remove('error');
+            }, 1000);
+        }
+        
+        function clearError() {
+            const errorElement = document.getElementById('errorMessage');
+            const passwordInput = document.getElementById('password');
+            
+            errorElement.textContent = '';
+            errorElement.style.display = 'none';
+            passwordInput.classList.remove('error');
+        }
+        
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const loginContainer = document.getElementById('loginContainer');
+            const calculatorContent = document.getElementById('calculatorContent');
+            
+            // Clear any previous errors
+            clearError();
+            
+            if (validPasswords.includes(password)) {
+                // Hide login and show calculator
+                loginContainer.style.display = 'none';
+                calculatorContent.style.display = 'block';
+                // Store login state in sessionStorage
+                sessionStorage.setItem('authenticated', 'true');
+            } else {
+                showError('Incorrect password. Please try again.');
+                document.getElementById('password').value = '';
+                // Ensure login form is visible if there's an error
+                loginContainer.style.display = 'flex';
+                calculatorContent.style.display = 'none';
+            }
+        }
+
+        // Check if already authenticated when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginContainer = document.getElementById('loginContainer');
+            const calculatorContent = document.getElementById('calculatorContent');
+            
+            // Check if we have a valid session
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                loginContainer.style.display = 'none';
+                calculatorContent.style.display = 'block';
+            } else {
+                loginContainer.style.display = 'flex';
+                calculatorContent.style.display = 'none';
+            }
+        });
+    </script>
+    <style>
+        #loginContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #f4f4f4;
+            font-family: 'SF Pro Display', sans-serif;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            margin: 0;
+        }
+        
+        .login-box {
+            background: #fff;
+            padding: 30px 25px;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+        
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 0 0 15px 0;
+            border: 2px solid #0ea5e9;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .login-box input[type="password"].error {
+            border-color: #ff4444;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            font-size: 14px;
+            margin: 0 0 15px 0;
+            min-height: 20px;
+            text-align: left;
+            width: 100%;
+            padding: 3px 5px;
+            display: none;
+            line-height: 1.4;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .login-box input[type="password"]:focus {
+            border-color: #6cb4ef;
+        }
+        
+        .login-box button {
+            background: #1358bf;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        
+
+        .login-box button::active {
+            background: #004578;
+            box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2);
+            transform: translateY(0);
+        }
+        
+        /* Hide calculator content by default */
+        #calculatorContent {
+            display: none;
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <style>
@@ -170,6 +328,8 @@
     input[type="time"] {
         outline: none !important;
         height: 60px;
+        max-width: 100%;
+        box-sizing: border-box;
         border: 1px solid #0ea5e9 !important;
         color: #004185;
     }
@@ -362,9 +522,6 @@ h1, #ancDisplay {
         transition: background-color 0.3s;
     }
 
-    button:hover {
-        background: #0056b3;
-    }
 
     footer {
         text-align: center;
@@ -399,13 +556,6 @@ h1, #ancDisplay {
         outline: none;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: none;
-    }
-
-    .searchable-select input:focus {
-        border-color: #0ea5e9;
-        background-color: #ffffff;
-        box-shadow: none;
-        transform: translateY(-1px);
     }
 
     .searchable-select input::placeholder {
@@ -551,10 +701,6 @@ h1, #ancDisplay {
         text-align: center;
     }
 
-    button:hover {
-        background: #e0e0e0;
-        border-color: #6cb4ef;
-    }
 
     button:active {
         background: #d5d5d5;
@@ -579,10 +725,6 @@ h1, #ancDisplay {
         text-align: center;
     }
 
-    button:hover {
-        background: #e0e0e0;
-        border-color: #6cb4ef;
-    }
 
     button:active {
         background: #d5d5d5;
@@ -658,9 +800,6 @@ h1, #ancDisplay {
         transition: background-color 0.3s ease;
     }
 
-    button:hover {
-        background: #0056b3;
-    }
 
     input[type="text"] {
         width: 100%;
@@ -922,10 +1061,6 @@ h1, #ancDisplay {
         transition: all 0.3s ease;
     }
 
-    button:hover {
-        background-color: #357ABD;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
 
     /* Input fields */
     input {
@@ -1044,9 +1179,6 @@ button {
         transition: background-color 0.3s ease;
     }
 
-    button:hover {
-        background: #0056b3; /* Hover: Darker Blue */
-    }
 
     button:active {
         background: #004085; /* Active: Even Darker Blue when clicked */
@@ -1558,6 +1690,30 @@ function clearPage() {
         transform: translateX(-50%);
     }
 </style> </head><body>
+    <!-- Login Form Container -->
+    <div id="loginContainer">
+        <div class="login-box">
+            <input type="password" id="password" placeholder="Enter Password" onkeypress="if(event.key === 'Enter') checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0 0 15px 0; border: 1px solid #0ea5e9; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+            <div id="errorMessage" class="error-message"></div>
+            <button id="loginButton" onclick="checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0; background: #0078d4; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15); min-height: 44px; outline: none; -webkit-tap-highlight-color: transparent;">Login</button>
+            <style>
+                #loginContainer #loginButton:hover {
+                    background: #005a9e !important;
+                    box-shadow: 0 4px 8px rgba(0, 120, 212, 0.25) !important;
+                    transform: translateY(-1px) !important;
+                    border-color: transparent !important;
+                }
+                #loginContainer #loginButton:active {
+                    background: #004578 !important;
+                    box-shadow: 0 1px 2px rgba(0, 120, 212, 0.2) !important;
+                    transform: translateY(0) !important;
+                }
+            </style>
+        </div>
+    </div>
+    
+    <!-- Calculator Content (hidden by default) -->
+    <div id="calculatorContent">
 <style>
 
     
@@ -2507,18 +2663,18 @@ button#clearButton:active {
     <div style="text-align: left;">
       <span style="font-size: 9.72px; color: #0369a1; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.9;">Rate</span>
       <div style="margin-top: 2px;">
-        <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 18px; font-weight: 700; color: #0284c7; cursor: pointer; transition: all 0.3s ease; opacity: 1;">5.0</span>
-        <span style="font-size: 14px; color: #0ea5e9; margin-left: 4px; opacity: 0.85;">USD</span>
+        <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 18px; font-weight: 700; color: #0369a1; cursor: pointer; transition: all 0.3s ease; opacity: 1;">5.0</span>
+        <span style="font-size: 14px; color: #0369a1; margin-left: 4px; opacity: 0.85;">USD</span>
       </div>
     </div>
     <div style="text-align: left;">
       <span style="font-size: 9.72px; color: #0369a1; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; opacity: 0.9;">Passengers</span>
       <div style="margin-top: 2px;">
-        <span style="font-size: 12px; color: #0ea5e9; opacity: 0.85;">Local:</span>
-        <span class="editable-number" id="local-pax" contenteditable="true" style="font-size: 16px; font-weight: 700; color: #0284c7; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid #0ea5e9; min-width: 30px; display: inline-block; text-align: center; margin: 0 4px; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1);">00</span>
+        <span style="font-size: 12px; color: #0369a1; opacity: 0.85;">Local:</span>
+        <span class="editable-number" id="local-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: #0369a1; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid #0ea5e9; min-width: 30px; display: inline-block; text-align: center; margin: 0 4px; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1); cursor: text;"></span>
         <span style="margin: 0 8px; color: #0ea5e9; opacity: 0.7;">|</span>
-        <span style="font-size: 12px; color: #0ea5e9; opacity: 0.85;">Intl:</span>
-        <span class="editable-number" id="intl-pax" contenteditable="true" style="font-size: 16px; font-weight: 700; color: #0284c7; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid #0ea5e9; min-width: 30px; display: inline-block; text-align: center; margin-left: 4px; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1);">00</span>
+        <span style="font-size: 12px; color: #0369a1; opacity: 0.85;">Intl:</span>
+        <span class="editable-number" id="intl-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: #0369a1; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid #0ea5e9; min-width: 30px; display: inline-block; text-align: center; margin-left: 4px; box-shadow: 0 1px 3px rgba(14, 165, 233, 0.1); cursor: text;"></span>
       </div>
     </div>
   </div>
@@ -2568,12 +2724,105 @@ button#clearButton:active {
         dropdown.style.display = 'none'; // Hide dropdown if clicking elsewhere
       }
 
-      // Handle number editing for Local PAX and Intl PAX
+        // Handle number editing for Local PAX and Intl PAX
       if (e.target.classList.contains('editable-number')) {
         const span = e.target;
         span.contentEditable = true;
+        
+        // Focus the span and place cursor at the end
+        const range = document.createRange();
+        const selection = window.getSelection();
+        range.selectNodeContents(span);
+        range.collapse(false); // Collapse to end
+        selection.removeAllRanges();
+        selection.addRange(range);
+        
+        // Prevent Enter key from creating new lines and limit input
+        span.addEventListener('keydown', function(e) {
+          // Allow: backspace, delete, tab, escape, enter
+          if ([46, 8, 9, 27, 13].includes(e.keyCode) ||
+              // Allow: Ctrl+A, Command+A
+              (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+              // Allow: home, end, left, right, down, up
+              (e.keyCode >= 35 && e.keyCode <= 40)) {
+            return;
+          }
+          
+          // Allow numbers 0-9
+          if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+          }
+          
+          // Handle Enter key
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            this.blur();
+          }
+        });
+        
+        // Store the current cursor position
+        let lastCursorPos = 0;
+        
+        // Track if we're in the middle of an update to prevent recursion
+        let isUpdating = false;
+        
+        // Handle input events
+        span.addEventListener('input', function() {
+          if (isUpdating) return;
+          isUpdating = true;
+          
+          // Save cursor position
+          const selection = window.getSelection();
+          const range = selection.getRangeAt(0);
+          const cursorPos = range.startOffset;
+          
+          // Get the current value and clean it
+          let value = this.textContent.trim();
+          if (value === '') {
+            isUpdating = false;
+            return;
+          }
+          
+          // Remove any non-numeric characters
+          value = value.replace(/\D/g, '');
+          
+          // Limit to 3 digits
+          if (value.length > 3) {
+            value = value.substring(0, 3);
+          }
+          
+          // Ensure value is a number between 0 and 999
+          const numValue = parseInt(value, 10) || 0;
+          const newValue = Math.min(Math.max(numValue, 0), 999).toString();
+          
+          // Only update if the value has changed
+          if (this.textContent !== newValue) {
+            this.textContent = newValue;
+            
+            // Try to restore cursor position
+            try {
+              const newRange = document.createRange();
+              const textNode = this.firstChild || this;
+              const newPos = Math.min(cursorPos, newValue.length);
+              newRange.setStart(textNode, newPos);
+              newRange.setEnd(textNode, newPos);
+              
+              const sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(newRange);
+            } catch (e) {
+              console.error('Error setting cursor position:', e);
+            }
+          }
+          
+          isUpdating = false;
+        });
         span.addEventListener('blur', () => {
-          const newValue = parseInt(span.textContent.trim(), 10);
+          const textContent = span.textContent.trim();
+          if (textContent === '') {
+            return; // Keep it empty if nothing is entered
+          }
+          const newValue = parseInt(textContent, 10);
           if (!isNaN(newValue)) {
             if (span.id === 'local-pax') {
               localPAX = newValue; // Update global Local PAX
@@ -8214,8 +8463,10 @@ document.addEventListener("DOMContentLoaded", () => {
         /* Ensure all inputs display properly in their containers */
         input[type="text"], input[type="number"], input[type="time"], input[type="date"] {
             width: 100% !important;
+            max-width: 100% !important;
             height: 60px !important;
             font-family: 'SF Pro Display' !important;
+            box-sizing: border-box !important;
             text-align: center !important;
             border: 1px solid #0ea5e9 !important;
             border-radius: 4px !important;
@@ -8325,7 +8576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Arrival Date</label>
-    <input id="Arrival_date" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
+    <input id="Arrival_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
 </div>
 </div>
 </div>
@@ -8338,7 +8589,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Departure Date</label>
-    <input id="Departure_date" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
+    <input id="Departure_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
 </div>
 </div>
 
@@ -11533,5 +11784,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-</div></div></body>
-</html>
+</div></div>    </div> <!-- End of calculatorContent -->
+</body>
