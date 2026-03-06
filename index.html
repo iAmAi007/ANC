@@ -25,7 +25,7 @@
             const passwordInput = document.getElementById('password');
             
             errorElement.textContent = '';
-            errorElement.style.display = 'none';
+            errorElement.style.display = 'NONE';
             passwordInput.classList.remove('error');
         }
         
@@ -39,7 +39,7 @@
             
             if (validPasswords.includes(password)) {
                 // Hide login and show calculator
-                loginContainer.style.display = 'none';
+                loginContainer.style.display = 'NONE';
                 calculatorContent.style.display = 'block';
                 document.body.style.overflow = 'auto';
                 // Store login state in sessionStorage
@@ -49,7 +49,7 @@
                 document.getElementById('password').value = '';
                 // Ensure login form is visible if there's an error
                 loginContainer.style.display = 'flex';
-                calculatorContent.style.display = 'none';
+                calculatorContent.style.display = 'NONE';
             }
         }
 
@@ -60,12 +60,12 @@
             
             // Check if we have a valid session
             if (sessionStorage.getItem('authenticated') === 'true') {
-                loginContainer.style.display = 'none';
+                loginContainer.style.display = 'NONE';
                 calculatorContent.style.display = 'block';
                 document.body.style.overflow = 'auto';
             } else {
                 loginContainer.style.display = 'flex';
-                calculatorContent.style.display = 'none';
+                calculatorContent.style.display = 'NONE';
                 document.body.style.overflow = 'hidden';
             }
         });
@@ -104,7 +104,7 @@
             border: 2px solid #0ea5e9;
             border-radius: 6px;
             font-size: 16px;
-            outline: none;
+            outline: NONE;
             transition: all 0.3s ease;
             box-sizing: border-box;
         }
@@ -122,7 +122,7 @@
             text-align: left;
             width: 100%;
             padding: 3px 5px;
-            display: none;
+            display: NONE;
             line-height: 1.4;
         }
         
@@ -139,7 +139,7 @@
         .login-box button {
             background: #1358bf;
             color: white;
-            border: none;
+            border: NONE;
             padding: 12px 24px;
             border-radius: 6px;
             font-size: 16px;
@@ -157,7 +157,7 @@
         
         /* Hide calculator content by default */
         #calculatorContent {
-            display: none;
+            display: NONE;
         }
         
         .loader {
@@ -363,7 +363,7 @@
     /* Style for date/time inputs */
     input[type="date"], 
     input[type="time"] {
-        outline: none !important;
+        outline: NONE !important;
         height: 60px;
         max-width: 100%;
         padding-right: 50px; /* Space for the custom icon */
@@ -372,9 +372,9 @@
         background-size: 24px 24px;
         position: relative;
         transition: all 0.3s ease;
-        -webkit-appearance: none; /* Remove default styling on iOS */
-        -moz-appearance: none;
-        appearance: none;
+        -webkit-appearance: NONE; /* Remove default styling on iOS */
+        -moz-appearance: NONE;
+        appearance: NONE;
     }
     
     /* Refined square date and time picker icons with perfect rounded corners */
@@ -559,7 +559,7 @@ h1, #ancDisplay {
         color: #004185;
         font-size: 16px;
         box-sizing: border-box;
-        outline: none;
+        outline: NONE;
     }
 
     input:focus {
@@ -584,7 +584,7 @@ h1, #ancDisplay {
         margin: 0;
         background: #1358bf;
         color: #fff;
-        border: none;
+        border: NONE;
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
@@ -622,9 +622,9 @@ h1, #ancDisplay {
         font-size: 16px;
         font-weight: 500;
         border-radius: 8px;
-        outline: none;
+        outline: NONE;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: none;
+        box-shadow: NONE;
     }
 
     .searchable-select input::placeholder {
@@ -642,7 +642,7 @@ h1, #ancDisplay {
         border-radius: 12px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
         z-index: 100002;
-        list-style: none;
+        list-style: NONE;
         margin-top: 8px;
         padding: 8px;
         left: 0;
@@ -859,7 +859,7 @@ h1, #ancDisplay {
 
 @media screen and (max-width: 480px) {
     .card {
-        border: none !important;
+        border: NONE !important;
     }
     label {
         white-space: nowrap !important;
@@ -871,7 +871,7 @@ h1, #ancDisplay {
         letter-spacing: 1px !important;
         background: #007bff;
         color: #fff;
-        border: none;
+        border: NONE;
         border-radius: 20px;
         padding: 10px 20px;
         font-size: 1em;
@@ -930,7 +930,7 @@ h1, #ancDisplay {
     }
 
 #aircraftList {
-        display: none;
+        display: NONE;
         border: 1px solid #0ea5e9;
         max-height: 200px;
         overflow-y: auto;
@@ -1133,7 +1133,7 @@ h1, #ancDisplay {
         font-weight: 500;
         color: white;
         background-color: #4A90E2;
-        border: none;
+        border: NONE;
         border-radius: 30px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         cursor: pointer;
@@ -1153,7 +1153,7 @@ h1, #ancDisplay {
         font-size: 1rem;
         border: 2px solid #1358bf;
         border-radius: 10px;
-        outline: none;
+        outline: NONE;
         transition: all 0.3s ease;
     }
 
@@ -1214,7 +1214,7 @@ button {
         margin: 0;
         background: #007bff; /* Default Primary Blue */
         color: #fff;
-        border: none;
+        border: NONE;
         border-radius: 4px;
         cursor: pointer;
         font-size: 16px;
@@ -1430,18 +1430,18 @@ function clearPage() {
 
 
     .split-input input[type="number"] {
-        border: none;
+        border: NONE;
         text-align: center;
         vertical-align: middle;
         align-content: center; 
         display: flex;
-        -webkit-appearance: none;
-        appearance:none;
-        -moz-appearance: none;
+        -webkit-appearance: NONE;
+        appearance:NONE;
+        -moz-appearance: NONE;
         height: 60px;
         line-height: 60px;
         padding-bottom: 30px;
-        outline: none;
+        outline: NONE;
         letter-spacing: 1px !important;
         font-size: 16px;
         background-color: #fff;
@@ -1531,26 +1531,26 @@ function clearPage() {
     }
 
     .split-input input[type="number"] {
-        border: none;
+        border: NONE;
         padding: 10px;
         flex: 1;
-        outline: none;
+        outline: NONE;
         font-size: 16px;
         background-color: #fff;
     }
 
     .split-input input[type="number"] {
-        -webkit-appearance: none;
+        -webkit-appearance: NONE;
         -moz-appearance: textfield;
-        appearance:none;        
+        appearance:NONE;        
         letter-spacing: 1px !important;
         margin: 0;
     }
 
     .split-input input[type="number"]:focus {
         background-color: #fff;
-        border: none;
-        box-shadow: none;
+        border: NONE;
+        box-shadow: NONE;
     }
 
 @media (orientation: landscape) {
@@ -1592,7 +1592,7 @@ function clearPage() {
         <div class="login-box">
             <input type="password" id="password" placeholder="Enter Access Code" onkeypress="if(event.key === 'Enter') checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0 0 15px 0; border: 1px solid #0ea5e9; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
             <div id="errorMessage" class="error-message"></div>
-            <button id="loginButton" onclick="checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0; background: #0078d4; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15); min-height: 44px; outline: none; -webkit-tap-highlight-color: transparent;">Launch</button>
+            <button id="loginButton" onclick="checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0; background: #0078d4; color: #fff; border: NONE; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15); min-height: 44px; outline: NONE; -webkit-tap-highlight-color: transparent;">Launch</button>
             <style>
                 #loginContainer #loginButton:hover {
                     background: #005a9e !important;
@@ -1824,11 +1824,11 @@ function clearPage() {
     .split-input input[type="number"] {
         flex: 1;
         background-color: #fff;
-        border: none;
+        border: NONE;
         padding: 10px;
         text-align: center; 
         font-size: 16px;
-        outline: none;
+        outline: NONE;
     }
 
 @media (orientation: landscape) {
@@ -2073,7 +2073,7 @@ button#toggleCoordinatesButton {
     margin: 0;
     background: #0078d4;
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
@@ -2082,7 +2082,7 @@ button#toggleCoordinatesButton {
     box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2106,7 +2106,7 @@ button#toggleCoordinatesButton {
 button#toggleCoordinatesButton {
     background: #0078d4;
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
@@ -2116,7 +2116,7 @@ button#toggleCoordinatesButton {
     box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2135,7 +2135,7 @@ button#toggleCoordinatesButton:active {
 button#calculateDistanceButton {
     background: #0078d4;
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
@@ -2145,7 +2145,7 @@ button#calculateDistanceButton {
     box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2164,7 +2164,7 @@ button#calculateDistanceButton:active {
 button#ancButton {
     background: #0078d4;
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
@@ -2174,7 +2174,7 @@ button#ancButton {
     box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2194,7 +2194,7 @@ button#ancButton:active {
 /*button#stlfButton {
     background: #004185; 
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
@@ -2214,7 +2214,7 @@ button#stlfButton:active {
 button#ldgButton {
     background: #004185;
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
@@ -2233,7 +2233,7 @@ button#ldgButton:active {
 button#nldgButton {
     background: #004185; 
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
@@ -2254,7 +2254,7 @@ button#nldgButton:active {
 button#CALCULATEButton {
     background: #0078d4;
     color: #fff;
-    border: none;
+    border: NONE;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
@@ -2264,7 +2264,7 @@ button#CALCULATEButton {
     box-shadow: 0 2px 4px rgba(0, 120, 212, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2291,7 +2291,7 @@ button#clearButton {
     width: 100%;
     background: #dc3545;
     color: white;
-    border: none;
+    border: NONE;
     border-radius: 6px;
     cursor: pointer;
     font-size: 15px;
@@ -2301,7 +2301,7 @@ button#clearButton {
     box-shadow: 0 2px 4px rgba(220, 53, 69, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2331,7 +2331,7 @@ button#clearButton {
     box-shadow: 0 2px 4px rgba(244, 67, 54, 0.15);
     min-height: 44px;
     min-width: 44px;
-    outline: none;
+    outline: NONE;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -2517,14 +2517,14 @@ button#clearButton:active {
       cursor: pointer;
       font-size: 16px;
       color: red;
-      border: none;
-      box-shadow: none;
-      outline: none;
+      border: NONE;
+      box-shadow: NONE;
+      outline: NONE;
       padding: 0;
     }
     .dropdown {
       font-family: 'SF Pro Display';
-      display: none;
+      display: NONE;
       position: absolute;
       background: rgba(255, 255, 255, 0.95);
       text-align: center;
@@ -2560,8 +2560,8 @@ button#clearButton:active {
     <div style="text-align: left;">
       <span style="font-size: 9.72px; color: #0369a1; font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9;">Rate</span>
       <div style="margin-top: 2px;">
-        <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 18px; font-weight: 700; color: #0369a1; cursor: pointer; transition: all 0.3s ease; opacity: 1;">5.0</span>
-        <span style="font-size: 14px; color: #0369a1; margin-left: 4px; opacity: 0.85;">USD</span>
+        <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 16px; font-weight: 700; color: #0369a1; cursor: pointer; transition: all 0.3s ease; opacity: 1;">5.0</span>
+        <span style="font-size: 14px; color: #0369a1; margin-left: 1px; opacity: 0.85;">USD</span>
       </div>
     </div>
     <div style="text-align: left;">
@@ -2595,7 +2595,7 @@ button#clearButton:active {
           item.className = 'dropdown-item';
           item.addEventListener('click', () => {
             e.target.textContent = option; // Update the text
-            dropdown.style.display = 'none'; // Hide the dropdown
+            dropdown.style.display = 'NONE'; // Hide the dropdown
 
             // Update the global rate variable
             rate = parseFloat(option);
@@ -2618,7 +2618,7 @@ button#clearButton:active {
         dropdown.style.top = `${rect.bottom - containerRect.top}px`;
         dropdown.style.visibility = 'visible';
       } else {
-        dropdown.style.display = 'none'; // Hide dropdown if clicking elsewhere
+        dropdown.style.display = 'NONE'; // Hide dropdown if clicking elsewhere
       }
 
         // Handle number editing for Local PAX and Intl PAX
@@ -2749,7 +2749,7 @@ button#clearButton:active {
 <input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text" autocomplete="off">
 
 
-<ul id="aircraftList" style="display: none;">
+<ul id="aircraftList" style="display: NONE;">
 <li onclick="addAircraft('Jetcruzer-500')">
 <span style="color: #0078d4">Jetcruzer-500</span>  
     The AASI Jetcruzer 500
@@ -8194,7 +8194,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     searchBox.addEventListener('blur', () => {
         setTimeout(() => {
-            aircraftList.style.display = 'none';
+            aircraftList.style.display = 'NONE';
         }, 200); // Delay to allow item click event
     });
 
@@ -8206,7 +8206,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (text.includes(filter)) {
                 item.style.display = '';
             } else {
-                item.style.display = 'none';
+                item.style.display = 'NONE';
             }
         });
     });
@@ -8215,10 +8215,11 @@ document.addEventListener("DOMContentLoaded", () => {
     aircraftItems.forEach(item => {
         item.addEventListener('click', () => {
             searchBox.value = item.textContent.trim();
-            const mtowMatch = item.textContent.match(/\((\d+) Tonnes\)/);
+            const mtowMatch = item.textContent.match(/\((\d+) Tonne?s?\)/);
             if (mtowMatch) {
                 const mtowValue = parseFloat(mtowMatch[1]);
-                document.getElementById('mtow').value = mtowValue;
+                const unit = mtowValue === 1 ? 'Tonne' : 'Tonnes';
+                document.getElementById('mtow').value = mtowValue + ' ' + unit;
             }
         });
     });
@@ -8226,7 +8227,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <div class="searchable-select">
 <input id="searchInput" oninput="filterWaypoints()" placeholder="Search waypoints to build a route" style="color: #6cb4ef" type="text">
-<ul id="waypointList" style="display: none;"><li onclick="addWaypoint('AKUMU')">AKUMU</li><li onclick="addWaypoint('ALSAR')">ALSAR</li><li onclick="addWaypoint('AMSAD')">AMSAD</li><li onclick="addWaypoint('ANTIM')">ANTIM</li><li onclick="addWaypoint('ANVOX')">ANVOX</li><li onclick="addWaypoint('ANVUN')">ANVUN</li><li onclick="addWaypoint('APDIK')">APDIK</li><li onclick="addWaypoint('APDOT')">APDOT</li><li onclick="addWaypoint('APGEN')">APGEN</li><li onclick="addWaypoint('APKOL')">APKOL</li><li onclick="addWaypoint('APLOG')">APLOG</li><li onclick="addWaypoint('APMIT')">APMIT</li><li onclick="addWaypoint('APNAD')">APNAD</li><li onclick="addWaypoint('APNOL')">APNOL</li><li onclick="addWaypoint('ATUNU')">ATUNU</li><li onclick="addWaypoint('ATUPA')">ATUPA</li><li onclick="addWaypoint('AVATU')">AVATU</li><li onclick="addWaypoint('AVEKI')">AVEKI</li><li onclick="addWaypoint('AVETA')">AVETA</li><li onclick="addWaypoint('AVIGO')">AVIGO</li><li onclick="addWaypoint('AVIRI')">AVIRI</li><li onclick="addWaypoint('AVITA')">AVITA</li><li onclick="addWaypoint('AVUNO')">AVUNO</li><li onclick="addWaypoint('AXOSI')">AXOSI</li><li onclick="addWaypoint('BILAK')">BILAK</li><li onclick="addWaypoint('BONAP')">BONAP</li><li onclick="addWaypoint('BOSAD')">BOSAD</li><li onclick="addWaypoint('BOTEN')">BOTEN</li><li onclick="addWaypoint('BUJUMBURA CVOR')">BJA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bujumbura CVOR</span></li><li onclick="addWaypoint('DARAS')">DARAS</li><li onclick="addWaypoint('DASTA')">DASTA</li><li onclick="addWaypoint('DATAN')">DATAN</li><li onclick="addWaypoint('DO')">DO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dodoma NDB</span></li><li onclick="addWaypoint('DUDGA')">DUDGA</li><li onclick="addWaypoint('DUMA')">DUMA</li><li onclick="addWaypoint('DUMPA')">DUMPA</li><li onclick="addWaypoint('DUNDO')">DUNDO</li><li onclick="addWaypoint('DUSKA')">DUSKA</li><li onclick="addWaypoint('DV')">DV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dar es salaam DVOR</span></li><li onclick="addWaypoint('EGLOX')">EGLOX</li><li onclick="addWaypoint('EGMIL')">EGMIL</li><li onclick="addWaypoint('EGNUM')">EGNUM</li><li onclick="addWaypoint('EGPET')">EGPET</li><li onclick="addWaypoint('EGSEM')">EGSEM</li><li onclick="addWaypoint('EGSIX')">EGSIX</li><li onclick="addWaypoint('EGTAN')">EGTAN</li><li onclick="addWaypoint('ELAVA')">ELAVA</li><li onclick="addWaypoint('EPMAB')">EPMAB</li><li onclick="addWaypoint('EPMIN')">EPMIN</li><li onclick="addWaypoint('EPTAN')">EPTAN</li><li onclick="addWaypoint('EPTEL')">EPTEL</li><li onclick="addWaypoint('EPTIK')">EPTIK</li><li onclick="addWaypoint('ERBOK')">ERBOK</li><li onclick="addWaypoint('ERDEN')">ERDEN</li><li onclick="addWaypoint('ESPUX')">ESPUX</li><li onclick="addWaypoint('ESRES')">ESRES</li><li onclick="addWaypoint('ESVIM')">ESVIM</li><li onclick="addWaypoint('ETIVO')">ETIVO</li><li onclick="addWaypoint('ETLEK')">ETLEK</li><li onclick="addWaypoint('ETMIS')">ETMIS</li><li onclick="addWaypoint('ETMIX')">ETMIX</li><li onclick="addWaypoint('ETMOV')">ETMOV</li><li onclick="addWaypoint('ETUXI')">ETUXI</li><li onclick="addWaypoint('EVASI')">EVASI</li><li onclick="addWaypoint('EVATO')">EVATO</li><li onclick="addWaypoint('EXELU')">EXELU</li><li onclick="addWaypoint('EXEMI')">EXEMI</li><li onclick="addWaypoint('GABSO')">GABSO</li><li onclick="addWaypoint('GAVDA')">GAVDA</li><li onclick="addWaypoint('GEREN')">GEREN</li><li onclick="addWaypoint('GERUD')">GERUD</li><li onclick="addWaypoint('GESAT')">GESAT</li><li onclick="addWaypoint('GETAB')">GETAB</li><li onclick="addWaypoint('GETUX')">GETUX</li><li onclick="addWaypoint('HTAI')">HTAI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lamai</span></li><li onclick="addWaypoint('HTAL')">HTAL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Allience</span></li><li onclick="addWaypoint('HTAR')">HTAR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Arusha</span></li><li onclick="addWaypoint('HTAS')">HTAS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mashado</span></li><li onclick="addWaypoint('HTBA')">HTBA</li><li onclick="addWaypoint('HTBB')">HTBB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kiba (Kibambawe)</span></li><li onclick="addWaypoint('HTBE')">HTBE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Berega</span></li><li onclick="addWaypoint('HTBF')">HTBF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buckreef</span></li><li onclick="addWaypoint('HTBG')">HTBG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kikoboga</span></li><li onclick="addWaypoint('HTBH')">HTBH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Biharamulo</span></li><li onclick="addWaypoint('HTBJ')">HTBJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kabojo</span></li><li onclick="addWaypoint('HTBM')">HTBM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bagamoyo</span></li><li onclick="addWaypoint('HTBN')">HTBN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bulyankhulu</span></li><li onclick="addWaypoint('HTBO')">HTBO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Behobeho</span></li><li onclick="addWaypoint('HTBS')">HTBS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbesa</span></li><li onclick="addWaypoint('HTBT')">HTBT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buturi</span></li><li onclick="addWaypoint('HTBU')">HTBU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bukoba</span></li><li onclick="addWaypoint('HTBV')">HTBV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Yaeda Chini</span></li><li onclick="addWaypoint('HTBX')">HTBX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Мaboxi</span></li><li onclick="addWaypoint('HTBY')">HTBY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbamba Bay</span></li><li onclick="addWaypoint('HTCF')">HTCF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Catfish</span></li><li onclick="addWaypoint('HTCH')">HTCH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chunya</span></li><li onclick="addWaypoint('HTCM')">HTCM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chemchem</span></li><li onclick="addWaypoint('HTCV')">HTCV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chivanjee</span></li><li onclick="addWaypoint('HTDA')">HTDA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dar es Salaam</span></li><li onclick="addWaypoint('HTDB')">HTDB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Madaba</span></li><li onclick="addWaypoint('HTDG')">HTDG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dolly</span></li><li onclick="addWaypoint('HTDK')">HTDK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dakawa</span></li><li onclick="addWaypoint('HTDN')">HTDN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Saadani</span></li><li onclick="addWaypoint('HTDO')">HTDO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dodoma</span></li><li onclick="addWaypoint('HTDU')">HTDU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibidula</span></li><li onclick="addWaypoint('HTDY')">HTDY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dorman</span></li><li onclick="addWaypoint('HTEB')">HTEB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sengerema</span></li><li onclick="addWaypoint('HTEE')">HTEE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mlele Ram</span></li><li onclick="addWaypoint('HTEJ')">HTEJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shama</span></li><li onclick="addWaypoint('HTEN')">HTEN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Enduleni</span></li><li onclick="addWaypoint('HTEQ')">HTEQ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shughuli</span></li><li onclick="addWaypoint('HTER')">HTER &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtera</span></li><li onclick="addWaypoint('HTES')">HTES &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Engorika</span></li><li onclick="addWaypoint('HTEY')">HTEY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sikonge</span></li><li onclick="addWaypoint('HTFE')">HTFE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Fish Eagle</span></li><li onclick="addWaypoint('HTFI')">HTFI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Fort Ikoma</span></li><li onclick="addWaypoint('HTFR')">HTFR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kifura</span></li><li onclick="addWaypoint('HTGA')">HTGA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbuga/Ilonga</span></li><li onclick="addWaypoint('HTGE')">HTGE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Geita</span></li><li onclick="addWaypoint('HTGL')">HTGL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Gerai Lumbwa</span></li><li onclick="addWaypoint('HTGM')">HTGM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magambua</span></li><li onclick="addWaypoint('HTGO')">HTGO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kizigo</span></li><li onclick="addWaypoint('HTGP')">HTGP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Golden Pride</span></li><li onclick="addWaypoint('HTGR')">HTGR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Grumet</span></li><li onclick="addWaypoint('HTGS')">HTGS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Malagarasi</span></li><li onclick="addWaypoint('HTGT')">HTGT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Gelai East</span></li><li onclick="addWaypoint('HTGU')">HTGU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Miguruwe</span></li><li onclick="addWaypoint('HTGV')">HTGV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">George Vineyard Memorial (Kipili)</span></li><li onclick="addWaypoint('HTGW')">HTGW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songwe</span></li><li onclick="addWaypoint('HTGZ')">HTGZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magazini</span></li><li onclick="addWaypoint('HTHB')">HTHB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Muhuba</span></li><li onclick="addWaypoint('HTHG')">HTHG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilumbi</span></li><li onclick="addWaypoint('HTHI')">HTHI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mlay/Mlahi</span></li><li onclick="addWaypoint('HTHM')">HTHM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwambesi</span></li><li onclick="addWaypoint('HTHR')">HTHR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Heri Hospital</span></li><li onclick="addWaypoint('HTHS')">HTHS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Muhesi</span></li><li onclick="addWaypoint('HTHY')">HTHY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Hydom</span></li><li onclick="addWaypoint('HTI')">HTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lesirwai</span></li><li onclick="addWaypoint('HTIA')">HTIA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ifakara</span></li><li onclick="addWaypoint('HTIF')">HTIF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ifunda Farm</span></li><li onclick="addWaypoint('HTIH')">HTIH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarime (Sasi)</span></li><li onclick="addWaypoint('HTIK')">HTIK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Iku-Lake Chada</span></li><li onclick="addWaypoint('HTIL')">HTIL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lila</span></li><li onclick="addWaypoint('HTIR')">HTIR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Iringa</span></li><li onclick="addWaypoint('HTIW')">HTIW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liwale</span></li><li onclick="addWaypoint('HTIY')">HTIY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Inyonga</span></li><li onclick="addWaypoint('HTJN')">HTJN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kwajoni</span></li><li onclick="addWaypoint('HTJO')">HTJO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Jongomero</span></li><li onclick="addWaypoint('HTJR')">HTJR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mkwaja Ranch</span></li><li onclick="addWaypoint('HTKA')">HTKA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigoma</span></li><li onclick="addWaypoint('HTKB')">HTKB</li><li onclick="addWaypoint('HTKC')">HTKC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kleins Camp</span></li><li onclick="addWaypoint('HTKD')">HTKD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kondoa</span></li><li onclick="addWaypoint('HTKE')">HTKE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ketumbeine</span></li><li onclick="addWaypoint('HTKF')">HTKF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibebe Farm</span></li><li onclick="addWaypoint('HTKG')">HTKG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Namkongo</span></li><li onclick="addWaypoint('HTKH')">HTKH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Кahama</span></li><li onclick="addWaypoint('HTKI')">HTKI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilwa Masoko</span></li><li onclick="addWaypoint('HTKJ')">HTKJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimanjaro</span></li><li onclick="addWaypoint('HTKL')">HTKL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kirondatal</span></li><li onclick="addWaypoint('HTKM')">HTKM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilombero</span></li><li onclick="addWaypoint('HTKN')">HTKN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasense</span></li><li onclick="addWaypoint('HTKO')">HTKO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kongwa</span></li><li onclick="addWaypoint('HTKP')">HTKP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kingupira</span></li><li onclick="addWaypoint('HTKR')">HTKR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kingupira</span></li><li onclick="addWaypoint('HTKS')">HTKS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilosa</span></li><li onclick="addWaypoint('HTKT')">HTKT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimatinde</span></li><li onclick="addWaypoint('HTKU')">HTKU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasulu</span></li><li onclick="addWaypoint('HTKX')">HTKX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kitemela</span></li><li onclick="addWaypoint('HTLA')">HTLA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukula</span></li><li onclick="addWaypoint('HTLB')">HTLB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Malambo</span></li><li onclick="addWaypoint('HTLD')">HTLD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Loliondo</span></li><li onclick="addWaypoint('HTLE')">HTLE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ilembula</span></li><li onclick="addWaypoint('HTLI')">HTLI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lindi</span></li><li onclick="addWaypoint('HTLJ')">HTLJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lualanje</span></li><li onclick="addWaypoint('HTLK')">HTLK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luika</span></li><li onclick="addWaypoint('HTLL')">HTLL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liuli</span></li><li onclick="addWaypoint('HTLM')">HTLM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lake Manyara</span></li><li onclick="addWaypoint('HTLN')">HTLN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukwati</span></li><li onclick="addWaypoint('HTLO')">HTLO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lobo Wild Life Lodge</span></li><li onclick="addWaypoint('HTLP')">HTLP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lupa</span></li><li onclick="addWaypoint('HTLR')">HTLR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukuliro</span></li><li onclick="addWaypoint('HTLS')">HTLS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lesingita</span></li><li onclick="addWaypoint('HTLT')">HTLT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lunda Wma</span></li><li onclick="addWaypoint('HTLU')">HTLU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lunda</span></li><li onclick="addWaypoint('HTLV')">HTLV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liveria</span></li><li onclick="addWaypoint('HTLW')">HTLW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luwegu</span></li><li onclick="addWaypoint('HTLY')">HTLY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luwele</span></li><li onclick="addWaypoint('HTMA')">HTMA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mafia</span></li><li onclick="addWaypoint('HTMD')">HTMD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buhemba Gold Mining</span></li><li onclick="addWaypoint('HTME')">HTME &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matambwe</span></li><li onclick="addWaypoint('HTMF')">HTMF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mufindi</span></li><li onclick="addWaypoint('HTMG')">HTMG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Morogoro</span></li><li onclick="addWaypoint('HTMH')">HTMH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Makau</span></li><li onclick="addWaypoint('HTMI')">HTMI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masasi</span></li><li onclick="addWaypoint('HTMJ')">HTMJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Maji Moto</span></li><li onclick="addWaypoint('HTMK')">HTMK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mikumi</span></li><li onclick="addWaypoint('HTML')">HTML &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mahale</span></li><li onclick="addWaypoint('HTMM')">HTMM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mamarehe</span></li><li onclick="addWaypoint('HTMN')">HTMN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matemanga</span></li><li onclick="addWaypoint('HTMO')">HTMO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mombo</span></li><li onclick="addWaypoint('HTMP')">HTMP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpanda</span></li><li onclick="addWaypoint('HTMR')">HTMR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msembe Ruaha</span></li><li onclick="addWaypoint('HTMS')">HTMS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Moshi</span></li><li onclick="addWaypoint('HTMT')">HTMT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtwara</span></li><li onclick="addWaypoint('HTMU')">HTMU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Musoma</span></li><li onclick="addWaypoint('HTMV')">HTMV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mvumi</span></li><li onclick="addWaypoint('HTMW')">HTMW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwanza</span></li><li onclick="addWaypoint('HTMX')">HTMX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpwapwa</span></li><li onclick="addWaypoint('HTMY')">HTMY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbuyu</span></li><li onclick="addWaypoint('HTNA')">HTNA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nachingwea</span></li><li onclick="addWaypoint('HTNB')">HTNB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Naberera</span></li><li onclick="addWaypoint('HTND')">HTND &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ndutu</span></li><li onclick="addWaypoint('HTNF')">HTNF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nkonje</span></li><li onclick="addWaypoint('HTNG')">HTNG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngerengere</span></li><li onclick="addWaypoint('HTNH')">HTNH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ndolo</span></li><li onclick="addWaypoint('HTNJ')">HTNJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Njombe</span></li><li onclick="addWaypoint('HTNK')">HTNK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nkinga</span></li><li onclick="addWaypoint('HTNM')">HTNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">North Mara</span></li><li onclick="addWaypoint('HTNN')">HTNN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngorongoro</span></li><li onclick="addWaypoint('HTNO')">HTNO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbono</span></li><li onclick="addWaypoint('HTNR')">HTNR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngara</span></li><li onclick="addWaypoint('HTNW')">HTNW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngwazi</span></li><li onclick="addWaypoint('HTNY')">HTNY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kinyanguru</span></li><li onclick="addWaypoint('HTNZ')">HTNZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nzega</span></li><li onclick="addWaypoint('HTOM')">HTOM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Olemilei</span></li><li onclick="addWaypoint('HTON')">HTON &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mishamo</span></li><li onclick="addWaypoint('HTOP')">HTOP</li><li onclick="addWaypoint('HTOR')">HTOR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Olepakashi/Engaresero</span></li><li onclick="addWaypoint('HTOZ')">HTOZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigosa 1/Kigozi</span></li><li onclick="addWaypoint('HTPD')">HTPD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpunde</span></li><li onclick="addWaypoint('HTPE')">HTPE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Pemba</span></li><li onclick="addWaypoint('HTPP')">HTPP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kapunga</span></li><li onclick="addWaypoint('HTPT')">HTPT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Piti/Kitemela</span></li><li onclick="addWaypoint('HTPW')">HTPW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matipwili</span></li><li onclick="addWaypoint('HTRA')">HTRA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mkangire</span></li><li onclick="addWaypoint('HTRB')">HTRB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Rubondo</span></li><li onclick="addWaypoint('HTRE')">HTRE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Pemba</span></li><li onclick="addWaypoint('HTRG')">HTRG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Rungwa</span></li><li onclick="addWaypoint('HTRL')">HTRL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbarali</span></li><li onclick="addWaypoint('HTRN')">HTRN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Barani</span></li><li onclick="addWaypoint('HTRS')">HTRS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibesa</span></li><li onclick="addWaypoint('HTRU')">HTRU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mchauru</span></li><li onclick="addWaypoint('HTRX')">HTRX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tango One</span></li><li onclick="addWaypoint('HTRZ')">HTRZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kirumira</span></li><li onclick="addWaypoint('HTSA')">HTSA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Makwasa</span></li><li onclick="addWaypoint('HTSB')">HTSB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kagera Sugar</span></li><li onclick="addWaypoint('HTSD')">HTSD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Singida</span></li><li onclick="addWaypoint('HTSE')">HTSE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Same</span></li><li onclick="addWaypoint('HTSG')">HTSG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Stiglers Gorge</span></li><li onclick="addWaypoint('HTSH')">HTSH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mafinga</span></li><li onclick="addWaypoint('HTSI')">HTSI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kihansi</span></li><li onclick="addWaypoint('HTSJ')">HTSJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Simanjiro</span></li><li onclick="addWaypoint('HTSK')">HTSK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sitalike</span></li><li onclick="addWaypoint('HTSL')">HTSL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msolwa</span></li><li onclick="addWaypoint('HTSM')">HTSM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masimba</span></li><li onclick="addWaypoint('HTSN')">HTSN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Seronera</span></li><li onclick="addWaypoint('HTSO')">HTSO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songea</span></li><li onclick="addWaypoint('HTSS')">HTSS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songosongo</span></li><li onclick="addWaypoint('HTST')">HTST &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Serengeti South</span></li><li onclick="addWaypoint('HTSU')">HTSU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sumbawanga</span></li><li onclick="addWaypoint('HTSW')">HTSW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kiswa</span></li><li onclick="addWaypoint('HTSY')">HTSY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shinyanga - Ibadakuli</span></li><li onclick="addWaypoint('HTTA')">HTTA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mngeta</span></li><li onclick="addWaypoint('HTTB')">HTTB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tabora</span></li><li onclick="addWaypoint('HTTC')">HTTC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Трс</span></li><li onclick="addWaypoint('HTTE')">HTTE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtemere</span></li><li onclick="addWaypoint('HTTF')">HTTF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwadui</span></li><li onclick="addWaypoint('HTTG')">HTTG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tanga</span></li><li onclick="addWaypoint('HTTJ')">HTTJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Handajega</span></li><li onclick="addWaypoint('HTTL')">HTTL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tulawaka</span></li><li onclick="addWaypoint('HTTN')">HTTN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magangwe</span></li><li onclick="addWaypoint('HTTO')">HTTO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kogatende</span></li><li onclick="addWaypoint('HTTR')">HTTR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarangire</span></li><li onclick="addWaypoint('HTTS')">HTTS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Milembwe</span></li><li onclick="addWaypoint('HTTU')">HTTU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tunduru</span></li><li onclick="addWaypoint('HTTV')">HTTV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msima</span></li><li onclick="addWaypoint('HTTX')">HTTX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarime</span></li><li onclick="addWaypoint('HTTY')">HTTY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Manyara South</span></li><li onclick="addWaypoint('HTTZ')">HTTZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tura</span></li><li onclick="addWaypoint('HTTI')">HTTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtibwa</span></li><li onclick="addWaypoint('HTUC')">HTUC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Turiani</span></li><li onclick="addWaypoint('HTUF')">HTUF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ugalla</span></li><li onclick="addWaypoint('HTUG')">HTUG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lugala</span></li><li onclick="addWaypoint('HTUK')">HTUK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ukerewe - Nansio</span></li><li onclick="addWaypoint('HTUN')">HTUN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Murungu</span></li><li onclick="addWaypoint('HTUO')">HTUO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Merugoi</span></li><li onclick="addWaypoint('HTUP')">HTUP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtemaupinde</span></li><li onclick="addWaypoint('HTUR')">HTUR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Urambo</span></li><li onclick="addWaypoint('HTUS')">HTUS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masusu</span></li><li onclick="addWaypoint('HTUT')">HTUT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Utete</span></li><li onclick="addWaypoint('HTUU')">HTUU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kalulu</span></li><li onclick="addWaypoint('HTUV')">HTUV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Uvinza</span></li><li onclick="addWaypoint('HTUW')">HTUW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nungwi</span></li><li onclick="addWaypoint('HTUZ')">HTUZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kuro</span></li><li onclick="addWaypoint('HTVR')">HTVR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buger</span></li><li onclick="addWaypoint('HTWA')">HTWA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sasakwa</span></li><li onclick="addWaypoint('HTWB')">HTWB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwiba</span></li><li onclick="addWaypoint('HTWH')">HTWH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Wazo Hill</span></li><li onclick="addWaypoint('HTWI')">HTWI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mchukwi</span></li><li onclick="addWaypoint('HTWK')">HTWK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">West Kilimanjaro</span></li><li onclick="addWaypoint('HTWS')">HTWS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kwamsisi</span></li><li onclick="addWaypoint('HTYA')">HTYA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibaya</span></li><li onclick="addWaypoint('HTYE')">HTYE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nyamonge</span></li><li onclick="addWaypoint('HTYO')">HTYO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Moyowosi</span></li><li onclick="addWaypoint('HTYW')">HTYW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Likuyu</span></li><li onclick="addWaypoint('HTYY')">HTYY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Yeye 2</span></li><li onclick="addWaypoint('HTZA')">HTZA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Zanzibar</span></li><li onclick="addWaypoint('HTZI')">HTZI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kisima (Mkomazi)</span></li><li onclick="addWaypoint('HTZW')">HTZW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ziwandu</span></li><li onclick="addWaypoint('IBGEN')">IBGEN</li><li onclick="addWaypoint('IBKOB')">IBKOB</li><li onclick="addWaypoint('IBMAR')">IBMAR</li><li onclick="addWaypoint('IBROP')">IBROP</li><li onclick="addWaypoint('IMDOM')">IMDOM</li><li onclick="addWaypoint('IMGEX')">IMGEX</li><li onclick="addWaypoint('IMKIX')">IMKIX</li><li onclick="addWaypoint('IMLAK')">IMLAK</li><li onclick="addWaypoint('IMPIL')">IMPIL</li><li onclick="addWaypoint('IMRAX')">IMRAX</li><li onclick="addWaypoint('IMROD')">IMROD</li><li onclick="addWaypoint('IMSAT')">IMSAT</li><li onclick="addWaypoint('ITBEX')">ITBEX</li><li onclick="addWaypoint('ITBOS')">ITBOS</li><li onclick="addWaypoint('ITGOP')">ITGOP</li><li onclick="addWaypoint('ITLAN')">ITLAN</li><li onclick="addWaypoint('ITMEN')">ITMEN</li><li onclick="addWaypoint('ITNOV')">ITNOV</li><li onclick="addWaypoint('ITOBO')">ITOBO</li><li onclick="addWaypoint('ITROM')">ITROM</li><li onclick="addWaypoint('ITSEV')">ITSEV</li><li onclick="addWaypoint('ITSOK')">ITSOK</li><li onclick="addWaypoint('IXAPA')">IXAPA</li><li onclick="addWaypoint('KASAMA NDB')">KS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasama NDB</span></li><li onclick="addWaypoint('KASIM')">KASIM</li><li onclick="addWaypoint('KB')">KB</li><li onclick="addWaypoint('KG')">KG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigoma NDB</span></li><li onclick="addWaypoint('KNM')">KNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigali DVOR</span></li><li onclick="addWaypoint('KINAN')">KINAN</li><li onclick="addWaypoint('KIRAWIRA A')">KIRAWIRA A</li><li onclick="addWaypoint('KISIR')">KISIR</li><li onclick="addWaypoint('KIVUR')">KIVUR</li><li onclick="addWaypoint('KL')">KL</li><li onclick="addWaypoint('KO')">KO</li><li onclick="addWaypoint('KOBEL')">KOBEL</li><li onclick="addWaypoint('KOGUT')">KOGUT</li><li onclick="addWaypoint('KV')">KV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimanjaro DVOR</span></li><li onclick="addWaypoint('LABAT')">LABAT</li><li onclick="addWaypoint('LOSIN')">LOSIN</li><li onclick="addWaypoint('LUGAP')">LUGAP</li><li onclick="addWaypoint('LUSOB')">LUSOB</li><li onclick="addWaypoint('MAGAD')">MAGAD</li><li onclick="addWaypoint('MB')">MB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbeya NDB</span></li><li onclick="addWaypoint('MIWAS')">MIWAS</li><li onclick="addWaypoint('MORU')">MORU</li><li onclick="addWaypoint('MPULULU')">MPULULU</li><li onclick="addWaypoint('MT')">MT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtwara NDB</span></li><li onclick="addWaypoint('MUMTU')">MUMTU</li><li onclick="addWaypoint('MV')">MV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwanza VOR</span></li><li onclick="addWaypoint('NAGON')">NAGON</li><li onclick="addWaypoint('NESAL')">NESAL</li><li onclick="addWaypoint('NESOX')">NESOX</li><li onclick="addWaypoint('NEXAD')">NEXAD</li><li onclick="addWaypoint('NIBOT')">NIBOT</li><li onclick="addWaypoint('NIDED')">NIDED</li><li onclick="addWaypoint('NIDEL')">NIDEL</li><li onclick="addWaypoint('NIDEX')">NIDEX</li><li onclick="addWaypoint('ODGAT')">ODGAT</li><li onclick="addWaypoint('OKDAS')">OKDAS</li><li onclick="addWaypoint('OKLOM')">OKLOM</li><li onclick="addWaypoint('OKMAS')">OKMAS</li><li onclick="addWaypoint('OKNES')">OKNES</li><li onclick="addWaypoint('OKPAB')">OKPAB</li><li onclick="addWaypoint('OKSIS')">OKSIS</li><li onclick="addWaypoint('OKSOT')">OKSOT</li><li onclick="addWaypoint('OKTEX')">OKTEX</li><li onclick="addWaypoint('OPDET')">OPDET</li><li onclick="addWaypoint('ORLIM')">ORLIM</li><li onclick="addWaypoint('OVANA')">OVANA</li><li onclick="addWaypoint('PARIN')">PARIN</li><li onclick="addWaypoint('PENOD')">PENOD</li><li onclick="addWaypoint('ROVUM')">ROVUM</li><li onclick="addWaypoint('SELRU')">SELRU</li><li onclick="addWaypoint('SINGI')">SINGI</li><li onclick="addWaypoint('TABNO')">TABNO</li><li onclick="addWaypoint('TABORA B')">TABORA B</li><li onclick="addWaypoint('TARANGILE 1')">TARANGILE 1</li><li onclick="addWaypoint('TB')">TB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tabora NDB</span></li><li onclick="addWaypoint('TEBLU')">TEBLU</li><li onclick="addWaypoint('THANDA')">THANDA&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Thanda Island Helipad</span></li><li onclick="addWaypoint('TIKAN')">TIKAN</li><li onclick="addWaypoint('UDMAM')">UDMAM</li><li onclick="addWaypoint('UDNOT')">UDNOT</li><li onclick="addWaypoint('UMTAP')">UMTAP</li><li onclick="addWaypoint('UNLEN')">UNLEN</li><li onclick="addWaypoint('USUBU')">USUBU</li><li onclick="addWaypoint('UTATA')">UTATA</li><li onclick="addWaypoint('UTEMA')">UTEMA</li><li onclick="addWaypoint('UTINA')">UTINA</li><li onclick="addWaypoint('UTOVU')">UTOVU</li><li onclick="addWaypoint('UVBOX')">UVBOX</li><li onclick="addWaypoint('UVDIX')">UVDIX</li><li onclick="addWaypoint('UVKAT')">UVKAT</li><li onclick="addWaypoint('UVKOD')">UVKOD</li><li onclick="addWaypoint('UVLED')">UVLED</li><li onclick="addWaypoint('UVMAN')">UVMAN</li><li onclick="addWaypoint('UVMEX')">UVMEX</li><li onclick="addWaypoint('UVMID')">UVMID</li><li onclick="addWaypoint('UVORA')">UVORA</li><li onclick="addWaypoint('UVUKO')">UVUKO</li><li onclick="addWaypoint('UVUMI')">UVUMI</li><li onclick="addWaypoint('XAKRI')">XAKRI</li><li onclick="addWaypoint('XINDA')">XINDA</li><li onclick="addWaypoint('ZV')">ZV</li><li onclick="addWaypoint('НТКВ')">НТКВ</li><li onclick="addWaypoint('SG')">SG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songea NDB</span></li>
+<ul id="waypointList" style="display: NONE;"><li onclick="addWaypoint('AKUMU')">AKUMU</li><li onclick="addWaypoint('ALSAR')">ALSAR</li><li onclick="addWaypoint('AMSAD')">AMSAD</li><li onclick="addWaypoint('ANTIM')">ANTIM</li><li onclick="addWaypoint('ANVOX')">ANVOX</li><li onclick="addWaypoint('ANVUN')">ANVUN</li><li onclick="addWaypoint('APDIK')">APDIK</li><li onclick="addWaypoint('APDOT')">APDOT</li><li onclick="addWaypoint('APGEN')">APGEN</li><li onclick="addWaypoint('APKOL')">APKOL</li><li onclick="addWaypoint('APLOG')">APLOG</li><li onclick="addWaypoint('APMIT')">APMIT</li><li onclick="addWaypoint('APNAD')">APNAD</li><li onclick="addWaypoint('APNOL')">APNOL</li><li onclick="addWaypoint('ATUNU')">ATUNU</li><li onclick="addWaypoint('ATUPA')">ATUPA</li><li onclick="addWaypoint('AVATU')">AVATU</li><li onclick="addWaypoint('AVEKI')">AVEKI</li><li onclick="addWaypoint('AVETA')">AVETA</li><li onclick="addWaypoint('AVIGO')">AVIGO</li><li onclick="addWaypoint('AVIRI')">AVIRI</li><li onclick="addWaypoint('AVITA')">AVITA</li><li onclick="addWaypoint('AVUNO')">AVUNO</li><li onclick="addWaypoint('AXOSI')">AXOSI</li><li onclick="addWaypoint('BILAK')">BILAK</li><li onclick="addWaypoint('BONAP')">BONAP</li><li onclick="addWaypoint('BOSAD')">BOSAD</li><li onclick="addWaypoint('BOTEN')">BOTEN</li><li onclick="addWaypoint('BUJUMBURA CVOR')">BJA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bujumbura CVOR</span></li><li onclick="addWaypoint('DARAS')">DARAS</li><li onclick="addWaypoint('DASTA')">DASTA</li><li onclick="addWaypoint('DATAN')">DATAN</li><li onclick="addWaypoint('DO')">DO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dodoma NDB</span></li><li onclick="addWaypoint('DUDGA')">DUDGA</li><li onclick="addWaypoint('DUMA')">DUMA</li><li onclick="addWaypoint('DUMPA')">DUMPA</li><li onclick="addWaypoint('DUNDO')">DUNDO</li><li onclick="addWaypoint('DUSKA')">DUSKA</li><li onclick="addWaypoint('DV')">DV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dar es salaam DVOR</span></li><li onclick="addWaypoint('EGLOX')">EGLOX</li><li onclick="addWaypoint('EGMIL')">EGMIL</li><li onclick="addWaypoint('EGNUM')">EGNUM</li><li onclick="addWaypoint('EGPET')">EGPET</li><li onclick="addWaypoint('EGSEM')">EGSEM</li><li onclick="addWaypoint('EGSIX')">EGSIX</li><li onclick="addWaypoint('EGTAN')">EGTAN</li><li onclick="addWaypoint('ELAVA')">ELAVA</li><li onclick="addWaypoint('EPMAB')">EPMAB</li><li onclick="addWaypoint('EPMIN')">EPMIN</li><li onclick="addWaypoint('EPTAN')">EPTAN</li><li onclick="addWaypoint('EPTEL')">EPTEL</li><li onclick="addWaypoint('EPTIK')">EPTIK</li><li onclick="addWaypoint('ERBOK')">ERBOK</li><li onclick="addWaypoint('ERDEN')">ERDEN</li><li onclick="addWaypoint('ESPUX')">ESPUX</li><li onclick="addWaypoint('ESRES')">ESRES</li><li onclick="addWaypoint('ESVIM')">ESVIM</li><li onclick="addWaypoint('ETIVO')">ETIVO</li><li onclick="addWaypoint('ETLEK')">ETLEK</li><li onclick="addWaypoint('ETMIS')">ETMIS</li><li onclick="addWaypoint('ETMIX')">ETMIX</li><li onclick="addWaypoint('ETMOV')">ETMOV</li><li onclick="addWaypoint('ETUXI')">ETUXI</li><li onclick="addWaypoint('EVASI')">EVASI</li><li onclick="addWaypoint('EVATO')">EVATO</li><li onclick="addWaypoint('EXELU')">EXELU</li><li onclick="addWaypoint('EXEMI')">EXEMI</li><li onclick="addWaypoint('GABSO')">GABSO</li><li onclick="addWaypoint('GAVDA')">GAVDA</li><li onclick="addWaypoint('GEREN')">GEREN</li><li onclick="addWaypoint('GERUD')">GERUD</li><li onclick="addWaypoint('GESAT')">GESAT</li><li onclick="addWaypoint('GETAB')">GETAB</li><li onclick="addWaypoint('GETUX')">GETUX</li><li onclick="addWaypoint('HTAI')">HTAI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lamai</span></li><li onclick="addWaypoint('HTAL')">HTAL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Allience</span></li><li onclick="addWaypoint('HTAR')">HTAR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Arusha</span></li><li onclick="addWaypoint('HTAS')">HTAS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mashado</span></li><li onclick="addWaypoint('HTBA')">HTBA</li><li onclick="addWaypoint('HTBB')">HTBB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kiba (Kibambawe)</span></li><li onclick="addWaypoint('HTBE')">HTBE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Berega</span></li><li onclick="addWaypoint('HTBF')">HTBF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buckreef</span></li><li onclick="addWaypoint('HTBG')">HTBG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kikoboga</span></li><li onclick="addWaypoint('HTBH')">HTBH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Biharamulo</span></li><li onclick="addWaypoint('HTBJ')">HTBJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kabojo</span></li><li onclick="addWaypoint('HTBM')">HTBM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bagamoyo</span></li><li onclick="addWaypoint('HTBN')">HTBN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bulyankhulu</span></li><li onclick="addWaypoint('HTBO')">HTBO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Behobeho</span></li><li onclick="addWaypoint('HTBS')">HTBS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbesa</span></li><li onclick="addWaypoint('HTBT')">HTBT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buturi</span></li><li onclick="addWaypoint('HTBU')">HTBU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Bukoba</span></li><li onclick="addWaypoint('HTBV')">HTBV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Yaeda Chini</span></li><li onclick="addWaypoint('HTBX')">HTBX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Мaboxi</span></li><li onclick="addWaypoint('HTBY')">HTBY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbamba Bay</span></li><li onclick="addWaypoint('HTCF')">HTCF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Catfish</span></li><li onclick="addWaypoint('HTCH')">HTCH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chunya</span></li><li onclick="addWaypoint('HTCM')">HTCM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chemchem</span></li><li onclick="addWaypoint('HTCV')">HTCV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Chivanjee</span></li><li onclick="addWaypoint('HTDA')">HTDA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dar es Salaam</span></li><li onclick="addWaypoint('HTDB')">HTDB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Madaba</span></li><li onclick="addWaypoint('HTDG')">HTDG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dolly</span></li><li onclick="addWaypoint('HTDK')">HTDK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dakawa</span></li><li onclick="addWaypoint('HTDN')">HTDN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Saadani</span></li><li onclick="addWaypoint('HTDO')">HTDO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dodoma</span></li><li onclick="addWaypoint('HTDU')">HTDU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibidula</span></li><li onclick="addWaypoint('HTDY')">HTDY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Dorman</span></li><li onclick="addWaypoint('HTEB')">HTEB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sengerema</span></li><li onclick="addWaypoint('HTEE')">HTEE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mlele Ram</span></li><li onclick="addWaypoint('HTEJ')">HTEJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shama</span></li><li onclick="addWaypoint('HTEN')">HTEN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Enduleni</span></li><li onclick="addWaypoint('HTEQ')">HTEQ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shughuli</span></li><li onclick="addWaypoint('HTER')">HTER &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtera</span></li><li onclick="addWaypoint('HTES')">HTES &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Engorika</span></li><li onclick="addWaypoint('HTEY')">HTEY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sikonge</span></li><li onclick="addWaypoint('HTFE')">HTFE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Fish Eagle</span></li><li onclick="addWaypoint('HTFI')">HTFI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Fort Ikoma</span></li><li onclick="addWaypoint('HTFR')">HTFR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kifura</span></li><li onclick="addWaypoint('HTGA')">HTGA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbuga/Ilonga</span></li><li onclick="addWaypoint('HTGE')">HTGE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Geita</span></li><li onclick="addWaypoint('HTGL')">HTGL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Gerai Lumbwa</span></li><li onclick="addWaypoint('HTGM')">HTGM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magambua</span></li><li onclick="addWaypoint('HTGO')">HTGO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kizigo</span></li><li onclick="addWaypoint('HTGP')">HTGP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Golden Pride</span></li><li onclick="addWaypoint('HTGR')">HTGR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Grumet</span></li><li onclick="addWaypoint('HTGS')">HTGS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Malagarasi</span></li><li onclick="addWaypoint('HTGT')">HTGT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Gelai East</span></li><li onclick="addWaypoint('HTGU')">HTGU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Miguruwe</span></li><li onclick="addWaypoint('HTGV')">HTGV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">George Vineyard Memorial (Kipili)</span></li><li onclick="addWaypoint('HTGW')">HTGW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songwe</span></li><li onclick="addWaypoint('HTGZ')">HTGZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magazini</span></li><li onclick="addWaypoint('HTHB')">HTHB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Muhuba</span></li><li onclick="addWaypoint('HTHG')">HTHG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilumbi</span></li><li onclick="addWaypoint('HTHI')">HTHI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mlay/Mlahi</span></li><li onclick="addWaypoint('HTHM')">HTHM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwambesi</span></li><li onclick="addWaypoint('HTHR')">HTHR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Heri Hospital</span></li><li onclick="addWaypoint('HTHS')">HTHS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Muhesi</span></li><li onclick="addWaypoint('HTHY')">HTHY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Hydom</span></li><li onclick="addWaypoint('HTI')">HTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lesirwai</span></li><li onclick="addWaypoint('HTIA')">HTIA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ifakara</span></li><li onclick="addWaypoint('HTIF')">HTIF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ifunda Farm</span></li><li onclick="addWaypoint('HTIH')">HTIH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarime (Sasi)</span></li><li onclick="addWaypoint('HTIK')">HTIK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Iku-Lake Chada</span></li><li onclick="addWaypoint('HTIL')">HTIL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lila</span></li><li onclick="addWaypoint('HTIR')">HTIR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Iringa</span></li><li onclick="addWaypoint('HTIW')">HTIW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liwale</span></li><li onclick="addWaypoint('HTIY')">HTIY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Inyonga</span></li><li onclick="addWaypoint('HTJN')">HTJN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kwajoni</span></li><li onclick="addWaypoint('HTJO')">HTJO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Jongomero</span></li><li onclick="addWaypoint('HTJR')">HTJR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mkwaja Ranch</span></li><li onclick="addWaypoint('HTKA')">HTKA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigoma</span></li><li onclick="addWaypoint('HTKB')">HTKB</li><li onclick="addWaypoint('HTKC')">HTKC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kleins Camp</span></li><li onclick="addWaypoint('HTKD')">HTKD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kondoa</span></li><li onclick="addWaypoint('HTKE')">HTKE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ketumbeine</span></li><li onclick="addWaypoint('HTKF')">HTKF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibebe Farm</span></li><li onclick="addWaypoint('HTKG')">HTKG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Namkongo</span></li><li onclick="addWaypoint('HTKH')">HTKH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Кahama</span></li><li onclick="addWaypoint('HTKI')">HTKI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilwa Masoko</span></li><li onclick="addWaypoint('HTKJ')">HTKJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimanjaro</span></li><li onclick="addWaypoint('HTKL')">HTKL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kirondatal</span></li><li onclick="addWaypoint('HTKM')">HTKM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilombero</span></li><li onclick="addWaypoint('HTKN')">HTKN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasense</span></li><li onclick="addWaypoint('HTKO')">HTKO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kongwa</span></li><li onclick="addWaypoint('HTKP')">HTKP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kingupira</span></li><li onclick="addWaypoint('HTKR')">HTKR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kingupira</span></li><li onclick="addWaypoint('HTKS')">HTKS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilosa</span></li><li onclick="addWaypoint('HTKT')">HTKT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimatinde</span></li><li onclick="addWaypoint('HTKU')">HTKU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasulu</span></li><li onclick="addWaypoint('HTKX')">HTKX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kitemela</span></li><li onclick="addWaypoint('HTLA')">HTLA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukula</span></li><li onclick="addWaypoint('HTLB')">HTLB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Malambo</span></li><li onclick="addWaypoint('HTLD')">HTLD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Loliondo</span></li><li onclick="addWaypoint('HTLE')">HTLE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ilembula</span></li><li onclick="addWaypoint('HTLI')">HTLI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lindi</span></li><li onclick="addWaypoint('HTLJ')">HTLJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lualanje</span></li><li onclick="addWaypoint('HTLK')">HTLK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luika</span></li><li onclick="addWaypoint('HTLL')">HTLL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liuli</span></li><li onclick="addWaypoint('HTLM')">HTLM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lake Manyara</span></li><li onclick="addWaypoint('HTLN')">HTLN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukwati</span></li><li onclick="addWaypoint('HTLO')">HTLO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lobo Wild Life Lodge</span></li><li onclick="addWaypoint('HTLP')">HTLP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lupa</span></li><li onclick="addWaypoint('HTLR')">HTLR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lukuliro</span></li><li onclick="addWaypoint('HTLS')">HTLS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lesingita</span></li><li onclick="addWaypoint('HTLT')">HTLT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lunda Wma</span></li><li onclick="addWaypoint('HTLU')">HTLU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lunda</span></li><li onclick="addWaypoint('HTLV')">HTLV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Liveria</span></li><li onclick="addWaypoint('HTLW')">HTLW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luwegu</span></li><li onclick="addWaypoint('HTLY')">HTLY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Luwele</span></li><li onclick="addWaypoint('HTMA')">HTMA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mafia</span></li><li onclick="addWaypoint('HTMD')">HTMD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buhemba Gold Mining</span></li><li onclick="addWaypoint('HTME')">HTME &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matambwe</span></li><li onclick="addWaypoint('HTMF')">HTMF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mufindi</span></li><li onclick="addWaypoint('HTMG')">HTMG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Morogoro</span></li><li onclick="addWaypoint('HTMH')">HTMH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Makau</span></li><li onclick="addWaypoint('HTMI')">HTMI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masasi</span></li><li onclick="addWaypoint('HTMJ')">HTMJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Maji Moto</span></li><li onclick="addWaypoint('HTMK')">HTMK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mikumi</span></li><li onclick="addWaypoint('HTML')">HTML &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mahale</span></li><li onclick="addWaypoint('HTMM')">HTMM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mamarehe</span></li><li onclick="addWaypoint('HTMN')">HTMN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matemanga</span></li><li onclick="addWaypoint('HTMO')">HTMO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mombo</span></li><li onclick="addWaypoint('HTMP')">HTMP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpanda</span></li><li onclick="addWaypoint('HTMR')">HTMR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msembe Ruaha</span></li><li onclick="addWaypoint('HTMS')">HTMS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Moshi</span></li><li onclick="addWaypoint('HTMT')">HTMT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtwara</span></li><li onclick="addWaypoint('HTMU')">HTMU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Musoma</span></li><li onclick="addWaypoint('HTMV')">HTMV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mvumi</span></li><li onclick="addWaypoint('HTMW')">HTMW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwanza</span></li><li onclick="addWaypoint('HTMX')">HTMX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpwapwa</span></li><li onclick="addWaypoint('HTMY')">HTMY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbuyu</span></li><li onclick="addWaypoint('HTNA')">HTNA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nachingwea</span></li><li onclick="addWaypoint('HTNB')">HTNB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Naberera</span></li><li onclick="addWaypoint('HTND')">HTND &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ndutu</span></li><li onclick="addWaypoint('HTNF')">HTNF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nkonje</span></li><li onclick="addWaypoint('HTNG')">HTNG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngerengere</span></li><li onclick="addWaypoint('HTNH')">HTNH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ndolo</span></li><li onclick="addWaypoint('HTNJ')">HTNJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Njombe</span></li><li onclick="addWaypoint('HTNK')">HTNK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nkinga</span></li><li onclick="addWaypoint('HTNM')">HTNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">North Mara</span></li><li onclick="addWaypoint('HTNN')">HTNN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngorongoro</span></li><li onclick="addWaypoint('HTNO')">HTNO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbono</span></li><li onclick="addWaypoint('HTNR')">HTNR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngara</span></li><li onclick="addWaypoint('HTNW')">HTNW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ngwazi</span></li><li onclick="addWaypoint('HTNY')">HTNY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kinyanguru</span></li><li onclick="addWaypoint('HTNZ')">HTNZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nzega</span></li><li onclick="addWaypoint('HTOM')">HTOM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Olemilei</span></li><li onclick="addWaypoint('HTON')">HTON &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mishamo</span></li><li onclick="addWaypoint('HTOP')">HTOP</li><li onclick="addWaypoint('HTOR')">HTOR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Olepakashi/Engaresero</span></li><li onclick="addWaypoint('HTOZ')">HTOZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigosa 1/Kigozi</span></li><li onclick="addWaypoint('HTPD')">HTPD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mpunde</span></li><li onclick="addWaypoint('HTPE')">HTPE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Pemba</span></li><li onclick="addWaypoint('HTPP')">HTPP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kapunga</span></li><li onclick="addWaypoint('HTPT')">HTPT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Piti/Kitemela</span></li><li onclick="addWaypoint('HTPW')">HTPW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Matipwili</span></li><li onclick="addWaypoint('HTRA')">HTRA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mkangire</span></li><li onclick="addWaypoint('HTRB')">HTRB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Rubondo</span></li><li onclick="addWaypoint('HTRE')">HTRE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Pemba</span></li><li onclick="addWaypoint('HTRG')">HTRG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Rungwa</span></li><li onclick="addWaypoint('HTRL')">HTRL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbarali</span></li><li onclick="addWaypoint('HTRN')">HTRN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Barani</span></li><li onclick="addWaypoint('HTRS')">HTRS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibesa</span></li><li onclick="addWaypoint('HTRU')">HTRU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mchauru</span></li><li onclick="addWaypoint('HTRX')">HTRX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tango One</span></li><li onclick="addWaypoint('HTRZ')">HTRZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kirumira</span></li><li onclick="addWaypoint('HTSA')">HTSA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Makwasa</span></li><li onclick="addWaypoint('HTSB')">HTSB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kagera Sugar</span></li><li onclick="addWaypoint('HTSD')">HTSD &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Singida</span></li><li onclick="addWaypoint('HTSE')">HTSE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Same</span></li><li onclick="addWaypoint('HTSG')">HTSG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Stiglers Gorge</span></li><li onclick="addWaypoint('HTSH')">HTSH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mafinga</span></li><li onclick="addWaypoint('HTSI')">HTSI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kihansi</span></li><li onclick="addWaypoint('HTSJ')">HTSJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Simanjiro</span></li><li onclick="addWaypoint('HTSK')">HTSK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sitalike</span></li><li onclick="addWaypoint('HTSL')">HTSL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msolwa</span></li><li onclick="addWaypoint('HTSM')">HTSM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masimba</span></li><li onclick="addWaypoint('HTSN')">HTSN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Seronera</span></li><li onclick="addWaypoint('HTSO')">HTSO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songea</span></li><li onclick="addWaypoint('HTSS')">HTSS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songosongo</span></li><li onclick="addWaypoint('HTST')">HTST &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Serengeti South</span></li><li onclick="addWaypoint('HTSU')">HTSU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sumbawanga</span></li><li onclick="addWaypoint('HTSW')">HTSW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kiswa</span></li><li onclick="addWaypoint('HTSY')">HTSY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Shinyanga - Ibadakuli</span></li><li onclick="addWaypoint('HTTA')">HTTA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mngeta</span></li><li onclick="addWaypoint('HTTB')">HTTB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tabora</span></li><li onclick="addWaypoint('HTTC')">HTTC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Трс</span></li><li onclick="addWaypoint('HTTE')">HTTE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtemere</span></li><li onclick="addWaypoint('HTTF')">HTTF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwadui</span></li><li onclick="addWaypoint('HTTG')">HTTG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tanga</span></li><li onclick="addWaypoint('HTTJ')">HTTJ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Handajega</span></li><li onclick="addWaypoint('HTTL')">HTTL &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tulawaka</span></li><li onclick="addWaypoint('HTTN')">HTTN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Magangwe</span></li><li onclick="addWaypoint('HTTO')">HTTO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kogatende</span></li><li onclick="addWaypoint('HTTR')">HTTR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarangire</span></li><li onclick="addWaypoint('HTTS')">HTTS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Milembwe</span></li><li onclick="addWaypoint('HTTU')">HTTU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tunduru</span></li><li onclick="addWaypoint('HTTV')">HTTV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Msima</span></li><li onclick="addWaypoint('HTTX')">HTTX &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tarime</span></li><li onclick="addWaypoint('HTTY')">HTTY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Manyara South</span></li><li onclick="addWaypoint('HTTZ')">HTTZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tura</span></li><li onclick="addWaypoint('HTTI')">HTTI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtibwa</span></li><li onclick="addWaypoint('HTUC')">HTUC &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Turiani</span></li><li onclick="addWaypoint('HTUF')">HTUF &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ugalla</span></li><li onclick="addWaypoint('HTUG')">HTUG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Lugala</span></li><li onclick="addWaypoint('HTUK')">HTUK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ukerewe - Nansio</span></li><li onclick="addWaypoint('HTUN')">HTUN &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Murungu</span></li><li onclick="addWaypoint('HTUO')">HTUO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Merugoi</span></li><li onclick="addWaypoint('HTUP')">HTUP &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtemaupinde</span></li><li onclick="addWaypoint('HTUR')">HTUR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Urambo</span></li><li onclick="addWaypoint('HTUS')">HTUS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Masusu</span></li><li onclick="addWaypoint('HTUT')">HTUT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Utete</span></li><li onclick="addWaypoint('HTUU')">HTUU &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kalulu</span></li><li onclick="addWaypoint('HTUV')">HTUV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Uvinza</span></li><li onclick="addWaypoint('HTUW')">HTUW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nungwi</span></li><li onclick="addWaypoint('HTUZ')">HTUZ &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kuro</span></li><li onclick="addWaypoint('HTVR')">HTVR &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Buger</span></li><li onclick="addWaypoint('HTWA')">HTWA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Sasakwa</span></li><li onclick="addWaypoint('HTWB')">HTWB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwiba</span></li><li onclick="addWaypoint('HTWH')">HTWH &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Wazo Hill</span></li><li onclick="addWaypoint('HTWI')">HTWI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mchukwi</span></li><li onclick="addWaypoint('HTWK')">HTWK &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">West Kilimanjaro</span></li><li onclick="addWaypoint('HTWS')">HTWS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kwamsisi</span></li><li onclick="addWaypoint('HTYA')">HTYA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kibaya</span></li><li onclick="addWaypoint('HTYE')">HTYE &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Nyamonge</span></li><li onclick="addWaypoint('HTYO')">HTYO &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Moyowosi</span></li><li onclick="addWaypoint('HTYW')">HTYW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Likuyu</span></li><li onclick="addWaypoint('HTYY')">HTYY &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Yeye 2</span></li><li onclick="addWaypoint('HTZA')">HTZA &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Zanzibar</span></li><li onclick="addWaypoint('HTZI')">HTZI &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kisima (Mkomazi)</span></li><li onclick="addWaypoint('HTZW')">HTZW &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Ziwandu</span></li><li onclick="addWaypoint('IBGEN')">IBGEN</li><li onclick="addWaypoint('IBKOB')">IBKOB</li><li onclick="addWaypoint('IBMAR')">IBMAR</li><li onclick="addWaypoint('IBROP')">IBROP</li><li onclick="addWaypoint('IMDOM')">IMDOM</li><li onclick="addWaypoint('IMGEX')">IMGEX</li><li onclick="addWaypoint('IMKIX')">IMKIX</li><li onclick="addWaypoint('IMLAK')">IMLAK</li><li onclick="addWaypoint('IMPIL')">IMPIL</li><li onclick="addWaypoint('IMRAX')">IMRAX</li><li onclick="addWaypoint('IMROD')">IMROD</li><li onclick="addWaypoint('IMSAT')">IMSAT</li><li onclick="addWaypoint('ITBEX')">ITBEX</li><li onclick="addWaypoint('ITBOS')">ITBOS</li><li onclick="addWaypoint('ITGOP')">ITGOP</li><li onclick="addWaypoint('ITLAN')">ITLAN</li><li onclick="addWaypoint('ITMEN')">ITMEN</li><li onclick="addWaypoint('ITNOV')">ITNOV</li><li onclick="addWaypoint('ITOBO')">ITOBO</li><li onclick="addWaypoint('ITROM')">ITROM</li><li onclick="addWaypoint('ITSEV')">ITSEV</li><li onclick="addWaypoint('ITSOK')">ITSOK</li><li onclick="addWaypoint('IXAPA')">IXAPA</li><li onclick="addWaypoint('KASAMA NDB')">KS &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kasama NDB</span></li><li onclick="addWaypoint('KASIM')">KASIM</li><li onclick="addWaypoint('KB')">KB</li><li onclick="addWaypoint('KG')">KG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigoma NDB</span></li><li onclick="addWaypoint('KNM')">KNM &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kigali DVOR</span></li><li onclick="addWaypoint('KINAN')">KINAN</li><li onclick="addWaypoint('KIRAWIRA A')">KIRAWIRA A</li><li onclick="addWaypoint('KISIR')">KISIR</li><li onclick="addWaypoint('KIVUR')">KIVUR</li><li onclick="addWaypoint('KL')">KL</li><li onclick="addWaypoint('KO')">KO</li><li onclick="addWaypoint('KOBEL')">KOBEL</li><li onclick="addWaypoint('KOGUT')">KOGUT</li><li onclick="addWaypoint('KV')">KV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Kilimanjaro DVOR</span></li><li onclick="addWaypoint('LABAT')">LABAT</li><li onclick="addWaypoint('LOSIN')">LOSIN</li><li onclick="addWaypoint('LUGAP')">LUGAP</li><li onclick="addWaypoint('LUSOB')">LUSOB</li><li onclick="addWaypoint('MAGAD')">MAGAD</li><li onclick="addWaypoint('MB')">MB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mbeya NDB</span></li><li onclick="addWaypoint('MIWAS')">MIWAS</li><li onclick="addWaypoint('MORU')">MORU</li><li onclick="addWaypoint('MPULULU')">MPULULU</li><li onclick="addWaypoint('MT')">MT &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mtwara NDB</span></li><li onclick="addWaypoint('MUMTU')">MUMTU</li><li onclick="addWaypoint('MV')">MV &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Mwanza VOR</span></li><li onclick="addWaypoint('NAGON')">NAGON</li><li onclick="addWaypoint('NESAL')">NESAL</li><li onclick="addWaypoint('NESOX')">NESOX</li><li onclick="addWaypoint('NEXAD')">NEXAD</li><li onclick="addWaypoint('NIBOT')">NIBOT</li><li onclick="addWaypoint('NIDED')">NIDED</li><li onclick="addWaypoint('NIDEL')">NIDEL</li><li onclick="addWaypoint('NIDEX')">NIDEX</li><li onclick="addWaypoint('ODGAT')">ODGAT</li><li onclick="addWaypoint('OKDAS')">OKDAS</li><li onclick="addWaypoint('OKLOM')">OKLOM</li><li onclick="addWaypoint('OKMAS')">OKMAS</li><li onclick="addWaypoint('OKNES')">OKNES</li><li onclick="addWaypoint('OKPAB')">OKPAB</li><li onclick="addWaypoint('OKSIS')">OKSIS</li><li onclick="addWaypoint('OKSOT')">OKSOT</li><li onclick="addWaypoint('OKTEX')">OKTEX</li><li onclick="addWaypoint('OPDET')">OPDET</li><li onclick="addWaypoint('ORLIM')">ORLIM</li><li onclick="addWaypoint('OVANA')">OVANA</li><li onclick="addWaypoint('PARIN')">PARIN</li><li onclick="addWaypoint('PENOD')">PENOD</li><li onclick="addWaypoint('ROVUM')">ROVUM</li><li onclick="addWaypoint('SELRU')">SELRU</li><li onclick="addWaypoint('SINGI')">SINGI</li><li onclick="addWaypoint('TABNO')">TABNO</li><li onclick="addWaypoint('TABORA B')">TABORA B</li><li onclick="addWaypoint('TARANGILE 1')">TARANGILE 1</li><li onclick="addWaypoint('TB')">TB &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tabora NDB</span></li><li onclick="addWaypoint('TEBLU')">TEBLU</li><li onclick="addWaypoint('THANDA')">THANDA&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Thanda Island Helipad</span></li><li onclick="addWaypoint('TIKAN')">TIKAN</li><li onclick="addWaypoint('UDMAM')">UDMAM</li><li onclick="addWaypoint('UDNOT')">UDNOT</li><li onclick="addWaypoint('UMTAP')">UMTAP</li><li onclick="addWaypoint('UNLEN')">UNLEN</li><li onclick="addWaypoint('USUBU')">USUBU</li><li onclick="addWaypoint('UTATA')">UTATA</li><li onclick="addWaypoint('UTEMA')">UTEMA</li><li onclick="addWaypoint('UTINA')">UTINA</li><li onclick="addWaypoint('UTOVU')">UTOVU</li><li onclick="addWaypoint('UVBOX')">UVBOX</li><li onclick="addWaypoint('UVDIX')">UVDIX</li><li onclick="addWaypoint('UVKAT')">UVKAT</li><li onclick="addWaypoint('UVKOD')">UVKOD</li><li onclick="addWaypoint('UVLED')">UVLED</li><li onclick="addWaypoint('UVMAN')">UVMAN</li><li onclick="addWaypoint('UVMEX')">UVMEX</li><li onclick="addWaypoint('UVMID')">UVMID</li><li onclick="addWaypoint('UVORA')">UVORA</li><li onclick="addWaypoint('UVUKO')">UVUKO</li><li onclick="addWaypoint('UVUMI')">UVUMI</li><li onclick="addWaypoint('XAKRI')">XAKRI</li><li onclick="addWaypoint('XINDA')">XINDA</li><li onclick="addWaypoint('ZV')">ZV</li><li onclick="addWaypoint('НТКВ')">НТКВ</li><li onclick="addWaypoint('SG')">SG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Songea NDB</span></li>
 <li onclick="addWaypoint('TG')">TG &nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0078d4;">Tanga NDB</span></li>
 </ul>
 </div>
@@ -8238,14 +8239,14 @@ document.addEventListener("DOMContentLoaded", () => {
         // Global error handler to hide waypoints list on JavaScript errors
         window.addEventListener('error', function(event) {
             if (waypointList) {
-                waypointList.style.display = 'none';
+                waypointList.style.display = 'NONE';
             }
         });
         
         // Also handle unhandled promise rejections
         window.addEventListener('unhandledrejection', function(event) {
             if (waypointList) {
-                waypointList.style.display = 'none';
+                waypointList.style.display = 'NONE';
             }
         });
         
@@ -8253,7 +8254,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Hide waypoint list when input loses focus
             searchInput.addEventListener('blur', function() {
                 setTimeout(() => {
-                    waypointList.style.display = 'none';
+                    waypointList.style.display = 'NONE';
                 }, 200); // Small delay to allow clicking on list items
             });
             
@@ -8267,14 +8268,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // Hide waypoint list when clicking outside
             document.addEventListener('click', function(event) {
                 if (!searchInput.contains(event.target) && !waypointList.contains(event.target)) {
-                    waypointList.style.display = 'none';
+                    waypointList.style.display = 'NONE';
                 }
             });
             
             // Hide waypoint list when clicking on list items
             waypointList.addEventListener('click', function(event) {
                 if (event.target && event.target.tagName === 'LI') {
-                    waypointList.style.display = 'none';
+                    waypointList.style.display = 'NONE';
                     searchInput.value = ''; // Clear search input
                 }
             });
@@ -8286,7 +8287,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="route-container">
 <div class="info-icon" data-tooltip="Drag to rearrange waypoints. Click to remove waypoints.">i</div>
 <strong>Route:</strong>
-<span id="routeWaypoints"><span>NONE</span></span>
+<span id="routeWaypoints"><span class="route-waypoint" style="cursor: default;">NONE</span></span>
 </div>
 </div>
 <div id="output" style="margin: 30px 0 30px 0; z-index: 100002;"></div>
@@ -8311,19 +8312,19 @@ document.addEventListener("DOMContentLoaded", () => {
 <div id="split-inputContainer" style="margin-bottom: 15px; width: 100%; overflow: visible; box-sizing: border-box; position: relative; z-index: 99998;">
 <div style="display: flex; justify-content: space-between; gap: 7px; width: 100%; overflow: visible; box-sizing: border-box;">
 <div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 100001;">MTOW (tonnes)</label>
-    <input id="mtow" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="number">
+    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 100001;">MTOW (Tonnes)</label>
+    <input id="mtow" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: #0284c7;" type="text">
 </div>
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 100001;">DISTANCE (km)</label>
-    <input id="dist" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="number">
+    <input id="dist" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: #0284c7;" type="number">
 </div>
 </div>
 <style>
         #split-inputContainer {
             display: flex;
             justify-content: space-between;
-            appearance: none; 
+            appearance: NONE; 
             align-items: center;    
             gap: 7px; 
             margin: 30px 0 5px 0;
@@ -8332,14 +8333,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         #mtow {
             text-align: center;
-            appearance: none;
+            appearance: NONE;
             display: flex;
             box-sizing: border-box;
             margin: 0;
             align-items: center;
-            box-shadow: none;
-            outline: none;
-            border: none;
+            box-shadow: NONE;
+            outline: NONE;
+            border: NONE;
             align-content: center;
             padding: 0;
         }
@@ -8349,9 +8350,9 @@ document.addEventListener("DOMContentLoaded", () => {
             display: flex;
             box-sizing: border-box;
             align-content: center;
-            outline: none;
-            border: none;
-            box-shadow: none;
+            outline: NONE;
+            border: NONE;
+            box-shadow: NONE;
             align-items: center;
             margin: 0;
             padding: 0;
@@ -8363,11 +8364,11 @@ document.addEventListener("DOMContentLoaded", () => {
 <div style="display: flex; justify-content: space-between; gap: 7px !important;">
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Arrival Time</label>
-    <input id="Arrival_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="time">
+    <input id="Arrival_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: #0284c7;" type="time">
 </div>
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Arrival Date</label>
-    <input id="Arrival_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
+    <input id="Arrival_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
 </div>
 </div>
 </div>
@@ -8376,11 +8377,11 @@ document.addEventListener("DOMContentLoaded", () => {
 <div style="display: flex; justify-content: space-between; gap: 7px !important;">
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Departure Time</label>
-    <input id="Departure_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="time">
+    <input id="Departure_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: #0284c7;" type="time">
 </div>
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: #0078d4; font-family: 'SF Pro Display'; z-index: 1001;">Departure Date</label>
-    <input id="Departure_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: none; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
+    <input id="Departure_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid #0ea5e9 !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: #0284c7;" type="date">
 </div>
 </div>
 
@@ -8391,10 +8392,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div id="SecondRowButtonContainer">
 <button id="CALCULATEButton">CALCULATE</button>
-<button id="clearButton" onclick="location.reload();">CLEAR</button>
+<button id="clearButton" onclick="clearAllValues()">CLEAR</button>
 </div>
 
-<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; border: none; display: none; position: fixed; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); background: rgba(255, 255, 255, 0.7); z-index: 999998; pointer-events: all; cursor: not-allowed;">
+<div class="blur-overlay" id="blurOverlay" style="border-radius: 8px; border: NONE; display: NONE; position: fixed; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); background: rgba(255, 255, 255, 0.7); z-index: 999998; pointer-events: all; cursor: not-allowed;">
 
 <!-- code for lines pattern -->
     <!--<div class="lines"><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span><span style="display: block; width: 100%; height: 0.5px; background-color: rgb(199, 233, 249); margin: 40px 0px;"></span></div>
@@ -8413,40 +8414,40 @@ document.addEventListener("DOMContentLoaded", () => {
 </div>
 
 <!-- Popup Modal -->
-<div id="resultPopup" style="position: fixed; display: none; width: 250px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000000; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #1976d2; padding: 0; box-shadow: 0px 4px 15px rgba(25, 118, 210, 0.3);"> 
+<div id="resultPopup" style="position: fixed; display: NONE; width: 250px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000000; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #1976d2; padding: 0; box-shadow: 0px 4px 15px rgba(25, 118, 210, 0.3);"> 
 
 
   <!--<h2>Calculation Results</h2>-->
-  <div class="popup-header" style="background: linear-gradient(135deg, #0078d4 0%, #1358bf 100%); color: #fff; height: 40px; width: 100%; padding: 0; font-size: 16px; margin-bottom: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; letter-spacing: 1px !important; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);">
+  <div class="popup-header" style="background: linear-gradient(135deg, #0078d4 0%, #1358bf 100%); color: #fff; height: 40px; width: 100%; padding: 0; font-size: 16px; margin-bottom: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; letter-spacing: 1px !important; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);">
   </div>
 
-    <div id="popupText" style="font-family: 'SF Pro Display'; letter-spacing: 1px !important; font-size: 16px; text-align: center; padding: 0 15px; font-weight: 500;">
-      <div style="margin: 8px 0; font-weight: 500; color: #004185; padding-top: 8px;">STL: <span id="stlValue"></span><span style="color: red; font-weight: 500;">*</span></div>
+    <div id="popupText" style="font-family: 'SF Pro Display'; letter-spacing: 1px !important; font-size: 16px; text-align: center; padding: 10px 15px;">
+      <div style="margin: 0; font-weight: 500; color: #004185;">STL: <span id="stlValue"></span><span style="color: red; font-weight: 500;">*</span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">ANC: <span id="ancValue"></span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">ANC: <span id="ancValue"></span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">PKG: <span id="pkgValue"></span><span style="color: red; font-weight: 500;">*</span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">PKG: <span id="pkgValue"></span><span style="color: red; font-weight: 500;">*</span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">LAN: <span id="lanValue"></span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">LAN: <span id="lanValue"></span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">SAF: <span id="safValue"></span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">SAF: <span id="safValue"></span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">SEC: <span id="secValue"></span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">SEC: <span id="secValue"></span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">NLA: <span id="nlaValue"></span><span style="color: red; font-weight: 500;">*</span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">NLA: <span id="nlaValue"></span><span style="color: red; font-weight: 500;">*</span></div>
       <span style="display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #6cb4ef, transparent); margin: 12px 0;"></span>
-      <div style="margin: 8px 0; font-weight: 500; color: #004185;">NTK: <span id="ntkValue"></span><span style="color: red; font-weight: 500;">*</span></div>
+      <div style="margin: 0; font-weight: 500; color: #004185;">NTK: <span id="ntkValue"></span><span style="color: red; font-weight: 500;">*</span></div>
     </div>
 
 
   <div id="popupButtonsContainer">
-  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background: #0078d4; height: 40px; cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);" class="close-icon" onclick="closePopup()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: block; margin: 0 auto;">
+  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background: #0078d4; height: 40px; cursor: pointer; border: NONE; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);" class="close-icon" onclick="closePopup()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" style="display: block; margin: 0 auto;">
       <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
-  <button onclick="copyContent()" style="height: 40px; background: #0078d4; border: none; border-radius: 0; color: white; font-weight: 500; letter-spacing: 1px !important; box-shadow: 0 -2px 8px rgba(0, 120, 212, 0.2);" id="copyButton">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;">
+  <button onclick="copyContent()" style="height: 40px; background: #0078d4; border: NONE; border-radius: 0; color: white; font-weight: 500; letter-spacing: 1px !important; box-shadow: 0 -2px 8px rgba(0, 120, 212, 0.2);" id="copyButton">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;">
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
@@ -8474,9 +8475,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const textToCopy = document.getElementById('popupText').innerText;
       const button = document.getElementById('copyButton');
       navigator.clipboard.writeText(textToCopy).then(() => {
-        button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" stroke-dasharray="29" stroke-dashoffset="29"><animate attributeName="stroke-dashoffset" from="29" to="0" dur="0.5s" fill="freeze"/></path></svg>';
+        button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" stroke-dasharray="29" stroke-dashoffset="29"><animate attributeName="stroke-dashoffset" from="29" to="0" dur="0.5s" fill="freeze"/></path></svg>';
         setTimeout(() => {
-          button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+          button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
         }, 2000);
       }).catch(err => {
         alert('Failed to copy text: ' + err);
@@ -8614,8 +8615,8 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
 
   // Close popup
   function closePopup() {
-    document.getElementById("resultPopup").style.display = "none";
-    blurOverlay.style.display = "none"; 
+    document.getElementById("resultPopup").style.display = "NONE";
+    blurOverlay.style.display = "NONE"; 
     document.body.style.overflow = "auto"; // Enable page scrolling
 
   }
@@ -10199,7 +10200,7 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
                 if (text.toLowerCase().includes(searchInput)) {
                     items[i].style.display = "";
                 } else {
-                    items[i].style.display = "none";
+                    items[i].style.display = "NONE";
                 }
             }
         }
@@ -10218,7 +10219,7 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
         function updateRouteDisplay() {
             const routeDisplay = document.getElementById("routeWaypoints");
             if (route.length === 0) {
-                routeDisplay.innerHTML = "None";
+                routeDisplay.innerHTML = '<span class="route-waypoint" style="cursor: default;">NONE</span>';
                 return;
             }
 
@@ -10350,7 +10351,7 @@ function calculateDistance() {
   
   setTimeout(() => {
     if (!Array.isArray(route) || route.length < 2) {
-      document.getElementById("output").innerHTML = "<p style='color: red;'>Please add at least two waypoints to calculate distance.</p>";
+      document.getElementById("output").innerHTML = "<p style='color: red; white-space: nowrap;'>Please add at least two waypoints to calculate distance.</p>";
       setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
     } else {
       let totalDistanceKm = 0;
@@ -10398,11 +10399,28 @@ function calculateDistance() {
   }, 2000);
 }
 
-        function clearPage() {
+        function clearAllValues() {
+            // Clear MTOW and Distance inputs
+            document.getElementById("mtow").value = "";
+            document.getElementById("dist").value = "";
+            
+            // Clear aircraft selection
+            document.getElementById("aircraftSearchInput").value = "";
+            
+            // Clear route and waypoints
             route = [];
             updateRouteDisplay();
             document.getElementById("searchInput").value = "";
             document.getElementById("output").innerHTML = "";
+            
+            // Clear arrival/departure times and dates
+            document.getElementById("Arrival_time").value = "";
+            document.getElementById("Arrival_date").value = "";
+            document.getElementById("Departure_time").value = "";
+            document.getElementById("Departure_date").value = "";
+            
+            // Reset coordinates visibility
+            coordinatesVisible = false;
         }
     
 
@@ -10411,7 +10429,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const waypointList = document.getElementById("waypointList");
 
     // Initially hide the dropdown list
-    waypointList.style.display = "none";
+    waypointList.style.display = "NONE";
 
     // Show dropdown when the user interacts with the search box
     searchInput.addEventListener("focus", () => {
@@ -10423,7 +10441,7 @@ document.addEventListener("DOMContentLoaded", () => {
         route.push(waypoint);
         updateRouteDisplay();
         searchInput.value = "";
-        waypointList.style.display = "none";  // Hide the dropdown
+        waypointList.style.display = "NONE";  // Hide the dropdown
     }
 });
 
@@ -10433,7 +10451,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const waypointList = document.getElementById("waypointList");
 
     // Initially hide the dropdown list
-    waypointList.style.display = "none";
+    waypointList.style.display = "NONE";
 
     // Show dropdown when the user interacts with the search box
     searchInput.addEventListener("focus", () => {
@@ -10445,7 +10463,7 @@ document.addEventListener("DOMContentLoaded", () => {
         route.push(waypoint);
         updateRouteDisplay();
         searchInput.value = "";
-        waypointList.style.display = "none";  // Hide the dropdown
+        waypointList.style.display = "NONE";  // Hide the dropdown
     }
 
     window.addWaypoint = addWaypoint;  // Ensure the function is accessible globally
@@ -10512,7 +10530,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     searchBox.addEventListener('blur', () => {
         setTimeout(() => {
-            aircraftList.style.display = 'none';
+            aircraftList.style.display = 'NONE';
         }, 200); // Delay to allow item click event
     });
 });
@@ -10647,7 +10665,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     searchBox.addEventListener('blur', () => {
         setTimeout(() => {
-            aircraftList.style.display = 'none';
+            aircraftList.style.display = 'NONE';
         }, 200); // Delay to allow item click event
     });
 });
@@ -11403,7 +11421,7 @@ document.addEventListener('DOMContentLoaded', function () {
             padding-right: 20px;
             font-size: 1em;
           ">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff4757" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="NONE" stroke="#ff4757" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
               <line x1="12" y1="8" x2="12" y2="12"></line>
               <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -11539,7 +11557,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const parsed = tryParseCoordinates(v);
       if (!parsed) {
         showFormatError();
-        waypointList.style.display = 'none';
+        waypointList.style.display = 'NONE';
         return;
       }
 
@@ -11576,7 +11594,7 @@ document.addEventListener('DOMContentLoaded', function () {
           setTimeout(() => input.select(), 10);
         } else {
           showFormatError();
-          waypointList.style.display = 'none';
+          waypointList.style.display = 'NONE';
         }
       }, 10);
     });
@@ -11599,13 +11617,13 @@ document.addEventListener('DOMContentLoaded', function () {
           li.style.display = 'block';
           hasVisible = true;
         } else {
-          li.style.display = 'none';
+          li.style.display = 'NONE';
         }
       });
       if (hasVisible && query !== '') {
         waypointList.style.display = 'block';
       } else {
-        waypointList.style.display = 'none';
+        waypointList.style.display = 'NONE';
       }
     });
 
