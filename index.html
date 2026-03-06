@@ -10342,61 +10342,48 @@ function resolveWaypointToken(token) {
 }
 
 function calculateDistance() {
-  const button = document.getElementById("calculateDistanceButton");
-  const originalText = button.innerHTML;
-  
-  // Show loading animation
-  button.innerHTML = '<div class="loader"></div>';
-  button.disabled = true;
-  
-  setTimeout(() => {
-    if (!Array.isArray(route) || route.length < 2) {
-      document.getElementById("output").innerHTML = "<p style='color: red; white-space: nowrap;'>Please add at least two waypoints to calculate distance.</p>";
-      setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
-    } else {
-      let totalDistanceKm = 0;
-      let totalDistanceNm = 0;
+  if (!Array.isArray(route) || route.length < 2) {
+    document.getElementById("output").innerHTML = "<p style='color: red; white-space: nowrap;'>Please add at least two waypoints to calculate distance.</p>";
+    setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
+  } else {
+    let totalDistanceKm = 0;
+    let totalDistanceNm = 0;
 
-      for (let i = 0; i < route.length - 1; i++) {
-        const key1 = route[i];
-        const key2 = route[i + 1];
+    for (let i = 0; i < route.length - 1; i++) {
+      const key1 = route[i];
+      const key2 = route[i + 1];
 
-        // Try to get waypoints; if missing, try resolving them
-        let wp1 = waypoints[key1];
-        if (!wp1) {
-          const res = resolveWaypointToken(key1);
-          if (res) wp1 = res.wp;
-        }
-
-        let wp2 = waypoints[key2];
-        if (!wp2) {
-          const res = resolveWaypointToken(key2);
-          if (res) wp2 = res.wp;
-        }
-
-        if (!wp1 || !wp2) {
-          document.getElementById('dist').value = totalDistanceKm.toFixed(2);
-          const invalidToken = !wp1 ? key1 : key2;
-          document.getElementById("output").innerHTML = `<p style='color: #0078d4;'>Invalid waypoint: ${invalidToken}</p>`;
-          setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
-          return;
-        }
-
-        // euclideanDistance should return { km: ..., nm: ... } as in your code
-        const distance = euclideanDistance(wp1.lat, wp1.lon, wp2.lat, wp2.lon);
-        totalDistanceKm += distance.km;
-        totalDistanceNm += distance.nm;
+      // Try to get waypoints; if missing, try resolving them
+      let wp1 = waypoints[key1];
+      if (!wp1) {
+        const res = resolveWaypointToken(key1);
+        if (res) wp1 = res.wp;
       }
 
-      document.getElementById('dist').value = totalDistanceKm.toFixed(2);
-      document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
-      setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 10000);
+      let wp2 = waypoints[key2];
+      if (!wp2) {
+        const res = resolveWaypointToken(key2);
+        if (res) wp2 = res.wp;
+      }
+
+      if (!wp1 || !wp2) {
+        document.getElementById('dist').value = totalDistanceKm.toFixed(2);
+        const invalidToken = !wp1 ? key1 : key2;
+        document.getElementById("output").innerHTML = `<p style='color: #0078d4;'>Invalid waypoint: ${invalidToken}</p>`;
+        setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
+        return;
+      }
+
+      // euclideanDistance should return { km: ..., nm: ... } as in your code
+      const distance = euclideanDistance(wp1.lat, wp1.lon, wp2.lat, wp2.lon);
+      totalDistanceKm += distance.km;
+      totalDistanceNm += distance.nm;
     }
-    
-    // Restore button
-    button.innerHTML = originalText;
-    button.disabled = false;
-  }, 2000);
+
+    document.getElementById('dist').value = totalDistanceKm.toFixed(2);
+    document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
+    setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 10000);
+  }
 }
 
         function clearAllValues() {
@@ -10486,53 +10473,35 @@ function toDMS(decimal, isLatitude) {
 }
 
 function toggleCoordinates() {
-    const button = document.getElementById("toggleCoordinatesButton");
-    const originalText = button.innerHTML;
+    const routeWaypoints = document.getElementById('routeWaypoints');
+    const waypointsArray = routeWaypoints.querySelectorAll('.route-waypoint');
     
-    // Show loading animation
-    button.innerHTML = '<div class="loader"></div>';
-    button.disabled = true;
-    
-    setTimeout(() => {
-        const routeWaypoints = document.getElementById('routeWaypoints');
-        const waypointsArray = routeWaypoints.querySelectorAll('.route-waypoint');
-        
-        waypointsArray.forEach(waypoint => {
-            const waypointName = waypoint.getAttribute('data-name') || waypoint.textContent.match(/^[^\(]+/)[0].trim();
-            const coords = waypoints[waypointName];
+    waypointsArray.forEach(waypoint => {
+        const waypointName = waypoint.getAttribute('data-name') || waypoint.textContent.match(/^[^\(]+/)[0].trim();
+        const coords = waypoints[waypointName];
 
-            if (coords && coords.lat && coords.lon) {
-                if (coordinatesVisible) {
-                    waypoint.textContent = waypointName;
-                } else {
-                    const latDMS = toDMS(coords.lat, true);
-                    const lonDMS = toDMS(coords.lon, false);
-                    waypoint.textContent = `${waypointName} (${latDMS}, ${lonDMS})`;
-                }
+        if (coords && coords.lat && coords.lon) {
+            if (coordinatesVisible) {
+                waypoint.textContent = waypointName;
+            } else {
+                const latDMS = toDMS(coords.lat, true);
+                const lonDMS = toDMS(coords.lon, false);
+                waypoint.textContent = `${waypointName} (${latDMS}, ${lonDMS})`;
             }
-        });
+        }
+    });
 
-        coordinatesVisible = !coordinatesVisible;
-        
-        // Restore button
-        button.innerHTML = originalText;
-        button.disabled = false;
-    }, 2000);
+    coordinatesVisible = !coordinatesVisible;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
-    const aircraftList = document.getElementById('aircraftList');
+searchBox.addEventListener('focus', () => {
+    aircraftList.style.display = 'block';
+});
 
-    searchBox.addEventListener('focus', () => {
-        aircraftList.style.display = 'block';
-    });
-
-    searchBox.addEventListener('blur', () => {
-        setTimeout(() => {
-            aircraftList.style.display = 'NONE';
-        }, 200); // Delay to allow item click event
-    });
+searchBox.addEventListener('blur', () => {
+    setTimeout(() => {
+        aircraftList.style.display = 'NONE';
+    }, 200); // Delay to allow item click event
 });
 </script>
 <footer style="text-align: center; margin-top: 50px; font-size: 11px;">
