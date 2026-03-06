@@ -10,7 +10,7 @@
             const errorElement = document.getElementById('errorMessage');
             const passwordInput = document.getElementById('password');
             
-            errorElement.textContent = message;
+            errorElement.innerHTML = `<span style="color: red; white-space: nowrap; font-size: clamp(10px, 3vw, 16px);">${message}</span>`;
             errorElement.style.display = 'block';
             passwordInput.classList.add('error');
             
@@ -24,7 +24,7 @@
             const errorElement = document.getElementById('errorMessage');
             const passwordInput = document.getElementById('password');
             
-            errorElement.textContent = '';
+            errorElement.innerHTML = '';
             errorElement.style.display = 'NONE';
             passwordInput.classList.remove('error');
         }
@@ -126,6 +126,14 @@
             line-height: 1.4;
         }
         
+        @media (max-width: 768px) {
+            .error-message {
+                margin: -5px 0 10px 0;
+                padding: 1px 3px;
+                text-align: center;
+            }
+        }
+        
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
@@ -178,6 +186,12 @@
             40%{background-position:0% 100%, 50%   0%,100%  50%}
             60%{background-position:0%  50%, 50% 100%,100%   0%}
             80%{background-position:0%  50%, 50%  50%,100% 100%}
+        }
+        
+        @media (max-width: 768px) {
+            #resultPopup {
+                top: 45% !important;
+            }
         }
     </style>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -10343,7 +10357,7 @@ function resolveWaypointToken(token) {
 
 function calculateDistance() {
   if (!Array.isArray(route) || route.length < 2) {
-    document.getElementById("output").innerHTML = "<p style='color: red; white-space: nowrap;'>Please add at least two waypoints to calculate distance.</p>";
+  document.getElementById("output").innerHTML = "<p style='color: red; white-space: nowrap; font-size: clamp(10px, 3vw, 16px);'>Please add at least two waypoints to calculate distance.</p>";
     setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
   } else {
     let totalDistanceKm = 0;
