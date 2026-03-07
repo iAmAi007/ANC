@@ -1600,6 +1600,36 @@ function clearPage() {
         left: 50%;
         transform: translateX(-50%);
     }
+
+    /* Close icon hover animation - animate only the cross SVG */
+    .close-icon:hover svg {
+        transform: rotate(90deg) scale(1.1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .close-icon svg {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .close-icon:hover {
+        background: #005a9e !important;
+        box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3) !important;
+    }
+
+    /* Copy icon hover animation - animate only the copy SVG, not the tick animation */
+    #copyButton:hover svg[style*="display: block"] {
+        transform: rotate(90deg) scale(1.1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #copyButton svg[style*="display: block"] {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #copyButton:hover {
+        background: #005a9e !important;
+        box-shadow: 0 4px 12px rgba(0, 120, 212, 0.3) !important;
+    }
 </style> </head><body>
     <!-- Login Form Container -->
     <div id="loginContainer">
@@ -8455,12 +8485,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   <div id="popupButtonsContainer">
-  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background: #0078d4; height: 40px; cursor: pointer; border: NONE; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2);" class="close-icon" onclick="closePopup()">
+  <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: white; top: 0; right: 0; background: #0078d4; height: 40px; cursor: pointer; border: NONE; box-shadow: 0 2px 8px rgba(0, 120, 212, 0.2); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" class="close-icon" onclick="closePopup()">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" style="display: block; margin: 0 auto;">
       <path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
-  <button onclick="copyContent()" style="height: 40px; background: #0078d4; border: NONE; border-radius: 0; color: white; font-weight: 500; letter-spacing: 1px !important; box-shadow: 0 -2px 8px rgba(0, 120, 212, 0.2);" id="copyButton">
+  <button onclick="copyContent()" style="height: 40px; background: #0078d4; border: NONE; border-radius: 0; color: white; font-weight: 500; letter-spacing: 1px !important; box-shadow: 0 -2px 8px rgba(0, 120, 212, 0.2); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" id="copyButton">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;">
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -8489,7 +8519,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const textToCopy = document.getElementById('popupText').innerText;
       const button = document.getElementById('copyButton');
       navigator.clipboard.writeText(textToCopy).then(() => {
-        button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" stroke-dasharray="29" stroke-dashoffset="29"><animate attributeName="stroke-dashoffset" from="29" to="0" dur="0.5s" fill="freeze"/></path></svg>';
+        button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L9 17L20 6" stroke-dasharray="29" stroke-dashoffset="29"><animate attributeName="stroke-dashoffset" from="29" to="0" dur="0.5s" fill="freeze"/></path></svg>';
         setTimeout(() => {
           button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
         }, 2000);
