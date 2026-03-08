@@ -529,8 +529,8 @@ h1, #ancDisplay {
         background-color: #f4f4f4;
         /* GEOMETRIC PATTERN BACKGROUND - Subtle light blue squares grid pattern */
         background-image: 
-            linear-gradient(to right, rgba(173, 216, 230, 0.2) 0.5px, transparent 0.5px),
-            linear-gradient(to bottom, rgba(135, 206, 235, 0.15) 0.5px, transparent 0.5px);
+            linear-gradient(to right, rgba(173, 216, 230, 0.4) 0.7px, transparent 0.5px),
+            linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0.7px, transparent 0.5px);
         background-size: 5px 5px;
         margin: 0;
         padding-top: 20px;
@@ -1637,7 +1637,7 @@ function clearPage() {
     }
 </style> </head><body>
     <!-- Login Form Container -->
-    <div id="loginContainer">
+    <div id="loginContainer" style="background-color: transparent; border: none;">
         <div class="login-box">
             <input type="password" id="password" placeholder="Enter Access Code" onkeypress="if(event.key === 'Enter') checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0 0 15px 0; border: 1px solid #0ea5e9; border-radius: 4px; font-size: 16px; box-sizing: border-box;">
             <div id="errorMessage" class="error-message"></div>
