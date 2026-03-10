@@ -529,8 +529,8 @@ h1, #ancDisplay {
         background-color: #f4f4f4;
         /* GEOMETRIC PATTERN BACKGROUND - Subtle light blue squares grid pattern */
         background-image: 
-            linear-gradient(to right, rgba(173, 216, 230, 0.2) 0.7px, transparent 0.5px),
-            linear-gradient(to bottom, rgba(135, 206, 235, 0.1) 0.7px, transparent 0.5px);
+            linear-gradient(to right, rgba(173, 216, 230, 0.4) 0.7px, transparent 0.5px),
+            linear-gradient(to bottom, rgba(135, 206, 235, 0.3) 0.7px, transparent 0.5px);
         background-size: 5px 5px;
         margin: 0;
         padding-top: 20px;
@@ -8233,7 +8233,7 @@ button#clearButton:active {
 <li onclick="addAircraft('WW24')"><span style="color: #0078D4;">WW24</span>  IAI IAI 1124 Westwind <span style="color: #0078D4;">(11 Tonnes)</span></li>
 </ul></div><script>
 document.addEventListener("DOMContentLoaded", () => {
-    const searchBox = document.querySelector('input[placeholder="Search and select an aircraft"]');
+    const searchBox = document.querySelector('input[placeholder="Select aircraft model"]');
     const aircraftList = document.getElementById('aircraftList');
     const aircraftItems = aircraftList.querySelectorAll('li');
 
@@ -10443,6 +10443,10 @@ function calculateDistance() {
             // Clear aircraft selection
             document.getElementById("aircraftSearchInput").value = "";
             
+            // Clear passenger fields
+            document.getElementById("local-pax").textContent = "";
+            document.getElementById("intl-pax").textContent = "";
+            
             // Clear route and waypoints
             route = [];
             updateRouteDisplay();
@@ -10566,24 +10570,62 @@ searchBox.addEventListener('blur', () => {
         "Even the airspace can tell we've done our math properly."
     ];
 
-    function updateQuote() {
+    let currentQuoteIndex = 0;
+    let currentCharIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 50;
+    let deletingSpeed = 30;
+    let pauseTime = 60000; // 60 seconds to read, same as original animation
+    let pauseBetweenQuotes = 500;
+
+    function typeWriter() {
         const quoteElement = document.getElementById('rotatingQuote');
-        const randomIndex = Math.floor(Math.random() * quotes.length);
-        quoteElement.textContent = `"${quotes[randomIndex]}"`;
+        const currentQuote = quotes[currentQuoteIndex];
+        
+        if (!isDeleting) {
+            // Typing
+            quoteElement.textContent = `"${currentQuote.substring(0, currentCharIndex + 1)}`;
+            currentCharIndex++;
+            
+            if (currentCharIndex === currentQuote.length) {
+                // Finished typing, pause before deleting
+                quoteElement.textContent = `"${currentQuote}"`;
+                setTimeout(() => {
+                    isDeleting = true;
+                    typeWriter();
+                }, pauseTime);
+                return;
+            }
+        } else {
+            // Deleting
+            quoteElement.textContent = `"${currentQuote.substring(0, currentCharIndex)}`;
+            currentCharIndex--;
+            
+            if (currentCharIndex === 0) {
+                // Finished deleting, move to next quote
+                quoteElement.textContent = `"`;
+                isDeleting = false;
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+                setTimeout(typeWriter, pauseBetweenQuotes);
+                return;
+            }
+        }
+        
+        const speed = isDeleting ? deletingSpeed : typingSpeed;
+        setTimeout(typeWriter, speed);
     }
 
-    // Update quote on page load
-    document.addEventListener('DOMContentLoaded', updateQuote);
-    
-    // Update quote every minute
-    setInterval(updateQuote, 60000);
+    // Start typing animation on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(typeWriter, 1000);
+    });
 </script>
-<div class="spacer" style="width: 20px"></div>
-<style>
 
-    
+<div class="spacer" style="width: 20px"></div>
+
+<style>
     h1 {
-    padding-top: 10px;
+        padding-top: 10px;
         font-family: 'SF Pro Display';
         letter-spacing: 1px !important;
         color: #222;
@@ -10601,24 +10643,25 @@ searchBox.addEventListener('blur', () => {
     /* Cursor blink effect */
     @keyframes blink {
         50% {
-            border-color: transparent;
+            opacity: 0;
         }
     }
 
-.spacer {
-    height: 40px; /* Adjust this height to create the desired extra space */
-    width: 100%;
-}
-
-    @media (orientation: landscape) {
-        .card button {
-            width: 100%; /* Stretch button width to the card's edges in landscape orientation */
-        }
+    /* Footer quote cursor blink */
+    #rotatingQuote::after {
+        content: '|';
+        animation: blink 1s step-end infinite;
+        color: #6cb4ef;
     }
-    @media screen and (min-width: 1024px) {
+
+    .spacer {
+        height: 40px; /* Adjust this height to create the desired extra space */
+        width: 100%;
+    }
+
     .split-input {
         text-align: center;    /* Ensure proper alignment */
-       }
+    }
     #mtow, #dist {
         height: 60px;
         align-items: center;
@@ -11410,6 +11453,7 @@ document.addEventListener('DOMContentLoaded', function () {
           line-height: 1.5;
           position: relative;
           backdrop-filter: blur(10px);
+          text-align: left;
         ">
           <div class="close-btn" style="
             position: absolute;
