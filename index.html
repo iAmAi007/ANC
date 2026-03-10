@@ -221,13 +221,13 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
     ::-webkit-input-placeholder{
-            color: color-mix(in srgb, #ffffff 20%, #6cb4ef); /*lightening the said color by adding some percentage of white */
+            color: #6cb4ef; /* Darker color for placeholder text */
         }
     ::-ms-input-placeholder{
-        color: color-mix(in srgb, #ffffff 20%, #6cb4ef); /*lightening the said color by adding some percentage of white */
+        color: #6cb4ef; /* Darker color for placeholder text */
     }
     ::-moz-input-placeholder{
-        color: color-mix(in srgb, #ffffff 20%, #6cb4ef); /*lightening the said color by adding some percentage of white */
+        color: #6cb4ef; /* Darker color for placeholder text */
     }
 
     .searchable-select p {
@@ -2795,7 +2795,7 @@ button#clearButton:active {
 <!--End of selectable text with drop-down and editable PAX values-->
 
 <div class="searchable-select">
-<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef" type="text" autocomplete="off">
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: color-mix(in srgb, #ffffff 20%, #6cb4ef);" type="text" autocomplete="off">
 
 
 <ul id="aircraftList" style="display: NONE;">
@@ -11620,57 +11620,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 padding-right: 0;
               }
               
-              /* Mobile responsive styles */
+              /* Mobile responsive styles to prevent overflow */
               @media (max-width: 480px) {
-                .coordinate-table {
-                  display: block;
-                  width: 100%;
-                }
-                .coordinate-table tr {
-                  display: block;
-                  margin-bottom: 8px;
-                  padding: 8px;
-                  background: rgba(255, 245, 245, 0.5);
-                  border-radius: 6px;
-                  border: 1px solid rgba(255, 71, 87, 0.1);
-                }
-                .coordinate-table td {
-                  display: block;
-                  padding: 2px 0;
-                  text-align: left !important;
-                }
-                .coordinate-table .number {
-                  width: auto;
-                  padding-right: 0;
-                  color: #ff4757;
-                  margin-bottom: 4px;
-                  font-weight: 800;
-                  font-size: 0.9em;
-                }
                 .coordinate-table .coordinate {
-                  width: 100%;
-                  max-width: 100%;
-                  padding-right: 0;
                   white-space: normal;
                   word-wrap: break-word;
                   overflow-wrap: break-word;
                   hyphens: auto;
-                  font-family: monospace;
+                  max-width: 100%;
+                  font-size: 0.75em;
+                  line-height: 1.3;
+                  padding: 3px 4px;
+                }
+                .coordinate-table .number {
                   font-size: 0.8em;
-                  line-height: 1.4;
+                  width: 16px;
                 }
               }
             </style>
             <table class="coordinate-table">
               <tr>
                 <td class="number">1.</td>
-                <td class="coordinate">0742S03940E</td>
-                <td class="number">2.</td>
                 <td class="coordinate">07°42'S 039°40'E</td>
+                <td class="number">2.</td>
+                <td class="coordinate">-6.78 39.20</td>
               </tr>
               <tr>
                 <td class="number">3.</td>
-                <td class="coordinate">-6.78 39.20</td>
+                <td class="coordinate">-6.78,39.20</td>
                 <td class="number">4.</td>
                 <td class="coordinate">-6.841076,39.150375</td>
               </tr>
