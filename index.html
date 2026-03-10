@@ -320,8 +320,8 @@
     .info-icon {
       width: 16px;
       height: 16px;
-      background: #ff6b35;
-      color: white;
+      background: transparent;
+      color: #1358bf;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -8231,7 +8231,70 @@ button#clearButton:active {
 <li onclick="addAircraft('TOBA')"><span style="color: #0078D4;">TOBA</span>  SOCATA Socata TB-10 Tobago <span style="color: #0078D4;">(2 Tonnes)</span></li>
 <li onclick="addAircraft('V22')"><span style="color: #0078D4;">V22</span>  BELL-BOEING Bell-Boeing V-22 Osprey <span style="color: #0078D4;">(28 Tonnes)</span></li>
 <li onclick="addAircraft('WW24')"><span style="color: #0078D4;">WW24</span>  IAI IAI 1124 Westwind <span style="color: #0078D4;">(11 Tonnes)</span></li>
-</ul></div><script>
+</ul></div>
+
+<script>
+// Missing functions for aircraft dropdown functionality
+function filterAircrafts() {
+    const searchInput = document.getElementById('aircraftSearchInput');
+    const aircraftList = document.getElementById('aircraftList');
+    const filter = searchInput.value.toLowerCase();
+    const aircraftItems = aircraftList.querySelectorAll('li');
+    
+    aircraftItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(filter)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'NONE';
+        }
+    });
+    
+    // Show/hide list based on filter and input value
+    if (filter !== '') {
+        aircraftList.style.display = 'block';
+    }
+}
+
+function showList() {
+    const aircraftList = document.getElementById('aircraftList');
+    aircraftList.style.display = 'block';
+}
+
+function hideList() {
+    const aircraftList = document.getElementById('aircraftList');
+    setTimeout(() => {
+        aircraftList.style.display = 'NONE';
+    }, 200); // Delay to allow item click event
+}
+
+function addAircraft(aircraftCode) {
+    const searchInput = document.getElementById('aircraftSearchInput');
+    const aircraftList = document.getElementById('aircraftList');
+    const aircraftItems = aircraftList.querySelectorAll('li');
+    
+    // Find the aircraft item by code
+    aircraftItems.forEach(item => {
+        if (item.getAttribute('onclick').includes("'" + aircraftCode + "'")) {
+            // Set the input value to the full aircraft text
+            searchInput.value = item.textContent.trim();
+            
+            // Extract and set MTOW value
+            const mtowMatch = item.textContent.match(/\((\d+) Tonne?s?\)/);
+            if (mtowMatch) {
+                const mtowValue = parseFloat(mtowMatch[1]);
+                const unit = mtowValue === 1 ? 'Tonne' : 'Tonnes';
+                document.getElementById('mtow').value = mtowValue + ' ' + unit;
+            }
+            
+            // Hide the dropdown
+            aircraftList.style.display = 'NONE';
+        }
+    });
+}
+</script>
+
+<script>
 document.addEventListener("DOMContentLoaded", () => {
     const searchBox = document.querySelector('input[placeholder="Select aircraft model"]');
     const aircraftList = document.getElementById('aircraftList');
@@ -8334,7 +8397,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div id="routeDisplay">
 <div class="route-container">
-<div class="info-icon" data-tooltip="Drag to rearrange waypoints. Click to remove waypoints.">i</div>
+<div class="info-icon" data-tooltip="Drag to rearrange waypoints. Click to remove waypoints;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="NONE" stroke="#1358bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);">
+  <circle cx="12" cy="12" r="10"></circle>
+  <line x1="12" y1="8" x2="12" y2="12"></line>
+  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+</svg>
+</div>
 <strong>Route:</strong>
 <span id="routeWaypoints"><span class="route-waypoint" style="cursor: default;">NONE</span></span>
 </div>
@@ -11495,7 +11564,6 @@ document.addEventListener('DOMContentLoaded', function () {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             font-size: 0.95em;
             color: #666;
-            margin-bottom: 12px;
             text-align: left;
             font-weight: 500;
           ">
@@ -11550,6 +11618,47 @@ document.addEventListener('DOMContentLoaded', function () {
               }
               .coordinate-table .coordinate:last-child {
                 padding-right: 0;
+              }
+              
+              /* Mobile responsive styles */
+              @media (max-width: 480px) {
+                .coordinate-table {
+                  display: block;
+                  width: 100%;
+                }
+                .coordinate-table tr {
+                  display: block;
+                  margin-bottom: 8px;
+                  padding: 8px;
+                  background: rgba(255, 245, 245, 0.5);
+                  border-radius: 6px;
+                  border: 1px solid rgba(255, 71, 87, 0.1);
+                }
+                .coordinate-table td {
+                  display: block;
+                  padding: 2px 0;
+                  text-align: left !important;
+                }
+                .coordinate-table .number {
+                  width: auto;
+                  padding-right: 0;
+                  color: #ff4757;
+                  margin-bottom: 4px;
+                  font-weight: 800;
+                  font-size: 0.9em;
+                }
+                .coordinate-table .coordinate {
+                  width: 100%;
+                  max-width: 100%;
+                  padding-right: 0;
+                  white-space: normal;
+                  word-wrap: break-word;
+                  overflow-wrap: break-word;
+                  hyphens: auto;
+                  font-family: monospace;
+                  font-size: 0.8em;
+                  line-height: 1.4;
+                }
               }
             </style>
             <table class="coordinate-table">
