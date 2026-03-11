@@ -221,13 +221,13 @@
         animation: typing 3s steps(30) forwards, blink 0.75s step-end infinite, disappear 3s forwards;
     }
     ::-webkit-input-placeholder{
-            color: #6cb4ef; /* Darker color for placeholder text */
+            color: #6cb4ef !important; /* Darker color for placeholder text */
         }
     ::-ms-input-placeholder{
-        color: #6cb4ef; /* Darker color for placeholder text */
+        color: #6cb4ef !important; /* Darker color for placeholder text */
     }
     ::-moz-input-placeholder{
-        color: #6cb4ef; /* Darker color for placeholder text */
+        color: #6cb4ef !important; /* Darker color for placeholder text */
     }
 
     .searchable-select p {
@@ -338,10 +338,10 @@
       position: absolute;
       top: -25px;
       left: 0;
-      background: #0078D4;
-      color: white;
+      background: #cae5f8;
+      color: #005185;
       padding: 4px 6px;
-      border-radius: 3px;
+      border-radius: none;
       font-size: 11px;
       white-space: nowrap;
       z-index: 1000;
@@ -679,7 +679,7 @@ h1, #ancDisplay {
     }
 
     .searchable-select ul::-webkit-scrollbar-thumb {
-        background: #ff6b35;
+        background: #FF6B35;
         border-radius: 0;
     }
 
@@ -960,7 +960,7 @@ h1, #ancDisplay {
     }
 
     #aircraftList::-webkit-scrollbar-thumb {
-        background: #ff6b35;
+        background: #FF6B35;
         border-radius: 0;
     }
 
@@ -2795,7 +2795,7 @@ button#clearButton:active {
 <!--End of selectable text with drop-down and editable PAX values-->
 
 <div class="searchable-select">
-<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: color-mix(in srgb, #ffffff 20%, #6cb4ef);" type="text" autocomplete="off">
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: #6cb4ef;" type="text" autocomplete="off">
 
 
 <ul id="aircraftList" style="display: NONE;">
@@ -8397,8 +8397,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div id="routeDisplay">
 <div class="route-container">
-<div class="info-icon" data-tooltip="Drag to rearrange waypoints. Click to remove waypoints;">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="NONE" stroke="#1358bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);">
+<div class="info-icon" data-tooltip="Drag to rearrange waypoints. Click to remove waypoints.">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="NONE" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);">
   <circle cx="12" cy="12" r="10"></circle>
   <line x1="12" y1="8" x2="12" y2="12"></line>
   <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -11644,21 +11644,21 @@ document.addEventListener('DOMContentLoaded', function () {
             </style>
             <table class="coordinate-table">
               <tr>
-                <td class="number">1.</td>
+                <td class="number">1</td>
                 <td class="coordinate">07°42'S 039°40'E</td>
-                <td class="number">2.</td>
+                <td class="number">2</td>
                 <td class="coordinate">-6.78 39.20</td>
               </tr>
               <tr>
-                <td class="number">3.</td>
+                <td class="number">3</td>
                 <td class="coordinate">-6.78,39.20</td>
-                <td class="number">4.</td>
+                <td class="number">4</td>
                 <td class="coordinate">-6.841076,39.150375</td>
               </tr>
               <tr>
-                <td class="number">5.</td>
+                <td class="number">5</td>
                 <td class="coordinate wrap">07°42'22"S 039°40'43"E</td>
-                <td class="number">6.</td>
+                <td class="number">6</td>
                 <td class="coordinate wrap">6°53'16.82"S 39°11'33.77"E</td>
               </tr>
             </table>
