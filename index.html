@@ -104,6 +104,7 @@
   --primary-color-hue-10: oklch(0.35 0.06 220); /* marine‑slate */
     /* Other UI colors */
   --clear-button-color: #dc3545;
+  --clear-button-hover: #c82333; /* Slightly darker version for hover */
   --white: #ffffff;
 }
         #loginContainer {
@@ -374,7 +375,7 @@
       position: absolute;
       top: -25px;
       left: 0;
-      background: var(--primary-color-hue-3);
+      background: var(--primary-color-hue-3) !important;
       color: var(--white);
       padding: 4px 6px;
       border-radius: none;
@@ -2415,8 +2416,8 @@ button#clearButton {
 }
 
 button#clearButton:hover {
-    background: var(--clear-button-color);
-    box-shadow: 0 4px 8px var(--clear-button-color);
+    background: var(--clear-button-hover);
+    box-shadow: 0 4px 8px var(--clear-button-hover);
     transform: translateY(-1px);
 }
 
@@ -2660,9 +2661,7 @@ button#clearButton:active {
   </style>
 
 
-<div class="counter-container">
-<div id="sfcm7k15ej982k7cszyw1wjjbpsrwf4r2zj"></div><script type="text/javascript" src="https://counter6.optistats.ovh/private/counter.js?c=m7k15ej982k7cszyw1wjjbpsrwf4r2zj&down=async" async></script><noscript><a href="https://www.freecounterstat.com" title="web page counter"><img src="https://counter6.optistats.ovh/private/freecounterstat.php?c=m7k15ej982k7cszyw1wjjbpsrwf4r2zj" border="0" title="web page counter" alt="web page counter"></a></noscript>
-</div>
+<!-- External counter script removed for security -->
                  
   <p>&nbsp;</p>
 
@@ -10893,7 +10892,7 @@ function formatDateInput(inputId) {
 (function () {
   'use strict';
 
-  // Security Module
+  // Enhanced Security Module
   const Security = {
     // Configuration
     config: {
@@ -10901,6 +10900,9 @@ function formatDateInput(inputId) {
       maxInputLength: 1000, // Max length for user inputs
       logEndpoint: '/api/log', // Endpoint for logging suspicious activities
       csrfToken: null, // CSRF token storage
+      protectLoginInputs: true, // Protect login input fields
+      preventTabOpening: true, // Prevent malicious tab opening
+      allowedOrigins: [window.location.origin], // Allowed origins for external content
     },
 
     // Initialize the security module
@@ -10909,6 +10911,9 @@ function formatDateInput(inputId) {
       this.preventClickjacking();
       this.bindFormSubmissions();
       this.monitorWindowEvents();
+      this.preventTabOpening();
+      this.protectLoginInputs();
+      this.enforceCSP();
     },
 
     // Set CSRF token (assumes token is available in meta tag or cookie)
@@ -11016,6 +11021,125 @@ function formatDateInput(inputId) {
         });
       });
       observer.observe(document.documentElement, { childList: true, subtree: true });
+    },
+
+    // Prevent malicious tab opening and window manipulation
+    preventTabOpening() {
+      if (!this.config.preventTabOpening) return;
+
+      // Override window.open to prevent unauthorized popups
+      const originalOpen = window.open;
+      window.open = function(url, target, features) {
+        // Allow only same-origin opens
+        try {
+          const parsedUrl = new URL(url || '', window.location.origin);
+          if (parsedUrl.origin !== window.location.origin) {
+            Security.log(`Blocked unauthorized window.open to: ${url}`);
+            return null;
+          }
+        } catch (e) {
+          Security.log(`Blocked malformed window.open URL: ${url}`);
+          return null;
+        }
+        return originalOpen.call(this, url, target, features);
+      };
+
+      // Prevent anchor tag target="_blank" manipulation
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('a');
+        if (target && target.target === '_blank') {
+          e.preventDefault();
+          Security.log(`Blocked external link: ${target.href}`);
+          return false;
+        }
+      }, true);
+
+      // Monitor and block suspicious location changes
+      let originalLocation = window.location.href;
+      Object.defineProperty(window.location, 'href', {
+        set: function(value) {
+          try {
+            const url = new URL(value, window.location.origin);
+            if (url.origin !== window.location.origin) {
+              Security.log(`Blocked location change to: ${value}`);
+              return;
+            }
+          } catch (e) {
+            Security.log(`Blocked malformed location change: ${value}`);
+            return;
+          }
+          originalLocation = value;
+        },
+        get: function() { return originalLocation; }
+      });
+    },
+
+    // Protect login input fields from malicious events
+    protectLoginInputs() {
+      if (!this.config.protectLoginInputs) return;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Protect password and login inputs
+        const loginInputs = document.querySelectorAll('input[type="password"], input[name*="login"], input[name*="user"], input[id*="password"]');
+        
+        loginInputs.forEach(input => {
+          // Prevent context menu
+          input.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+          });
+
+          // Prevent drag and drop
+          input.addEventListener('dragover', (e) => e.preventDefault());
+          input.addEventListener('drop', (e) => e.preventDefault());
+
+          // Prevent paste from external sources
+          input.addEventListener('paste', (e) => {
+            e.preventDefault();
+            Security.log('Blocked paste attempt on login input');
+            return false;
+          });
+
+          // Prevent focus stealing
+          input.addEventListener('focus', (e) => {
+            // Check if focus was triggered programmatically
+            if (e.relatedTarget === null && document.activeElement !== input) {
+              Security.log('Suspicious focus attempt on login input');
+            }
+          }, true);
+
+          // Validate input on change
+          input.addEventListener('input', (e) => {
+            const value = e.target.value;
+            if (value.includes('javascript:') || value.includes('<script')) {
+              e.target.value = '';
+              Security.log('Blocked malicious input in login field');
+            }
+          });
+        });
+      });
+    },
+
+    // Enforce Content Security Policy
+    enforceCSP() {
+      const meta = document.createElement('meta');
+      meta.httpEquiv = 'Content-Security-Policy';
+      meta.content = [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline'",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data: https:",
+        "connect-src 'self'",
+        "font-src 'self'",
+        "object-src 'none'",
+        "media-src 'self'",
+        "frame-src 'none'",
+        "child-src 'none'",
+        "worker-src 'none'",
+        "manifest-src 'self'",
+        "upgrade-insecure-requests"
+      ].join('; ');
+      document.head.appendChild(meta);
     },
 
     // Log suspicious activities to server or console
@@ -11844,7 +11968,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       if (hasVisible && query !== '') {
         waypointList.style.display = 'block';
-      } else {searchable
+      } else {
         waypointList.style.display = 'NONE';
       }
     });
@@ -11853,9 +11977,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!window.__parseWaypointCoordinate) {
       window.__parseWaypointCoordinate = tryParseCoordinates;
     }
-  })();
-});
+  }());
 </script>
-</div></div>    </div> <!-- End of calculatorContent -->
+        </div>
+      </div>
+    </div>
 </body>
 </html>
