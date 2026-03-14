@@ -428,7 +428,7 @@
         -webkit-appearance: NONE; /* Remove default styling on iOS */
         -moz-appearance: NONE;
         appearance: NONE;
-        text-align: center; /* Center text for Android */
+        text-align: center !important; /* Center text for Android */
         box-sizing: border-box; /* Ensure padding doesn't affect width */
     }
     
@@ -8495,11 +8495,11 @@ document.addEventListener("DOMContentLoaded", () => {
 <div style="display: flex; justify-content: space-between; gap: 7px; width: 100%; overflow: visible; box-sizing: border-box;">
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 100001;">MTOW (Tonnes)</label>
-    <input id="mtow" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="text">
+    <input id="mtow" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="number" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9.]/g, '')">
 </div>
 <div style="position: relative; flex: 1 !important;">
     <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 100001;">DISTANCE (km)</label>
-    <input id="dist" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="number">
+    <input id="dist" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="number" inputmode="numeric" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9.]/g, '')">
 </div>
 </div>
 <style>
