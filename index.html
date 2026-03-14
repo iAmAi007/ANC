@@ -481,15 +481,98 @@
 button:nth-of-type(odd) {
         background-color: var(--primary-color-hue-3);  /* Original button color */
         color: #fff;
+        transition: all 0.3s ease !important; /* Smooth transition back to original state */
     }
 
     button:nth-of-type(even) {
         background-color: var(--primary-color-hue-5);  /* New alternating color */
         color: #fff;
+        transition: all 0.3s ease !important; /* Smooth transition back to original state */
+    }
+    
+    /* Ensure all buttons have smooth transitions */
+    button {
+        transition: all 0.3s ease !important;
+        -webkit-transition: all 0.3s ease !important; /* For iOS Safari */
+        transition-property: background-color, transform, box-shadow !important;
+        transition-duration: 0.3s !important;
+        transition-timing-function: ease !important;
+    }
+    
+    /* Fix for touch devices - prevent hover state from persisting */
+    @media (pointer: coarse) {
+        /* Applies to any device with touch input (phones, tablets, touch laptops, touch screens) */
+        button:hover {
+            background-color: var(--primary-color-hue-3) !important; /* Reset to original color on touch devices */
+        }
+        
+        button:nth-of-type(even):hover {
+            background-color: var(--primary-color-hue-5) !important; /* Reset even buttons to original color */
+        }
+        
+        /* Clear hover state immediately after touch */
+        button:active {
+            background-color: var(--primary-color-hue-3) !important;
+        }
+        
+        button:nth-of-type(even):active {
+            background-color: var(--primary-color-hue-5) !important;
+        }
+    }
+    
+    /* CSS for touch-detected state */
+    body.touch-device button:hover {
+        background-color: var(--primary-color-hue-3) !important;
+    }
+    
+    body.touch-device button:nth-of-type(even):hover {
+        background-color: var(--primary-color-hue-5) !important;
+    }
+    
+    /* Force override any other hover styles on touch devices */
+    @media (pointer: coarse) {
+        button:hover,
+        button:focus,
+        button:visited {
+            background-color: var(--primary-color-hue-3) !important;
+        }
+        
+        button:nth-of-type(even):hover,
+        button:nth-of-type(even):focus,
+        button:nth-of-type(even):visited {
+            background-color: var(--primary-color-hue-5) !important;
+        }
     }
         
 
 </style>
+<script>
+    /* Timer-based fix for touch devices */
+    let touchTimer;
+    
+    document.addEventListener('touchstart', function() {
+        // Clear any existing timer
+        if (touchTimer) {
+            clearTimeout(touchTimer);
+        }
+        
+        // Add touch-device class immediately
+        document.body.classList.add('touch-device');
+        
+        // Remove touch-device class after 1 second
+        touchTimer = setTimeout(function() {
+            document.body.classList.remove('touch-device');
+        }, 1000);
+    });
+    
+    // Also remove on mouse events (for hybrid devices)
+    document.addEventListener('mousedown', function() {
+        if (touchTimer) {
+            clearTimeout(touchTimer);
+        }
+        document.body.classList.remove('touch-device');
+    });
+</script>
 <style>
 
     
