@@ -86,6 +86,8 @@
   --primary-color-tint-8: oklch(0.75 0.03 270);
   --primary-color-tint-9: oklch(0.80 0.03 270);
   --primary-color-tint-10: oklch(0.85 0.02 270);
+  --primary-color-tint-11: oklch(0.90 0.02 270);
+  --primary-color-tint-12: oklch(0.95 0.01 270);
 
   /* Hues (neighbor shifts for accents) */
   --primary-color-hue-1: oklch(0.35 0.06 260); /* cooler indigo‑slate */
@@ -339,7 +341,7 @@
     
     /*styling of waypoints/pills added on route disolay */
     #routeWaypoints span {
-      background: var(--primary-color-tint-10);
+      background: var(--primary-color-tint-12);
       border: 1px solid var(--primary-color-tint-4);
       padding: 8px 12px;
       border-radius: 4px;
@@ -439,7 +441,7 @@
     input[type="date"]:focus,
     input[type="time"]:focus {
         border-color: var(--primary-color) !important;
-        box-shadow: 0 0 0 1px var(--primary-color-tint-10);
+        box-shadow: 0 0 0 1px var(--primary-color-tint-12);
     }
     
     /* Apply consistent styling to all inputs */
@@ -559,7 +561,7 @@ h1, #ancDisplay {
     body {
         letter-spacing: 1px !important;
         font-family: 'SF Pro Display';
-        background-color: var(--primary-color-tint-10); /* color of main background*/
+        background-color: var(--primary-color-tint-12); /* color of main background*/
         /* GEOMETRIC PATTERN BACKGROUND - vertical and horizontal lines grid pattern on the main background*/
         background-image: 
             linear-gradient(to right, var(--primary-color-tint-9) 0.7px, transparent 0.5px),
@@ -749,7 +751,7 @@ h1, #ancDisplay {
     }
 
     .searchable-select ul li:hover {
-        background: var(--primary-color-tint-10); /* hover color background color of waypoint list*/
+        background: var(--primary-color-tint-12); /* hover color background color of waypoint list*/
         color: var(--primary-color-hue-10); /* violet accent for hover state */
         transform: translateX(4px);
     }
@@ -2623,7 +2625,7 @@ button#clearButton:active {
   <p>&nbsp;</p>
 
   <!--on div below is styling for container containing rate and passenger details-->
-  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 100%; padding: 12px 16px; background: var(--primary-color-tint-10); border-radius: 8px; border: 1px solid var(--primary-color-tint-4); box-sizing: border-box; position: relative; z-index: 10000;">
+  <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 100%; padding: 12px 16px; background: var(--primary-color-tint-12); border-radius: 8px; border: 1px solid var(--primary-color-tint-4); box-sizing: border-box; position: relative; z-index: 10000;">
     <div style="text-align: left;">
       <span style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9;">Rate</span>
       <div style="margin-top: 2px;">
@@ -8495,11 +8497,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         #dist:focus, #dist:hover {
-            box-shadow: 0 0 0 1px var(--primary-color-tint-10);
+            box-shadow: 0 0 0 1px var(--primary-color-tint-12);
         }
 
         #mtow:focus, #mtow:hover {
-            box-shadow: 0 0 0 1px var(--primary-color-tint-10);
+            box-shadow: 0 0 0 1px var(--primary-color-tint-12);
         }
 
     </style>
