@@ -1670,7 +1670,7 @@ function clearPage() {
     <!-- Login Form Container -->
     <div id="loginContainer" style="background-color: transparent; border: none;">
         <div class="login-box">
-            <input type="password" id="password" placeholder="Enter Access Code" onkeypress="if(event.key === 'Enter') checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0 0 15px 0; border: 1px solid var(--primary-color-hue-8); border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+            <input type="password" id="password" placeholder="Access Code" onkeypress="if(event.key === 'Enter') checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0 0 15px 0; border: 1px solid var(--primary-color-hue-8); border-radius: 4px; font-size: 16px; box-sizing: border-box;">
             <div id="errorMessage" class="error-message"></div>
             <button id="loginButton" onclick="checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0; background: var(--primary-color-tint-3); color: #fff; border: NONE; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px var(--primary-color-tint-4); min-height: 44px; outline: NONE; -webkit-tap-highlight-color: transparent;">Launch</button>
             <style>
@@ -2828,7 +2828,7 @@ button#clearButton:active {
 <!--End of selectable text with drop-down and editable PAX values-->
 
 <div class="searchable-select">
-<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Search and select an aircraft" style="color: var(--primary-color-tint-6) !important;" type="text" autocomplete="off"> <!--placeholder color of Search and select an aircraft -->
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Aeroplanes" style="color: var(--primary-color-tint-6) !important;" type="text" autocomplete="off"> <!--placeholder color of Search and select an aircraft -->
 
 
 <ul id="aircraftList" style="display: NONE;">
@@ -11164,12 +11164,98 @@ function formatDateInput(inputId) {
     },
   };
 
-  // Expose Security module to global scope
-  window.Security = Security;
 
 </script>
 
 <script>
+function createTypingPlaceholder(element, phrases, options = {}) {
+  let i = 0;
+  let j = 0;
+  let current = [];
+  let deleting = false;
+  let cursorVisible = true;
+
+  const speed = options.speed || 120; // Slower typing for easier reading
+  const deleteSpeed = options.deleteSpeed || 60; // Slower deletion
+  const pause = options.pause || 2000; // Longer pause at completion
+  const cursorChar = options.cursor || '|'; // Narrow cursor character
+
+  // Slower cursor blink - more eye-friendly
+  setInterval(() => {
+    cursorVisible = !cursorVisible;
+    if (!deleting || j > 0 || j === 0) {
+      updatePlaceholder();
+    }
+  }, 800); // Slower blink rate (800ms instead of 500ms)
+
+  function updatePlaceholder() {
+    const text = current.join('');
+    element.placeholder = cursorVisible ? text + cursorChar : text;
+  }
+
+  function animate() {
+    updatePlaceholder();
+
+    if (!deleting && j < phrases[i].length) {
+      current.push(phrases[i][j]);
+      j++;
+      setTimeout(animate, speed);
+      return;
+    } else if (deleting && j > 0) {
+      current.pop();
+      j--;
+      setTimeout(animate, deleteSpeed);
+      return;
+    }
+
+    if (j === phrases[i].length && !deleting) {
+      deleting = true;
+      setTimeout(animate, pause);
+      return;
+    }
+
+    if (j === 0 && deleting) {
+      deleting = false;
+      i = (i + 1) % phrases.length;
+      setTimeout(animate, speed);
+      return;
+    }
+
+    setTimeout(animate, deleting ? deleteSpeed : speed);
+  }
+
+  animate();
+}
+
+// Initialize typing animations for placeholders
+document.addEventListener('DOMContentLoaded', function() {
+  // Password input animations - using only existing placeholder text
+  const passwordInput = document.getElementById('password');
+  if (passwordInput) {
+    const passwordPhrases = [
+      'Access Code'
+    ];
+    createTypingPlaceholder(passwordInput, passwordPhrases, { speed: 100, deleteSpeed: 50, pause: 2000 });
+  }
+
+  // Aircraft search input animations - "Search Aeroplanes"
+  const aircraftSearchInput = document.getElementById('aircraftSearchInput');
+  if (aircraftSearchInput) {
+    const aircraftPhrases = [
+      'Search Aeroplanes'
+    ];
+    createTypingPlaceholder(aircraftSearchInput, aircraftPhrases, { speed: 80, deleteSpeed: 40, pause: 1500 });
+  }
+
+  // Waypoint search input animations - "Search Waypoints"
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    const waypointPhrases = [
+      'Search Waypoints'
+    ];
+    createTypingPlaceholder(searchInput, waypointPhrases, { speed: 80, deleteSpeed: 40, pause: 1500 });
+  }
+});
 document.addEventListener('DOMContentLoaded', function () {
   (function () {
     const input = document.getElementById('searchInput');
@@ -11815,7 +11901,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       if (hasVisible && query !== '') {
         waypointList.style.display = 'block';
-      } else {searchable
+      } else {
         waypointList.style.display = 'NONE';
       }
     });
