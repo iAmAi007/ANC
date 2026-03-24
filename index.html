@@ -10894,7 +10894,7 @@ searchBox.addEventListener('blur', () => {
     /* Footer quote cursor blink */
     #rotatingQuote::after {
         content: '|';
-        animation: blink 1s step-end infinite;
+        animation: blink 0.75s step-end infinite;
         color: var(--primary-color-tint-4);
     }
 
@@ -11309,8 +11309,8 @@ function createTypingPlaceholder(element, phrases, options = {}) {
   let deleting = false;
   let cursorVisible = true;
 
-  const speed = options.speed || 120; // Slower typing for easier reading
-  const deleteSpeed = options.deleteSpeed || 60; // Slower deletion
+  const speed = options.speed || 50; // Match footer quote typing speed (50ms)
+  const deleteSpeed = options.deleteSpeed || 30; // Match footer quote deleting speed (30ms)
   const pause = options.pause || 2000; // Longer pause at completion
   const cursorChar = options.cursor || '|'; // Narrow cursor character
 
@@ -11320,7 +11320,7 @@ function createTypingPlaceholder(element, phrases, options = {}) {
     if (!deleting || j > 0 || j === 0) {
       updatePlaceholder();
     }
-  }, 800); // Slower blink rate (800ms instead of 500ms)
+  }, 375); // Half of 750ms to match CSS step-end timing (blink twice per 750ms)
 
   function updatePlaceholder() {
     const text = current.join('');
@@ -11369,7 +11369,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordPhrases = [
       'Access Code'
     ];
-    createTypingPlaceholder(passwordInput, passwordPhrases, { speed: 100, deleteSpeed: 50, pause: 2000 });
+    createTypingPlaceholder(passwordInput, passwordPhrases, { speed: 50, deleteSpeed: 30, pause: 60000 });
   }
 
   // Aircraft search input animations - "Search Aeroplanes"
@@ -11378,7 +11378,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const aircraftPhrases = [
       'Search Aeroplanes'
     ];
-    createTypingPlaceholder(aircraftSearchInput, aircraftPhrases, { speed: 80, deleteSpeed: 40, pause: 1500 });
+    createTypingPlaceholder(aircraftSearchInput, aircraftPhrases, { speed: 50, deleteSpeed: 30, pause: 60000 });
   }
 
   // Waypoint search input animations - "Search Waypoints"
@@ -11387,7 +11387,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const waypointPhrases = [
       'Search Waypoints'
     ];
-    createTypingPlaceholder(searchInput, waypointPhrases, { speed: 80, deleteSpeed: 40, pause: 1500 });
+    createTypingPlaceholder(searchInput, waypointPhrases, { speed: 50, deleteSpeed: 30, pause: 60000 });
   }
 });
 document.addEventListener('DOMContentLoaded', function () {
