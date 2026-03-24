@@ -70,6 +70,140 @@
             }
         });
     </script>
+    <script>
+        // Strict security script to prevent malicious redirects
+        (function() {
+            'use strict';
+            
+            // List of malicious domains to block
+            const blockedDomains = [
+                'dexpredict.com',
+                'inadsexchange.com', 
+                'kojestan.com'
+            ];
+            
+            // Block navigation to malicious domains
+            function blockMaliciousNavigation(url) {
+                try {
+                    const urlObj = new URL(url, window.location.href);
+                    const hostname = urlObj.hostname.toLowerCase();
+                    
+                    return blockedDomains.some(domain => 
+                        hostname === domain || 
+                        hostname.endsWith('.' + domain) ||
+                        hostname.includes(domain)
+                    );
+                } catch (e) {
+                    return false;
+                }
+            }
+            
+            // Override window.open to block malicious popups
+            const originalOpen = window.open;
+            window.open = function(url, ...args) {
+                if (url && blockMaliciousNavigation(url)) {
+                    console.warn('Blocked malicious popup:', url);
+                    return null;
+                }
+                return originalOpen.call(this, url, ...args);
+            };
+            
+            // Override location assignment to block malicious redirects
+            const originalLocationAssign = window.location.assign;
+            window.location.assign = function(url) {
+                if (blockMaliciousNavigation(url)) {
+                    console.warn('Blocked malicious redirect:', url);
+                    return;
+                }
+                return originalLocationAssign.call(this, url);
+            };
+            
+            const originalLocationReplace = window.location.replace;
+            window.location.replace = function(url) {
+                if (blockMaliciousNavigation(url)) {
+                    console.warn('Blocked malicious redirect:', url);
+                    return;
+                }
+                return originalLocationReplace.call(this, url);
+            };
+            
+            // Block malicious links on click
+            document.addEventListener('click', function(e) {
+                const target = e.target.closest('a');
+                if (target && target.href && blockMaliciousNavigation(target.href)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.warn('Blocked malicious link click:', target.href);
+                    return false;
+                }
+            }, true);
+            
+            // Block form submissions to malicious domains
+            document.addEventListener('submit', function(e) {
+                const form = e.target;
+                if (form.action && blockMaliciousNavigation(form.action)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.warn('Blocked malicious form submission:', form.action);
+                    return false;
+                }
+            }, true);
+            
+            // Prevent access code input from triggering malicious redirects
+            document.addEventListener('DOMContentLoaded', function() {
+                const passwordInput = document.getElementById('password');
+                if (passwordInput) {
+                    // Remove any existing event listeners that might be malicious
+                    const clonedInput = passwordInput.cloneNode(true);
+                    passwordInput.parentNode.replaceChild(clonedInput, passwordInput);
+                    
+                    // Add secure event listener
+                    clonedInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            checkPassword();
+                        }
+                    });
+                    
+                    // Block any attempts to add malicious event listeners
+                    Object.defineProperty(clonedInput, 'addEventListener', {
+                        value: function(type, listener, options) {
+                            // Allow only specific safe event types
+                            const allowedEvents = ['keypress', 'keydown', 'keyup', 'focus', 'blur'];
+                            if (!allowedEvents.includes(type.toLowerCase())) {
+                                console.warn('Blocked suspicious event listener:', type);
+                                return;
+                            }
+                            return EventTarget.prototype.addEventListener.call(this, type, listener, options);
+                        }
+                    });
+                }
+            });
+            
+            // Block dynamic script loading from malicious domains
+            const originalCreateElement = document.createElement;
+            document.createElement = function(tagName) {
+                const element = originalCreateElement.call(this, tagName);
+                if (tagName.toLowerCase() === 'script') {
+                    Object.defineProperty(element, 'src', {
+                        set: function(value) {
+                            if (value && blockMaliciousNavigation(value)) {
+                                console.warn('Blocked malicious script:', value);
+                                return;
+                            }
+                            element.setAttribute('src', value);
+                        },
+                        get: function() {
+                            return element.getAttribute('src');
+                        }
+                    });
+                }
+                return element;
+            };
+            
+            console.log('Security protection activated against malicious domains');
+        })();
+    </script>
     <style>
 :root {
   /* Base */
