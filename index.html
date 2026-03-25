@@ -2962,7 +2962,7 @@ button#clearButton:active {
 <!--End of selectable text with drop-down and editable PAX values-->
 
 <div class="searchable-select">
-<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Aeroplanes" style="color: var(--primary-color-tint-6) !important;" type="text" autocomplete="off"> <!--placeholder color of Search and select an aircraft -->
+<input id="aircraftSearchInput" onblur="hideList()" onfocus="showList()" oninput="filterAircrafts()" placeholder="Airplanes" style="color: var(--primary-color-tint-6) !important;" type="text" autocomplete="off"> <!--placeholder color of Search and select an aircraft -->
 
 
 <ul id="aircraftList" style="display: NONE;">
@@ -11372,11 +11372,11 @@ document.addEventListener('DOMContentLoaded', function() {
     createTypingPlaceholder(passwordInput, passwordPhrases, { speed: 50, deleteSpeed: 30, pause: 60000 });
   }
 
-  // Aircraft search input animations - "Search Aeroplanes"
+  // Aircraft search input animations - "Search Airplanes"
   const aircraftSearchInput = document.getElementById('aircraftSearchInput');
   if (aircraftSearchInput) {
     const aircraftPhrases = [
-      'Search Aeroplanes'
+      'Search Airplanes'
     ];
     createTypingPlaceholder(aircraftSearchInput, aircraftPhrases, { speed: 50, deleteSpeed: 30, pause: 60000 });
   }
@@ -12049,4 +12049,3 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 </div></div>    </div> <!-- End of calculatorContent -->
 </body>
-</html>
