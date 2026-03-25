@@ -206,36 +206,45 @@
     </script>
     <style>
 :root {
-  /* Base */
-  --primary-color: oklch(0.35 0.05 270); /* #44475a */
+  /* Base (neutral, minimal chroma, soft natural slate) */
+  --primary-color: oklch(0.35 0.025 135); /* muted mint-beige base */
 
-  /* Tints (lighter ramps for backgrounds/layers) */
-  --primary-color-tint-1: oklch(0.40 0.05 270);
-  --primary-color-tint-2: oklch(0.45 0.05 270);
-  --primary-color-tint-3: oklch(0.50 0.05 270);
-  --primary-color-tint-4: oklch(0.55 0.05 270);
-  --primary-color-tint-5: oklch(0.60 0.04 270);
-  --primary-color-tint-6: oklch(0.65 0.04 270);
-  --primary-color-tint-7: oklch(0.70 0.04 270);
-  --primary-color-tint-8: oklch(0.75 0.03 270);
-  --primary-color-tint-9: oklch(0.80 0.03 270);
-  --primary-color-tint-10: oklch(0.85 0.02 270);
-  --primary-color-tint-11: oklch(0.90 0.02 270);
-  --primary-color-tint-12: oklch(0.95 0.01 270);
+  /* Tints (smooth lightness ladder with subtle drift) */
+  --primary-color-tint-1: oklch(0.40 0.03 130);
+  --primary-color-tint-2: oklch(0.45 0.03 125);
+  --primary-color-tint-3: oklch(0.50 0.03 120);
+  --primary-color-tint-4: oklch(0.55 0.03 115);
+  --primary-color-tint-5: oklch(0.60 0.03 110);
+  --primary-color-tint-6: oklch(0.65 0.025 105);
+  --primary-color-tint-7: oklch(0.70 0.025 95);
+  --primary-color-tint-8: oklch(0.75 0.02 85);
+  --primary-color-tint-9: oklch(0.80 0.02 75);
+  --primary-color-tint-10: oklch(0.85 0.015 65);
+  --primary-color-tint-11: oklch(0.90 0.015 55);
+  --primary-color-tint-12: oklch(0.95 0.01 45);
 
-  /* Hues (neighbor shifts for accents) */
-  --primary-color-hue-1: oklch(0.35 0.06 260); /* cooler indigo‑slate */
-  --primary-color-hue-2: oklch(0.35 0.06 265); /* muted navy */
-  --primary-color-hue-3: oklch(0.35 0.06 275); /* bluish‑gray */
-  --primary-color-hue-4: oklch(0.35 0.06 280); /* periwinkle‑slate */
-  --primary-color-hue-5: oklch(0.35 0.06 290);
-  
-  /* dusty violet */
-  --primary-color-hue-6: oklch(0.35 0.06 300); /* muted purple */
-  --primary-color-hue-7: oklch(0.35 0.06 250); /* steel‑blue gray */
-  --primary-color-hue-8: oklch(0.35 0.06 240); /* deep navy‑gray */
-  --primary-color-hue-9: oklch(0.35 0.06 230); /* midnight slate */
-  --primary-color-hue-10: oklch(0.35 0.06 220); /* marine‑slate */
+  /* Hues (eco-friendly accents — readable, soft, natural) */
+
+  /* COOL / CALM (interaction — mint, teal, soft aqua) */
+  --primary-color-hue-1: oklch(0.38 0.05 170); /* mint green */
+  --primary-color-hue-2: oklch(0.40 0.05 160); /* soft mint */
+  --primary-color-hue-3: oklch(0.42 0.05 150); /* pale green-teal */
+
+  /* SUCCESS / POSITIVE (natural leafy greens) */
+  --primary-color-hue-4: oklch(0.42 0.05 135); /* forest green */
+  --primary-color-hue-5: oklch(0.45 0.05 120); /* olive green */
+
+  /* WARNING / CAUTION (soft organic beiges and ochres) */
+  --primary-color-hue-6: oklch(0.50 0.06 90);  /* muted ochre */
+  --primary-color-hue-7: oklch(0.52 0.06 75);  /* soft sand */
+
+  /* ERROR / ALERT (toned-down clay reds) */
+  --primary-color-hue-8: oklch(0.48 0.06 35);  /* clay red */
+  --primary-color-hue-9: oklch(0.45 0.05 20);  /* terracotta */
+
+  /* DEPTH / FOCUS (subtle contrast — mint/teal depth) */
+  --primary-color-hue-10: oklch(0.35 0.04 180); /* gentle mint-teal */
+
     /* Other UI colors */
   --clear-button-color: #dc3545;
   --clear-button-hover-color: #de4252;
