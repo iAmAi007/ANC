@@ -2789,7 +2789,7 @@ button#clearButton:active {
     </div>
     <div style="text-align: left; flex: 0 0 calc(33.333% - 14px); min-width: 0; max-width: calc(33.333% - 14px);">
       <span style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1;">Passengers</span>
-      <div style="margin-top: 6px; display: flex; justify-content: center; align-items: center; gap: 4px;">
+      <div style="margin-top: 6px; display: flex; justify-content: left; align-items: center; gap: 4px;">
         <span class="editable-number" id="local-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); min-width: 50px; display: inline-block; text-align: center; cursor: text;" data-placeholder="Local"></span>
         <span class="editable-number" id="intl-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); min-width: 50px; display: inline-block; text-align: center; cursor: text;" data-placeholder="Intl"></span>
       </div>
@@ -2865,47 +2865,7 @@ button#clearButton:active {
       }
     }
     
-    @media (max-width: 480px) {
-      /* Extra small screens */
-      div[style*="justify-content: space-around"] {
-        gap: 2px !important;
-        padding: 10px 8px !important;
-        min-height: 55px !important;
-      }
-      
-      span[style*="font-size: 9.72px"] {
-        font-size: 7px !important;
-        letter-spacing: 0.3px !important;
-      }
-      
-      .editable {
-        font-size: 12px !important;
-        min-width: 30px !important;
-        max-width: 40px !important;
-      }
-      
-      #exchange-rate {
-        font-size: 12px !important;
-        min-width: 35px !important;
-        max-width: 45px !important;
-        padding: 1px 2px !important;
-      }
-      
-      div[style*="gap: 6px"] span[style*="font-size: 12px"] {
-        font-size: 9px !important;
-      }
-      
-      #local-pax, #intl-pax {
-        font-size: 12px !important;
-        padding: 1px 3px !important;
-        min-width: 20px !important;
-      }
-      
-      span[style*="font-size: 14px"][style*="opacity: 0.85"] {
-        font-size: 10px !important;
-      }
-    }
-  </style>
+      </style>
 
   <div class="dropdown" id="dropdown"></div>
 
