@@ -2789,15 +2789,13 @@ button#clearButton:active {
     </div>
     <div style="text-align: left;">
       <span style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9;">Passengers</span>
-      <div style="margin-top: 2px; display: flex; justify-content: flex-start; align-items: center; gap: 8px;">
-        <div style="display: flex; align-items: center;">
-          <span style="font-size: 12px; color: var(--primary-color-hue-3); opacity: 0.85;">Local:</span>
-          <span class="editable-number" id="local-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); min-width: 30px; display: inline-block; text-align: center; margin-left: 4px; cursor: text;"></span>
+      <div style="margin-top: 2px; display: flex; justify-content: flex-start; align-items: center; gap: 6px;">
+        <span style="font-size: 12px; color: var(--primary-color-hue-3); opacity: 0.85;">Local</span>
+        <div style="display: flex; align-items: center; border: 1px solid var(--primary-color-tint-4); border-radius: 4px; background: rgba(255, 255, 255, 0.9); overflow: hidden; flex: 1;">
+          <span class="editable-number" id="local-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; background: transparent; border: none; min-width: 30px; display: inline-block; text-align: center; cursor: text; flex: 1;"></span>
+          <span class="editable-number" id="intl-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; background: transparent; border: none; min-width: 30px; display: inline-block; text-align: center; cursor: text; flex: 1; border-left: 1px solid var(--primary-color-tint-4);"></span>
         </div>
-        <div style="display: flex; align-items: center;">
-          <span style="font-size: 12px; color: var(--primary-color-hue-3); opacity: 0.85;">Intl:</span>
-          <span class="editable-number" id="intl-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); min-width: 30px; display: inline-block; text-align: center; margin-left: 4px; cursor: text;"></span>
-        </div>
+        <span style="font-size: 12px; color: var(--primary-color-hue-3); opacity: 0.85;">Intl</span>
       </div>
     </div>
   </div>
@@ -10778,6 +10776,20 @@ function calculateDistance() {
             exchangeRate = 2550; // Reset global variable
             lastUpdatedMonth = 'March 2026'; // Reset to initial month
             checkExchangeRateStatus(); // Update display
+            
+            // Clear popup results
+            document.getElementById("ancValue").textContent = "";
+            document.getElementById("stlValue").textContent = "";
+            document.getElementById("safValue").textContent = "";
+            document.getElementById("lanValue").textContent = "";
+            document.getElementById("nlaValue").textContent = "";
+            document.getElementById("ntkValue").textContent = "";
+            document.getElementById("secValue").textContent = "";
+            document.getElementById("pkgValue").textContent = "";
+            
+            // Reset global passenger variables
+            localPAX = 0;
+            intlPAX = 0;
             
             // Clear route and waypoints
             route = [];
