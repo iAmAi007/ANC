@@ -2784,7 +2784,7 @@ button#clearButton:active {
     <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px); display: flex; flex-direction: column; align-items: center;">
       <span id="exchange-rate-title" style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">EXCHANGE RATE</span>
       <div style="margin-top: 6px; text-align: center;">
-        <span class="editable-number" id="exchange-rate" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; } if(event.key.length === 1 && !/[0-9]/.test(event.key) && !['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'].includes(event.key)) { event.preventDefault(); return false; }" oninput="const selection = window.getSelection(); const range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null; const cursorPos = range ? range.startOffset : this.textContent.length; const oldLength = this.textContent.length; let value = this.textContent.replace(/[^0-9]/g, ''); if(value.length > 5) value = value.substring(0, 5); this.textContent = value; if(value) { exchangeRate = parseFloat(value); updateExchangeRate(value); } try { const newRange = document.createRange(); const textNode = this.firstChild || this; let newCursorPos = cursorPos; if(value.length < oldLength && cursorPos > value.length) { newCursorPos = value.length; } else if(cursorPos > value.length) { newCursorPos = value.length; } newRange.setStart(textNode, newCursorPos); newRange.collapse(true); selection.removeAllRanges(); selection.addRange(newRange); } catch(e) {}" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); width: 60px; display: inline-block; text-align: center; cursor: text;">2550</span>
+        <span class="editable-number" id="exchange-rate" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; } if(event.key.length === 1 && !/[0-9]/.test(event.key) && !['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'].includes(event.key)) { event.preventDefault(); return false; }" oninput="const selection = window.getSelection(); const range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null; const cursorPos = range ? range.startOffset : this.textContent.length; const oldLength = this.textContent.length; let value = this.textContent.replace(/[^0-9]/g, ''); if(value.length > 5) value = value.substring(0, 5); this.textContent = value; if(value) { exchangeRate = parseFloat(value); updateExchangeRate(value); } try { const newRange = document.createRange(); const textNode = this.firstChild || this; let newCursorPos = cursorPos; if(value.length < oldLength && cursorPos > value.length) { newCursorPos = value.length; } else if(cursorPos > value.length) { newCursorPos = value.length; } newRange.setStart(textNode, newCursorPos); newRange.collapse(true); selection.removeAllRanges(); selection.addRange(newRange); } catch(e) {}" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); width: 60px; display: inline-block; text-align: center; cursor: text;">2600</span>
       </div>
     </div>
     <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px);">
@@ -2872,7 +2872,7 @@ button#clearButton:active {
   <script>
     // Global variables
     let rate = 5; // Declare a global variable for the selected rate
-    let exchangeRate = 2550; // Declare a global variable for the exchange rate (March 2026)
+    let exchangeRate = 2600; // Declare a global variable for the exchange rate (March 2026)
     let currentMonth = 'March 2026'; // Current month for exchange rate
     let lastUpdatedMonth = 'March 2026'; // Track when exchange rate was last updated
     let localPAX = 0; // Default Local PAX as a global variable
@@ -10839,8 +10839,8 @@ function calculateDistance() {
             // Clear passenger fields
             document.getElementById("local-pax").textContent = "";
             document.getElementById("intl-pax").textContent = "";
-            document.getElementById("exchange-rate").textContent = "2550";
-            exchangeRate = 2550; // Reset global variable
+            document.getElementById("exchange-rate").textContent = "2600";
+            exchangeRate = 2600; // Reset global variable
             lastUpdatedMonth = 'March 2026'; // Reset to initial month
             checkExchangeRateStatus(); // Update display
             
