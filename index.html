@@ -2745,10 +2745,10 @@ button#clearButton:active {
       text-align: center;
       font-size: 16px;
       border: 1px solid var(--primary-color-tint-6);
-      border-radius: 0px;
+      border-radius: 4px;
       padding: 5px;
       z-index: 10001;
-      width: 60px;
+      width: auto;
       /*width: 202px;*/
       overflow: hidden;
     }
@@ -2784,7 +2784,7 @@ button#clearButton:active {
     <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px); display: flex; flex-direction: column; align-items: center;">
       <span id="exchange-rate-title" style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">EXCHANGE RATE</span>
       <div style="margin-top: 6px; text-align: center;">
-        <span class="editable-number" id="exchange-rate" contenteditable="true" onblur="checkExchangeRateStatus();" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); width: 80px; display: inline-block; text-align: center; cursor: text;">2600</span>
+        <span class="editable-number" id="exchange-rate" contenteditable="true" oninput="if(this.textContent.length > 4) this.textContent = this.textContent.substring(0, 4);" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); width: 80px; display: inline-block; text-align: center; cursor: text;">2600</span>
       </div>
     </div>
     <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px);">
@@ -2898,7 +2898,7 @@ button#clearButton:active {
           dropdown.appendChild(item);
         });
 
-        // Position the dropdown left-aligned with the selected number
+        // Position the dropdown centered below the selected number
         const rect = e.target.getBoundingClientRect();
         const containerRect = e.target.closest('.SelectableTextWithDropDown').getBoundingClientRect();
         
@@ -2907,8 +2907,8 @@ button#clearButton:active {
         dropdown.style.visibility = 'hidden';
         
         const dropdownWidth = dropdown.offsetWidth;
-        const leftPosition = (rect.left - containerRect.left);
-        dropdown.style.left = `${leftPosition}px`;
+        const centerPosition = (rect.left - containerRect.left) + (rect.width / 2) - (dropdownWidth / 2);
+        dropdown.style.left = `${centerPosition}px`;
         dropdown.style.top = `${rect.bottom - containerRect.top}px`;
         dropdown.style.visibility = 'visible';
       } else {
@@ -3014,9 +3014,14 @@ button#clearButton:active {
             return; // Keep it empty if nothing is entered
           }
           if (span.id === 'exchange-rate') {
-            // Don't update global variable, just update month when user changes it
-            lastUpdatedMonth = getCurrentMonth(); // Update to current month when manually changed
-            checkExchangeRateStatus(); // Check and update display
+            const newValue = parseFloat(textContent);
+            if (!isNaN(newValue) && newValue > 0) {
+              exchangeRate = newValue; // Update global exchange rate
+              lastUpdatedMonth = getCurrentMonth(); // Update to current month when manually changed
+              checkExchangeRateStatus(); // Check and update display
+            } else {
+              span.textContent = exchangeRate; // Reset to previous value if invalid
+            }
           } else {
             const newValue = parseInt(textContent, 10);
             if (!isNaN(newValue)) {
@@ -3078,9 +3083,11 @@ button#clearButton:active {
       }
     }
 
-    // Function to update exchange rate month only
-    function updateExchangeRate(newMonth = null) {
+    // Function to update exchange rate and month
+    function updateExchangeRate(newRate, newMonth = null) {
+      exchangeRate = parseFloat(newRate);
       lastUpdatedMonth = newMonth || getCurrentMonth();
+      document.getElementById('exchange-rate').textContent = exchangeRate;
       checkExchangeRateStatus();
     }
 
@@ -8964,13 +8971,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (intlPAX === 0 && localPAX === 0){
              return "NIL";
          }
-            return Math.ceil((intlPAX * 5) + (localPAX * (5000/parseInt(document.getElementById('exchange-rate').textContent))));
+            return Math.ceil((intlPAX * 5) + (localPAX * (5000/exchangeRate)));
   }
     function calculateSAF() {
         if (intlPAX === 0 && localPAX === 0){
              return "NIL";
         }
-            return Math.ceil((intlPAX * 10) + (localPAX * (5000/parseInt(document.getElementById('exchange-rate').textContent)))); 
+            return Math.ceil((intlPAX * 10) + (localPAX * (5000/exchangeRate))); 
     }
 
   function calculateSTLF() {
@@ -10833,6 +10840,7 @@ function calculateDistance() {
             document.getElementById("local-pax").textContent = "";
             document.getElementById("intl-pax").textContent = "";
             document.getElementById("exchange-rate").textContent = "2600";
+            exchangeRate = 2600; // Reset global variable
             lastUpdatedMonth = 'March 2026'; // Reset to initial month
             checkExchangeRateStatus(); // Update display
             
@@ -12182,7 +12190,6 @@ document.addEventListener('DOMContentLoaded', function () {
       window.__parseWaypointCoordinate = tryParseCoordinates;
     }
   })();
-});
 });
 </script>
 </div></div>    </div> <!-- End of calculatorContent -->
