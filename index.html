@@ -237,13 +237,14 @@
   --primary-color-hue-9: oklch(0.35 0.06 230); /* midnight slate */
   --primary-color-hue-10: oklch(0.35 0.06 220); /* marine‑slate */
     /* Other UI colors */
-  --clear-button-color: #d53c4b;
+  --clear-button-color: #CE4F56;
   --clear-button-hover-color: #e25967;
   --thumb-color: #FF79C6;
   --thumb-color-hover: #faafda;
   --info-icon-color: #FF79C6;
   --error-icon-color: #ff6b6b;
   --error-text-color: oklch(0.50 0.05 270);
+  --color-of-middle-part: #6272a4;
 
   --white: #ffffff;
 }
@@ -906,7 +907,7 @@ h1, #ancDisplay {
 
     .searchable-select ul li:hover {
         background: var(--primary-color-tint-12); /* hover color background color of waypoint list*/
-        color: var(--primary-color-hue-10); /* violet accent for hover state */
+        color: var(--color-of-middle-part); /* color of middle part on aircraft list upon hover */
         transform: translateX(4px);
     }
 
@@ -2507,7 +2508,7 @@ button#clearButton {
     letter-spacing: 1px !important;
     margin: 0;
     width: 100%;
-    background: #dc3545;
+    background: var(--clear-button-color);
     color: var(--white);
     border: NONE;
     border-radius: 6px;
@@ -2528,7 +2529,7 @@ button#clearButton:hover {
 }
 
 button#clearButton:active {
-    background: #bd2130;
+    background: var(--clear-button-color);
     transform: translateY(0);
 }
 
@@ -2745,11 +2746,10 @@ button#clearButton:active {
       text-align: center;
       font-size: 16px;
       border: 1px solid var(--primary-color-tint-6);
-      border-radius: 4px;
+      border-radius: 0px;
       padding: 5px;
       z-index: 10001;
-      width: auto;
-      /*width: 202px;*/
+      width: 94px;
       overflow: hidden;
     }
     .dropdown-item {
@@ -2775,7 +2775,7 @@ button#clearButton:active {
   <!--on div below is styling for container containing rate, exchange rate and passenger details-->
   <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 100%; padding: 12px 16px; background: var(--primary-color-tint-12); border-radius: 0px; border: 1px solid var(--primary-color-tint-4); box-sizing: border-box; position: relative; z-index: 10000;">
     <div style="text-align: left; flex: 0 0 calc(23.333% - 14px); min-width: 0; max-width: calc(23.333% - 14px); display: flex; flex-direction: column; align-items: center;">
-      <span style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">USD PER 1 LDG</span>
+      <span style="font-size: 9.72px; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">USD per LDG</span>
       <div style="margin-top: 6px; display: inline-block; position: relative;">
         <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 0px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-4); width: 60px; display: inline-block; text-align: center; cursor: pointer; transition: all 0.3s ease; opacity: 1; position: relative; padding-right: 20px;">5.0</span>
         <svg style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 6px solid var(--primary-color-hue-3); cursor: pointer; pointer-events: none;" onclick="event.stopPropagation();"></svg>
