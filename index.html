@@ -10,8 +10,9 @@
             const errorElement = document.getElementById('errorMessage');
             const passwordInput = document.getElementById('password');
             
-            errorElement.innerHTML = `<span style="color: red; white-space: nowrap; font-size: clamp(10px, 3vw, 16px);">${message}</span>`;
-            errorElement.style.display = 'block';
+            // Clear any existing error message
+            errorElement.innerHTML = '';
+            errorElement.style.display = 'NONE';
             passwordInput.classList.add('error');
             
             // Remove error state after animation
@@ -288,19 +289,24 @@
         
         .login-box input[type="password"].error {
             border-color: var(--clear-button-color);
-            animation: shake 0.5s ease-in-out;
+            border-width: 2px;
+            box-shadow: 0 0 8px rgba(220, 38, 38, 0.4), 0 0 16px rgba(220, 38, 38, 0.2);
+            animation: shake 0.5s ease-in-out, errorGlow 1s ease-in-out;
         }
         
         .error-message {
             color: var(--clear-button-color);
-            font-size: 14px;
-            margin: 0 0 15px 0;
+            font-size: clamp(10px, 2.5vw, 12px);
+            margin: 5px 0 0 0;
             min-height: 20px;
             text-align: left;
             width: 100%;
-            padding: 3px 5px;
+            padding: 0;
             display: NONE;
             line-height: 1.4;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         
         @media (max-width: 768px) {
@@ -315,6 +321,17 @@
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        @keyframes errorGlow {
+            0%, 100% { 
+                box-shadow: 0 0 8px rgba(220, 38, 38, 0.4), 0 0 16px rgba(220, 38, 38, 0.2);
+                border-color: rgba(220, 38, 38, 0.8);
+            }
+            50% { 
+                box-shadow: 0 0 12px rgba(220, 38, 38, 0.6), 0 0 24px rgba(220, 38, 38, 0.3);
+                border-color: rgba(220, 38, 38, 1);
+            }
         }
         
         .login-box input[type="password"]:focus {
@@ -541,7 +558,8 @@
 
     /* Style the default date/time picker indicator */
     input[type="date"]::-webkit-calendar-picker-indicator,
-    input[type="time"]::-webkit-calendar-picker-indicator {
+    input[type="time"]::-webkit-calendar-picker-indicator,
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         position: absolute;
         top: 50%;
         right: 15px;
@@ -554,17 +572,20 @@
     
     /* Style for date/time inputs */
     input[type="date"], 
-    input[type="time"] {
+    input[type="time"],
+    input[type="datetime-local"] {
         outline: NONE !important;
         height: 60px;
         max-width: 100%;
-        padding-right: 50px; /* Space for the custom icon */
-        background-repeat: no-repeat;
-        background-position: right 15px center;
-        background-size: 24px 24px;
-        position: relative;
-        transition: all 0.3s ease;
-        -webkit-appearance: NONE; /* Remove default styling on iOS */
+        border: 1px solid var(--primary-color-tint-4) !important;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: 'SF Pro Display';
+        font-weight: 500;
+        color: var(--primary-color-hue-5);
+        background: white;
+        padding: 0 15px;
+        -webkit-appearance: NONE;
         -moz-appearance: NONE;
         appearance: NONE;
         text-align: center; /* Center text for Android */
@@ -582,18 +603,36 @@
     /* Hover and focus states */
     input[type="date"]:hover,
     input[type="time"]:hover,
+    input[type="datetime-local"]:hover,
     input[type="date"]:focus,
-    input[type="time"]:focus {
+    input[type="time"]:focus,
+    input[type="datetime-local"]:focus {
         border-color: var(--primary-color) !important;
         box-shadow: 0 0 0 1px var(--primary-color-tint-12);
     }
     
     /* Apply consistent styling to all inputs */
     input[type="date"],
-    input[type="time"] {
+    input[type="time"],
+    input[type="datetime-local"] {
         box-sizing: border-box;
         border: 1px solid var(--primary-color-tint-4) !important;
         color: var(--primary-color-hue-10);
+        min-width: 0; /* Prevent flex items from overflowing */
+        flex-shrink: 1; /* Allow inputs to shrink */
+        overflow: hidden; /* Hide any overflow content */
+        text-overflow: ellipsis; /* Show ellipsis for overflow text */
+    }
+
+    /* Specific datetime-local input constraints */
+    input[type="datetime-local"] {
+        max-width: 100%;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
 </style>
@@ -1812,20 +1851,34 @@ function clearPage() {
     <!-- Login Form Container -->
     <div id="loginContainer" style="background-color: transparent; border: none;">
         <div class="login-box">
-            <input type="password" id="password" placeholder="Access Code" onkeypress="if(event.key === 'Enter') checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0 0 15px 0; border: 1px solid var(--primary-color-hue-8); border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+            <div style="display: flex; gap: 10px; align-items: center; width: 100%;">
+                <input type="password" id="password" placeholder="Access Code" onkeypress="if(event.key === 'Enter') checkPassword()" style="flex: 1; padding: 14px 16px; margin: 0; border: 1px solid var(--primary-color-hue-8); border-radius: 4px; font-size: 16px; box-sizing: border-box;">
+                <button id="loginButton" onclick="checkPassword()" style="width: 50px; height: 50px; padding: 0; margin: 0; background: var(--primary-color-tint-3); color: #fff; border: none; border-radius: 50%; font-size: 20px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; min-height: 50px; outline: none; -webkit-tap-highlight-color: transparent; display: flex; align-items: center; justify-content: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.2s ease;">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
+                        <line x1="12" y1="2" x2="12" y2="12"/>
+                    </svg>
+                </button>
+            </div>
             <div id="errorMessage" class="error-message"></div>
-            <button id="loginButton" onclick="checkPassword()" style="width: 100%; padding: 14px 16px; margin: 0; background: var(--primary-color-tint-3); color: #fff; border: NONE; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px var(--primary-color-tint-4); min-height: 44px; outline: NONE; -webkit-tap-highlight-color: transparent;">Launch</button>
             <style>
                 #loginContainer #loginButton:hover {
                     background: var(--primary-color-hue-3) !important;
-                    box-shadow: 0 4px 8px var(--primary-color-tint-3) !important;
-                    transform: translateY(-1px) !important;
+                    transform: translateY(-1px) scale(1.05) !important;
                     border-color: transparent !important;
                 }
                 #loginContainer #loginButton:active {
                     background: var(--primary-color-hue-5) !important;
-                    box-shadow: 0 1px 2px var(--primary-color-tint-4) !important;
-                    transform: translateY(0) !important;
+                    transform: translateY(0) scale(0.95) !important;
+                }
+                #loginContainer #loginButton svg {
+                    transition: transform 0.2s ease;
+                }
+                #loginContainer #loginButton:hover svg {
+                    transform: rotate(180deg);
+                }
+                #loginContainer #loginButton:active svg {
+                    transform: rotate(360deg);
                 }
             </style>
         </div>
@@ -8743,14 +8796,15 @@ document.addEventListener("DOMContentLoaded", () => {
 <style>
     /* Mobile-specific fixes for input layout */
 </style>
+<div style="background: var(--primary-color-tint-12); border: none; border-radius: 8px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); overflow: hidden; box-sizing: border-box;">
 <div id="split-inputContainer" style="margin-bottom: 15px; width: 100%; overflow: visible; box-sizing: border-box; position: relative; z-index: 99998;">
 <div style="display: flex; justify-content: space-between; gap: 7px; width: 100%; overflow: visible; box-sizing: border-box;">
 <div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 100001;">MTOW (Tonnes)</label>
+    <label style="font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; margin-bottom: 5px; display: block;">MTOW (Tonnes)</label>
     <input id="mtow" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="text">
 </div>
 <div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 100001;">DISTANCE (km)</label>
+    <label style="font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; margin-bottom: 5px; display: block;">DISTANCE (km)</label>
     <input id="dist" placeholder="" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="number">
 </div>
 </div>
@@ -8761,7 +8815,7 @@ document.addEventListener("DOMContentLoaded", () => {
             appearance: NONE; 
             align-items: center;    
             gap: 7px; 
-            margin: 30px 0 5px 0;
+            margin: 0 0 15px 0;
             width: 100%;
             height: 60px; 
         }
@@ -8802,31 +8856,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </style>
 </div>
-<div style="margin-bottom: 15px;">
-<div style="display: flex; justify-content: space-between; gap: 7px !important;">
-<div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 1001;">Arrival Time</label>
-    <input id="Arrival_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="time">
+<div style="display: flex; justify-content: space-between; gap: 7px !important; width: 100%; box-sizing: border-box;">
+<div style="position: relative; flex: 1 !important; overflow: visible; box-sizing: border-box; min-width: 0;">
+    <label style="font-size: clamp(10px, 2.5vw, 12px); color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; margin-bottom: 5px; display: block; white-space: nowrap;">Arrival</label>
+    <input id="Arrival_datetime" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: clamp(14px, 3vw, 16px); font-weight: 500; color: var(--primary-color-hue-5); max-width: 100%; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" type="datetime-local">
 </div>
-<div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 1001;">Arrival Date</label>
-    <input id="Arrival_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="date">
-</div>
+<div style="position: relative; flex: 1 !important; overflow: visible; box-sizing: border-box; min-width: 0;">
+    <label style="font-size: clamp(10px, 2.5vw, 12px); color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; margin-bottom: 5px; display: block; white-space: nowrap;">Departure</label>
+    <input id="Departure_datetime" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: clamp(14px, 3vw, 16px); font-weight: 500; color: var(--primary-color-hue-5); max-width: 100%; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" type="datetime-local">
 </div>
 </div>
-
-<div style="margin-top: 15px;">
-<div style="display: flex; justify-content: space-between; gap: 7px !important;">
-<div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 1001;">Departure Time</label>
-    <input id="Departure_time" style="width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="time">
 </div>
-<div style="position: relative; flex: 1 !important;">
-    <label style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: white; padding: 0 4px; font-size: 11px; color: var(--primary-color-hue-2); font-family: 'SF Pro Display'; z-index: 1001;">Departure Date</label>
-    <input id="Departure_date" style="width: 100%; max-width: 100%; height: 60px; font-family: 'SF Pro Display'; text-align:center; border: 1px solid var(--primary-color-tint-4) !important; border-radius: 4px; box-sizing: border-box; outline: NONE; font-size: 16px; font-weight: 500; color: var(--primary-color-hue-5);" type="date">
-</div>
-</div>
-
 <!-- <p id="ancDisplay"></p> -->
 <!-- Buttons positioned below ancDisplay -->
 <div id="buttonContainer">
@@ -8944,15 +8984,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function calculatePKG() {
     const mtow = parseFloat(document.getElementById("mtow").value);
-    const arrivalDate = document.getElementById("Arrival_date").value;
-    const arrivalTime = document.getElementById("Arrival_time").value;
-    const departureDate = document.getElementById("Departure_date").value;
-    const departureTime = document.getElementById("Departure_time").value;
-    if (!arrivalDate || !arrivalTime || !departureDate || !departureTime || isNaN(mtow) || mtow <= 0) {
+    const arrivalDateTime = document.getElementById("Arrival_datetime").value;
+    const departureDateTime = document.getElementById("Departure_datetime").value;
+    if (!arrivalDateTime || !departureDateTime || isNaN(mtow) || mtow <= 0) {
       return "NIL";
     }
-    const arrival = new Date(`${arrivalDate}T${arrivalTime}`);
-    const departure = new Date(`${departureDate}T${departureTime}`);
+    const arrival = new Date(arrivalDateTime);
+    const departure = new Date(departureDateTime);
     const parkingHours = (departure - arrival) / (1000 * 60 * 60) - 2;
     if (parkingHours <= 0) {
       return "NIL";
@@ -10866,11 +10904,9 @@ function calculateDistance() {
             document.getElementById("searchInput").value = "";
             document.getElementById("output").innerHTML = "";
             
-            // Clear arrival/departure times and dates
-            document.getElementById("Arrival_time").value = "";
-            document.getElementById("Arrival_date").value = "";
-            document.getElementById("Departure_time").value = "";
-            document.getElementById("Departure_date").value = "";
+            // Clear arrival/departure datetime inputs
+            document.getElementById("Arrival_datetime").value = "";
+            document.getElementById("Departure_datetime").value = "";
             
             // Reset coordinates visibility
             coordinatesVisible = false;
