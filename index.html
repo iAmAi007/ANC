@@ -418,7 +418,7 @@
 
   /* Base */
 
-  --primary-color: oklch(0.35 0.05 270); /* #44475a */
+  --primary-color: #2f3640; /* #44475a */
 
 
 
@@ -452,7 +452,7 @@
 
   /* Hues (neighbor shifts for accents) */
 
-  --primary-color-hue-1: oklch(0.35 0.06 260); /* cooler indigo‑slate */
+  --primary-color-hue-1: #2f3640; /* cooler indigo‑slate */
 
   --primary-color-hue-2: oklch(0.35 0.06 265); /* muted navy */
 
@@ -474,25 +474,25 @@
 
   --primary-color-hue-9: oklch(0.35 0.06 230); /* midnight slate */
 
-  --primary-color-hue-10: oklch(0.35 0.06 220); /* marine‑slate */
+  --primary-color-hue-10: #2f3640; /* marine‑slate */
 
     /* Other UI colors */
 
-  --clear-button-color: #CE4F56;
+  --clear-button-color: #e84118;
 
-  --clear-button-hover-color: #e25967;
+  --clear-button-hover-color: #c23616;
 
-  --thumb-color: #FF79C6;
+  --thumb-color: #0097e6;
 
   --thumb-color-hover: #faafda;
 
-  --info-icon-color: #FF79C6;
+  --info-icon-color: #0097e6;
 
   --error-icon-color: #ff6b6b;
 
   --error-text-color: oklch(0.50 0.05 270);
 
-  --color-of-middle-part: #b43e81;
+  --color-of-middle-part: #0097e6;
 
 
 
@@ -1010,9 +1010,9 @@
 
     #routeWaypoints span {
 
-      background: var(--primary-color-tint-12);
+      background: #f5f6fa;
 
-      border: 1px solid #FF79C6;
+      border: 1px solid #0097e6;
 
       padding: 8px 12px;
 
@@ -1038,7 +1038,7 @@
 
       background: transparent;
 
-      color: #FF79C6;
+      color: #0097e6;
 
       border-radius: 50%;
 
@@ -1072,7 +1072,7 @@
 
       left: 0;
 
-      background: var(--primary-color-tint-3) !important; /* color of tooltip background. Drag to rearrange waypoints*/
+      background: #7f8fa6 !important; /* color of tooltip background. Drag to rearrange waypoints*/
 
       color: var(--white);
 
@@ -2736,7 +2736,7 @@ h1, #ancDisplay {
 
         color: var(--primary-color-hue-5);
 
-        background-color: var(--primary-color-tint-3);
+        background-color: #0097e6;
 
         border: NONE;
 
@@ -2896,8 +2896,7 @@ button {
 
         margin: 0;
 
-        background: var(--primary-color-tint-3); /* Default Primary mulled-wine */
-
+        background: #0097e6 !important;
         color: #fff;
 
         border: NONE;
@@ -3668,7 +3667,7 @@ function clearPage() {
 
     .close-icon:hover {
 
-        background: var(--primary-color-hue-3) !important;
+        background: #00a8ff !important;
 
     }
 
@@ -3696,7 +3695,7 @@ function clearPage() {
 
     #copyButton:hover {
 
-        background: var(--primary-color-hue-3) !important;
+        background: #00a8ff !important; 
 
     }
 
@@ -3731,14 +3730,14 @@ function clearPage() {
             <style>
 
                 #loginContainer #loginButton:hover {
-                    background: var(--primary-color-hue-3) !important;
+                    background: #00a8ff !important;
                     transform: translateY(-1px) scale(1.05) !important;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
                     filter: brightness(1.1) !important;
                 }
 
                 #loginContainer #loginButton:active {
-                    background: var(--primary-color-hue-5) !important;
+                    background: #00a8ff !important;
 
                     transform: translateY(0) scale(0.95) !important;
 
@@ -4794,7 +4793,7 @@ button#toggleCoordinatesButton {
 
 button#toggleCoordinatesButton:hover {
 
-    background: var(--primary-color-hue-3);
+    background: #00a8ff !important;
 
     box-shadow: 0 4px 8px var(--primary-color-tint-4);
 
@@ -4818,7 +4817,7 @@ button#toggleCoordinatesButton:active {
 
 button#calculateDistanceButton {
 
-    background: var(--primary-color-tint-3);
+    background: #0097e6 !important;
 
     color: #fff;
 
@@ -4852,7 +4851,7 @@ button#calculateDistanceButton {
 
 button#calculateDistanceButton:hover {
 
-    background: var(--primary-color-hue-3);
+    background: #00a8ff !important;
 
     box-shadow: 0 4px 8px var(--primary-color-tint-4);
 
@@ -5056,7 +5055,7 @@ button#nldgButton:active {
 
 button#CALCULATEButton {
 
-    background: var(--primary-color-tint-3);
+    background: #0097e6 !important;
 
     color: #fff;
 
@@ -5088,7 +5087,7 @@ button#CALCULATEButton {
 
 button#CALCULATEButton:hover {
 
-    background: var(--primary-color-hue-3);
+    background: #00a8ff !important;
 
     transform: translateY(-1px);
 
@@ -5124,7 +5123,7 @@ button#clearButton {
 
     width: 100%;
 
-    background: var(--clear-button-color);
+    background: var(--clear-button-color) !important;
 
     color: var(--white);
 
@@ -5156,7 +5155,7 @@ button#clearButton {
 
 button#clearButton:hover {
 
-    background: var(--clear-button-hover-color);
+    background: var(--clear-button-hover-color) !important;
 
     transform: translateY(-1px);
 
@@ -5656,7 +5655,7 @@ button#clearButton:active {
 
   <!--on div below is styling for container containing rate, exchange rate and passenger details-->
 
-  <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 100%; padding: 12px 16px; background: var(--primary-color-tint-12); border-radius: 4px; border: 1px solid var(--primary-color-tint-6); box-sizing: border-box; position: relative; z-index: 10000;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 100%; padding: 12px 16px; background: #f5f6fa !important; border-radius: 4px; border: 1px solid var(--primary-color-tint-6); box-sizing: border-box; position: relative; z-index: 10000;">
 
     <div style="text-align: left; flex: 0 0 calc(23.333% - 14px); min-width: 0; max-width: calc(23.333% - 14px); display: flex; flex-direction: column; align-items: center;">
 
@@ -17756,8 +17755,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div style="position: relative; flex: 1 !important; overflow: visible; box-sizing: border-box; min-width: 0;">
     <div style="border: 1px solid var(--primary-color-tint-6); border-radius: 6px; background: var(--background-color); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <div style="background: var(--primary-color-tint-6); border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
-            <div style="font-size: clamp(10px, 2.5vw, 12px); color: white; font-family: 'SF Pro Display'; font-weight: 600; text-align: center; text-shadow: 0 1px 1px rgba(0,0,0,0.5);">Arrival</div>
+        <div style="background: #44bd32; border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
+            <div style="font-size: clamp(10px, 2.5vw, 12px); color: white; font-family: 'SF Pro Display'; font-weight: 600; text-align: center;">Arrival</div>
         </div>
         <div style="padding: 8px;">
             <input id="Arrival_datetime" style="width: 100%; height: 50px; font-family: 'SF Pro Display'; text-align:center; border: none !important; border-radius: 3px; box-sizing: border-box; outline: NONE; font-size: clamp(10px, 2.5vw, 14px); font-weight: 500; color: var(--primary-color-hue-5); background: var(--background-color);" type="datetime-local" placeholder="">
@@ -17767,8 +17766,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div style="position: relative; flex: 1 !important; overflow: visible; box-sizing: border-box; min-width: 0;">
     <div style="border: 1px solid var(--primary-color-tint-6); border-radius: 6px; background: var(--background-color); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <div style="background: var(--primary-color-tint-6); border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
-            <div style="font-size: clamp(10px, 2.5vw, 12px); color: white; font-family: 'SF Pro Display'; font-weight: 600; text-align: center; text-shadow: 0 1px 1px rgba(0,0,0,0.5);">Departure</div>
+        <div style="background: #44bd32; border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
+            <div style="font-size: clamp(10px, 2.5vw, 12px); color: white; font-family: 'SF Pro Display'; font-weight: 600; text-align: center;">Departure</div>
         </div>
         <div style="padding: 8px;">
             <input id="Departure_datetime" style="width: 100%; height: 50px; font-family: 'SF Pro Display'; text-align:center; border: none !important; border-radius: 3px; box-sizing: border-box; outline: NONE; font-size: clamp(10px, 2.5vw, 14px); font-weight: 500; color: var(--primary-color-hue-5); background: var(--background-color);" type="datetime-local" placeholder="">
@@ -17828,7 +17827,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     </script>-->
 
-<!-- lines pattern ends here -->
+<!-- lines pattern ends -->
 
 
 
@@ -18166,7 +18165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return Math.ceil(mtow * rate * 0.3);
 
-} // Added missing closing brace here
+} // Added missing closing brace
 
 
 
