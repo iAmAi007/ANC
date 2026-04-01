@@ -5626,6 +5626,8 @@ button#clearButton:active {
 
       font-weight: 600;
 
+      border-bottom: 1px solid var(--primary-color-tint-6);
+
     }
 
     .dropdown-item:hover {
@@ -5676,7 +5678,7 @@ button#clearButton:active {
 
       <div style="margin-top: 6px; text-align: center;">
 
-        <span class="editable-number" id="exchange-rate" contenteditable="true" oninput="validateExchangeRate(this);" style="font-size: 16px; font-weight: 900; color: red; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 2px solid red; width: 80px; display: inline-block; text-align: center; cursor: text; animation: 1.5s ease 0s infinite normal none running pulse;" title="WARNING: Exchange rate for March 2026 needs updating to April 2026">2600</span>
+        <span class="editable-number" id="exchange-rate" contenteditable="true" oninput="validateExchangeRate(this);" style="font-size: 16px; font-weight: 900; color: red; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 2px solid red; width: 80px; display: inline-block; text-align: center; cursor: text; animation: 1.5s ease 0s infinite normal none running pulse;" title="WARNING: Exchange rate for April 2026 needs updating to May 2026">2650</span>
 
       </div>
 
@@ -5852,11 +5854,11 @@ button#clearButton:active {
 
     let rate = 5; // Declare a global variable for the selected rate
 
-    let exchangeRate = 2600; // Declare a global variable for the exchange rate (March 2026)
+    let exchangeRate = 2650; // Declare a global variable for the exchange rate (April 2026)
 
-    let currentMonth = 'March 2026'; // Current month for exchange rate
+    let currentMonth = 'April 2026'; // Current month for exchange rate
 
-    let lastUpdatedMonth = 'March 2026'; // Track when exchange rate was last updated
+    let lastUpdatedMonth = 'April 2026'; // Track when exchange rate was last updated
 
     let localPAX = 0; // Default Local PAX as a global variable
 
@@ -5881,6 +5883,14 @@ button#clearButton:active {
           item.textContent = option;
 
           item.className = 'dropdown-item';
+
+          // Remove border from last item
+
+          if (options.indexOf(option) === options.length - 1) {
+
+            item.style.borderBottom = 'none';
+
+          }
 
           item.addEventListener('click', () => {
 
@@ -18054,7 +18064,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
          }
 
-        const currentExchangeRate = parseFloat(document.getElementById("exchange-rate").textContent) || 2600;
+        const currentExchangeRate = parseFloat(document.getElementById("exchange-rate").textContent) || 2650;
 
             return Math.ceil((intlPAX * 5) + (localPAX * (5000/currentExchangeRate)));
 
@@ -18068,7 +18078,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        const currentExchangeRate = parseFloat(document.getElementById("exchange-rate").textContent) || 2600;
+        const currentExchangeRate = parseFloat(document.getElementById("exchange-rate").textContent) || 2650;
 
             return Math.ceil((intlPAX * 10) + (localPAX * (5000/currentExchangeRate))); 
 
@@ -21794,11 +21804,11 @@ function calculateDistance() {
 
             document.getElementById("intl-pax").textContent = "";
 
-            document.getElementById("exchange-rate").textContent = "2600";
+            document.getElementById("exchange-rate").textContent = "2650";
 
-            exchangeRate = 2600; // Reset global variable
+            exchangeRate = 2650; // Reset global variable
 
-            lastUpdatedMonth = 'March 2026'; // Reset to initial month
+            lastUpdatedMonth = 'April 2026'; // Reset to initial month
 
             checkExchangeRateStatus(); // Update display
 
