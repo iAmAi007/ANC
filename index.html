@@ -4563,19 +4563,6 @@ button#calculateANCButton {
 
 
 
-button#calculateDistanceButton {
-
-    margin: 0; /* Adjust the value as needed */
-
-
-
-}
-
-button#toggleCoordinatesButton {
-
-    margin: 0; /* Adjust the value as needed */
-
-}
 
 
 
@@ -4756,122 +4743,6 @@ button#toggleCoordinatesButton {
 
 
 <style>
-
-button#toggleCoordinatesButton {
-
-    background: var(--primary-color-tint-3);
-
-    color: #fff;
-
-    border: NONE;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    font-weight: 500;
-
-    padding: 12px 24px;
-
-    transition: all 0.2s ease;
-
-    box-shadow: 0 2px 4px var(--primary-color-tint-4);
-
-    min-height: 44px;
-
-    min-width: 44px;
-
-    outline: NONE;
-
-    -webkit-tap-highlight-color: transparent;
-
-}
-
-
-
-button#toggleCoordinatesButton:hover {
-
-    background: #00a8ff !important;
-
-    box-shadow: 0 4px 8px var(--primary-color-tint-4);
-
-    transform: translateY(-1px);
-
-}
-
-
-
-button#toggleCoordinatesButton:active {
-
-    background: var(--primary-color-hue-3);
-
-    box-shadow: 0 1px 2px var(--primary-color-tint-4);
-
-    transform: translateY(0);
-
-}
-
-
-
-button#calculateDistanceButton {
-
-    background: #0097e6 !important;
-
-    color: #fff;
-
-    border: NONE;
-
-    border-radius: 6px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    font-weight: 500;
-
-    padding: 12px 24px;
-
-    transition: all 0.2s ease;
-
-    box-shadow: 0 2px 4px var(--primary-color-tint-4);
-
-    min-height: 44px;
-
-    min-width: 44px;
-
-    outline: NONE;
-
-    -webkit-tap-highlight-color: transparent;
-
-}
-
-
-
-button#calculateDistanceButton:hover {
-
-    background: #00a8ff !important;
-
-    box-shadow: 0 4px 8px var(--primary-color-tint-4);
-
-    transform: translateY(-1px);
-
-}
-
-
-
-button#calculateDistanceButton:active {
-
-    background: var(--primary-color-hue-3);
-
-    box-shadow: 0 1px 2px var(--primary-color-tint-4);
-
-    transform: translateY(0);
-
-}
-
-
 
 button#ancButton {
 
@@ -5659,7 +5530,7 @@ button#clearButton:active {
 
     <div style="text-align: left; flex: 0 0 calc(23.333% - 14px); min-width: 0; max-width: calc(23.333% - 14px); display: flex; flex-direction: column; align-items: center;">
 
-      <span style="font-size: clamp(6px, 2vw, 7px); max-width: 80px; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">USD per LDG</span>
+      <span style="font-size: clamp(6px, 2vw, 7px); max-width: 80px !important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">USD per LDG</span>
 
       <div style="margin-top: 6px; display: inline-block; position: relative;">
 
@@ -5673,7 +5544,7 @@ button#clearButton:active {
 
     <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px); display: flex; flex-direction: column; align-items: center;">
 
-      <span id="exchange-rate-title" style="font-size: clamp(6px, 2vw, 7px); max-width: 80px; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">EXCHANGE RATE</span>
+      <span id="exchange-rate-title" style="font-size: clamp(6px, 2vw, 7px); max-width: 80px !important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">EXCHANGE RATE</span>
 
       <div style="margin-top: 6px; text-align: center;">
 
@@ -5685,7 +5556,7 @@ button#clearButton:active {
 
     <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px);">
 
-      <span style="font-size: clamp(6px, 2vw, 7px); max-width: 80px; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1;">Passengers</span>
+      <span style="font-size: clamp(6px, 2vw, 7px); max-width: 80px !important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1;">Passengers</span>
 
       <div style="margin-top: 6px; display: flex; justify-content: left; align-items: center; gap: 4px;">
 
@@ -17329,12 +17200,6 @@ function addAircraft(aircraftCode) {
 
         if (item.getAttribute('onclick').includes("'" + aircraftCode + "'")) {
 
-            // Set the input value to the full aircraft text
-
-            searchInput.value = item.textContent.trim();
-
-            
-
             // Extract and set MTOW value
 
             const mtowMatch = item.textContent.match(/\((\d+) Tonne?s?\)/);
@@ -17595,40 +17460,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div id="output" style="margin: 30px 0 30px 0; z-index: 100002;"></div>
 
-<div id="actionContainer">
-
-<button id="calculateDistanceButton" onclick="calculateDistance()">Distance</button>
-
-<button id="toggleCoordinatesButton" onclick="toggleCoordinates()">Coordinates</button>
-
-<style>
-
-        #actionContainer {
-
-            display: flex;
-
-            justify-content: center; /* Center align the buttons */
-
-            gap: 7px; /* Space between the buttons */
-
-            margin: 30px 0 30px 0; 
-
-            overflow: hidden;
-
-            position: relative;
-
-        }
-
-
-
-</style>
-
-</div>
-
-<style>
-
-    /* Mobile-specific fixes for input layout */
-
 </style>
 
 <div style="background: transparent; border: 1px solid var(--primary-color-tint-6); border-radius: 8px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); overflow: hidden; box-sizing: border-box;">
@@ -17755,8 +17586,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div style="position: relative; flex: 1 !important; overflow: visible; box-sizing: border-box; min-width: 0;">
     <div style="border: 1px solid var(--primary-color-tint-6); border-radius: 6px; background: var(--background-color); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <div style="background: #44bd32; border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
-            <div style="font-size: clamp(10px, 2.5vw, 12px); color: white; font-family: 'SF Pro Display'; font-weight: 600; text-align: center;">Arrival</div>
+        <div style="background: #dcdde1; border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
+            <div style="font-size: clamp(10px, 2.5vw, 12px); color: #353b48; font-family: 'SF Pro Display'; font-weight: 600; text-align: center;">Arrival</div>
         </div>
         <div style="padding: 8px;">
             <input id="Arrival_datetime" style="width: 100%; height: 50px; font-family: 'SF Pro Display'; text-align:center; border: none !important; border-radius: 3px; box-sizing: border-box; outline: NONE; font-size: clamp(10px, 2.5vw, 14px); font-weight: 500; color: var(--primary-color-hue-5); background: var(--background-color);" type="datetime-local" placeholder="">
@@ -17766,8 +17597,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <div style="position: relative; flex: 1 !important; overflow: visible; box-sizing: border-box; min-width: 0;">
     <div style="border: 1px solid var(--primary-color-tint-6); border-radius: 6px; background: var(--background-color); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <div style="background: #44bd32; border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
-            <div style="font-size: clamp(10px, 2.5vw, 12px); color: white; font-family: 'SF Pro Display'; font-weight: 600; text-align: center;">Departure</div>
+        <div style="background: #dcdde1; border-radius: 4px 4px 0 0; padding: 4px 8px; border-bottom: 1px solid var(--primary-color-tint-6);">
+            <div style="font-size: clamp(10px, 2.5vw, 12px); color: #353b48; font-family: 'SF Pro Display'; font-weight: 600; text-align: center;">Departure</div>
         </div>
         <div style="padding: 8px;">
             <input id="Departure_datetime" style="width: 100%; height: 50px; font-family: 'SF Pro Display'; text-align:center; border: none !important; border-radius: 3px; box-sizing: border-box; outline: NONE; font-size: clamp(10px, 2.5vw, 14px); font-weight: 500; color: var(--primary-color-hue-5); background: var(--background-color);" type="datetime-local" placeholder="">
@@ -17837,7 +17668,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <!-- Popup Modal -->
 
-<div id="resultPopup" style="position: fixed; display: none; width: 250px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000000; background: var(--primary-color-tint-12); border: 1px solid var(--primary-color-tint-9); box-shadow: 0px 4px 15px var(--primary-color-tint-4);"> 
+<div id="resultPopup" style="position: fixed; display: none; width: 250px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000000; background: var(--primary-color-tint-12); border: 1px solid var(--primary-color-tint-6); box-shadow: 0px 4px 15px var(--primary-color-tint-4);"> 
 
 
 
@@ -18186,6 +18017,12 @@ document.getElementById("CALCULATEButton").addEventListener("click", function ()
     button.innerHTML = '<div class="loader"></div>';
 
     button.disabled = true;
+
+    
+
+    // Calculate distance first
+
+    calculateDistance();
 
     
 
@@ -21771,10 +21608,6 @@ function calculateDistance() {
 
     document.getElementById('dist').value = totalDistanceKm.toFixed(2);
 
-    document.getElementById("output").innerHTML = `<p><span style="font-weight: bold;">Route Distance:</span> ${totalDistanceKm.toFixed(2)} km (${totalDistanceNm.toFixed(2)} NM)</p>`;
-
-    setTimeout(() => { document.getElementById("output").innerHTML = ""; }, 3000);
-
   }
 
 }
@@ -21861,9 +21694,6 @@ function calculateDistance() {
 
             
 
-            // Reset coordinates visibility
-
-            coordinatesVisible = false;
 
         }
 
@@ -21963,77 +21793,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-let coordinatesVisible = false;
-
-
-
-function toDMS(decimal, isLatitude) {
-
-    const degrees = Math.floor(Math.abs(decimal));
-
-    const minutesFloat = (Math.abs(decimal) - degrees) * 60;
-
-    const minutes = Math.floor(minutesFloat);
-
-    const seconds = ((minutesFloat - minutes) * 60).toFixed(2);
-
-
-
-    const direction = isLatitude
-
-        ? (decimal >= 0 ? 'N' : 'S')
-
-        : (decimal >= 0 ? 'E' : 'W');
-
-
-
-    return `${degrees}°${minutes}'${seconds}" ${direction}`;
-
-}
-
-
-
-function toggleCoordinates() {
-
-    const routeWaypoints = document.getElementById('routeWaypoints');
-
-    const waypointsArray = routeWaypoints.querySelectorAll('.route-waypoint');
 
     
 
-    waypointsArray.forEach(waypoint => {
 
-        const waypointName = waypoint.getAttribute('data-name') || waypoint.textContent.match(/^[^\(]+/)[0].trim();
-
-        const coords = waypoints[waypointName];
-
-
-
-        if (coords && coords.lat && coords.lon) {
-
-            if (coordinatesVisible) {
-
-                waypoint.textContent = waypointName;
-
-            } else {
-
-                const latDMS = toDMS(coords.lat, true);
-
-                const lonDMS = toDMS(coords.lon, false);
-
-                waypoint.textContent = `${waypointName} (${latDMS}, ${lonDMS})`;
-
-            }
-
-        }
-
-    });
-
-
-
-    coordinatesVisible = !coordinatesVisible;
-
-}
 
 
 
