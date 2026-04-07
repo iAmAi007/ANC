@@ -5528,11 +5528,13 @@ button#clearButton:active {
 
   <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 100%; padding: 12px 16px; background: #f5f6fa !important; border-radius: 4px; border: 1px solid var(--primary-color-tint-6); box-sizing: border-box; position: relative; z-index: 10000;">
 
-    <div style="text-align: left; flex: 0 0 calc(23.333% - 14px); min-width: 0; max-width: calc(23.333% - 14px); display: flex; flex-direction: column; align-items: center;">
+    <div style="text-align: center; flex: 0 0 calc(28% - 14px); min-width: 0; max-width: calc(28% - 14px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
 
-      <span style="font-size: clamp(6px, 2vw, 7px); max-width: 80px !important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">USD per LDG</span>
+      <span style="font-size: 3px !important; max-width: 70px !important; white-space: nowrap; 
+color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px !important; 
+opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: monospace !important;">USD per LDG</span>
 
-      <div style="margin-top: 6px; display: inline-block; position: relative;">
+      <div style="margin-top: 6px; text-align: center; display: inline-block; position: relative;">
 
         <span class="editable" data-options="5.0,4.5,4.0,3.0" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-6); width: 60px; display: inline-block; text-align: center; cursor: pointer; transition: all 0.3s ease; opacity: 1; position: relative; padding-right: 20px;">5.0</span>
 
@@ -5542,11 +5544,13 @@ button#clearButton:active {
 
     </div>
 
-    <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px); display: flex; flex-direction: column; align-items: center;">
+    <div style="text-align: center; flex: 0 0 calc(32% - 14px); min-width: 0; max-width: calc(32% - 14px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
 
-      <span id="exchange-rate-title" style="font-size: clamp(6px, 2vw, 7px); max-width: 80px !important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1; text-align: center;">EXCHANGE RATE</span>
+      <span id="exchange-rate-title" style="font-size: 3px !important; max-width: 70px 
+!important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; 
+letter-spacing: 0.5px !important; opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: monospace !important;">EXCHANGE RATE</span>
 
-      <div style="margin-top: 6px; text-align: center;">
+      <div style="margin-top: 6px; text-align: center; display: inline-block; position: relative;">
 
         <span class="editable-number" id="exchange-rate" contenteditable="true" oninput="validateExchangeRate(this);" style="font-size: 16px; font-weight: 900; color: red; padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 2px solid red; width: 80px; display: inline-block; text-align: center; cursor: text; animation: 1.5s ease 0s infinite normal none running pulse;" title="WARNING: Exchange rate for April 2026 needs updating to May 2026">2650</span>
 
@@ -5554,11 +5558,13 @@ button#clearButton:active {
 
     </div>
 
-    <div style="text-align: left; flex: 0 0 calc(38.333% - 14px); min-width: 0; max-width: calc(38.333% - 14px);">
+    <div style="text-align: center; flex: 0 0 calc(40% - 14px); min-width: 0; max-width: calc(40% - 14px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
 
-      <span style="font-size: clamp(6px, 2vw, 7px); max-width: 80px !important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 1px !important; opacity: 0.9; display: block; line-height: 1;">Passengers</span>
+      <span style="font-size: 3px !important; max-width: 70px !important; white-space: nowrap; 
+color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px !important; 
+opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: monospace !important;">Passengers</span>
 
-      <div style="margin-top: 6px; display: flex; justify-content: left; align-items: center; gap: 4px;">
+      <div style="margin-top: 6px; display: flex; justify-content: center; align-items: center; gap: 4px;">
 
         <span class="editable-number" id="local-pax" contenteditable="true" onkeydown="if(event.key === 'Enter') { this.blur(); return false; }" onpaste="return false;" style="font-size: 16px; font-weight: 700; color: var(--primary-color-hue-3); padding: 2px 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--primary-color-tint-6); width: 60px; display: inline-block; text-align: center; cursor: text;" data-placeholder="Dom."></span>
 
@@ -5713,6 +5719,14 @@ button#clearButton:active {
       </style>
 
 
+
+  <style>
+    /* Force font size for headers - override all media queries */
+    span[style*="font-size: 7px !important"],
+    #exchange-rate-title {
+      font-size: 7px !important;
+    }
+  </style>
 
   <div class="dropdown" id="dropdown"></div>
 
@@ -24354,4 +24368,3 @@ document.addEventListener('DOMContentLoaded', function () {
 </body>
 
 </html>
-
