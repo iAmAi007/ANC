@@ -110,7 +110,9 @@
 
 
 
-        // Check if already authenticated when page loads
+        // Check if already authenticated when page loads - DISABLED
+
+        /*
 
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -139,6 +141,28 @@
                 document.body.style.overflow = 'hidden';
 
             }
+
+        });
+
+        */
+
+        // Show calculator directly without login
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const loginContainer = document.getElementById('loginContainer');
+
+            const calculatorContent = document.getElementById('calculatorContent');
+
+            
+
+            // Hide login and show calculator directly
+
+            loginContainer.style.display = 'NONE';
+
+            calculatorContent.style.display = 'block';
+
+            document.body.style.overflow = 'auto';
 
         });
 
@@ -546,7 +570,7 @@
 
             box-sizing: border-box;
 
-            margin: 0 auto;
+            margin: none;
 
         }
 
@@ -748,7 +772,7 @@
 
             display: flex;
 
-            margin: 0 auto;
+            margin: none;
 
         }
 
@@ -5530,9 +5554,9 @@ button#clearButton:active {
 
     <div style="text-align: center; flex: 0 0 calc(28% - 14px); min-width: 0; max-width: calc(28% - 14px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
 
-      <span style="font-size: 3px !important; max-width: 70px !important; white-space: nowrap; 
+      <span style="font-size: 6px !important; width: fit-content !important; white-space: nowrap; 
 color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px !important; 
-opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: monospace !important;">USD per LDG</span>
+opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: 'SF Pro Display' !important; margin: 0 auto;">USD per LDG</span>
 
       <div style="margin-top: 6px; text-align: center; display: inline-block; position: relative;">
 
@@ -5546,9 +5570,10 @@ opacity: 0.9; display: block; line-height: 1; text-align: center !important; fon
 
     <div style="text-align: center; flex: 0 0 calc(32% - 14px); min-width: 0; max-width: calc(32% - 14px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
 
-      <span id="exchange-rate-title" style="font-size: 3px !important; max-width: 70px 
-!important; white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; 
-letter-spacing: 0.5px !important; opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: monospace !important;">EXCHANGE RATE</span>
+      <span id="exchange-rate-title" style="font-size: 6px !important; width: fit-content !important; 
+white-space: nowrap; color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; 
+letter-spacing: 0.5px !important; opacity: 0.9; display: block; line-height: 1; text-align: center !important; 
+font-family: 'SF Pro Display' !important; margin: 0 auto;">EXCHANGE RATE</span>
 
       <div style="margin-top: 6px; text-align: center; display: inline-block; position: relative;">
 
@@ -5560,9 +5585,10 @@ letter-spacing: 0.5px !important; opacity: 0.9; display: block; line-height: 1; 
 
     <div style="text-align: center; flex: 0 0 calc(40% - 14px); min-width: 0; max-width: calc(40% - 14px); display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
 
-      <span style="font-size: 3px !important; max-width: 70px !important; white-space: nowrap; 
+      <span style="font-size: 6px !important; width: fit-content !important; white-space: nowrap; 
 color: var(--primary-color-hue-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px !important; 
-opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: monospace !important;">Passengers</span>
+opacity: 0.9; display: block; line-height: 1; text-align: center !important; font-family: 'SF Pro Display' 
+!important; margin: 0 auto;">Passengers</span>
 
       <div style="margin-top: 6px; display: flex; justify-content: center; align-items: center; gap: 4px;">
 
@@ -17738,7 +17764,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <button style="position: absolute; font-size: 25px; padding: 3px 0 0 0; color: var(--primary-color-hue-5); top: 0; right: 0; background: var(--primary-color-tint-3); height: 40px; cursor: pointer; border: NONE; border-radius: 0; font-weight: 500; letter-spacing: 1px !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" class="close-icon" onclick="closePopup()">
 
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" style="display: block; margin: 0 auto;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" style="display: block; margin: none;">
 
       <path d="M18 6L6 18M6 6l12 12" stroke="var(--white)" stroke-width="2" stroke-linecap="round"/>
 
@@ -17748,7 +17774,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <button onclick="copyContent()" style="height: 40px; background: var(--primary-color-tint-3); border: NONE; border-radius: 0; color: var(--primary-color-hue-5); font-weight: 500; letter-spacing: 1px !important; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);" id="copyButton">
 
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: none;">
 
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
 
@@ -17808,7 +17834,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
 
-          button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: 0 auto;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+          button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="NONE" stroke="var(--white)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: none;"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
 
         }, 2000);
 
