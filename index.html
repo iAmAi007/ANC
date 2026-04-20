@@ -15,7 +15,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, rgba(27, 54, 93, 0.15) 0%, rgba(79, 126, 163, 0.1) 50%, rgba(27, 54, 93, 0.15) 100%), url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%), url('https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -53,7 +53,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: #fafbfc;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 9999;
       align-items: center;
       justify-content: center;
@@ -513,7 +515,7 @@
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       font-size: 0.7rem;
       font-weight: 500;
       color: #2b4c6b;
@@ -631,7 +633,7 @@
     .delete-charge-btn {
       background: rgba(255, 255, 255, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.4);
-      color: #6b7d8f;
+      color: #dc2626;
       font-size: 1rem;
       font-weight: 400;
       width: 22px;
@@ -724,6 +726,15 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
       flex-shrink: 0;
       min-width: fit-content;
+    }
+
+    .route-item.undefined-coords {
+      border: 1px solid rgba(220, 38, 38, 0.4);
+    }
+
+    .route-item.undefined-coords .route-waypoint {
+      color: #dc2626;
+      font-weight: 600;
     }
 
     .route-item:hover {
@@ -900,17 +911,28 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: transparent;
       z-index: 1000;
-      display: none;
+      visibility: hidden;
       justify-content: center;
       align-items: center;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
     }
 
     .modal.show {
       opacity: 1;
+      visibility: visible;
+    }
+
+    body.modal-open #mainContent {
+      filter: blur(2px);
+      transform: scale(0.995);
+      transition: filter 0.05s linear, transform 0.05s linear;
+    }
+
+    #mainContent {
+      transition: filter 0.05s linear, transform 0.05s linear;
     }
 
     .modal-content {
@@ -918,14 +940,14 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 1.5rem;
-      max-width: 500px;
+      border-radius: 2rem;
+      max-width: 620px;
       width: 90%;
       max-height: 80vh;
       overflow-y: auto;
       box-shadow: 0 20px 40px rgba(31, 38, 135, 0.37);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
+      transform: scale(0.92);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .modal.show .modal-content {
@@ -1222,28 +1244,28 @@
                 <span class="result-label">Administration Fees</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="admCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="adm" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="adm" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="anc" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
                 <span class="result-label">Air Navigation Charges</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="ancCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="anc" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="anc" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="stlf" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
                 <span class="result-label">Short Term Licencing Fees</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="stlfCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="stlf" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="stlf" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="saf" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px;">
                 <span class="result-label">Safety Fees</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="safCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="saf" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="saf" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 1rem 0 30px; margin-top: 0.5rem; border-top: 1px solid rgba(200, 200, 200, 0.3); padding-top: 0.5rem;">
@@ -1269,42 +1291,42 @@
                 <span class="result-label">Landing</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="ldgCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="ldg" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="ldg" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="nldg" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
                 <span class="result-label">Night Landing</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="nldgCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="nldg" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="nldg" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="ntkof" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
                 <span class="result-label">Night Takeoff</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="ntkofCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="ntkof" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="ntkof" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="sec" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
                 <span class="result-label">Security Fees</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="secCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="sec" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="sec" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="pkg" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
                 <span class="result-label">Parking Charges</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="pkgCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="pkg" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="pkg" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div class="charge-row" data-charge="cute" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px;">
                 <span class="result-label">Cute Charges</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="cuteCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="cute" title="Remove this charge">×</button>
+                  <button class="delete-charge-btn" data-charge="cute" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 1rem 0 30px; margin-top: 0.5rem; border-top: 1px solid rgba(200, 200, 200, 0.3); padding-top: 0.5rem;">
@@ -6077,11 +6099,11 @@
       const deleteBtn = row.querySelector('.delete-charge-btn');
       if (excludedCharges.has(chargeId)) {
         row.classList.add('deleted');
-        deleteBtn.textContent = '+';
+        deleteBtn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
         deleteBtn.title = 'Add charge back';
       } else {
         row.classList.remove('deleted');
-        deleteBtn.textContent = '×';
+        deleteBtn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
         deleteBtn.title = 'Remove this charge';
       }
     });
@@ -6120,6 +6142,8 @@
   const arrivalDateTime = document.getElementById('arrivalDateTime');
   const calculateBtn = document.getElementById('calculateBtn');
   const clearBtn = document.getElementById('clearBtn');
+  const intlPassengersInput = document.getElementById('intlPassengersInput');
+  const localPassengersInput = document.getElementById('localPassengersInput');
   // const feedbackMsg = document.getElementById('feedbackMsg');
   const routeListEl = document.getElementById('routeList');
 
@@ -6198,6 +6222,12 @@
         wpSpan.title = `Coordinate: ${wp}\nLat: ${waypointData.lat.toFixed(6)}\nLon: ${waypointData.lon.toFixed(6)}`;
       } else {
         wpSpan.textContent = wp;
+      }
+      
+      // Check if waypoint has undefined coordinates and apply alarming style
+      if (waypointData && (waypointData.lat === 'to_be_defined' || waypointData.lon === 'to_be_defined')) {
+        routeItem.classList.add('undefined-coords');
+        wpSpan.title = `${wp} - Coordinates not defined!`;
       }
       
       // Add click to remove functionality
@@ -6639,6 +6669,8 @@
     waypointInput.value = '';
     mtowField.value = '';
     distanceField.value = '';
+    intlPassengersInput.value = '';
+    localPassengersInput.value = '';
     routeWaypoints = [];
     renderRoute();
     setDefaultDatetimes();
@@ -6775,10 +6807,11 @@
   // Modal functions
   function showModal() {
     const modal = document.getElementById('resultsModal');
+    document.body.classList.add('modal-open');
     modal.style.display = 'flex';
     setTimeout(() => {
       modal.classList.add('show');
-    }, 10);
+    }, 100);
   }
 
   function hideModal() {
@@ -6786,7 +6819,8 @@
     modal.classList.remove('show');
     setTimeout(() => {
       modal.style.display = 'none';
-    }, 300);
+      document.body.classList.remove('modal-open');
+    }, 500);
   }
 
   // Modal event listener - only OK button closes modal
@@ -6860,7 +6894,9 @@
         const success = addWaypointToRoute(raw);
         if (success) {
           waypointInput.value = '';
+          waypointInput.dataset.selected = '';
           waypointGhost.innerHTML = ''; // Clear ghost text
+          closeAllDropdownsExcept(null);
         }
       }
       waypointTabCycleIndex = 0;
@@ -6868,36 +6904,62 @@
     }
   });
 
-  waypointInput.addEventListener('blur', function() {
-    let raw = waypointInput.value.trim();
-    // Clear ghost text on blur
-    setTimeout(() => {
-      waypointGhost.innerHTML = '';
-    }, 200);
+  waypointInput.addEventListener('input', () => {
+    const raw = waypointInput.value.trim().toUpperCase();
+    buildWaypointList(waypointInput.value);
+    waypointListEl.style.display = 'block';
+    aircraftListEl.style.display = 'none';
 
-    if (raw && !waypointsMaster.hasOwnProperty(raw.toUpperCase())) {
-      // Check if it looks like a coordinate attempt
-      const parsed = tryParseCoordinates(raw);
-      if (!parsed) {
-        // Only show feedback for 4-letter codes that aren't coordinates
-        if (raw.length === 4 && /^[A-Z]{4}$/i.test(raw)) {
-          showTemporaryFeedback('Use dropdown or Enter to add valid waypoint', 1500);
+    // Ghost text inline autocomplete
+    if (raw && raw.length >= 1) {
+      const matches = Object.keys(waypointsMaster).filter(wp => wp.startsWith(raw));
+      if (matches.length >= 1) {
+        // Show the first match as ghost text
+        const suggestion = matches[0];
+        const remaining = suggestion.substring(raw.length);
+        if (remaining) {
+          // Display ghost text with typed part (invisible) + suggested part (faint)
+          waypointGhost.innerHTML = `<span class="typed">${raw}</span><span class="suggested">${remaining}</span>`;
+          waypointInput.dataset.autocomplete = suggestion;
+        } else {
+          waypointGhost.innerHTML = '';
+          waypointInput.dataset.autocomplete = '';
         }
+      } else {
+        waypointGhost.innerHTML = '';
+        waypointInput.dataset.autocomplete = '';
       }
+    } else {
+      waypointGhost.innerHTML = '';
+      waypointInput.dataset.autocomplete = '';
     }
   });
-  
-  aircraftInput.addEventListener('blur', () => {
-    const selectedAircraftExists = aircrafts.some(ac => ac.display === aircraftInput.value.trim());
-    if (aircraftInput.value.trim() !== '' && !selectedAircraftExists && !mtowField.value) {
-      // Manual MTOW message disabled
-      // feedbackMsg.innerHTML = 'Manual MTOW allowed. Use dropdown for auto-fill.';
-      // setTimeout(() => {
-      //   if (feedbackMsg.innerHTML === 'Manual MTOW allowed. Use dropdown for auto-fill.') feedbackMsg.innerHTML = '';
-      // }, 1500);
-    }
-    toggleClearButton();
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#aircraftDropdown')) aircraftListEl.style.display = 'none';
+    if (!e.target.closest('#waypointDropdown')) waypointListEl.style.display = 'none';
   });
+  aircraftListEl.addEventListener('click', (e) => e.stopPropagation());
+  waypointListEl.addEventListener('click', (e) => e.stopPropagation());
+
+  buildAircraftList('');
+  buildWaypointList('');
+  aircraftListEl.style.display = 'none';
+  waypointListEl.style.display = 'none';
+
+  function setDefaultDatetimes() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const defaultDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+    arrivalDateTime.value = defaultDateTime;
+    departureDateTime.value = defaultDateTime;
+  }
+  setDefaultDatetimes();
 
   // Add event listeners for delete charge buttons
   document.querySelectorAll('.delete-charge-btn').forEach(btn => {
@@ -6918,7 +6980,6 @@
     if (isMobile) {
       document.getElementById('mobileOverlay').classList.add('active');
       document.getElementById('mainContent').style.display = 'none';
-      document.body.style.background = '#fafbfc';
       document.body.style.padding = '0';
     }
   })();
