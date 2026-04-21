@@ -6110,15 +6110,17 @@
     // Update row styling and icons
     document.querySelectorAll('.charge-row').forEach(row => {
       const chargeId = row.dataset.charge;
-      const deleteBtn = row.querySelector('.delete-charge-btn');
+      const addBtn = row.querySelector('.delete-charge-btn');
       if (excludedCharges.has(chargeId)) {
         row.classList.add('deleted');
-        deleteBtn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 1V11M1 6H11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
-        deleteBtn.title = 'Add charge back';
+        addBtn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 1V11M1 6H11" stroke="#1b365d" stroke-width="2.5" stroke-linecap="round"/></svg>';
+        addBtn.title = 'Add charge';
+        addBtn.style.background = 'rgba(224, 234, 252, 0.8)';
       } else {
         row.classList.remove('deleted');
-        deleteBtn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
-        deleteBtn.title = 'Remove this charge';
+        addBtn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+        addBtn.title = 'Remove charge';
+        addBtn.style.background = 'rgba(207, 222, 243, 0.8)';
       }
     });
     
