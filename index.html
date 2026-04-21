@@ -1365,7 +1365,7 @@
       </div>
       
       <div class="action-buttons" style="justify-content: flex-end;">
-        <button class="gentle-btn" id="modalCopyBtn" style="min-width: 120px;">Copy</button>
+        <button id="modalCopyBtn" class="gentle-btn" style="min-width: 120px;">Bill</button>
         <button class="gentle-btn" id="modalOkBtn" style="min-width: 120px;">OK</button>
       </div>
     </div>
@@ -6980,29 +6980,54 @@
   </tr>
 </table>`;
 
-    // Create a temporary element to hold the HTML
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = htmlTable;
+    // Wrap in HTML document structure for Word
+    const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Flight Charges Bill</title>
+</head>
+<body>
+${htmlTable}
+</body>
+</html>`;
 
-    // Use Clipboard API with HTML format
-    const clipboardItem = new ClipboardItem({
-      'text/html': new Blob([htmlTable], { type: 'text/html' }),
-      'text/plain': new Blob([tempDiv.textContent], { type: 'text/plain' })
+    // Create Blob with Word-compatible MIME type
+    const blob = new Blob(['\ufeff', htmlContent], {
+      type: 'application/msword'
     });
 
-    navigator.clipboard.write([clipboardItem]).then(() => {
-      const copyBtn = document.getElementById('modalCopyBtn');
-      const originalText = copyBtn.textContent;
-      copyBtn.textContent = 'Copied!';
-      copyBtn.style.background = 'rgba(34, 197, 94, 0.3)';
-      setTimeout(() => {
-        copyBtn.textContent = originalText;
-        copyBtn.style.background = '';
-      }, 2000);
-    }).catch(err => {
-      console.error('Failed to copy:', err);
-      alert('Failed to copy to clipboard. Please try again.');
-    });
+    // Create download link
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.href = url;
+    
+    // Generate filename with timestamp
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timestamp = `${year}${month}${day}${hours}${minutes}`;
+    link.download = `FlightBill${timestamp}.doc`;
+    
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    // Show feedback
+    const billBtn = document.getElementById('modalCopyBtn');
+    const originalText = billBtn.textContent;
+    billBtn.textContent = 'Saved!';
+    billBtn.style.background = 'rgba(34, 197, 94, 0.3)';
+    setTimeout(() => {
+      billBtn.textContent = originalText;
+      billBtn.style.background = '';
+    }, 2000);
   }
 
   // Modal event listeners
