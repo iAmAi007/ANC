@@ -1114,6 +1114,57 @@
       .form-row label { padding-left: 0.75rem; }
       .clear-aircraft-btn { right: 0.6rem; }
       
+      /* Stack arrival/departure vertically on mobile */
+      .datetime-stack {
+        flex-direction: column;
+      }
+      
+      /* Rate/passenger row - use auto sizes with flex on mobile */
+      .route-list {
+        flex-direction: column;
+      }
+      .route-list > div {
+        flex-direction: column !important;
+        gap: 0.5rem;
+      }
+      .route-list > div > div {
+        width: 100% !important;
+        flex: none !important;
+        margin: 0 !important;
+      }
+      #rateInput,
+      #exchangeRateInput,
+      #intlPassengersInput,
+      #localPassengersInput {
+        width: 100% !important;
+        text-align: center !important;
+      }
+      
+      /* Modal responsive on mobile */
+      .modal {
+        padding: 0 1rem;
+      }
+      .modal .flight-form {
+        padding: 0 !important;
+      }
+      .charges-list {
+        overflow-x: auto;
+      }
+      .charge-row {
+        padding: 0.5rem !important;
+        font-size: 0.8rem;
+      }
+      
+      /* Dropdowns responsive on mobile */
+      .dropdown-list {
+        max-height: 200px;
+        overflow-y: auto;
+      }
+      .dropdown-list li {
+        padding: 0.6rem;
+        font-size: 0.85rem;
+      }
+      
       .modal-content {
         width: 95%;
         margin: 1rem;
@@ -6994,7 +7045,8 @@
   toggleClearButton();
   renderRoute();
 
-  // Mobile detection - show overlay on mobile devices
+  // Mobile detection - disabled, app now works on mobile
+  /*
   (function() {
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
     if (isMobile) {
@@ -7003,6 +7055,7 @@
       document.body.style.padding = '0';
     }
   })();
+  */
 </script>
 </body>
 </html>
