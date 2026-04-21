@@ -2762,6 +2762,10 @@
 ];
 
 
+  // Sort aircrafts alphabetically by display name
+  aircrafts.sort((a, b) => a.display.localeCompare(b.display));
+
+
   // Waypoints master list with coordinates
   const waypointsMaster = {
     "TG": { "lat": -5.0888333, "lon": 39.0733333 },
@@ -6515,9 +6519,9 @@
 
   function buildWaypointList(filterText = '') {
     const filter = filterText.trim().toUpperCase();
-    let filtered = Object.keys(waypointsMaster);
+    let filtered = Object.keys(waypointsMaster).sort();
     if (filter !== '') {
-      filtered = Object.keys(waypointsMaster).filter(wp => wp.includes(filter));
+      filtered = Object.keys(waypointsMaster).filter(wp => wp.includes(filter)).sort();
     }
     waypointListEl.innerHTML = '';
     if (filtered.length === 0) {
