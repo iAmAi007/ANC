@@ -914,18 +914,19 @@
 
     /* Modal Styles */
     .modal {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background: transparent;
-      z-index: 1000;
+      z-index: 10;
       visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      display: flex;
       justify-content: center;
       align-items: center;
-      opacity: 0;
-      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s ease;
     }
 
     .modal.show {
@@ -933,14 +934,18 @@
       visibility: visible;
     }
 
-    body.modal-open #mainContent {
-      filter: blur(2px);
-      transform: scale(0.995);
-      transition: filter 0.05s linear, transform 0.05s linear;
+    body.modal-open #mainContent > .flight-form > *:not(.modal) {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
     }
 
     #mainContent {
-      transition: filter 0.05s linear, transform 0.05s linear;
+      position: relative;
+    }
+
+    #mainContent > .flight-form > *:not(.modal) {
+      transition: opacity 0.3s ease;
     }
 
     .modal-content {
@@ -1234,59 +1239,56 @@
       <button class="gentle-btn" id="calculateBtn">Calculate</button>
       <button class="gentle-btn" id="clearBtn">Clear</button>
     </div>
-  </div>
-</div>
 
-<!-- Results Popup Modal -->
-<div id="resultsModal" class="modal">
-  <div class="card">
-    <div class="flight-form">
-      <div class="form-row">
-        <div class="route-container">
-          <div class="route-header">
-            <span style="flex: 0 0 100%; text-align: center; display: block;">TCAA</span>
-          </div>
-          <div class="route-list charges-list">
-            <div style="display: flex; flex-direction: column;">
-              <div class="charge-row" data-charge="adm" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
-                <span class="result-label">Administration Fees</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="result-value" id="admCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="adm" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+    <!-- Results Popup Modal -->
+    <div id="resultsModal" class="modal">
+      <div class="flight-form" style="padding: 0 2rem;">
+        <div class="form-row">
+          <div class="route-container">
+            <div class="route-header">
+              <span style="flex: 0 0 100%; text-align: center; display: block;">TCAA</span>
+            </div>
+            <div class="route-list charges-list">
+              <div style="display: flex; flex-direction: column;">
+                <div class="charge-row" data-charge="adm" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
+                  <span class="result-label">Administration Fees</span>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="result-value" id="admCharge">-</span>
+                    <button class="delete-charge-btn" data-charge="adm" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                  </div>
                 </div>
-              </div>
-              <div class="charge-row" data-charge="anc" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
-                <span class="result-label">Air Navigation Charges</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="result-value" id="ancCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="anc" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                <div class="charge-row" data-charge="anc" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
+                  <span class="result-label">Air Navigation Charges</span>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="result-value" id="ancCharge">-</span>
+                    <button class="delete-charge-btn" data-charge="anc" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                  </div>
                 </div>
-              </div>
-              <div class="charge-row" data-charge="stlf" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
-                <span class="result-label">Short Term Licencing Fees</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="result-value" id="stlfCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="stlf" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                <div class="charge-row" data-charge="stlf" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
+                  <span class="result-label">Short Term Licencing Fees</span>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="result-value" id="stlfCharge">-</span>
+                    <button class="delete-charge-btn" data-charge="stlf" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                  </div>
                 </div>
-              </div>
-              <div class="charge-row" data-charge="saf" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px;">
-                <span class="result-label">Safety Fees</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="result-value" id="safCharge">-</span>
-                  <button class="delete-charge-btn" data-charge="saf" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                <div class="charge-row" data-charge="saf" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px;">
+                  <span class="result-label">Safety Fees</span>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="result-value" id="safCharge">-</span>
+                    <button class="delete-charge-btn" data-charge="saf" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+                  </div>
                 </div>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 1rem 0 30px; margin-top: 0; border-top: 2px solid rgba(200, 200, 200, 0.4); padding-top: 0.5rem;">
-                <span class="result-label" style="font-weight: 600; color: #1b365d;">SUBTOTAL</span>
-                <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="result-value" id="tcaaSubtotal" style="font-weight: 600; color: #1b365d;">-</span>
-                  <span style="width: 30px;"></span>
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 1rem 0 30px; margin-top: 0; border-top: 2px solid rgba(200, 200, 200, 0.4); padding-top: 0.5rem;">
+                  <span class="result-label" style="font-weight: 600; color: #1b365d;">SUBTOTAL</span>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="result-value" id="tcaaSubtotal" style="font-weight: 600; color: #1b365d;">-</span>
+                    <span style="width: 30px;"></span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       
       <div class="form-row">
         <div class="route-container">
