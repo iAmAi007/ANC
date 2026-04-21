@@ -1173,7 +1173,7 @@
             </div>
             <div style="flex: 0 0 50%; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
               <input type="number" class="text-input" id="intlPassengersInput" placeholder="Intl" min="0" value="" style="width: 100px; text-align: center !important;">
-              <input type="number" class="text-input" id="localPassengersInput" placeholder="Local" min="0" value="" style="width: 100px; text-align: center !important;">
+              <input type="number" class="text-input" id="localPassengersInput" placeholder="Dom" min="0" value="" style="width: 100px; text-align: center !important;">
             </div>
           </div>
         </div>
@@ -6871,6 +6871,8 @@
     const mtow = mtowField.value || '-';
     const distance = distanceField.value || '-';
     const route = routeWaypoints.length > 0 ? routeWaypoints.join(' — ') : '-';
+    const intlPax = intlPassengersInput.value || '0';
+    const localPax = localPassengersInput.value || '0';
     const depDate = departureDateTime.value ? new Date(departureDateTime.value) : null;
     const arrDate = arrivalDateTime.value ? new Date(arrivalDateTime.value) : null;
     const formattedDep = depDate && !isNaN(depDate.getTime()) ? depDate.toLocaleString() : 'Not set';
@@ -6896,6 +6898,10 @@
   <tr>
     <td><b>Distance:</b></td>
     <td>${distance} km</td>
+  </tr>
+  <tr>
+    <td><b>Passengers:</b></td>
+    <td>${intlPax} International, ${localPax} Domestic</td>
   </tr>
   <tr>
     <td><b>Arrival:</b></td>
