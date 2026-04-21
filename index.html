@@ -1365,6 +1365,7 @@
       </div>
       
       <div class="action-buttons" style="justify-content: flex-end;">
+        <button class="gentle-btn" id="modalCopyBtn" style="min-width: 120px;">Copy</button>
         <button class="gentle-btn" id="modalOkBtn" style="min-width: 120px;">OK</button>
       </div>
     </div>
@@ -6845,8 +6846,162 @@
     }, 500);
   }
 
-  // Modal event listener - only OK button closes modal
+  // Function to copy results as formatted table for MS Word
+  function copyResultsToWord() {
+    const getChargeValue = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.textContent.trim() : '-';
+    };
+
+    const adm = getChargeValue('admCharge');
+    const anc = getChargeValue('ancCharge');
+    const stlf = getChargeValue('stlfCharge');
+    const saf = getChargeValue('safCharge');
+    const tcaaSubtotal = getChargeValue('tcaaSubtotal');
+    const ldg = getChargeValue('ldgCharge');
+    const nldg = getChargeValue('nldgCharge');
+    const ntkof = getChargeValue('ntkofCharge');
+    const sec = getChargeValue('secCharge');
+    const pkg = getChargeValue('pkgCharge');
+    const cute = getChargeValue('cuteCharge');
+    const taaSubtotal = getChargeValue('taaSubtotal');
+    const total = getChargeValue('totalCharges');
+
+    const aircraft = aircraftInput.value || '-';
+    const mtow = mtowField.value || '-';
+    const distance = distanceField.value || '-';
+    const route = routeWaypoints.length > 0 ? routeWaypoints.join(' — ') : '-';
+    const depDate = departureDateTime.value ? new Date(departureDateTime.value) : null;
+    const arrDate = arrivalDateTime.value ? new Date(arrivalDateTime.value) : null;
+    const formattedDep = depDate && !isNaN(depDate.getTime()) ? depDate.toLocaleString() : 'Not set';
+    const formattedArr = arrDate && !isNaN(arrDate.getTime()) ? arrDate.toLocaleString() : 'Not set';
+
+    const htmlTable = `
+<table border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse; font-family: Arial, sans-serif; font-size: 11pt; width: 100%;">
+  <tr>
+    <td colspan="2" style="background-color: #e8e8e8; font-weight: bold; text-align: center;">Flight Information</td>
+  </tr>
+  <tr>
+    <td><b>Aircraft:</b></td>
+    <td>${aircraft}</td>
+  </tr>
+  <tr>
+    <td><b>MTOW:</b></td>
+    <td>${mtow}</td>
+  </tr>
+  <tr>
+    <td><b>Route:</b></td>
+    <td>${route}</td>
+  </tr>
+  <tr>
+    <td><b>Distance:</b></td>
+    <td>${distance} km</td>
+  </tr>
+  <tr>
+    <td><b>Arrival:</b></td>
+    <td>${formattedArr}</td>
+  </tr>
+  <tr>
+    <td><b>Departure:</b></td>
+    <td>${formattedDep}</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="height: 20px;"></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="background-color: #e8e8e8; font-weight: bold; text-align: center;">TCAA</td>
+  </tr>
+  <tr>
+    <td>Administration Fees</td>
+    <td style="text-align: right;">${adm}</td>
+  </tr>
+  <tr>
+    <td>Air Navigation Charges</td>
+    <td style="text-align: right;">${anc}</td>
+  </tr>
+  <tr>
+    <td>Short Term Licencing Fees</td>
+    <td style="text-align: right;">${stlf}</td>
+  </tr>
+  <tr>
+    <td>Safety Fees</td>
+    <td style="text-align: right;">${saf}</td>
+  </tr>
+  <tr style="background-color: #f9f9f9; font-weight: bold;">
+    <td>Subtotal</td>
+    <td style="text-align: right;">${tcaaSubtotal}</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="height: 20px;"></td>
+  </tr>
+  <tr>
+    <td colspan="2" style="background-color: #e8e8e8; font-weight: bold; text-align: center;">TAA</td>
+  </tr>
+  <tr>
+    <td>Landing</td>
+    <td style="text-align: right;">${ldg}</td>
+  </tr>
+  <tr>
+    <td>Night Landing</td>
+    <td style="text-align: right;">${nldg}</td>
+  </tr>
+  <tr>
+    <td>Night Takeoff</td>
+    <td style="text-align: right;">${ntkof}</td>
+  </tr>
+  <tr>
+    <td>Security Fees</td>
+    <td style="text-align: right;">${sec}</td>
+  </tr>
+  <tr>
+    <td>Parking Charges</td>
+    <td style="text-align: right;">${pkg}</td>
+  </tr>
+  <tr>
+    <td>Cute Charges</td>
+    <td style="text-align: right;">${cute}</td>
+  </tr>
+  <tr style="background-color: #f9f9f9; font-weight: bold;">
+    <td>Subtotal</td>
+    <td style="text-align: right;">${taaSubtotal}</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="height: 20px;"></td>
+  </tr>
+  <tr style="background-color: #d4e4f7; font-weight: bold; font-size: 12pt;">
+    <td>GRAND TOTAL</td>
+    <td style="text-align: right;">${total}</td>
+  </tr>
+</table>`;
+
+    // Create a temporary element to hold the HTML
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlTable;
+
+    // Use Clipboard API with HTML format
+    const clipboardItem = new ClipboardItem({
+      'text/html': new Blob([htmlTable], { type: 'text/html' }),
+      'text/plain': new Blob([tempDiv.textContent], { type: 'text/plain' })
+    });
+
+    navigator.clipboard.write([clipboardItem]).then(() => {
+      const copyBtn = document.getElementById('modalCopyBtn');
+      const originalText = copyBtn.textContent;
+      copyBtn.textContent = 'Copied!';
+      copyBtn.style.background = 'rgba(34, 197, 94, 0.3)';
+      setTimeout(() => {
+        copyBtn.textContent = originalText;
+        copyBtn.style.background = '';
+      }, 2000);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+      alert('Failed to copy to clipboard. Please try again.');
+    });
+  }
+
+  // Modal event listeners
   document.getElementById('modalOkBtn').addEventListener('click', hideModal);
+  document.getElementById('modalCopyBtn').addEventListener('click', copyResultsToWord);
 
   // Track autocomplete cycling state
   let waypointTabCycleIndex = 0;
