@@ -273,41 +273,50 @@
       padding-right: 2.2rem;
     }
 
-    /* Simplified input style - border bottom only */
+    /* Simplified input style - consistent with other inputs */
     #rateInput,
     #exchangeRateInput,
     #intlPassengersInput,
     #localPassengersInput {
-      border: none;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 0;
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      padding: 0.5rem 0.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
       text-align: center;
       font-weight: 500;
       color: #0d2137;
-      transition: border-color 0.3s ease;
+      transition: all 0.3s ease;
+      outline: none;
+      line-height: 1.4;
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     #rateInput:focus,
     #exchangeRateInput:focus,
     #intlPassengersInput:focus,
     #localPassengersInput:focus {
-      border-bottom-color: rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.15);
-      outline: none;
-      box-shadow: none;
+      border-color: rgba(255, 255, 255, 0.4);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+      box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.1),
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
     }
 
     #rateInput::placeholder,
     #exchangeRateInput::placeholder,
     #intlPassengersInput::placeholder,
     #localPassengersInput::placeholder {
-      color: #5a6c7d;
-      opacity: 0.7;
+      color: #4a5568;
+      opacity: 0.8;
+      font-weight: 400;
     }
 
     /* RATE Dropdown specific styling */
@@ -317,10 +326,10 @@
       -moz-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1 L6 6 L11 1' stroke='%234a5568' stroke-width='2' fill='none'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 0.2rem center;
-      padding-right: 1.2rem;
+      background-position: right 0.8rem center;
+      padding-right: 2rem;
       cursor: pointer;
-      border-radius: 0;
+      transition: none;
     }
 
     #rateInput option {
@@ -328,6 +337,8 @@
       color: #0d2137;
       padding: 0.5rem;
       text-align: center;
+      text-align-last: center;
+      direction: ltr;
     }
 
     /* Clear button inside aircraft input - no background, appears only when input has value */
@@ -515,6 +526,7 @@
 .route-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 0.6rem 1rem;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
       backdrop-filter: blur(12px);
@@ -527,6 +539,84 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
+    .add-route-btn {
+      background: rgba(79, 126, 163, 0.2);
+      border: 1px solid rgba(79, 126, 163, 0.3);
+      color: #4f7ea3;
+      font-size: 1.2rem;
+      font-weight: 300;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .add-route-btn:hover {
+      background: rgba(79, 126, 163, 0.4);
+      border-color: rgba(79, 126, 163, 0.5);
+      color: #2c6a96;
+      transform: scale(1.1);
+    }
+
+    .route-rows-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .route-row {
+      position: relative;
+    }
+
+    .route-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      background: rgba(79, 126, 163, 0.1);
+      border-radius: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .route-row-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #2b4c6b;
+    }
+
+    .remove-route-btn {
+      background: rgba(220, 38, 38, 0.15);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      color: #c96a5a;
+      font-size: 0.9rem;
+      font-weight: 400;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .remove-route-btn:hover {
+      background: rgba(220, 38, 38, 0.3);
+      border-color: rgba(220, 38, 38, 0.4);
+      color: #dc2626;
+      transform: scale(1.1);
+    }
+
     .route-list {
       padding: 0.5rem 0.7rem;
       min-height: 65px;
@@ -536,9 +626,25 @@
       transition: all 0.3s ease;
     }
 
+    /* Route waypoint lists use flex layout */
+    .route-rows-container .route-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* Ensure empty route message displays correctly */
+    .route-list > .empty-route {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
     .route-list.charges-list {
       max-height: none;
       overflow-y: visible;
+      display: block;
     }
 
     /* Custom scrollbar for route list */
@@ -846,10 +952,18 @@
 
     .action-buttons {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 1rem;
       margin-top: 1.75rem;
       margin-bottom: 0.25rem;
       flex-wrap: wrap;
+    }
+
+    .action-buttons .left-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
 .gentle-btn {
@@ -890,9 +1004,67 @@
 
     .gentle-btn:active {
       transform: translateY(0px);
-      box-shadow: 
+      box-shadow:
         0 2px 8px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    #clearBtn {
+      border-color: rgba(220, 38, 38, 0.4);
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    #clearBtn:hover {
+      border-color: rgba(220, 38, 38, 0.6);
+      background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%);
+      color: #b91c1c;
+    }
+
+    .clear-checkbox-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .clear-checkbox-container:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    #multipleLandingCheckbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: #4f7ea3;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .checkbox-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1b365d;
+      cursor: pointer;
+      user-select: none;
     }
 
     .gentle-btn::before {
@@ -1209,9 +1381,18 @@
       <div class="route-container">
         <div class="route-header">
           <span>Route</span>
+          <button class="add-route-btn" id="addRouteBtn" title="Add another route row">+</button>
         </div>
-        <div class="route-list" id="routeList">
-          <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
+        <div class="route-rows-container" id="routeRowsContainer">
+          <div class="route-row" id="routeRow0">
+            <div class="route-row-header">
+              <span class="route-row-label">Route 1</span>
+              <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" style="display: none;">×</button>
+            </div>
+            <div class="route-list" id="routeList0">
+              <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1242,7 +1423,13 @@
 
     <!-- Buttons -->
     <div class="action-buttons">
-      <button class="gentle-btn" id="calculateBtn">Calculate</button>
+      <div class="left-group">
+        <div class="clear-checkbox-container">
+          <input type="checkbox" id="multipleLandingCheckbox">
+          <label for="multipleLandingCheckbox" class="checkbox-label">Multiple landing</label>
+        </div>
+        <button class="gentle-btn" id="calculateBtn">Calculate</button>
+      </div>
       <button class="gentle-btn" id="clearBtn">Clear</button>
     </div>
 
@@ -1370,7 +1557,7 @@
         </div>
       </div>
       
-      <div class="action-buttons" style="justify-content: flex-end;">
+      <div class="action-buttons" style="justify-content: center;">
         <button id="modalCopyBtn" class="gentle-btn" style="min-width: 120px;">Bill</button>
         <button class="gentle-btn" id="modalOkBtn" style="min-width: 120px;">OK</button>
       </div>
@@ -5923,10 +6110,16 @@
     return { km: totalKm, nm: totalNm };
   }
 
-  // Function to update distance field based on current route
+  // Function to update distance field based on active route row
   function updateDistanceField() {
-    const distance = calculateRouteDistance();
-    distanceField.value = distance.km.toFixed(1);
+    // Get the active route row's distance
+    const activeRow = routeRows.find(row => row.id === activeRouteRowId);
+    if (activeRow) {
+      const distance = calculateRouteDistanceForRow(activeRow.waypoints);
+      distanceField.value = distance.km.toFixed(1);
+    } else {
+      distanceField.value = '';
+    }
   }
 
   // Charge calculation functions
@@ -5937,28 +6130,66 @@
   function calculateANC() {
     const mtowValue = mtowField.value.trim();
     const mtow = parseFloat(mtowValue.replace(' Tonnes', ''));
-    const dist = parseFloat(distanceField.value);
-    
-    if (isNaN(mtow) || isNaN(dist) || mtow <= 0 || dist <= 0) {
+
+    if (isNaN(mtow) || mtow <= 0) {
       return "NIL";
     }
-    
-    const wf = Math.sqrt(mtow / 50);
-    const df = dist / 100;
-    const r = wf * df;
-    
-    return r <= 1 ? 60 : r <= 2 ? 90 : r <= 4 ? 140 : r <= 8 ? 200 : r <= 12 ? 235 : r <= 15 ? 280 : r <= 20 ? 320 : r <= 25 ? 365 : 400;
+
+    let totalANC = 0;
+
+    // Calculate ANC for each route row separately
+    routeRows.forEach(row => {
+      const distance = calculateRouteDistanceForRow(row.waypoints);
+      if (distance.km > 0) {
+        const wf = Math.sqrt(mtow / 50);
+        const df = distance.km / 100;
+        const r = wf * df;
+        const anc = r <= 1 ? 60 : r <= 2 ? 90 : r <= 4 ? 140 : r <= 8 ? 200 : r <= 12 ? 235 : r <= 15 ? 280 : r <= 20 ? 320 : r <= 25 ? 365 : 400;
+        totalANC += anc;
+      }
+    });
+
+    return totalANC === 0 ? "NIL" : totalANC;
+  }
+
+  // Helper function to calculate distance for a specific route row
+  function calculateRouteDistanceForRow(waypoints) {
+    if (!waypoints || waypoints.length < 2) return { km: 0, nm: 0 };
+
+    let totalKm = 0;
+    let totalNm = 0;
+
+    for (let i = 0; i < waypoints.length - 1; i++) {
+      const current = waypointsMaster[waypoints[i]];
+      const next = waypointsMaster[waypoints[i + 1]];
+
+      if (current && next) {
+        const distance = euclideanDistance(current.lat, current.lon, next.lat, next.lon);
+        totalKm += distance.km;
+        totalNm += distance.nm;
+      }
+    }
+
+    return { km: totalKm, nm: totalNm };
   }
 
   function calculateSTLF() {
     const mtowValue = mtowField.value.trim();
     const mtow = parseFloat(mtowValue.replace(' Tonnes', ''));
-    
+
     if (isNaN(mtow) || mtow <= 0) {
       return "NIL";
     }
-    
-    return mtow <= 5 ? 200 : mtow <= 6 ? 400 : mtow <= 10 ? 800 : mtow <= 20 ? 1000 : 1500;
+
+    let stlf = mtow <= 5 ? 200 : mtow <= 6 ? 400 : mtow <= 10 ? 800 : mtow <= 20 ? 1000 : 1500;
+
+    // Double STLF if multiple landing checkbox is checked
+    const multipleLandingCheckbox = document.getElementById('multipleLandingCheckbox');
+    if (multipleLandingCheckbox && multipleLandingCheckbox.checked) {
+      stlf *= 2;
+    }
+
+    return stlf;
   }
 
   function calculateSAF() {
@@ -6174,11 +6405,14 @@
   const intlPassengersInput = document.getElementById('intlPassengersInput');
   const localPassengersInput = document.getElementById('localPassengersInput');
   // const feedbackMsg = document.getElementById('feedbackMsg');
-  const routeListEl = document.getElementById('routeList');
+  const routeRowsContainer = document.getElementById('routeRowsContainer');
+  const addRouteBtn = document.getElementById('addRouteBtn');
 
   let routeWaypoints = [];
   let tempTimeout = null;
   let excludedCharges = new Set(); // Track excluded charges
+  let routeRows = [{ id: 0, waypoints: [] }]; // Track multiple route rows
+  let activeRouteRowId = 0; // Track which route row is currently active for waypoint addition
 
   // Function to toggle clear button visibility based on aircraft input value
   function toggleClearButton() {
@@ -6203,6 +6437,113 @@
     //   tempTimeout = null;
     // }, duration);
   }
+
+  // Route row management functions
+  function addRouteRow() {
+    const newId = routeRows.length;
+    routeRows.push({ id: newId, waypoints: [] });
+
+    const newRow = document.createElement('div');
+    newRow.className = 'route-row';
+    newRow.id = `routeRow${newId}`;
+
+    newRow.innerHTML = `
+      <div class="route-row-header">
+        <span class="route-row-label">Route ${newId + 1}</span>
+        <button class="remove-route-btn" id="removeRouteBtn${newId}" title="Remove this route">×</button>
+      </div>
+      <div class="route-list" id="routeList${newId}">
+        <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
+      </div>
+    `;
+
+    routeRowsContainer.appendChild(newRow);
+
+    // Add event listener for remove button
+    const removeBtn = document.getElementById(`removeRouteBtn${newId}`);
+    removeBtn.addEventListener('click', () => removeRouteRow(newId));
+
+    // Show remove button for first row if there are now multiple rows
+    if (routeRows.length > 1) {
+      const firstRemoveBtn = document.getElementById('removeRouteBtn0');
+      if (firstRemoveBtn) firstRemoveBtn.style.display = 'flex';
+    }
+
+    // Set the new row as active
+    setActiveRouteRow(newId);
+  }
+
+  function removeRouteRow(rowId) {
+    if (routeRows.length <= 1) return; // Don't allow removing the last row
+
+    const rowElement = document.getElementById(`routeRow${rowId}`);
+    if (rowElement) {
+      rowElement.remove();
+    }
+
+    routeRows = routeRows.filter(row => row.id !== rowId);
+
+    // If the removed row was active, set the first row as active
+    if (activeRouteRowId === rowId) {
+      activeRouteRowId = routeRows[0].id;
+    }
+
+    // Update labels and reassign IDs if needed
+    updateRouteRowLabels();
+
+    // Hide remove button for first row if there's only one row left
+    if (routeRows.length === 1) {
+      const firstRemoveBtn = document.getElementById('removeRouteBtn0');
+      if (firstRemoveBtn) firstRemoveBtn.style.display = 'none';
+    }
+
+    // Update distance field
+    updateDistanceField();
+  }
+
+  function updateRouteRowLabels() {
+    routeRows.forEach((row, index) => {
+      const rowElement = document.getElementById(`routeRow${row.id}`);
+      if (rowElement) {
+        const label = rowElement.querySelector('.route-row-label');
+        if (label) label.textContent = `Route ${index + 1}`;
+      }
+    });
+  }
+
+  function setActiveRouteRow(rowId) {
+    activeRouteRowId = rowId;
+    routeWaypoints = routeRows.find(row => row.id === rowId)?.waypoints || [];
+  }
+
+  function getRouteRowElement(rowId) {
+    return document.getElementById(`routeRow${rowId}`);
+  }
+
+  function getRouteListElement(rowId) {
+    return document.getElementById(`routeList${rowId}`);
+  }
+
+  // Event listener for add route button
+  addRouteBtn.addEventListener('click', addRouteRow);
+
+  // Event listener for initial remove button (route 0)
+  const initialRemoveBtn = document.getElementById('removeRouteBtn0');
+  if (initialRemoveBtn) {
+    initialRemoveBtn.addEventListener('click', () => removeRouteRow(0));
+  }
+
+  // Make route row headers clickable to set active row
+  routeRowsContainer.addEventListener('click', (e) => {
+    const rowHeader = e.target.closest('.route-row-header');
+    if (rowHeader) {
+      const rowElement = rowHeader.closest('.route-row');
+      if (rowElement) {
+        const rowId = parseInt(rowElement.id.replace('routeRow', ''));
+        setActiveRouteRow(rowId);
+      }
+    }
+  });
 
   // Clear aircraft input function (clears value and MTOW)
   function clearAircraft() {
@@ -6230,90 +6571,110 @@
   });
 
   function renderRoute() {
-    if (!routeListEl) return;
-    if (routeWaypoints.length === 0) {
-      routeListEl.innerHTML = '<div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>';
-      return;
-    }
-    
-    routeListEl.innerHTML = '';
-    routeWaypoints.forEach((wp, idx) => {
-      const routeItem = document.createElement('div');
-      routeItem.className = 'route-item';
-      
-      const wpSpan = document.createElement('span');
-      wpSpan.className = 'route-waypoint';
-      
-      // Check if it's a coordinate waypoint and display nicely
-      const waypointData = waypointsMaster[wp];
-      if (waypointData && waypointData.isCoordinate && waypointData.name) {
-        wpSpan.textContent = waypointData.name;
-        wpSpan.title = `Coordinate: ${wp}\nLat: ${waypointData.lat.toFixed(6)}\nLon: ${waypointData.lon.toFixed(6)}`;
-      } else {
-        wpSpan.textContent = wp;
+    // Render all route rows
+    routeRows.forEach(row => {
+      const routeListEl = getRouteListElement(row.id);
+      if (!routeListEl) return;
+
+      const waypoints = row.waypoints || [];
+      if (waypoints.length === 0) {
+        routeListEl.innerHTML = '<div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>';
+        return;
       }
-      
-      // Check if waypoint has undefined coordinates and apply alarming style
-      if (waypointData && (waypointData.lat === 'to_be_defined' || waypointData.lon === 'to_be_defined')) {
-        routeItem.classList.add('undefined-coords');
-        wpSpan.title = `${wp} - Coordinates not defined!`;
-      }
-      
-      // Add click to remove functionality
-      routeItem.addEventListener('click', (e) => {
-        e.stopPropagation();
-        routeWaypoints.splice(idx, 1);
-        renderRoute();
-        updateDistanceField();
-        showTemporaryFeedback(`Removed ${wp} from route`, 1000);
-      });
-      
-      // Add drag functionality
-      routeItem.draggable = true;
-      routeItem.dataset.index = idx;
-      
-      routeItem.addEventListener('dragstart', (e) => {
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', idx);
-        routeItem.classList.add('dragging');
-      });
-      
-      routeItem.addEventListener('dragend', (e) => {
-        routeItem.classList.remove('dragging');
-      });
-      
-      routeItem.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-        const draggingItem = document.querySelector('.dragging');
-        if (draggingItem && draggingItem !== routeItem) {
-          const rect = routeItem.getBoundingClientRect();
-          const midpoint = rect.left + rect.width / 2;
-          if (e.clientX < midpoint) {
-            routeItem.parentNode.insertBefore(draggingItem, routeItem);
-          } else {
-            routeItem.parentNode.insertBefore(draggingItem, routeItem.nextSibling);
-          }
+
+      routeListEl.innerHTML = '';
+      waypoints.forEach((wp, idx) => {
+        const routeItem = document.createElement('div');
+        routeItem.className = 'route-item';
+
+        const wpSpan = document.createElement('span');
+        wpSpan.className = 'route-waypoint';
+
+        // Check if it's a coordinate waypoint and display nicely
+        const waypointData = waypointsMaster[wp];
+        if (waypointData && waypointData.isCoordinate && waypointData.name) {
+          wpSpan.textContent = waypointData.name;
+          wpSpan.title = `Coordinate: ${wp}\nLat: ${waypointData.lat.toFixed(6)}\nLon: ${waypointData.lon.toFixed(6)}`;
+        } else {
+          wpSpan.textContent = wp;
         }
-      });
-      
-      routeItem.addEventListener('drop', (e) => {
-        e.preventDefault();
-        const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'));
-        const dropIndex = parseInt(routeItem.dataset.index);
-        
-        if (draggedIndex !== dropIndex) {
-          const draggedWaypoint = routeWaypoints[draggedIndex];
-          routeWaypoints.splice(draggedIndex, 1);
-          routeWaypoints.splice(dropIndex, 0, draggedWaypoint);
+
+        // Check if waypoint has undefined coordinates and apply alarming style
+        if (waypointData && (waypointData.lat === 'to_be_defined' || waypointData.lon === 'to_be_defined')) {
+          routeItem.classList.add('undefined-coords');
+          wpSpan.title = `${wp} - Coordinates not defined!`;
+        }
+
+        // Add click to remove functionality
+        routeItem.addEventListener('click', (e) => {
+          e.stopPropagation();
+          row.waypoints.splice(idx, 1);
           renderRoute();
           updateDistanceField();
-          showTemporaryFeedback('Route order updated', 1000);
-        }
+          showTemporaryFeedback(`Removed ${wp} from route`, 1000);
+        });
+
+        // Add drag functionality
+        routeItem.draggable = true;
+        routeItem.dataset.index = idx;
+        routeItem.dataset.rowId = row.id;
+
+        routeItem.addEventListener('dragstart', (e) => {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', JSON.stringify({ index: idx, rowId: row.id }));
+          routeItem.classList.add('dragging');
+        });
+
+        routeItem.addEventListener('dragend', (e) => {
+          routeItem.classList.remove('dragging');
+        });
+
+        routeItem.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          const draggingItem = document.querySelector('.dragging');
+          if (draggingItem && draggingItem !== routeItem) {
+            const rect = routeItem.getBoundingClientRect();
+            const midpoint = rect.left + rect.width / 2;
+            if (e.clientX < midpoint) {
+              routeItem.parentNode.insertBefore(draggingItem, routeItem);
+            } else {
+              routeItem.parentNode.insertBefore(draggingItem, routeItem.nextSibling);
+            }
+          }
+        });
+
+        routeItem.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const dropData = JSON.parse(e.dataTransfer.getData('text/plain'));
+          const draggedIndex = dropData.index;
+          const draggedRowId = dropData.rowId;
+          const dropIndex = parseInt(routeItem.dataset.index);
+          const dropRowId = parseInt(routeItem.dataset.rowId);
+
+          // Only allow drag and drop within the same row
+          if (draggedRowId === dropRowId && draggedIndex !== dropIndex) {
+            const currentRow = routeRows.find(r => r.id === dropRowId);
+            if (currentRow) {
+              const draggedWaypoint = currentRow.waypoints[draggedIndex];
+              currentRow.waypoints.splice(draggedIndex, 1);
+              currentRow.waypoints.splice(dropIndex, 0, draggedWaypoint);
+              renderRoute();
+              updateDistanceField();
+              showTemporaryFeedback('Route order updated', 1000);
+            }
+          }
+        });
+        routeItem.appendChild(wpSpan);
+        routeListEl.appendChild(routeItem);
       });
-      routeItem.appendChild(wpSpan);
-      routeListEl.appendChild(routeItem);
     });
+
+    // Update the global routeWaypoints to match the active row for backward compatibility
+    const activeRow = routeRows.find(row => row.id === activeRouteRowId);
+    if (activeRow) {
+      routeWaypoints = activeRow.waypoints || [];
+    }
   }
 
   // Coordinate parsing helper functions
@@ -6495,9 +6856,14 @@
     if (!waypointCode || waypointCode.trim() === '') return false;
     const code = waypointCode.trim().toUpperCase();
 
+    // Get the active route row
+    const activeRow = routeRows.find(row => row.id === activeRouteRowId);
+    if (!activeRow) return false;
+
     // Check if it's an existing waypoint
     if (waypointsMaster.hasOwnProperty(code)) {
-      routeWaypoints.push(code);
+      activeRow.waypoints.push(code);
+      routeWaypoints = activeRow.waypoints; // Update global for compatibility
       renderRoute();
       updateDistanceField();
       showTemporaryFeedback(`Added ${code} to route`, 800);
@@ -6523,7 +6889,8 @@
         isCoordinate: true
       };
 
-      routeWaypoints.push(coordId);
+      activeRow.waypoints.push(coordId);
+      routeWaypoints = activeRow.waypoints; // Update global for compatibility
       renderRoute();
       updateDistanceField();
       showTemporaryFeedback(`Added coordinate ${parsed.pretty || coordId} to route`, 1200);
@@ -6700,7 +7067,37 @@
     distanceField.value = '';
     intlPassengersInput.value = '';
     localPassengersInput.value = '';
+
+    // Reset multiple landing checkbox
+    const multipleLandingCheckbox = document.getElementById('multipleLandingCheckbox');
+    if (multipleLandingCheckbox) {
+      multipleLandingCheckbox.checked = false;
+    }
+
+    // Reset all route rows to only the first empty row
+    routeRows = [{ id: 0, waypoints: [] }];
+    activeRouteRowId = 0;
     routeWaypoints = [];
+
+    // Reset route rows container to only show the first row
+    routeRowsContainer.innerHTML = `
+      <div class="route-row" id="routeRow0">
+        <div class="route-row-header">
+          <span class="route-row-label">Route 1</span>
+          <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" style="display: none;">×</button>
+        </div>
+        <div class="route-list" id="routeList0">
+          <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
+        </div>
+      </div>
+    `;
+
+    // Re-attach event listener to the reset remove button
+    const resetRemoveBtn = document.getElementById('removeRouteBtn0');
+    if (resetRemoveBtn) {
+      resetRemoveBtn.addEventListener('click', () => removeRouteRow(0));
+    }
+
     renderRoute();
     setDefaultDatetimes();
     aircraftInput.dataset.selected = '';
