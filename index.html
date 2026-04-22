@@ -400,45 +400,6 @@
       width: 100%;
     }
 
-    /* Input with ghost text for inline autocomplete */
-    .input-with-ghost {
-      position: relative;
-      width: 100%;
-    }
-
-    .input-with-ghost .dropdown-input {
-      position: relative;
-      z-index: 2;
-      background: transparent;
-    }
-
-    .ghost-text {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 0.68rem 1rem;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: rgba(13, 33, 55, 0.35);
-      pointer-events: none;
-      z-index: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-    }
-
-    .ghost-text .typed {
-      color: transparent;
-    }
-
-    .ghost-text .suggested {
-      color: rgba(13, 33, 55, 0.4);
-    }
-
     .dropdown-list {
       position: absolute;
       top: calc(100% + 4px);
@@ -939,13 +900,14 @@
       width: 100%;
       gap: 1rem;
     }
-    
+
     .datetime-stack .form-row {
       flex: 1;
       min-width: 0;
       margin-bottom: 1.25rem;
+      box-sizing: border-box;
     }
-    
+
     .datetime-stack .form-row:last-child {
       margin-bottom: 0;
     }
@@ -1425,10 +1387,7 @@
     <div class="form-row">
       <label>Waypoint</label>
       <div class="custom-dropdown" id="waypointDropdown">
-        <div class="input-with-ghost">
-          <input type="text" class="dropdown-input" id="waypointInput" autocomplete="off" spellcheck="false">
-          <span class="ghost-text" id="waypointGhost"></span>
-        </div>
+        <input type="text" class="dropdown-input" id="waypointInput" autocomplete="off" spellcheck="false">
         <ul class="dropdown-list" id="waypointList"></ul>
       </div>
     </div>
@@ -7509,7 +7468,6 @@ ${htmlTable}
           // Single match - complete it
           e.preventDefault();
           waypointInput.value = matchingWaypoints[0];
-          waypointGhost.innerHTML = ''; // Clear ghost text
           showTemporaryFeedback(`Autocompleted: ${matchingWaypoints[0]}`, 800);
           waypointTabCycleIndex = 0;
           waypointLastMatches = [];
@@ -7528,14 +7486,6 @@ ${htmlTable}
 
           const selected = matchingWaypoints[waypointTabCycleIndex];
           waypointInput.value = selected;
-
-          // Update ghost text for current selection
-          const remaining = selected.substring(raw.length);
-          if (remaining && selected !== raw) {
-            waypointGhost.innerHTML = `<span class="typed">${raw}</span><span class="suggested">${selected.substring(raw.length)}</span>`;
-          } else {
-            waypointGhost.innerHTML = '';
-          }
 
           // Show cycling info
           const current = waypointTabCycleIndex + 1;
@@ -7562,7 +7512,6 @@ ${htmlTable}
         if (success) {
           waypointInput.value = '';
           waypointInput.dataset.selected = '';
-          waypointGhost.innerHTML = ''; // Clear ghost text
           closeAllDropdownsExcept(null);
         }
       }
@@ -7576,30 +7525,6 @@ ${htmlTable}
     buildWaypointList(waypointInput.value);
     waypointListEl.style.display = 'block';
     aircraftListEl.style.display = 'none';
-
-    // Ghost text inline autocomplete
-    if (raw && raw.length >= 1) {
-      const matches = Object.keys(waypointsMaster).filter(wp => wp.startsWith(raw));
-      if (matches.length >= 1) {
-        // Show the first match as ghost text
-        const suggestion = matches[0];
-        const remaining = suggestion.substring(raw.length);
-        if (remaining) {
-          // Display ghost text with typed part (invisible) + suggested part (faint)
-          waypointGhost.innerHTML = `<span class="typed">${raw}</span><span class="suggested">${remaining}</span>`;
-          waypointInput.dataset.autocomplete = suggestion;
-        } else {
-          waypointGhost.innerHTML = '';
-          waypointInput.dataset.autocomplete = '';
-        }
-      } else {
-        waypointGhost.innerHTML = '';
-        waypointInput.dataset.autocomplete = '';
-      }
-    } else {
-      waypointGhost.innerHTML = '';
-      waypointInput.dataset.autocomplete = '';
-    }
   });
 
   document.addEventListener('click', function(e) {
