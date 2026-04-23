@@ -7343,8 +7343,8 @@
 
     // Convert SVG to PNG using canvas
     const canvas = document.createElement('canvas');
-    canvas.width = 169;
-    canvas.height = 93;
+    canvas.width = 338;
+    canvas.height = 186;
     const ctx = canvas.getContext('2d');
     
     const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
@@ -7352,7 +7352,7 @@
     
     const img = new Image();
     img.onload = function() {
-      ctx.drawImage(img, 0, 0, 169, 93);
+      ctx.drawImage(img, 0, 0, 338, 186);
       URL.revokeObjectURL(url);
       
       const pngBase64 = canvas.toDataURL('image/png');
