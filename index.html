@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Flight Ops · Aircraft & Route Builder</title>
+  <title>FlightCostEngine</title>
   <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
@@ -7307,63 +7307,10 @@
     const formattedDep = depDate && !isNaN(depDate.getTime()) ? depDate.toLocaleString() : 'Not set';
     const formattedArr = arrDate && !isNaN(arrDate.getTime()) ? arrDate.toLocaleString() : 'Not set';
 
-    const svgString = `<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 338.36 185.8" xml:space="preserve">
-<style type="text/css">
-  .st0{fill:#1B81C4;}
-  .st1{fill:#F26E2A;}
-</style>
-<g>
-  <g>
-    <path class="st0" d="M78.15,76.99c2.69,0,3.63,0.89,3.36,3.3l-1.21,9.26c-0.27,2.41-1.48,3.42-4.17,3.42H62.14l-8.75,66.72
-      c-0.27,2.54-1.21,3.55-3.9,3.55H36.03c-2.56,0-3.5-1.01-3.23-3.55l8.75-66.72H27.69c-2.69,0-3.63-1.02-3.36-3.42l1.21-9.26
-      c0.27-2.41,1.48-3.3,4.17-3.3H78.15z"/>
-    <path class="st0" d="M137.22,143.84c-1.48,10.4-8.07,20.42-30.81,20.42c-19.91,0-27.18-8.5-27.18-18.01c0-0.76,0-1.9,0.13-3.17
-      l6.06-46.68c1.34-10.4,8.07-20.42,30.81-20.42c19.78,0,27.18,8.37,27.18,17.89c0,0.76,0,1.65-0.13,3.17l-0.81,6.22
-      c-0.4,2.41-1.35,3.55-4.04,3.55h-12.78c-2.69,0-3.63-1.4-3.23-3.55l0.54-3.93c0.13-1.01,0.27-1.65,0.27-2.16
-      c0-3.55-3.09-5.2-8.07-5.2c-5.11,0-8.75,1.9-9.28,6.47l-5.65,42.24c-0.13,1.02-0.13,1.78-0.13,2.16c0,3.93,3.23,5.45,7.94,5.45
-      c5.25,0,8.75-1.9,9.42-6.47l0.81-6.6c0.4-2.54,1.48-3.55,4.17-3.55h12.78c2.83,0,3.36,1.4,3.09,3.55L137.22,143.84z"/>
-    <path class="st0" d="M189.29,76.99c2.69,0,3.9,1.14,4.31,3.55l10.5,79.15c0.27,2.28-0.54,3.55-3.23,3.55h-13.32
-      c-2.69,0-3.77-1.27-4.04-3.55l-1.21-13.45H164l-4.84,13.45c-0.81,2.28-2.15,3.55-4.71,3.55H141.8c-2.56,0-3.23-1.27-2.29-3.55
-      l31.08-79.15c0.94-2.54,2.42-3.55,5.11-3.55H189.29z M179.87,122.28c-0.54-7.74-0.67-17.5-0.54-22.71
-      c-1.08,4.69-4.17,16.49-6.46,22.71l-3.09,8.63h10.63L179.87,122.28z"/>
-    <path class="st0" d="M256.3,76.99c2.69,0,3.9,1.14,4.31,3.55l10.5,79.15c0.27,2.28-0.54,3.55-3.23,3.55h-13.32
-      c-2.69,0-3.77-1.27-4.04-3.55l-1.21-13.45H231l-4.84,13.45c-0.81,2.28-2.15,3.55-4.71,3.55H208.8c-2.56,0-3.23-1.27-2.29-3.55
-      l31.08-79.15c0.94-2.54,2.42-3.55,5.11-3.55H256.3z M246.88,122.28c-0.54-7.74-0.67-17.5-0.54-22.71
-      c-1.08,4.69-4.17,16.49-6.46,22.71l-3.09,8.63h10.63L246.88,122.28z"/>
-  </g>
-  <g>
-    <path class="st1" d="M318.73,43.31l-45.91,49.27c-0.53,0.57-1.48,0.26-1.58-0.51l-2.31-17.41c-0.03-0.24-0.16-0.46-0.36-0.61
-      l-9.92-7.52c-0.58-0.44-0.45-1.34,0.23-1.59l41.85-15.62c1.05-0.39,0.62-1.96-0.48-1.77l-53.98,9.25
-      c-0.25,0.04-0.51-0.02-0.71-0.17l-56.47-42.78c-0.79-0.6-0.2-1.85,0.76-1.63l128.41,29.56C318.95,41.95,319.21,42.8,318.73,43.31z
-      "/>
-  </g>
-</g>
-</svg>`;
-
-    // Convert SVG to PNG using canvas
-    const canvas = document.createElement('canvas');
-    canvas.width = 338;
-    canvas.height = 186;
-    const ctx = canvas.getContext('2d');
-    
-    const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
-    const url = URL.createObjectURL(svgBlob);
-    
-    const img = new Image();
-    img.onload = function() {
-      ctx.drawImage(img, 0, 0, 338, 186);
-      URL.revokeObjectURL(url);
-      
-      const pngBase64 = canvas.toDataURL('image/png');
-      
-      const htmlTable = `
+    const htmlTable = `
 <table border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse; font-family: Arial, sans-serif; font-size: 11pt; width: 100%;">
-  <tr>
-    <td colspan="2" style="text-align: center; padding: 10px;">
-      <img src="${pngBase64}" width="50" alt="TCAA Logo" />
-    </td>
-  </tr>
+<col style="width: 35%;">
+<col style="width: 65%;">
   <tr>
     <td colspan="2" style="background-color: #e8e8e8; font-weight: bold; text-align: center;">Flight Information</td>
   </tr>
@@ -7451,8 +7398,8 @@
   </tr>
 </table>`;
 
-      // Wrap in HTML document structure for Word
-      const htmlContent = `
+    // Wrap in HTML document structure for Word
+    const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -7464,43 +7411,41 @@ ${htmlTable}
 </body>
 </html>`;
 
-      // Create Blob with Word-compatible MIME type
-      const blob = new Blob(['\ufeff', htmlContent], {
-        type: 'application/msword'
-      });
+    // Create Blob with Word-compatible MIME type
+    const blob = new Blob(['\ufeff', htmlContent], {
+      type: 'application/msword'
+    });
 
-      // Create download link
-      const link = document.createElement('a');
-      const blobUrl = URL.createObjectURL(blob);
-      link.href = blobUrl;
-      
-      // Generate filename with timestamp
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const timestamp = `${year}${month}${day}${hours}${minutes}`;
-      link.download = `FlightBill${timestamp}.doc`;
-      
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
+    // Create download link
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.href = url;
+    
+    // Generate filename with timestamp
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const timestamp = `${year}${month}${day}${hours}${minutes}`;
+    link.download = `FlightBill${timestamp}.doc`;
+    
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 
-      // Show feedback
-      const billBtn = document.getElementById('modalCopyBtn');
-      const originalText = billBtn.textContent;
-      billBtn.textContent = 'Saved!';
-      billBtn.style.background = 'rgba(34, 197, 94, 0.3)';
-      setTimeout(() => {
-        billBtn.textContent = originalText;
-        billBtn.style.background = '';
-      }, 2000);
-    };
-    img.src = url;
+    // Show feedback
+    const billBtn = document.getElementById('modalCopyBtn');
+    const originalText = billBtn.textContent;
+    billBtn.textContent = 'Saved!';
+    billBtn.style.background = 'rgba(34, 197, 94, 0.3)';
+    setTimeout(() => {
+      billBtn.textContent = originalText;
+      billBtn.style.background = '';
+    }, 2000);
   }
 
   // Modal event listeners
