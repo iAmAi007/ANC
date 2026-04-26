@@ -6137,8 +6137,16 @@
     return { km: totalKm, nm: totalNm };
   }
 
+  // Track if distance has been manually entered
+  let distanceManuallyEntered = false;
+
   // Function to update distance field based on active route row
-  function updateDistanceField() {
+  function updateDistanceField(forceUpdate = false) {
+    // Skip auto-update if user has manually entered a value (unless forced)
+    if (distanceManuallyEntered && !forceUpdate) {
+      return;
+    }
+    
     // Get the active route row's distance
     const activeRow = routeRows.find(row => row.id === activeRouteRowId);
     if (activeRow) {
@@ -6164,17 +6172,29 @@
 
     let totalANC = 0;
 
-    // Calculate ANC for each route row separately
-    routeRows.forEach(row => {
-      const distance = calculateRouteDistanceForRow(row.waypoints);
-      if (distance.km > 0) {
+    // Use manually entered distance if available, otherwise calculate from waypoints
+    if (distanceManuallyEntered) {
+      const manualDistance = parseFloat(distanceField.value.trim());
+      if (!isNaN(manualDistance) && manualDistance > 0) {
         const wf = Math.sqrt(mtow / 50);
-        const df = distance.km / 100;
+        const df = manualDistance / 100;
         const r = wf * df;
         const anc = r <= 1 ? 60 : r <= 2 ? 90 : r <= 4 ? 140 : r <= 8 ? 200 : r <= 12 ? 235 : r <= 15 ? 280 : r <= 20 ? 320 : r <= 25 ? 365 : 400;
         totalANC += anc;
       }
-    });
+    } else {
+      // Calculate ANC for each route row separately
+      routeRows.forEach(row => {
+        const distance = calculateRouteDistanceForRow(row.waypoints);
+        if (distance.km > 0) {
+          const wf = Math.sqrt(mtow / 50);
+          const df = distance.km / 100;
+          const r = wf * df;
+          const anc = r <= 1 ? 60 : r <= 2 ? 90 : r <= 4 ? 140 : r <= 8 ? 200 : r <= 12 ? 235 : r <= 15 ? 280 : r <= 20 ? 320 : r <= 25 ? 365 : 400;
+          totalANC += anc;
+        }
+      });
+    }
 
     return totalANC === 0 ? "NIL" : totalANC;
   }
@@ -7131,6 +7151,11 @@
   }
   setDefaultDatetimes();
   
+  // Detect manual distance input
+  distanceField.addEventListener('input', () => {
+    distanceManuallyEntered = true;
+  });
+  
   clearBtn.addEventListener('click', () => {
     aircraftInput.value = '';
     waypointInput.value = '';
@@ -7138,6 +7163,9 @@
     distanceField.value = '';
     intlPassengersInput.value = '';
     localPassengersInput.value = '';
+    
+    // Reset manual distance entry flag
+    distanceManuallyEntered = false;
 
     // Reset multiple landing checkbox
     const multipleLandingCheckbox = document.getElementById('multipleLandingCheckbox');
