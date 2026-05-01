@@ -433,6 +433,19 @@
       align-items: center;
     }
 
+    .dropdown-list li .waypoint-code {
+      color: #4f7ea3;
+      font-weight: 700;
+      font-family: 'Inter', monospace;
+    }
+
+    .dropdown-list li .waypoint-name {
+      color: #1b365d;
+      font-weight: 500;
+      text-align: right;
+      margin-left: auto;
+    }
+
     .dropdown-list li .aircraft-info {
       display: flex;
       align-items: center;
@@ -452,7 +465,7 @@
 
     .dropdown-list li .aircraft-weight {
       color: #4a6fa5;
-      font-weight: 400;
+      font-weight: 700;
       margin-left: auto;
       text-align: right;
     }
@@ -1037,7 +1050,7 @@
       appearance: none;
       -webkit-appearance: none;
       -moz-appearance: none;
-      border: 2px solid #4a6fa5;
+      border: 2px solid #0d2137;
       border-radius: 50%;
       background: transparent;
       position: relative;
@@ -1514,7 +1527,7 @@
                 </div>
               </div>
               <div class="charge-row" data-charge="ntkof" style="display: flex; justify-content: space-between; align-items: center; padding: 0.35rem 1rem 0.35rem 30px; border-bottom: 1px solid rgba(200, 200, 200, 0.2);">
-                <span class="result-label">Night Takeoff</span>
+                <span class="result-label">Night Take-off</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                   <span class="result-value" id="ntkofCharge">-</span>
                   <button class="delete-charge-btn" data-charge="ntkof" title="Remove this charge"><svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
@@ -1576,6 +1589,8 @@
       </div>
     </div>
   </div>
+</div>
+
 </div>
 
 <script>
@@ -1640,7 +1655,7 @@
     { display: "A109 Agusta Westland 109A (3 Tonnes)", mtowValue: "3 Tonnes" },
     { display: "A109 Agusta Westland 109E (3 Tonnes)", mtowValue: "3 Tonnes" },
     { display: "A109 Agusta Westland-GRAND AW109S (4 Tonnes)", mtowValue: "4 Tonnes" },
-    { display: "A119 Agusta Westland-KOALA AW119ke (3 Tonnes)", mtowValue: "3 Tonnes" },
+    { display: "A119 Agusta Westland-KOALA AW119KE (3 Tonnes)", mtowValue: "3 Tonnes" },
     { display: "A129 Agusta Westland A129 Mangusta (5 Tonnes)", mtowValue: "5 Tonnes" },
     { display: "A139 Agusta Westland 139 (7 Tonnes)", mtowValue: "7 Tonnes" },
     { display: "A149 Agusta Westland 149 (9 Tonnes)", mtowValue: "9 Tonnes" },
@@ -2796,6 +2811,258 @@
   aircrafts.sort((a, b) => a.display.localeCompare(b.display));
 
 
+  // Waypoint names mapping (code -> full name)
+  const waypointNames = {
+    "BJA": "Bujumbura CVOR",
+    "DO": "Dodoma NDB",
+    "DV": "Dar es Salaam DVOR",
+    "HTAI": "Lamai",
+    "HTAL": "Allience",
+    "HTAR": "Arusha",
+    "HTAS": "Mashado",
+    "HTBB": "Kiba (Kibambawe)",
+    "HTBE": "Berega",
+    "HTBF": "Buckreef",
+    "HTBG": "Kikoboga",
+    "HTBH": "Biharamulo",
+    "HTBJ": "Kabojo",
+    "HTBM": "Bagamoyo",
+    "HTBN": "Bulyankhulu",
+    "HTBO": "Behobeho",
+    "HTBS": "Mbesa",
+    "HTBT": "Buturi",
+    "HTBU": "Bukoba",
+    "HTBV": "Yaeda Chini",
+    "HTBX": "Maboxi",
+    "HTBY": "Mbamba Bay",
+    "HTCF": "Catfish",
+    "HTCH": "Chunya",
+    "HTCM": "Chemchem",
+    "HTCV": "Chivanjee",
+    "HTDA": "Dar es Salaam",
+    "HTDB": "Madaba",
+    "HTDG": "Dolly",
+    "HTDK": "Dakawa",
+    "HTDN": "Saadani",
+    "HTDO": "Dodoma",
+    "HTDU": "Kibidula",
+    "HTDY": "Dorman",
+    "HTEB": "Sengerema",
+    "HTEE": "Mlele Ram",
+    "HTEJ": "Shama",
+    "HTEN": "Enduleni",
+    "HTEQ": "Shughuli",
+    "HTER": "Mtera",
+    "HTES": "Engorika",
+    "HTEY": "Sikonge",
+    "HTFE": "Fish Eagle",
+    "HTFI": "Fort Ikoma",
+    "HTFR": "Kifura",
+    "HTGA": "Mbuga/Ilonga",
+    "HTGE": "Geita",
+    "HTGL": "Gerai Lumbwa",
+    "HTGM": "Magambua",
+    "HTGO": "Kizigo",
+    "HTGP": "Golden Pride",
+    "HTGR": "Grumet",
+    "HTGS": "Malagarasi",
+    "HTGT": "Gelai East",
+    "HTGU": "Miguruwe",
+    "HTGV": "George Vineyard Memorial (Kipili)",
+    "HTGW": "Songwe",
+    "HTGZ": "Magazini",
+    "HTHB": "Muhuba",
+    "HTHG": "Kilumbi",
+    "HTHI": "Mlay/Mlahi",
+    "HTHM": "Mwambesi",
+    "HTHR": "Heri Hospital",
+    "HTHS": "Muhesi",
+    "HTHY": "Hydom",
+    "HTI": "Lesirwai",
+    "HTIA": "Ifakara",
+    "HTIF": "Ifunda Farm",
+    "HTIH": "Tarime (Sasi)",
+    "HTIK": "Iku-Lake Chada",
+    "HTIL": "Lila",
+    "HTIR": "Iringa",
+    "HTIW": "Liwale",
+    "HTIY": "Inyonga",
+    "HTJN": "Kwajoni",
+    "HTJO": "Jongomero",
+    "HTJR": "Mkwaja Ranch",
+    "HTKA": "Kigoma",
+    "HTKC": "Kleins Camp",
+    "HTKD": "Kondoa",
+    "HTKE": "Ketumbeine",
+    "HTKF": "Kibebe Farm",
+    "HTKG": "Namkongo",
+    "HTKH": "Kahama",
+    "HTKI": "Kilwa Masoko",
+    "HTKJ": "Kilimanjaro",
+    "HTKL": "Kirondatal",
+    "HTKM": "Kilombero",
+    "HTKN": "Kasense",
+    "HTKO": "Kongwa",
+    "HTKP": "Kingupira",
+    "HTKR": "Kingupira",
+    "HTKS": "Kilosa",
+    "HTKT": "Kilimatinde",
+    "HTKU": "Kasulu",
+    "HTKX": "Kitemela",
+    "HTLA": "Lukula",
+    "HTLB": "Malambo",
+    "HTLD": "Loliondo",
+    "HTLE": "Ilembula",
+    "HTLI": "Lindi",
+    "HTLJ": "Lualanje",
+    "HTLK": "Luika",
+    "HTLL": "Liuli",
+    "HTLM": "Lake Manyara",
+    "HTLN": "Lukwati",
+    "HTLO": "Lobo Wild Life Lodge",
+    "HTLP": "Lupa",
+    "HTLR": "Lukuliro",
+    "HTLS": "Lesingita",
+    "HTLT": "Lunda Wma",
+    "HTLU": "Lunda",
+    "HTLV": "Liveria",
+    "HTLW": "Luwegu",
+    "HTLY": "Luwele",
+    "HTMA": "Mafia",
+    "HTMD": "Buhemba Gold Mining",
+    "HTME": "Matambwe",
+    "HTMF": "Mufindi",
+    "HTMG": "Morogoro",
+    "HTMH": "Makau",
+    "HTMI": "Masasi",
+    "HTMJ": "Maji Moto",
+    "HTMK": "Mikumi",
+    "HTML": "Mahale",
+    "HTMM": "Mamarehe",
+    "HTMN": "Matemanga",
+    "HTMO": "Mombo",
+    "HTMP": "Mpanda",
+    "HTMR": "Msembe Ruaha",
+    "HTMS": "Moshi",
+    "HTMT": "Mtwara",
+    "HTMU": "Musoma",
+    "HTMV": "Mvumi",
+    "HTMW": "Mwanza",
+    "HTMX": "Mpwapwa",
+    "HTMY": "Mbuyu",
+    "HTNA": "Nachingwea",
+    "HTNB": "Naberera",
+    "HTND": "Ndutu",
+    "HTNF": "Nkonje",
+    "HTNG": "Ngerengere",
+    "HTNH": "Ndolo",
+    "HTNJ": "Njombe",
+    "HTNK": "Nkinga",
+    "HTNM": "North Mara",
+    "HTNN": "Ngorongoro",
+    "HTNO": "Mbono",
+    "HTNR": "Ngara",
+    "HTNW": "Ngwazi",
+    "HTNY": "Kinyanguru",
+    "HTNZ": "Nzega",
+    "HTOM": "Olemilei",
+    "HTON": "Mishamo",
+    "HTOR": "Olepakashi/Engaresero",
+    "HTOZ": "Kigosa 1/Kigozi",
+    "HTPD": "Mpunde",
+    "HTPE": "Pemba",
+    "HTTP": "Kapunga",
+    "HTPT": "Piti/Kitemela",
+    "HTPW": "Matipwili",
+    "HTRA": "Mkangire",
+    "HTRB": "Rubondo",
+    "HTRE": "Kilo 3",
+    "HTRG": "Rungwa",
+    "HTRL": "Mbarali",
+    "HTRN": "Barani",
+    "HTRS": "Kibesa",
+    "HTRU": "Mchauru",
+    "HTRX": "Tango One",
+    "HTRZ": "Kirumira",
+    "HTSA": "Makwasa",
+    "HTSB": "Kagera Sugar",
+    "HTSD": "Singida",
+    "HTSE": "Same",
+    "HTSG": "Stiglers Gorge",
+    "HTSH": "Mafinga",
+    "HTSI": "Kihansi",
+    "HTSJ": "Simanjiro",
+    "HTSK": "Sitalike",
+    "HTSL": "Msolwa",
+    "HTSM": "Masimba",
+    "HTSN": "Seronera",
+    "HTSO": "Songea",
+    "HTSS": "Songosongo",
+    "HTST": "Serengeti South",
+    "HTSU": "Sumbawanga",
+    "HTSW": "Kiswa",
+    "HTSY": "Shinyanga – Ibadakuli",
+    "HTTA": "Mngeta",
+    "HTTB": "Tabora",
+    "HTTC": "TPC",
+    "HTTE": "Mtemere",
+    "HTTF": "Mwadui",
+    "HTTG": "Tanga",
+    "HTTJ": "Handajega",
+    "HTTL": "Tulawaka",
+    "HTTN": "Magangwe",
+    "HTTO": "Kogatende",
+    "HTTR": "Tarangire",
+    "HTTS": "Milembwe",
+    "HTTU": "Tunduru",
+    "HTTV": "Msima",
+    "HTTX": "Tarime",
+    "HTTY": "Manyara South",
+    "HTTZ": "Tura",
+    "HTTI": "Mtibwa",
+    "HTUC": "Turiani",
+    "HTUF": "Ugalla",
+    "HTUG": "Lugala",
+    "HTUK": "Ukerewe – Nansio",
+    "HTUN": "Murungu",
+    "HTUO": "Merugoi",
+    "HTUP": "Mtemaupinde",
+    "HTUR": "Urambo",
+    "HTUS": "Masusu",
+    "HTUT": "Utete",
+    "HTUU": "Kalulu",
+    "HTUV": "Uvinza",
+    "HTUW": "Nungwi",
+    "HTUZ": "Kuro",
+    "HTVR": "Buger",
+    "HTWA": "Sasakwa",
+    "HTWB": "Mwiba",
+    "HTWH": "Wazo Hill",
+    "HTWI": "Mchukwi",
+    "HTWK": "West Kilimanjaro",
+    "HTWS": "Kwamsisi",
+    "HTYA": "Kibaya",
+    "HTYE": "Nyamonge",
+    "HTYO": "Moyowosi",
+    "HTYW": "Likuyu",
+    "HTYY": "Yeye 2",
+    "HTZA": "Zanzibar",
+    "HTZI": "Kisima (Mkomazi)",
+    "HTZW": "Ziwandu",
+    "KS": "Kasama NDB",
+    "KG": "Kigoma NDB",
+    "KNM": "Kigali DVOR",
+    "KV": "Kilimanjaro DVOR",
+    "MB": "Mbeya NDB",
+    "MT": "Mtwara NDB",
+    "MV": "Mwanza VOR",
+    "TB": "Tabora NDB",
+    "ZV": "Zanzibat VOR",
+    "THANDA": "Thanda Island Helipad",
+    "SG": "Songea NDB",
+    "TG": "Tanga NDB"
+  };
+
   // Waypoints master list with coordinates
   const waypointsMaster = {
     "TG": { "lat": -5.0888333, "lon": 39.0733333 },
@@ -3548,14 +3815,6 @@
 
 "HTLI": {"lat": -9.85111, "lon": 39.757801},
 
-"HTDC": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
 "HTTN": {"lat": -7.719942, "lon": 34.226726},
 
 "HTUK": {"lat": -2.1068287, "lon": 33.1117120},
@@ -3625,14 +3884,6 @@
 },
 
 "HTLO": {"lat": -2.009865, "lon": 35.159105},
-
-"HTDQ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
 
 "HTLP": {
 
@@ -6755,7 +7006,12 @@
     const filter = filterText.trim().toUpperCase();
     let filtered = Object.keys(waypointsMaster).sort();
     if (filter !== '') {
-      filtered = Object.keys(waypointsMaster).filter(wp => wp.includes(filter)).sort();
+      filtered = Object.keys(waypointsMaster).filter(wp => {
+        const codeMatch = wp.includes(filter);
+        const fullName = waypointNames[wp] || '';
+        const nameMatch = fullName.toUpperCase().includes(filter);
+        return codeMatch || nameMatch;
+      }).sort();
     }
     waypointListEl.innerHTML = '';
     if (filtered.length === 0) {
@@ -6767,7 +7023,12 @@
     } else {
       filtered.forEach(wp => {
         const li = document.createElement('li');
-        li.textContent = wp;
+        const fullName = waypointNames[wp] || '';
+        if (fullName) {
+          li.innerHTML = `<span class="waypoint-code">${wp}</span><span class="waypoint-name">${fullName}</span>`;
+        } else {
+          li.textContent = wp;
+        }
         li.addEventListener('click', (e) => {
           e.stopPropagation();
           addWaypointToRoute(wp);
@@ -7171,6 +7432,7 @@
     const total = getChargeValue('totalCharges');
 
     const aircraft = aircraftInput.value || '-';
+const aircraftCode = aircraft !== '-' ? aircraft.split(' ')[0] : '-';
     const mtow = mtowField.value || '-';
     const distance = distanceField.value || '-';
     const route = routeWaypoints.length > 0 ? routeWaypoints.join(' — ') : '-';
@@ -7198,7 +7460,7 @@
   </tr>
   <tr>
     <td style="width: 35%;"><b>Aircraft:</b></td>
-    <td style="width: 65%;">CALLSIGN: &nbsp;&nbsp; REG: &nbsp;&nbsp; TYP: ${aircraft}</td>
+    <td style="width: 65%;">CALLSIGN: &nbsp;&nbsp; REG: &nbsp;&nbsp; TYP: ${aircraftCode}</td>
   </tr>
   <tr>
     <td style="width: 35%;"><b>Route:</b></td>
@@ -7245,7 +7507,7 @@
     <td style="width: 65%; text-align: right;">${nldg}</td>
   </tr>
   <tr>
-    <td style="width: 35%;">Night Takeoff</td>
+    <td style="width: 35%;">Night Take-off</td>
     <td style="width: 65%; text-align: right;">${ntkof}</td>
   </tr>
   <tr>
@@ -7282,6 +7544,7 @@
 <title>Flight Charges Bill</title>
 </head>
 <body>
+<h1 style="text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 20px; font-family: Arial, sans-serif;">CUSTOMER BILL</h1>
 ${htmlTable}
 </body>
 </html>`;
@@ -7451,5 +7714,6 @@ ${htmlTable}
     }
   })();
 </script>
+
 </body>
 </html>
