@@ -136,6 +136,12 @@
       100% { opacity: 0.4; transform: scale(0.8); }
     }
 
+    @keyframes swipeGradient {
+      0% { background-position: 0 0; }
+      50% { background-position: 100% 0; }
+      100% { background-position: 0 0; }
+    }
+
     .mobile-divider {
       margin: 2rem auto 1.2rem;
       width: 48px;
@@ -340,7 +346,7 @@
     /* Clear button inside aircraft input - no background, appears only when input has value */
 .clear-aircraft-btn {
       position: absolute;
-      right: 0.75rem;
+      right: 1.5rem;
       top: 50%;
       transform: translateY(-50%);
       background: transparent;
@@ -1307,7 +1313,7 @@
       .form-row { margin-bottom: 1rem; }
       .datetime-stack .form-row { margin-bottom: 1rem; }
       .form-row label { padding-left: 0.75rem; }
-      .clear-aircraft-btn { right: 0.6rem; }
+      .clear-aircraft-btn { right: 1.2rem; }
       
       .modal-content {
         width: 95%;
@@ -2835,21 +2841,29 @@
     "HTBV": "Yaeda Chini",
     "HTBX": "Maboxi",
     "HTBY": "Mbamba Bay",
+    "HTBP": "Buger",
+    "HTCD": "Chidudu",
     "HTCF": "Catfish",
     "HTCH": "Chunya",
     "HTCM": "Chemchem",
     "HTCV": "Chivanjee",
     "HTDA": "Dar es Salaam",
     "HTDB": "Madaba",
-    "HTDG": "Dolly",
+    "HTDG": "Doly",
     "HTDK": "Dakawa",
     "HTDN": "Saadani",
     "HTDO": "Dodoma",
     "HTDU": "Kibidula",
     "HTDY": "Dorman",
+    "HTBA": "Basuto",
     "HTEB": "Sengerema",
+    "HTED": "Endanyawish",
     "HTEE": "Mlele Ram",
     "HTEJ": "Shama",
+    "HTGL": "Gerai Lumbwa",
+    "HTGM": "Magambua",
+    "HTGO": "Kizigo",
+    "HTEG": "Engaresaro",
     "HTEN": "Enduleni",
     "HTEQ": "Shughuli",
     "HTER": "Mtera",
@@ -2859,10 +2873,8 @@
     "HTFI": "Fort Ikoma",
     "HTFR": "Kifura",
     "HTGA": "Mbuga/Ilonga",
+    "HTGB": "Gorimba",
     "HTGE": "Geita",
-    "HTGL": "Gerai Lumbwa",
-    "HTGM": "Magambua",
-    "HTGO": "Kizigo",
     "HTGP": "Golden Pride",
     "HTGR": "Grumet",
     "HTGS": "Malagarasi",
@@ -2878,7 +2890,7 @@
     "HTHR": "Heri Hospital",
     "HTHS": "Muhesi",
     "HTHY": "Hydom",
-    "HTI": "Lesirwai",
+    "HTII": "Lesirwai",
     "HTIA": "Ifakara",
     "HTIF": "Ifunda Farm",
     "HTIH": "Tarime (Sasi)",
@@ -2887,6 +2899,7 @@
     "HTIR": "Iringa",
     "HTIW": "Liwale",
     "HTIY": "Inyonga",
+    "HTII": "Lesirwai",
     "HTJN": "Kwajoni",
     "HTJO": "Jongomero",
     "HTJR": "Mkwaja Ranch",
@@ -2904,11 +2917,12 @@
     "HTKN": "Kasense",
     "HTKO": "Kongwa",
     "HTKP": "Kingupira",
-    "HTKR": "Kingupira",
+    "HTKR": "Karagwe",
     "HTKS": "Kilosa",
     "HTKT": "Kilimatinde",
     "HTKU": "Kasulu",
     "HTKX": "Kitemela",
+    "HTKB": "Kibondo",
     "HTLA": "Lukula",
     "HTLB": "Malambo",
     "HTLD": "Loliondo",
@@ -2965,19 +2979,22 @@
     "HTNW": "Ngwazi",
     "HTNY": "Kinyanguru",
     "HTNZ": "Nzega",
+    "HTOH": "Mishamo",
     "HTOM": "Olemilei",
     "HTON": "Mishamo",
-    "HTOR": "Olepakashi/Engaresero",
+    "HTOP": "Olepakashi/Engaresero",
     "HTOZ": "Kigosa 1/Kigozi",
     "HTPD": "Mpunde",
     "HTPE": "Pemba",
     "HTTP": "Kapunga",
-    "HTPT": "Piti/Kitemela",
+    "HTPK": "Kapunga",
+    "HTPT": "Piti",
     "HTPW": "Matipwili",
     "HTRA": "Mkangire",
     "HTRB": "Rubondo",
     "HTRE": "Kilo 3",
     "HTRG": "Rungwa",
+    "HTRK": "Ras Kutani",
     "HTRL": "Mbarali",
     "HTRN": "Barani",
     "HTRS": "Kibesa",
@@ -3034,7 +3051,6 @@
     "HTUV": "Uvinza",
     "HTUW": "Nungwi",
     "HTUZ": "Kuro",
-    "HTVR": "Buger",
     "HTWA": "Sasakwa",
     "HTWB": "Mwiba",
     "HTWH": "Wazo Hill",
@@ -3337,14 +3353,6 @@
 
 "HTMD": {"lat": -1.774223, "lon": 34.098139},
 
-"HTPP": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
 "HTBJ": {
 
     "lat": "to_be_defined",
@@ -3615,7 +3623,7 @@
 
 },
 
-"HTI": {
+"HTII": {
 
     "lat": "to_be_defined",
 
@@ -3960,14 +3968,6 @@
 },
 
 "HTNB": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTOR": {
 
     "lat": "to_be_defined",
 
