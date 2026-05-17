@@ -4,18 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FlightCostEngine</title>
-  <!-- Google Fonts: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html, body, * {
+      font-family: 'Lexend', sans-serif !important;
+    }
+
+    input, button, select, textarea {
+      font-family: 'Lexend', sans-serif !important;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%), url('https://images.unsplash.com/photo-1743657166982-9e3ff272122b?q=80&w=2128&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%), url('https://images.unsplash.com/photo-1729582467176-fbd7434a98c6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
       /* Alternative background image:
       background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.25) 100%), url('https://images.unsplash.com/photo-1702180400075-67da68857c9d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
       */
@@ -219,7 +225,7 @@
 
 .form-row label {
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 500;
       color: #0d2137;
       margin-bottom: 0.5rem;
       letter-spacing: -0.2px;
@@ -237,15 +243,15 @@
       width: 100%;
     }
 
-    .text-input, 
-    .datetime-input, 
+    .text-input,
+    .datetime-input,
     .dropdown-input {
       width: 100%;
       padding: 0.75rem 1rem;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 50px;
       font-size: 0.9rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Lexend', sans-serif !important;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -383,7 +389,7 @@
     }
 
     input[type="datetime-local"].datetime-input {
-      font-family: 'Inter', monospace;
+      font-family: 'Lexend', sans-serif !important;
       padding: 0.68rem 1rem;
     }
 
@@ -445,12 +451,12 @@
     .dropdown-list li .waypoint-code {
       color: #4f7ea3;
       font-weight: 700;
-      font-family: 'Inter', monospace;
+      font-family: 'Lexend', sans-serif !important;
     }
 
     .dropdown-list li .waypoint-name {
       color: #1b365d;
-      font-weight: 500;
+      font-weight: 400;
       text-align: right;
       margin-left: auto;
     }
@@ -464,12 +470,12 @@
     .dropdown-list li .aircraft-code {
       color: #4f7ea3;
       font-weight: 700;
-      font-family: 'Inter', monospace;
+      font-family: 'Lexend', sans-serif !important;
     }
 
     .dropdown-list li .aircraft-name {
       color: #1b365d;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .dropdown-list li .aircraft-weight {
@@ -511,7 +517,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.7rem;
+      font-size: 0.85rem !important;
       font-weight: 500;
       color: #2b4c6b;
       letter-spacing: 0.3px;
@@ -567,7 +573,7 @@
 
     .route-row-label {
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 500;
       color: #2b4c6b;
     }
 
@@ -779,7 +785,7 @@
 
     .result-label {
       color: #1b365d;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 0.95rem;
       text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
     }
@@ -838,7 +844,7 @@
 
     .route-item.undefined-coords .route-waypoint {
       color: #dc2626;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .route-item:hover {
@@ -873,8 +879,8 @@
     }
 
 .route-waypoint {
-      font-family: 'Inter', monospace;
-      font-weight: 600;
+      font-family: 'Lexend', sans-serif !important;
+      font-weight: 500;
       font-size: 0.85rem;
       color: #0d2137;
       background: transparent;
@@ -1005,7 +1011,7 @@
     #clearBtn {
       border-color: rgba(220, 38, 38, 0.4);
       color: #dc2626;
-      font-weight: 600;
+      font-weight: 500;
       width: 44px;
       height: 44px;
       padding: 0;
@@ -1031,7 +1037,7 @@
     #modalOkBtn {
       border-color: rgba(220, 38, 38, 0.4);
       color: #dc2626;
-      font-weight: 600;
+      font-weight: 500;
       border-width: 2px;
     }
 
@@ -1189,7 +1195,7 @@
     .modal-header h3 {
       margin: 0;
       font-size: 1.25rem;
-      font-weight: 600;
+      font-weight: 500;
       color: #1b365d;
     }
 
@@ -1223,7 +1229,7 @@
     .result-section h4 {
       margin: 0 0 1rem 0;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 500;
       color: #2b4c6b;
     }
 
@@ -1254,7 +1260,7 @@
     .result-value {
       font-size: 0.875rem;
       color: #1b365d;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .fee-summary {
@@ -1288,7 +1294,7 @@
     .fee-value {
       font-size: 0.875rem;
       color: #1b365d;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .fee-value.total {
@@ -1564,9 +1570,9 @@
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem 0.75rem 30px; margin-top: 0; border-top: 2px solid rgba(200, 200, 200, 0.4); background: rgba(27, 54, 93, 0.05); border-radius: 0.5rem;">
-                <span class="result-label" style="font-weight: 600; color: #1b365d;">SUBTOTAL</span>
+                <span class="result-label" style="font-weight: 700; color: #1b365d;">SUBTOTAL</span>
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
-                  <span class="result-value" id="taaSubtotal" style="font-weight: 600; color: #1b365d;">-</span>
+                  <span class="result-value" id="taaSubtotal" style="font-weight: 700; color: #1b365d;">-</span>
                   <span style="width: 30px;"></span>
                 </div>
               </div>
