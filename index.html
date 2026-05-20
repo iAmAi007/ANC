@@ -35,6 +35,7 @@
       padding: 2rem;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       margin: 0;
@@ -85,7 +86,8 @@
       transition: all 0.2s ease;
     }
 
-    .mobile-overlay.active ~ .card {
+    .mobile-overlay.active ~ .card,
+    .mobile-overlay.active ~ .footnote {
       display: none !important;
     }
 
@@ -529,19 +531,27 @@
       background: rgba(79, 126, 163, 0.2);
       border: 1px solid rgba(79, 126, 163, 0.3);
       color: #4f7ea3;
-      font-size: 1.2rem;
-      font-weight: 300;
       width: 24px;
       height: 24px;
+      min-width: 24px;
+      min-height: 24px;
       border-radius: 50%;
       cursor: pointer;
       transition: all 0.2s ease;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 0;
       margin: 0;
-      line-height: 1;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+
+    .add-route-btn svg {
+      display: block;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
     }
 
     .add-route-btn:hover {
@@ -581,19 +591,27 @@
       background: rgba(220, 38, 38, 0.15);
       border: 1px solid rgba(220, 38, 38, 0.3);
       color: #c96a5a;
-      font-size: 0.9rem;
-      font-weight: 400;
       width: 20px;
       height: 20px;
+      min-width: 20px;
+      min-height: 20px;
       border-radius: 50%;
       cursor: pointer;
       transition: all 0.2s ease;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       padding: 0;
       margin: 0;
-      line-height: 1;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+
+    .remove-route-btn svg {
+      display: block;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
     }
 
     .remove-route-btn:hover {
@@ -1118,9 +1136,9 @@
       left: 100%;
     }
 
-.footnote {
+    .footnote {
       font-size: 0.7rem;
-      color: #5a6c7d;
+      color: #4a627a;
       margin-top: 1rem;
       letter-spacing: 0.01em;
       text-align: center;
@@ -1412,13 +1430,21 @@
       <div class="route-container">
         <div class="route-header">
           <span>Route</span>
-          <button class="add-route-btn" id="addRouteBtn" title="Add another route row">+</button>
+          <button class="add-route-btn" id="addRouteBtn" title="Add another route row" aria-label="Add another route row">
+            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 2.5v7M2.5 6h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
         </div>
         <div class="route-rows-container" id="routeRowsContainer">
           <div class="route-row" id="routeRow0">
             <div class="route-row-header">
               <span class="route-row-label">Route 1</span>
-              <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" style="display: none;">×</button>
+              <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" aria-label="Remove this route" style="display: none;">
+                <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
             </div>
             <div class="route-list" id="routeList0">
               <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
@@ -1607,6 +1633,8 @@
 </div>
 
 </div>
+
+<footer class="footnote">FlightCostEngine • Version FrostVeil 2026</footer>
 
 <script>
   // Aircraft dataset
@@ -2830,7 +2858,7 @@
   const waypointNames = {
     "BJA": "Bujumbura CVOR",
     "DO": "Dodoma NDB",
-    "DV": "Dar es salaam DVOR",
+    "DV": "Dar es Salaam DVOR",
     "HTAI": "Lamai",
     "HTAL": "Allience",
     "HTAR": "Arusha",
@@ -2856,7 +2884,7 @@
     "HTCH": "Chunya",
     "HTCM": "Chemchem",
     "HTCV": "Chivanjee",
-    "HTDA": "Dar es salaam",
+    "HTDA": "Dar es Salaam",
     "HTDB": "Madaba",
     "HTDG": "Doly",
     "HTDK": "Dakawa",
@@ -3290,13 +3318,11 @@
 
 },
 
-"HTTC": {
-
-    "lat": -3.501372,"lon": 37.324097},
+"HTTC": { "lat": -3.501372, "lon": 37.324097 },
 
 "HTBB": {"lat": -7.748241, "lon": 38.001833},
 
-"HTBG": { "lat": -7.331183, "lon": 37.114433},
+"HTBG": { "lat": -7.331183, "lon": 37.114433 },
 
 "HTGO": {
 
@@ -6550,7 +6576,11 @@
     newRow.innerHTML = `
       <div class="route-row-header">
         <span class="route-row-label">Route ${newId + 1}</span>
-        <button class="remove-route-btn" id="removeRouteBtn${newId}" title="Remove this route">×</button>
+        <button class="remove-route-btn" id="removeRouteBtn${newId}" title="Remove this route" aria-label="Remove this route">
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
       <div class="route-list" id="routeList${newId}">
         <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
@@ -7244,7 +7274,11 @@
       <div class="route-row" id="routeRow0">
         <div class="route-row-header">
           <span class="route-row-label">Route 1</span>
-          <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" style="display: none;">×</button>
+          <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" aria-label="Remove this route" style="display: none;">
+            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
         </div>
         <div class="route-list" id="routeList0">
           <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
