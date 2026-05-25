@@ -285,7 +285,7 @@
       font-weight: 400;
     }
 
-    /* Inputs with inline clear button */
+    /* Aircraft input with extra right padding for clear button */
     .aircraft-input-with-clear {
       padding-right: 2.2rem;
     }
@@ -348,13 +348,10 @@
 
     #rateList {
       z-index: 2000;
-      --dropdown-input-height: calc(0.5rem * 2 + 1.4 * 0.9rem + 2px);
-      max-height: calc(220px + var(--dropdown-input-height) / 2);
     }
 
     #rateDropdown {
       position: relative;
-      --dropdown-input-height: calc(0.5rem * 2 + 1.4 * 0.9rem + 2px);
     }
 
     /* Clear button inside aircraft input - no background, appears only when input has value */
@@ -414,7 +411,6 @@
     .custom-dropdown {
       position: relative;
       width: 100%;
-      --dropdown-input-height: calc(0.75rem * 2 + 1.4 * 0.9rem + 2px);
     }
 
     .dropdown-list {
@@ -427,8 +423,7 @@
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 1rem;
-      --dropdown-input-height: calc(0.75rem * 2 + 1.4 * 0.9rem + 2px);
-      max-height: calc(220px + var(--dropdown-input-height) / 2);
+      max-height: 220px;
       overflow-y: auto;
       z-index: 1000;
       box-shadow: 
@@ -500,35 +495,6 @@
       background: #eeeeee;
       color: #0d2137;
       transform: translateX(2px);
-    }
-
-    .dropdown-count-bar {
-      display: none;
-      position: absolute;
-      top: calc(100% + 4px);
-      left: 0;
-      width: 100%;
-      z-index: 1001;
-      padding: 0.4rem 1rem 0.4rem 1.5rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #4a6fa5;
-      background: rgba(255, 255, 255, 0.98);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-bottom: none;
-      border-radius: 1rem 1rem 0 0;
-      box-shadow: 0 -2px 12px rgba(31, 38, 135, 0.12);
-      box-sizing: border-box;
-      letter-spacing: 0.02em;
-    }
-
-    .dropdown-count-bar.visible {
-      display: block;
-    }
-
-    .custom-dropdown.has-count-open .dropdown-list {
-      top: calc(100% + 4px + 1.75rem);
-      border-radius: 0 0 1rem 1rem;
     }
 
     .route-container {
@@ -1446,7 +1412,6 @@
           <input type="text" class="dropdown-input aircraft-input-with-clear" id="aircraftInput" autocomplete="on">
           <button type="button" class="clear-aircraft-btn" id="clearAircraftBtn" title="Clear aircraft selection">✕</button>
         </div>
-        <div class="dropdown-count-bar" id="aircraftListCount" aria-live="polite"></div>
         <ul class="dropdown-list" id="aircraftList"></ul>
       </div>
     </div>
@@ -1456,7 +1421,6 @@
       <label>Waypoint</label>
       <div class="custom-dropdown" id="waypointDropdown">
         <input type="text" class="dropdown-input" id="waypointInput" autocomplete="off" spellcheck="false">
-        <div class="dropdown-count-bar" id="waypointListCount" aria-live="polite"></div>
         <ul class="dropdown-list" id="waypointList"></ul>
       </div>
     </div>
@@ -1670,11 +1634,9 @@
 
 </div>
 
-<footer class="footnote">FlightCostEngine • Version FrostVeil 2026</footer>
+<footer class="footnote">FlightCostEngine  •  Version FrostVeil 2026</footer>
 
 <script>
-  const DEFAULT_EXCHANGE_RATE = 2650;
-
   // Aircraft dataset
   const aircrafts = [
     { display: "Jetcruzer-500 AASI Jetcruzer 500 (3 Tonnes)", mtowValue: "3 Tonnes" },
@@ -6357,7 +6319,7 @@
   function calculateSAF() {
     const intlPAX = parseInt(intlPassengersInput.value) || 0;
     const localPAX = parseInt(localPassengersInput.value) || 0;
-    const exchangeRate = parseFloat(exchangeRateInput.value) || DEFAULT_EXCHANGE_RATE;
+    const exchangeRate = parseFloat(exchangeRateInput.value) || 2650;
     
     if (intlPAX === 0 && localPAX === 0) {
       return "NIL";
@@ -6405,7 +6367,7 @@
   function calculateSEC() {
     const intlPAX = parseInt(intlPassengersInput.value) || 0;
     const localPAX = parseInt(localPassengersInput.value) || 0;
-    const exchangeRate = parseFloat(exchangeRateInput.value) || DEFAULT_EXCHANGE_RATE;
+    const exchangeRate = parseFloat(exchangeRateInput.value) || 2650;
     
     if (intlPAX === 0 && localPAX === 0) {
       return "NIL";
@@ -6554,7 +6516,6 @@
   // DOM elements
   const aircraftInput = document.getElementById('aircraftInput');
   const clearAircraftBtn = document.getElementById('clearAircraftBtn');
-  const exchangeRateInput = document.getElementById('exchangeRateInput');
   const aircraftListEl = document.getElementById('aircraftList');
   const waypointInput = document.getElementById('waypointInput');
   const waypointGhost = document.getElementById('waypointGhost');
@@ -6566,10 +6527,6 @@
   const departureDateTime = document.getElementById('departureDateTime');
   const arrivalDateTime = document.getElementById('arrivalDateTime');
   const calculateBtn = document.getElementById('calculateBtn');
-  const aircraftListCountEl = document.getElementById('aircraftListCount');
-  const waypointListCountEl = document.getElementById('waypointListCount');
-  const aircraftDropdownEl = document.getElementById('aircraftDropdown');
-  const waypointDropdownEl = document.getElementById('waypointDropdown');
   const clearBtn = document.getElementById('clearBtn');
   const intlPassengersInput = document.getElementById('intlPassengersInput');
   const localPassengersInput = document.getElementById('localPassengersInput');
@@ -7074,35 +7031,8 @@
     return false;
   }
 
-  function formatCount(n) {
-    return n.toLocaleString();
-  }
-
-  function pluralLabel(count, singular, plural) {
-    return count === 1 ? singular : plural;
-  }
-
-  function getDropdownCountText(filteredCount, totalCount, singular, plural) {
-    if (filteredCount === totalCount) {
-      return `${formatCount(totalCount)} ${pluralLabel(totalCount, singular, plural)}`;
-    }
-    return `${formatCount(filteredCount)} of ${formatCount(totalCount)} ${pluralLabel(totalCount, singular, plural)}`;
-  }
-
-  function setDropdownCountVisible(dropdownEl, countEl, visible) {
-    if (!dropdownEl || !countEl) return;
-    countEl.classList.toggle('visible', visible);
-    dropdownEl.classList.toggle('has-count-open', visible);
-  }
-
-  function updateDropdownCountBar(countEl, filteredCount, totalCount, singular, plural) {
-    if (!countEl) return;
-    countEl.textContent = getDropdownCountText(filteredCount, totalCount, singular, plural);
-  }
-
   function buildWaypointList(filterText = '') {
     const filter = filterText.trim().toUpperCase();
-    const totalCount = Object.keys(waypointsMaster).length;
     let filtered = Object.keys(waypointsMaster).sort();
     if (filter !== '') {
       filtered = Object.keys(waypointsMaster).filter(wp => {
@@ -7112,7 +7042,6 @@
         return codeMatch || nameMatch;
       }).sort();
     }
-    updateDropdownCountBar(waypointListCountEl, filtered.length, totalCount, 'Waypoint', 'Waypoints');
     waypointListEl.innerHTML = '';
     if (filtered.length === 0) {
       const li = document.createElement('li');
@@ -7143,12 +7072,10 @@
 
   function buildAircraftList(filterText = '') {
     const filter = filterText.trim().toLowerCase();
-    const totalCount = aircrafts.length;
     let filtered = [...aircrafts];
     if (filter !== '') {
       filtered = aircrafts.filter(ac => ac.display.toLowerCase().includes(filter));
     }
-    updateDropdownCountBar(aircraftListCountEl, filtered.length, totalCount, 'Aircraft', 'Aircrafts');
     aircraftListEl.innerHTML = '';
     if (filtered.length === 0) {
       const li = document.createElement('li');
@@ -7191,14 +7118,8 @@
   }
 
   function closeAllDropdownsExcept(keepOpenId) {
-    if (keepOpenId !== 'aircraftDropdown') {
-      aircraftListEl.style.display = 'none';
-      setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
-    }
-    if (keepOpenId !== 'waypointDropdown') {
-      waypointListEl.style.display = 'none';
-      setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
-    }
+    if (keepOpenId !== 'aircraftDropdown') aircraftListEl.style.display = 'none';
+    if (keepOpenId !== 'waypointDropdown') waypointListEl.style.display = 'none';
     if (keepOpenId !== 'rateDropdown') {
       rateListEl.style.display = 'none';
       const rateDropdown = document.getElementById('rateDropdown');
@@ -7211,17 +7132,13 @@
   function showAircraftDropdown() {
     buildAircraftList(aircraftInput.value);
     aircraftListEl.style.display = 'block';
-    setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, true);
     waypointListEl.style.display = 'none';
-    setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
   }
 
   function showWaypointDropdown() {
     buildWaypointList(waypointInput.value);
     waypointListEl.style.display = 'block';
-    setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, true);
     aircraftListEl.style.display = 'none';
-    setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
   }
 
   function buildRateList() {
@@ -7258,9 +7175,7 @@
   aircraftInput.addEventListener('input', () => {
     buildAircraftList(aircraftInput.value);
     aircraftListEl.style.display = 'block';
-    setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, true);
     waypointListEl.style.display = 'none';
-    setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
     toggleClearButton();
   });
   waypointInput.addEventListener('click', (e) => { e.stopPropagation(); showWaypointDropdown(); });
@@ -7269,9 +7184,7 @@
     const value = waypointInput.value.trim().toUpperCase();
     buildWaypointList(waypointInput.value);
     waypointListEl.style.display = 'block';
-    setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, true);
     aircraftListEl.style.display = 'none';
-    setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
 
     // Ghost text inline autocomplete
     if (value && value.length >= 1) {
@@ -7299,14 +7212,8 @@
   });
 
   document.addEventListener('click', function(e) {
-    if (!e.target.closest('#aircraftDropdown')) {
-      aircraftListEl.style.display = 'none';
-      setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
-    }
-    if (!e.target.closest('#waypointDropdown')) {
-      waypointListEl.style.display = 'none';
-      setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
-    }
+    if (!e.target.closest('#aircraftDropdown')) aircraftListEl.style.display = 'none';
+    if (!e.target.closest('#waypointDropdown')) waypointListEl.style.display = 'none';
     if (!e.target.closest('#rateDropdown')) rateListEl.style.display = 'none';
   });
   aircraftListEl.addEventListener('click', (e) => e.stopPropagation());
@@ -7319,8 +7226,6 @@
   aircraftListEl.style.display = 'none';
   waypointListEl.style.display = 'none';
   rateListEl.style.display = 'none';
-  setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
-  setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
 
   function setDefaultDatetimes() {
     const now = new Date();
@@ -7349,8 +7254,7 @@
     distanceField.value = '';
     intlPassengersInput.value = '';
     localPassengersInput.value = '';
-    exchangeRateInput.value = DEFAULT_EXCHANGE_RATE;
-
+    
     // Reset manual distance entry flag
     distanceManuallyEntered = false;
 
@@ -7791,20 +7695,12 @@ ${htmlTable}
     const raw = waypointInput.value.trim().toUpperCase();
     buildWaypointList(waypointInput.value);
     waypointListEl.style.display = 'block';
-    setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, true);
     aircraftListEl.style.display = 'none';
-    setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
   });
 
   document.addEventListener('click', function(e) {
-    if (!e.target.closest('#aircraftDropdown')) {
-      aircraftListEl.style.display = 'none';
-      setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
-    }
-    if (!e.target.closest('#waypointDropdown')) {
-      waypointListEl.style.display = 'none';
-      setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
-    }
+    if (!e.target.closest('#aircraftDropdown')) aircraftListEl.style.display = 'none';
+    if (!e.target.closest('#waypointDropdown')) waypointListEl.style.display = 'none';
   });
   aircraftListEl.addEventListener('click', (e) => e.stopPropagation());
   waypointListEl.addEventListener('click', (e) => e.stopPropagation());
@@ -7813,8 +7709,6 @@ ${htmlTable}
   buildWaypointList('');
   aircraftListEl.style.display = 'none';
   waypointListEl.style.display = 'none';
-  setDropdownCountVisible(aircraftDropdownEl, aircraftListCountEl, false);
-  setDropdownCountVisible(waypointDropdownEl, waypointListCountEl, false);
 
   function setDefaultDatetimes() {
     const now = new Date();
