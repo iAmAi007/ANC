@@ -7179,6 +7179,9 @@
     const departureVal = departureDateTime.value;
     const arrivalVal = arrivalDateTime.value;
 
+    // Reset excluded charges BEFORE any calculations (prevents stale totals/icons on re-calc)
+    excludedCharges.clear();
+
     // Validate datetime sequence if both are provided
     let depDate = null;
     let arrDate = null;
@@ -7229,9 +7232,6 @@
     if (pkg !== "NIL") taaSubtotal += pkg;
     if (cute !== 0) taaSubtotal += cute;
     
-    // Reset excluded charges on new calculation
-    excludedCharges.clear();
-    
     // Update modal content with charge calculations
     // Helper to format numbers without .00 for whole numbers
     const fmt = (n) => Number.isInteger(n) ? n.toString() : n.toFixed(2);
@@ -7250,9 +7250,15 @@
     document.getElementById('taaSubtotal').textContent = taaSubtotal === 0 ? 'NIL' : `${fmt(taaSubtotal)} USD`;
     document.getElementById('totalCharges').textContent = total === 0 ? 'NIL' : `${fmt(total)} USD`;
 
-    // Reset row styling
+    // Reset row styling + reset icons to "Remove charge"
     document.querySelectorAll('.charge-row').forEach(row => {
       row.classList.remove('deleted');
+      const btn = row.querySelector('.delete-charge-btn');
+      if (btn) {
+        btn.innerHTML = '<svg width="8" height="8" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
+        btn.title = 'Remove charge';
+        btn.style.background = 'rgba(207, 222, 243, 0.8)';
+      }
     });
     
     // Show modal
