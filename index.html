@@ -1304,6 +1304,10 @@
       <span class="visit-counter-label">Visitors (total):</span>
       <span class="visit-counter-value" id="gcTotalVisitors">—</span>
     </div>
+    <div class="visit-counter-item">
+      <span class="visit-counter-label">Online now:</span>
+      <span class="visit-counter-value" id="fbOnlineNow">—</span>
+    </div>
   </div>
   <div class="flight-form">
     <!-- FLIGHT DETAILS -->
@@ -1630,6 +1634,93 @@
       updateCounts();
     }, 3000);
   })();
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+  import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
+  import { getDatabase, ref, onValue, onDisconnect, set, remove, serverTimestamp, update, child } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyB-FopinDzQ8TpEjQT8wceu2LAz1_rFgNI',
+    authDomain: 'theflightcostengine.firebaseapp.com',
+    databaseURL: 'https://theflightcostengine-default-rtdb.firebaseio.com/',
+    projectId: 'theflightcostengine',
+    appId: '1:777264533701:web:c8a7c5434b8db4fcf020ac'
+  };
+
+  function hasFirebaseConfig(cfg) {
+    return !!(cfg && cfg.apiKey && cfg.authDomain && cfg.databaseURL && cfg.projectId && cfg.appId);
+  }
+
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
+  function fmt(n) {
+    if (typeof n !== 'number' || !isFinite(n)) return '0';
+    return n.toLocaleString();
+  }
+
+  function sessionId() {
+    if (typeof crypto !== 'undefined' && crypto && typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    return String(Date.now()) + '-' + String(Math.random()).slice(2);
+  }
+
+  async function initPresence() {
+    if (!hasFirebaseConfig(firebaseConfig)) return;
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    try {
+      var cred = await signInAnonymously(auth);
+    } catch (_) {
+      return;
+    }
+
+    const uid = cred && cred.user && cred.user.uid ? cred.user.uid : null;
+    if (!uid) return;
+
+    const sid = sessionId();
+    const presenceRef = ref(db, 'presence/' + uid + '/' + sid);
+    const connectedRef = ref(db, '.info/connected');
+
+    onValue(connectedRef, (snap) => {
+      if (snap.val() !== true) return;
+      onDisconnect(presenceRef).remove();
+      set(presenceRef, { t: serverTimestamp() }).catch(() => {});
+    });
+
+    const presenceRoot = ref(db, 'presence');
+    onValue(
+      presenceRoot,
+      (snap) => {
+        const v = snap.val();
+        let count = 0;
+        if (v) {
+          for (const k of Object.keys(v)) {
+            const sessions = v[k];
+            if (sessions && typeof sessions === 'object') count += Object.keys(sessions).length;
+          }
+        }
+        setText('fbOnlineNow', fmt(count));
+      },
+      () => {
+        setText('fbOnlineNow', '—');
+      }
+    );
+
+    setInterval(() => {
+      update(presenceRef, { t: serverTimestamp() }).catch(() => {});
+    }, 30000);
+
+    setText('fbOnlineNow', '0');
+  }
+
+  initPresence();
 </script>
 
 <script>
