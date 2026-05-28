@@ -55,134 +55,6 @@
       box-shadow: 0 8px 32px #805a48;
     }
 
-    /* Mobile message overlay */
-    .mobile-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 9999;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .mobile-overlay.active {
-      display: flex;
-    }
-
-    .mobile-card {
-      max-width: 560px;
-      width: 100%;
-      background: #ffffff;
-      border-radius: 2rem;
-      padding: 3rem 2rem;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .mobile-overlay.active ~ .card,
-    .mobile-overlay.active ~ .footnote {
-      display: none !important;
-    }
-
-    .mobile-symbol {
-      margin-bottom: 1.75rem;
-      font-size: 3rem;
-      font-weight: 300;
-      letter-spacing: -0.02em;
-      color: #9aaebf;
-      line-height: 1;
-    }
-
-    .mobile-card h1 {
-      font-size: 2.2rem;
-      font-weight: 550;
-      letter-spacing: -0.02em;
-      color: #1f3a4b;
-      margin-bottom: 1rem;
-    }
-
-    .mobile-message {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: #A18170;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 1.5rem;
-    }
-
-    .mobile-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: transparent;
-      border: 1px solid #e2e8f0;
-      padding: 0.45rem 1.1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 450;
-      color: #A18170;
-      margin-top: 0.5rem;
-    }
-
-    .mobile-ping {
-      width: 6px;
-      height: 6px;
-      background-color: #6f9fcf;
-      border-radius: 50%;
-      display: inline-block;
-      animation: softPulse 1.8s infinite ease;
-    }
-
-    @keyframes softPulse {
-      0% { opacity: 0.4; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.2); background-color: #4f8bc9; }
-      100% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    @keyframes swipeGradient {
-      0% { background-position: 0 0; }
-      50% { background-position: 100% 0; }
-      100% { background-position: 0 0; }
-    }
-
-    .mobile-divider {
-      margin: 2rem auto 1.2rem;
-      width: 48px;
-      height: 1px;
-      background: #e2e8f0;
-    }
-
-    .mobile-footnote {
-      font-size: 0.75rem;
-      color: #8ba0b8;
-      margin-top: 1.2rem;
-      letter-spacing: 0.01em;
-    }
-
-    @media (max-width: 550px) {
-      .mobile-card {
-        padding: 2rem 1.5rem;
-        border-radius: 1.5rem;
-      }
-      .mobile-card h1 {
-        font-size: 1.8rem;
-      }
-      .mobile-message {
-        font-size: 0.95rem;
-      }
-      .mobile-symbol {
-        font-size: 2.4rem;
-      }
-    }
-
     
     .flight-form {
       width: 100%;
@@ -950,24 +822,18 @@
       width: 100%;
     }
 
+    /* Use grid (more reliable than flex on iPad Safari for datetime-local) */
     .datetime-stack {
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1rem;
       width: 100%;
-      /* iPad/Safari flex-gap fallback: use margins instead of gap */
-      gap: 0;
     }
 
     .datetime-stack .form-row {
-      flex: 1 1 0;
       min-width: 0;
       margin-bottom: 1.25rem;
       box-sizing: border-box;
-    }
-
-    /* Ensure consistent spacing between the two inputs on all browsers (incl. iPad Safari) */
-    .datetime-stack .form-row + .form-row {
-      margin-left: 1rem;
     }
 
     /* Prevent datetime-local inputs from overflowing their column on iOS/iPadOS */
@@ -1356,48 +1222,9 @@
       justify-content: flex-end;
     }
 
-    @media (max-width: 550px) {
-      body { padding: 1rem; }
-      .card { padding: 1.25rem; }
-      .action-buttons { flex-direction: column; }
-      .gentle-btn { justify-content: center; }
-      #routeList { flex-wrap: wrap; }
-      .form-row { margin-bottom: 1rem; }
-      .datetime-stack .form-row { margin-bottom: 1rem; }
-      .form-row label { padding-left: 0.75rem; }
-      .clear-aircraft-btn { right: 1.2rem; }
-      
-      .modal-content {
-        width: 95%;
-        margin: 1rem;
-      }
-      
-      .result-grid {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 <body>
-<!-- Mobile Detection Overlay -->
-<div id="mobileOverlay" class="mobile-overlay">
-  <div class="mobile-card">
-    <div class="mobile-symbol">✦</div>
-    <h1>Desktop Only</h1>
-    <div class="mobile-message">
-      This application is optimized for desktop use.<br>
-      Please switch to a larger screen to continue.
-    </div>
-    <div class="mobile-status">
-      <span class="mobile-ping"></span>
-      <span>desktop experience required</span>
-    </div>
-    <div class="mobile-divider"></div>
-    <div class="mobile-footnote">
-      thanks for understanding
-    </div>
-  </div>
-</div>
 
 <div class="card" id="mainContent">
   <div class="flight-form">
@@ -7762,15 +7589,6 @@ ${htmlTable}
   toggleClearButton();
   renderRoute();
 
-  // Mobile detection - show overlay on mobile devices
-  (function() {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-    if (isMobile) {
-      document.getElementById('mobileOverlay').classList.add('active');
-      document.getElementById('mainContent').style.display = 'none';
-      document.body.style.padding = '0';
-    }
-  })();
 </script>
 
 </body>
