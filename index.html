@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FlightCostEngine</title>
   <script>
-    // STRICT: do not render at all on mobile phones/small screens (iPad/tablets allowed)
+    // STRICT: do not render at all on mobile phones OR tablets (incl. iPad)
     (function () {
       const ua = navigator.userAgent || '';
       const isIPad = /iPad/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
       const isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+      const isAndroidTablet = /Android/i.test(ua) && !/Mobile/i.test(ua);
+      const isTabletUA = isIPad || isAndroidTablet || /Tablet/i.test(ua);
       const isSmallScreen = window.innerWidth < 768;
-      const shouldBlock = !isIPad && (isMobileUA || isSmallScreen);
+      const shouldBlock = isMobileUA || isTabletUA || isSmallScreen;
       if (!shouldBlock) return;
 
       // Nuke the document early so nothing displays (no overlay, no masked UI)
