@@ -394,9 +394,12 @@
       color: #c96a5a;
     }
 
+    /* Match MTOW/Distance input spacing exactly */
     input[type="datetime-local"].datetime-input {
       font-family: 'Lexend', sans-serif !important;
-      padding: 0.68rem 1rem;
+      padding: 0.75rem 1rem;
+      margin: 0;
+      box-sizing: border-box;
     }
 
     .text-input:focus,
@@ -1478,11 +1481,11 @@
     <div class="datetime-stack">
       <div class="form-row">
         <label class="no-emboss">Arrival</label>
-        <input type="datetime-local" class="datetime-input" id="arrivalDateTime">
+        <input type="datetime-local" class="text-input datetime-input" id="arrivalDateTime">
       </div>
       <div class="form-row">
         <label class="no-emboss">Departure</label>
-        <input type="datetime-local" class="datetime-input" id="departureDateTime">
+        <input type="datetime-local" class="text-input datetime-input" id="departureDateTime">
       </div>
     </div>
 
