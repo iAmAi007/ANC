@@ -4,6 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>FlightCostEngine</title>
+  <script>
+    // STRICT: do not render at all on mobile phones/small screens (iPad/tablets allowed)
+    (function () {
+      const ua = navigator.userAgent || '';
+      const isIPad = /iPad/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+      const isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+      const isSmallScreen = window.innerWidth < 768;
+      const shouldBlock = !isIPad && (isMobileUA || isSmallScreen);
+      if (!shouldBlock) return;
+
+      // Nuke the document early so nothing displays (no overlay, no masked UI)
+      document.documentElement.style.display = 'none';
+      document.open();
+      document.write('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body></body></html>');
+      document.close();
+    })();
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
     * {
@@ -7588,59 +7605,6 @@ ${htmlTable}
   // Initialize clear button visibility
   toggleClearButton();
   renderRoute();
-
-  // Mobile display restriction (JS-only). Allows iPad/tablets.
-  (function() {
-    const ua = navigator.userAgent || '';
-    const isIPad = /iPad/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
-    const isMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-    const isSmallScreen = window.innerWidth < 768;
-    const shouldBlock = !isIPad && (isMobileUA || isSmallScreen);
-
-    if (!shouldBlock) return;
-
-    const main = document.getElementById('mainContent');
-    if (main) main.style.display = 'none';
-    document.body.style.padding = '0';
-
-    const overlay = document.createElement('div');
-    overlay.setAttribute('data-mobile-block', 'true');
-    overlay.style.position = 'fixed';
-    overlay.style.inset = '0';
-    overlay.style.zIndex = '9999';
-    overlay.style.display = 'flex';
-    overlay.style.alignItems = 'center';
-    overlay.style.justifyContent = 'center';
-    overlay.style.padding = '2rem';
-    overlay.style.background = 'rgba(255, 255, 255, 0.92)';
-    overlay.style.backdropFilter = 'blur(10px)';
-
-    const card = document.createElement('div');
-    card.style.maxWidth = '560px';
-    card.style.width = '100%';
-    card.style.background = '#ffffff';
-    card.style.borderRadius = '24px';
-    card.style.padding = '2.5rem 2rem';
-    card.style.textAlign = 'center';
-    card.style.boxShadow = '0 12px 40px rgba(0,0,0,0.18)';
-
-    const title = document.createElement('div');
-    title.textContent = 'Desktop Only';
-    title.style.fontSize = '2rem';
-    title.style.fontWeight = '600';
-    title.style.marginBottom = '0.75rem';
-    title.style.color = '#1f3a4b';
-
-    const msg = document.createElement('div');
-    msg.innerHTML = 'This application is optimized for desktop use.<br>Please switch to a larger screen to continue.';
-    msg.style.fontSize = '1.05rem';
-    msg.style.color = '#A18170';
-
-    card.appendChild(title);
-    card.appendChild(msg);
-    overlay.appendChild(card);
-    document.body.appendChild(overlay);
-  })();
 
 </script>
 
