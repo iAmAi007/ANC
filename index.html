@@ -247,29 +247,41 @@
       position: relative;
     }
 
-    /* Clear button inside aircraft input - no background, appears only when input has value */
+    /* Clear button inside aircraft input - styled like Add Route button, but icon rotated to an "X" */
 .clear-aircraft-btn {
       position: absolute;
       right: 1.5rem;
       top: 50%;
       transform: translateY(-50%);
-      background: transparent;
-      border: none;
+      background: rgba(139, 94, 60, 0.22);
+      border: 1px solid rgba(139, 94, 60, 0.35);
       cursor: pointer;
-      font-size: 0.85rem;
-      color: #6b7d8f;
+      color: #472614;
       padding: 0;
       margin: 0;
-      border-radius: 0;
-      transition: color 0.15s ease;
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      min-height: 24px;
+      border-radius: 50%;
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 300;
       z-index: 2;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .clear-aircraft-btn svg {
+      display: block;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      transform: rotate(45deg);
+      transform-origin: 50% 50%;
     }
 
     /* Show clear button only when aircraft input has value */
@@ -280,7 +292,10 @@
     }
 
     .clear-aircraft-btn:hover {
-      color: #c96a5a;
+      background: rgba(139, 94, 60, 0.35);
+      border-color: rgba(139, 94, 60, 0.55);
+      color: #472614;
+      transform: translateY(-50%) scale(1.1);
     }
 
     /* Match MTOW/Distance input spacing exactly */
@@ -1279,7 +1294,11 @@
       <div class="custom-dropdown" id="aircraftDropdown">
         <div class="input-wrapper">
           <input type="text" class="dropdown-input aircraft-input-with-clear" id="aircraftInput" autocomplete="on">
-          <button type="button" class="clear-aircraft-btn" id="clearAircraftBtn" title="Clear aircraft selection">✕</button>
+          <button type="button" class="clear-aircraft-btn" id="clearAircraftBtn" title="Clear aircraft selection" aria-label="Clear aircraft selection">
+            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 2.5v7M2.5 6h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
         </div>
         <ul class="dropdown-list" id="aircraftList"></ul>
       </div>
