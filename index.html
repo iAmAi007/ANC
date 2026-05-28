@@ -954,14 +954,28 @@
       display: flex;
       flex-direction: row;
       width: 100%;
-      gap: 1rem;
+      /* iPad/Safari flex-gap fallback: use margins instead of gap */
+      gap: 0;
     }
 
     .datetime-stack .form-row {
-      flex: 1;
+      flex: 1 1 0;
       min-width: 0;
       margin-bottom: 1.25rem;
       box-sizing: border-box;
+    }
+
+    /* Ensure consistent spacing between the two inputs on all browsers (incl. iPad Safari) */
+    .datetime-stack .form-row + .form-row {
+      margin-left: 1rem;
+    }
+
+    /* Prevent datetime-local inputs from overflowing their column on iOS/iPadOS */
+    .datetime-stack input,
+    .datetime-stack select,
+    .datetime-stack textarea {
+      min-width: 0;
+      max-width: 100%;
     }
 
     .datetime-stack .form-row:last-child {
