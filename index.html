@@ -74,6 +74,39 @@
       box-shadow: 0 8px 32px #805a48;
     }
 
+    .visit-counter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.14);
+      margin-bottom: 1.1rem;
+    }
+
+    .visit-counter-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .visit-counter-label {
+      font-size: 0.72rem;
+      color: rgba(71, 38, 20, 0.75);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .visit-counter-value {
+      font-size: 0.82rem;
+      color: #472614;
+      font-weight: 700;
+      min-width: 2ch;
+    }
+
     
     .flight-form {
       width: 100%;
@@ -1257,10 +1290,21 @@
     }
 
   </style>
+  <script data-goatcounter="https://theflightcostengine.goatcounter.com/count" data-goatcounter-settings='{"allow_local":true}' async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
 <div class="card" id="mainContent">
+  <div class="visit-counter-bar" aria-label="Visitor counts">
+    <div class="visit-counter-item">
+      <span class="visit-counter-label">Visitors (this page):</span>
+      <span class="visit-counter-value" id="gcPageVisitors">—</span>
+    </div>
+    <div class="visit-counter-item">
+      <span class="visit-counter-label">Visitors (total):</span>
+      <span class="visit-counter-value" id="gcTotalVisitors">—</span>
+    </div>
+  </div>
   <div class="flight-form">
     <!-- FLIGHT DETAILS -->
     <div class="form-row">
@@ -1525,6 +1569,68 @@
 </div>
 
 <footer class="footnote">FlightCostEngine  •  Version FrostVeil 2026</footer>
+
+<script>
+  (function () {
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
+    function fmt(n) {
+      if (typeof n !== 'number' || !isFinite(n)) return '0';
+      return n.toLocaleString();
+    }
+
+    function counterPath(path) {
+      if (path === 'TOTAL') return 'TOTAL';
+      let decoded = path;
+      try {
+        decoded = decodeURIComponent(path);
+      } catch (_) {}
+      return encodeURIComponent(decoded);
+    }
+
+    async function fetchUnique(path) {
+      const url = 'https://theflightcostengine.goatcounter.com/counter/' + counterPath(path) + '.json';
+      const r = await fetch(url, { cache: 'no-store' });
+      if (!r.ok) return null;
+      return await r.json();
+    }
+
+    async function updateCounts() {
+      let pagePath = location.pathname + location.search;
+      try {
+        if (window.goatcounter && typeof window.goatcounter.get_data === 'function') {
+          const d = window.goatcounter.get_data();
+          if (d && d.p) pagePath = d.p;
+        }
+      } catch (_) {}
+
+      try {
+        const pageData = await fetchUnique(pagePath);
+        if (pageData) setText('gcPageVisitors', fmt(pageData.count_unique));
+      } catch (_) {}
+
+      try {
+        const totalData = await fetchUnique('TOTAL');
+        if (totalData) setText('gcTotalVisitors', fmt(totalData.count_unique));
+      } catch (_) {}
+    }
+
+    const t = setInterval(function () {
+      if (window.goatcounter) {
+        clearInterval(t);
+        updateCounts();
+      }
+    }, 100);
+
+    setTimeout(function () {
+      clearInterval(t);
+      updateCounts();
+    }, 3000);
+  })();
+</script>
 
 <script>
   // Aircraft dataset
