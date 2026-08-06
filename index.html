@@ -1279,7 +1279,7 @@
               </div>
             </div>
             <div style="flex: 0 0 25%; display: flex; justify-content: center; align-items: center;">
-              <input type="number" class="text-input" id="exchangeRateInput" value="2650" min="0" step="any" style="width: 100px; text-align: center !important;">
+              <input type="number" class="text-input" id="exchangeRateInput" value="2700" min="0" step="any" style="width: 100px; text-align: center !important;">
             </div>
             <div style="flex: 0 0 50%; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
               <input type="number" class="text-input" id="intlPassengersInput" placeholder="Intl" min="0" value="" style="width: 100px; text-align: center !important;">
@@ -6213,7 +6213,7 @@
   function calculateSAF() {
     const intlPAX = parseInt(intlPassengersInput.value) || 0;
     const localPAX = parseInt(localPassengersInput.value) || 0;
-    const exchangeRate = parseFloat(exchangeRateInput.value) || 2650;
+    const exchangeRate = parseFloat(exchangeRateInput.value) || 2700;
     
     if (intlPAX === 0 && localPAX === 0) {
       return "NIL";
@@ -6261,7 +6261,7 @@
   function calculateSEC() {
     const intlPAX = parseInt(intlPassengersInput.value) || 0;
     const localPAX = parseInt(localPassengersInput.value) || 0;
-    const exchangeRate = parseFloat(exchangeRateInput.value) || 2650;
+    const exchangeRate = parseFloat(exchangeRateInput.value) || 2700;
     
     if (intlPAX === 0 && localPAX === 0) {
       return "NIL";
