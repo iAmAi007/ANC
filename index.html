@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!-- saved from url=(0031)https://iamai007.github.io/ANC/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
@@ -492,6 +492,69 @@
       background: rgba(139, 94, 60, 0.1);
       border-radius: 0;
       margin-bottom: 0.3rem;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .route-row-header:hover {
+      background: rgba(139, 94, 60, 0.18);
+    }
+
+    .route-row.active .route-row-header {
+      background: rgba(139, 94, 60, 0.28);
+      box-shadow: inset 3px 0 0 #8b5e3c;
+    }
+
+    .route-row.active .route-row-label {
+      font-weight: 600;
+    }
+
+    .route-row.active .route-row-label::after {
+      content: '';
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-left: 0.5rem;
+      margin-right: 16px;
+      border-radius: 50%;
+      vertical-align: middle;
+      background: rgba(139, 94, 60, 0.3);
+      box-shadow: 8px 0 0 rgba(139, 94, 60, 0.3), 16px 0 0 rgba(139, 94, 60, 0.3);
+      animation: rowDotWave 1.2s infinite ease-in-out;
+    }
+
+    @keyframes rowDotWave {
+      0%, 100% {
+        background: rgba(139, 94, 60, 0.3);
+        box-shadow: 8px 0 0 rgba(139, 94, 60, 0.3), 16px 0 0 rgba(139, 94, 60, 0.3);
+      }
+      25% {
+        background: #8b5e3c;
+        box-shadow: 8px 0 0 rgba(139, 94, 60, 0.3), 16px 0 0 rgba(139, 94, 60, 0.3);
+      }
+      50% {
+        background: rgba(139, 94, 60, 0.3);
+        box-shadow: 8px 0 0 #8b5e3c, 16px 0 0 rgba(139, 94, 60, 0.3);
+      }
+      75% {
+        background: rgba(139, 94, 60, 0.3);
+        box-shadow: 8px 0 0 rgba(139, 94, 60, 0.3), 16px 0 0 #8b5e3c;
+      }
+    }
+
+    @keyframes ancBlink {
+      0%, 100% { background-color: rgba(220, 38, 38, 0.06); }
+      50% { background-color: rgba(220, 38, 38, 0.22); }
+    }
+
+    .charge-row.anc-blink {
+      animation: ancBlink 1s infinite ease-in-out;
+    }
+
+    .charge-row.anc-blink .result-label,
+    .charge-row.anc-blink #ancCharge {
+      color: #b91c1c;
+      font-weight: 600;
     }
 
     .route-row-label {
@@ -769,6 +832,11 @@
       min-width: fit-content;
     }
 
+    @keyframes waypointBlink {
+      0%, 100% { color: #dc2626; }
+      50% { color: rgba(220, 38, 38, 0.3); }
+    }
+
     .route-item.undefined-coords {
       border: 1px solid rgba(220, 38, 38, 0.4);
     }
@@ -776,6 +844,7 @@
     .route-item.undefined-coords .route-waypoint {
       color: #dc2626;
       font-weight: 500;
+      animation: waypointBlink 1s infinite ease-in-out;
     }
 
     .route-item:hover {
@@ -1044,6 +1113,36 @@
       color: #472614;
       cursor: pointer;
       user-select: none;
+    }
+
+    .multiple-landing-count {
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #ffffff;
+      caret-color: #ffffff;
+      background: #472614;
+      border: 1px solid #472614;
+      border-radius: 50%;
+      outline: none;
+      cursor: text;
+      box-sizing: border-box;
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+
+    .multiple-landing-count::-webkit-outer-spin-button,
+    .multiple-landing-count::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .multiple-landing-count:focus {
+      border-color: #663d27;
+      box-shadow: 0 0 0 2px rgba(102, 61, 39, 0.15);
     }
 
     .gentle-btn::before {
@@ -1372,6 +1471,7 @@
         <div class="clear-checkbox-container">
           <input type="checkbox" id="multipleLandingCheckbox">
           <label for="multipleLandingCheckbox" class="checkbox-label">Multiple landing</label>
+          <input type="text" inputmode="numeric" id="multipleLandingCount" class="multiple-landing-count" value="2" style="display: none;">
         </div>
       </div>
       <div class="right-group">
@@ -2746,3333 +2846,556 @@
   aircrafts.sort((a, b) => a.display.localeCompare(b.display));
 
 
-  // Waypoint names mapping (code -> full name)
-  const waypointNames = {
-    "BJA": "Bujumbura CVOR",
-    "DO": "Dodoma NDB",
-    "DV": "Dar es salaam DVOR",
-    "HTAI": "Lamai",
-    "HTAL": "Allience",
-    "HTAR": "Arusha",
-    "HTAS": "Mashado",
-    "HTBB": "Kiba (Kibambawe)",
-    "HTBE": "Berega",
-    "HTBF": "Buckreef",
-    "HTBG": "Kikoboga",
-    "HTBH": "Biharamulo",
-    "HTBJ": "Kabojo",
-    "HTBM": "Bagamoyo",
-    "HTBN": "Bulyankhulu",
-    "HTBO": "Behobeho",
-    "HTBS": "Mbesa",
-    "HTBT": "Buturi",
-    "HTBU": "Bukoba",
-    "HTBV": "Yaeda Chini",
-    "HTBX": "Maboxi",
-    "HTBY": "Mbamba Bay",
-    "HTBP": "Buger",
-    "HTCD": "Chidudu",
-    "HTCF": "Catfish",
-    "HTCH": "Chunya",
-    "HTCM": "Chemchem",
-    "HTCV": "Chivanjee",
-    "HTDA": "Dar es salaam",
-    "HTDB": "Madaba",
-    "HTDG": "Doly",
-    "HTDK": "Dakawa",
-    "HTDN": "Saadani",
-    "HTDO": "Dodoma",
-    "HTDU": "Kibidula",
-    "HTDY": "Dorman",
-    "HTBA": "Basuto",
-    "HTEB": "Sengerema",
-    "HTED": "Endanyawish",
-    "HTEE": "Mlele Ram",
-    "HTEJ": "Shama",
-    "HTGL": "Gerai Lumbwa",
-    "HTGM": "Magambua",
-    "HTGO": "Kizigo",
-    "HTEG": "Engaresaro",
-    "HTEN": "Enduleni",
-    "HTEQ": "Shughuli",
-    "HTER": "Mtera",
-    "HTES": "Engorika",
-    "HTEY": "Sikonge",
-    "HTFE": "Fish Eagle",
-    "HTFI": "Fort Ikoma",
-    "HTFR": "Kifura",
-    "HTGA": "Mbuga/Ilonga",
-    "HTGB": "Gorimba",
-    "HTGE": "Geita",
-    "HTGP": "Golden Pride",
-    "HTGR": "Grumet",
-    "HTGS": "Malagarasi",
-    "HTGT": "Gelai East",
-    "HTGU": "Miguruwe",
-    "HTGV": "George Vineyard Memorial (Kipili)",
-    "HTGW": "Songwe",
-    "HTGZ": "Magazini",
-    "HTHB": "Muhuba",
-    "HTHG": "Kilumbi",
-    "HTHI": "Mlay/Mlahi",
-    "HTHM": "Mwambesi",
-    "HTHR": "Heri Hospital",
-    "HTHS": "Muhesi",
-    "HTHY": "Hydom",
-    "HTII": "Lesirwai",
-    "HTIA": "Ifakara",
-    "HTIF": "Ifunda Farm",
-    "HTIH": "Tarime (Sasi)",
-    "HTIK": "Iku-Lake Chada",
-    "HTIL": "Lila",
-    "HTIR": "Iringa",
-    "HTIW": "Liwale",
-    "HTIY": "Inyonga",
-    "HTII": "Lesirwai",
-    "HTJN": "Kwajoni",
-    "HTJO": "Jongomero",
-    "HTJR": "Mkwaja Ranch",
-    "HTKA": "Kigoma",
-    "HTKC": "Kleins Camp",
-    "HTKD": "Kondoa",
-    "HTKE": "Ketumbeine",
-    "HTKF": "Kibebe Farm",
-    "HTKG": "Namkongo",
-    "HTKH": "Kahama",
-    "HTKI": "Kilwa Masoko",
-    "HTKJ": "Kilimanjaro",
-    "HTKL": "Kirondatal",
-    "HTKM": "Kilombero",
-    "HTKN": "Kasense",
-    "HTKO": "Kongwa",
-    "HTKP": "Kingupira",
-    "HTKR": "Karagwe",
-    "HTKS": "Kilosa",
-    "HTKT": "Kilimatinde",
-    "HTKU": "Kasulu",
-    "HTKX": "Kitemela",
-    "HTKB": "Kibondo",
-    "HTLA": "Lukula",
-    "HTLB": "Malambo",
-    "HTLD": "Loliondo",
-    "HTLE": "Ilembula",
-    "HTLI": "Lindi",
-    "HTLJ": "Lualanje",
-    "HTLK": "Luika",
-    "HTLL": "Liuli",
-    "HTLM": "Lake Manyara",
-    "HTLN": "Lukwati",
-    "HTLO": "Lobo Wild Life Lodge",
-    "HTLP": "Lupa",
-    "HTLR": "Lukuliro",
-    "HTLS": "Lesingita",
-    "HTLT": "Lunda Wma",
-    "HTLU": "Lunda",
-    "HTLV": "Liveria",
-    "HTLW": "Luwegu",
-    "HTLY": "Luwele",
-    "HTMA": "Mafia",
-    "HTMD": "Buhemba Gold Mining",
-    "HTME": "Matambwe",
-    "HTMF": "Mufindi",
-    "HTMG": "Morogoro",
-    "HTMH": "Makau",
-    "HTMI": "Masasi",
-    "HTMJ": "Maji Moto",
-    "HTMK": "Mikumi",
-    "HTML": "Mahale",
-    "HTMM": "Mamarehe",
-    "HTMN": "Matemanga",
-    "HTMO": "Mombo",
-    "HTMP": "Mpanda",
-    "HTMR": "Msembe Ruaha",
-    "HTMS": "Moshi",
-    "HTMT": "Mtwara",
-    "HTMU": "Musoma",
-    "HTMV": "Mvumi",
-    "HTMW": "Mwanza",
-    "HTMX": "Mpwapwa",
-    "HTMY": "Mbuyu",
-    "HTNA": "Nachingwea",
-    "HTNB": "Naberera",
-    "HTND": "Ndutu",
-    "HTNF": "Nkonje",
-    "HTNG": "Ngerengere",
-    "HTNH": "Ndolo",
-    "HTNJ": "Njombe",
-    "HTNK": "Nkinga",
-    "HTNM": "North Mara",
-    "HTNN": "Ngorongoro",
-    "HTNO": "Mbono",
-    "HTNR": "Ngara",
-    "HTNW": "Ngwazi",
-    "HTNY": "Kinyanguru",
-    "HTNZ": "Nzega",
-    "HTOH": "Mishamo",
-    "HTOM": "Olemilei",
-    "HTON": "Mishamo",
-    "HTOP": "Olepakashi/Engaresero",
-    "HTOZ": "Kigosa 1/Kigozi",
-    "HTPD": "Mpunde",
-    "HTPE": "Pemba",
-    "HTTP": "Kapunga",
-    "HTPK": "Kapunga",
-    "HTPT": "Piti",
-    "HTPW": "Matipwili",
-    "HTRA": "Mkangire",
-    "HTRB": "Rubondo",
-    "HTRE": "Kilo 3",
-    "HTRG": "Rungwa",
-    "HTRK": "Ras Kutani",
-    "HTRL": "Mbarali",
-    "HTRN": "Barani",
-    "HTRS": "Kibesa",
-    "HTRU": "Mchauru",
-    "HTRX": "Tango One",
-    "HTRZ": "Kirumira",
-    "HTSA": "Makwasa",
-    "HTSB": "Kagera Sugar",
-    "HTSD": "Singida",
-    "HTSE": "Same",
-    "HTSG": "Stiglers Gorge",
-    "HTSH": "Mafinga",
-    "HTSI": "Kihansi",
-    "HTSJ": "Simanjiro",
-    "HTSK": "Sitalike",
-    "HTSL": "Msolwa",
-    "HTSM": "Masimba",
-    "HTSN": "Seronera",
-    "HTSO": "Songea",
-    "HTSS": "Songosongo",
-    "HTST": "Serengeti South",
-    "HTSU": "Sumbawanga",
-    "HTSW": "Kiswa",
-    "HTSY": "Shinyanga – Ibadakuli",
-    "HTTA": "Mngeta",
-    "HTTB": "Tabora",
-    "HTTC": "TPC",
-    "HTTE": "Mtemere",
-    "HTTF": "Mwadui",
-    "HTTG": "Tanga",
-    "HTTJ": "Handajega",
-    "HTTL": "Tulawaka",
-    "HTTN": "Magangwe",
-    "HTTO": "Kogatende",
-    "HTTR": "Tarangire",
-    "HTTS": "Milembwe",
-    "HTTU": "Tunduru",
-    "HTTV": "Msima",
-    "HTTX": "Tarime",
-    "HTTY": "Manyara South",
-    "HTTZ": "Tura",
-    "HTTI": "Mtibwa",
-    "HTUC": "Turiani",
-    "HTUF": "Ugalla",
-    "HTUG": "Lugala",
-    "HTUK": "Ukerewe – Nansio",
-    "HTUN": "Murungu",
-    "HTUO": "Merugoi",
-    "HTUP": "Mtemaupinde",
-    "HTUR": "Urambo",
-    "HTUS": "Masusu",
-    "HTUT": "Utete",
-    "HTUU": "Kalulu",
-    "HTUV": "Uvinza",
-    "HTUW": "Nungwi",
-    "HTUZ": "Kuro",
-    "HTWA": "Sasakwa",
-    "HTWB": "Mwiba",
-    "HTWH": "Wazo Hill",
-    "HTWI": "Mchukwi",
-    "HTWK": "West Kilimanjaro",
-    "HTWS": "Kwamsisi",
-    "HTYA": "Kibaya",
-    "HTYE": "Nyamonge",
-    "HTYO": "Moyowosi",
-    "HTYW": "Likuyu",
-    "HTYY": "Yeye 2",
-    "HTZA": "Zanzibar",
-    "HTZI": "Kisima (Mkomazi)",
-    "HTZW": "Ziwandu",
-    "KS": "Kasama NDB",
-    "KG": "Kigoma NDB",
-    "KNM": "Kigali DVOR",
-    "KV": "Kilimanjaro DVOR",
-    "MB": "Mbeya NDB",
-    "MT": "Mtwara NDB",
-    "MV": "Mwanza VOR",
-    "TB": "Tabora NDB",
-    "ZV": "Zanzibat VOR",
-    "THANDA": "Thanda Island Helipad",
-    "SG": "Songea NDB",
-    "TG": "Tanga NDB"
-  };
-
-  // Waypoints master list with coordinates
+// Waypoints master list with coordinates and names
   const waypointsMaster = {
-    "TG": { "lat": -5.0888333, "lon": 39.0733333 },
-
-"SG": { "lat": -10.6803333, "lon": 35.5801667 },
-
-
-
-"THANDA": { "lat": -7.7036, "lon": 39.6808 },
-
-
-
-"HTNF": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUW": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-    "HTIY": { "lat": -6.7167, "lon": 32.1000 },
-
-    "HTKD": { "lat": -4.9333, "lon": 35.7667 },
-
-    "HTKI": { "lat": -8.9167, "lon": 39.4833 },
-
-    "HTKL": { "lat": -4.3167, "lon": 34.3333 },
-
-
-
-    "HTKS": { "lat": -6.9000, "lon": 37.0167 },
-
-    "HTKU": { "lat": -4.5492, "lon": 30.1010 },
-
-
-
-    "HTLI": { "lat": -9.8509, "lon": 39.7591 },
-
-    "HTLL": { "lat": -11.1000, "lon": 34.6500 },
-
-
-
-    "HTMV": { "lat": -6.3741, "lon": 35.8987 },
-
-    "HTMX": { "lat": -6.3500, "lon": 36.4833 },
-
-    "HTNJ": { "lat": -9.3500, "lon": 34.8000 },
-
-    "HTRU": { "lat": -2.8108, "lon": 32.1719 },
-
-    "HTSE": { "lat": -4.0833, "lon": 37.7000 },
-
-    "HTTU": { "lat": -1.1833, "lon": 37.3667 },
-
-    "HTUK": { "lat": -2.1069, "lon": 33.1118 },
-
-    "HTUR": { "lat": -5.0667, "lon": 32.0500 },
-
-    "HTUV": { "lat": -5.0920, "lon": 30.4119 },
-
-    "HTUW": { "lat": -5.7532, "lon": 39.3160 },
-
-
-
+    "AKUMU": { "lat": -0.491469, "lon": 34.02655 },
+    "ALSAR": { "lat": -1.451228, "lon": 30.744514 },
+    "AMSAD": { "lat": -6.221833, "lon": 43.993508 },
+    "ANTIM": { "lat": -4.601578, "lon": 36.129778 },
+    "ANTUG": { "lat": -10.451175, "lon": 35.343372 },
+    "ANVOX": { "lat": -2.726036, "lon": 36.162814 },
+    "ANVUN": { "lat": -6.444689, "lon": 39.740992 },
+    "APDIK": { "lat": -2.470275, "lon": 36.675486 },
+    "APDOT": { "lat": -1.537053, "lon": 34.567111 },
+    "APDUB": { "lat": -9.020164, "lon": 33.073742 },
+    "APGAM": { "lat": -7.419944, "lon": 35.70455 },
+    "APGEN": { "lat": -8.189483, "lon": 40.83945 },
+    "APKOL": { "lat": -9.487747, "lon": 33.312089 },
+    "APLOG": { "lat": -1.501764, "lon": 34.921056 },
+    "APMIT": { "lat": -3.277064, "lon": 36.467639 },
+    "APMOK": { "lat": -10.515408, "lon": 40.084719 },
+    "APNAD": { "lat": -1, "lon": 32.55595 },
+    "APNAT": { "lat": -10.035633, "lon": 40.202928 },
+    "APNOL": { "lat": -4.324008, "lon": 34.891336 },
+    "ATBAL": { "lat": -2.538356, "lon": 36.765775 },
+    "ATUNU": { "lat": -5.396756, "lon": 35.920589 },
+    "ATUPA": { "lat": -2.651497, "lon": 32.307514 },
+    "AVATU": { "lat": -3.034422, "lon": 35.426578 },
+    "AVEKI": { "lat": -6.257547, "lon": 39.622425 },
+    "AVETA": { "lat": -3.680478, "lon": 36.054372 },
+    "AVIGO": { "lat": -5.57015, "lon": 40.912642 },
+    "AVIRI": { "lat": -6.678525, "lon": 32.086919 },
+    "AVITA": { "lat": -6.0311, "lon": 37.754969 },
+    "AVUNO": { "lat": -3.532981, "lon": 37.750858 },
+    "AXARA": { "lat": -10.128933, "lon": 40.094806 },
+    "AXEPU": { "lat": -7.137644, "lon": 39.085047 },
+    "AXOSI": { "lat": -5.960556, "lon": 37.800833 },
+    "BILAK": { "lat": -9.132164, "lon": 32.388603 },
+    "BONAP": { "lat": -11.635278, "lon": 37.657519 },
+    "BOSAD": { "lat": -1.9073, "lon": 30.82035 },
+    "BOTEN": { "lat": -8.479722, "lon": 38.681944 },
+    "BUJUMBURA CVOR": { "lat": -3.346339, "lon": 29.322025 },
+    "DARAS": { "lat": -7.933147, "lon": 40.503928 },
+    "DASTA": { "lat": -8.717797, "lon": 41.492842 },
+    "DATAN": { "lat": -2.098672, "lon": 30.896186 },
+    "DO": { "lat": -6.168986, "lon": 35.746506, "name": "Dodoma NDB" },
+    "DUDGA": { "lat": -1.0025, "lon": 32.388358 },
+    "DUDNA": { "lat": -7.545478, "lon": 39.144411 },
+    "DUGPU": { "lat": -2.311142, "lon": 33.192883 },
+    "DUKBO": { "lat": -6.158819, "lon": 39.762228 },
+    "DULMI": { "lat": -3.124325, "lon": 36.902461 },
+    "DULRO": { "lat": -6.655672, "lon": 39.425042 },
+    "DULVA": { "lat": -6.428875, "lon": 38.708881 },
     "DUMA": { "lat": -2.4500, "lon": 35.0833 },
-
-    "HTIK": { "lat": -6.9000, "lon": 31.1667 },
-
-    "HTFI": { "lat": -2.0833, "lon": 34.6333 },
-
-    "HTJO": { "lat": -7.8833, "lon": 34.6000 },
-
-    "HTBG": { "lat": -7.331183, "lon": 37.114433 },
-
+    "DUMPA": { "lat": -4.172647, "lon": 35.484042 },
+    "DUMSU": { "lat": -6.421131, "lon": 39.143908 },
+    "DUNDO": { "lat": -4.867325, "lon": 38.798558 },
+    "DURLA": { "lat": -3.145431, "lon": 35.654756 },
+    "DUSKA": { "lat": -10.63, "lon": 40.2167 },
+    "DUSNO": { "lat": -6.065622, "lon": 35.575028 },
+    "DUTBU": { "lat": -7.483025, "lon": 34.123928 },
+    "DUTPA": { "lat": -3.500903, "lon": 36.628719 },
+    "DV": { "lat": -6.888006, "lon": 39.192714, "name": "Dar es salaam DVOR" },
+    "DVOR": { "lat": -3.427881, "lon": 37.106611 },
+    "EGLOX": { "lat": -1.856469, "lon": 34.995456 },
+    "EGMIL": { "lat": -3.9803, "lon": 35.732578 },
+    "EGNUM": { "lat": -5.794444, "lon": 37.926944 },
+    "EGPET": { "lat": -5.877325, "lon": 39.394508 },
+    "EGPOS": { "lat": -6.163361, "lon": 35.472211 },
+    "EGPUR": { "lat": -3.153039, "lon": 36.554881 },
+    "EGREK": { "lat": -1.079025, "lon": 30.383181 },
+    "EGRIG": { "lat": -6.797772, "lon": 39.425108 },
+    "EGSEM": { "lat": -6.445142, "lon": 42.457319 },
+    "EGSEN": { "lat": -3.608297, "lon": 33.503481 },
+    "EGSIX": { "lat": -4.526061, "lon": 35.276153 },
+    "EGTAN": { "lat": -11.16815, "lon": 39.247806 },
+    "EGTEM": { "lat": -2.069722, "lon": 34.508056 },
+    "EGTUT": { "lat": -6.511144, "lon": 39.253836 },
+    "EGVAT": { "lat": -6.103311, "lon": 38.942386 },
+    "ELAVA": { "lat": -5.118969, "lon": 40.384269 },
+    "ELOBO": { "lat": -2.319208, "lon": 30.833961 },
+    "EPLUL": { "lat": -3.477081, "lon": 36.847722 },
+    "EPMAB": { "lat": -8.5906, "lon": 35.141367 },
+    "EPMIN": { "lat": -4.762697, "lon": 33.855258 },
+    "EPTAN": { "lat": -2.798619, "lon": 36.260147 },
+    "EPTEL": { "lat": -4.041744, "lon": 38.293333 },
+    "EPTIK": { "lat": -4.611203, "lon": 35.446903 },
+    "EPTUR": { "lat": -6.074914, "lon": 35.958294 },
+    "ERBAS": { "lat": -6.948178, "lon": 38.990258 },
+    "ERBEP": { "lat": -4.374267, "lon": 37.414656 },
+    "ERBOK": { "lat": -3.210756, "lon": 29.864539 },
+    "ERBUG": { "lat": -6.390803, "lon": 39.145281 },
+    "ERDEN": { "lat": -8.5555, "lon": 39.214006 },
+    "ESPUX": { "lat": -3.781133, "lon": 32.865953 },
+    "ESRES": { "lat": -8.21435, "lon": 30.679125 },
+    "ESRUL": { "lat": -10.604703, "lon": 40.163289 },
+    "ESVIM": { "lat": -3.499031, "lon": 29.797803 },
+    "ESVUD": { "lat": -3.457342, "lon": 36.404133 },
+    "ETIVO": { "lat": -5.857753, "lon": 37.8739 },
+    "ETLEK": { "lat": -4.268417, "lon": 32.222625 },
+    "ETLOR": { "lat": -1.537411, "lon": 32.543117 },
+    "ETMIS": { "lat": -7.826758, "lon": 40.603047 },
+    "ETMIX": { "lat": -2.378864, "lon": 30.057117 },
+    "ETMOV": { "lat": -3.19375, "lon": 36.114664 },
+    "ETUXI": { "lat": -5.088133, "lon": 34.921969 },
+    "EVASI": { "lat": -3.713661, "lon": 34.810097 },
+    "EVATO": { "lat": -2.33585, "lon": 36.450822 },
+    "EVEXA": { "lat": -6.411406, "lon": 39.243831 },
+    "EXASA": { "lat": -6.462806, "lon": 31.295097 },
+    "EXELU": { "lat": -3.006317, "lon": 36.539536 },
+    "EXEMI": { "lat": -2.750875, "lon": 34.230561 },
+    "EXIMA": { "lat": -6.365661, "lon": 31.398769 },
+    "FROSU": { "lat": -2.009542, "lon": 35.101714 },
+    "GABGU": { "lat": -6.947381, "lon": 39.86935 },
+    "GABSO": { "lat": -2.852481, "lon": 37.567517 },
+    "GADBU": { "lat": -6.028128, "lon": 39.205603 },
+    "GAVDA": { "lat": -2.7867, "lon": 29.6603 },
+    "GEREN": { "lat": -5.064797, "lon": 38.461097 },
+    "GERUD": { "lat": -3.857328, "lon": 35.672044 },
+    "GESAT": { "lat": -9.441642, "lon": 33.062917 },
+    "GETAB": { "lat": -2.979967, "lon": 30.793747 },
+    "GETUV": { "lat": -6.371717, "lon": 39.336361 },
+    "GETUX": { "lat": -4.484297, "lon": 29.569717 },
+    "HTAI": { "lat": -1.5616934, "lon": 34.7023730, "name": "Lamai" },
+    "HTAL": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Allience" },
+    "HTAR": { "lat": -3.3537, "lon": 36.6246, "name": "Arusha" },
+    "HTAS": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mashado" },
+    "HTBA": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Basuto" },
+    "HTBB": { "lat": -7.748241, "lon": 38.001833, "name": "Kiba (Kibambawe)" },
+    "HTBE": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Berega" },
+    "HTBF": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Buckreef" },
+    "HTBG": { "lat": -7.331183, "lon": 37.114433, "name": "Kikoboga" },
+    "HTBH": { "lat": -2.6603, "lon": 31.3500, "name": "Biharamulo" },
+    "HTBJ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kabojo" },
+    "HTBM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Bagamoyo" },
+    "HTBN": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Bulyankhulu" },
+    "HTBO": { "lat": -7.666746, "lon": 37.927229, "name": "Behobeho" },
+    "HTBS": { "lat": -11.331675, "lon": 37.067816, "name": "Mbesa" },
+    "HTBT": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Buturi" },
+    "HTBU": { "lat": -1.3305742, "lon": 31.8194127, "name": "Bukoba" },
+    "HTBV": { "lat": -3.961546, "lon": 35.144932, "name": "Yaeda Chini" },
+    "HTBX": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Maboxi" },
+    "HTBY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mbamba Bay" },
+    "HTCF": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Catfish" },
+    "HTCH": { "lat": -8.559177349999999, "lon": 33.43547039554499, "name": "Chunya" },
+    "HTCM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Chemchem" },
+    "HTCV": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Chivanjee" },
+    "HTDA": { "lat": -6.8780873, "lon": 39.2026718, "name": "Dar es salaam" },
+    "HTDB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Madaba" },
+    "HTDG": { "lat": -3.4394216, "lon": 36.8616974, "name": "Doly" },
+    "HTDK": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Dakawa" },
+    "HTDN": { "lat": -6.0309216, "lon": 38.7701179, "name": "Saadani" },
+    "HTDO": { "lat": -6.1700681500000005, "lon": 35.754430618763045, "name": "Dodoma" },
+    "HTDU": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kibidula" },
+    "HTDY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Dorman" },
+    "HTEB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Sengerema" },
+    "HTEE": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mlele Ram" },
+    "HTEJ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Shama" },
+    "HTEN": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Enduleni" },
+    "HTEQ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Shughuli" },
+    "HTER": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mtera" },
+    "HTES": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Engorika" },
+    "HTEY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Sikonge" },
+    "HTFE": { "lat": -4.805057, "lon": 31.276613, "name": "Fish Eagle" },
+    "HTFI": { "lat": -2.080103, "lon": 34.62952, "name": "Fort Ikoma" },
+    "HTFR": { "lat": -3.838092, "lon": 30.640202, "name": "Kifura" },
+    "HTGA": { "lat": -8.978724, "lon": 36.869154, "name": "Mbuga/Ilonga" },
+    "HTGE": { "lat": -2.7431076, "lon": 31.71008826429769, "name": "Geita" },
+    "HTGL": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Gerai Lumbwa" },
+    "HTGM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Magambua" },
+    "HTGO": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kizigo" },
+    "HTGP": { "lat": -4.080354, "lon": 33.160212, "name": "Golden Pride" },
+    "HTGR": { "lat": -2.160722, "lon": 34.224778, "name": "Grumet" },
+    "HTGS": { "lat": -4.793813, "lon": 30.712949, "name": "Malagarasi" },
+    "HTGT": { "lat": -2.476768, "lon": 36.25761, "name": "Gelai East" },
+    "HTGU": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Miguruwe" },
+    "HTGV": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "George Vineyard Memorial (Kipili)" },
+    "HTGW": { "lat": -8.9216503, "lon": 33.27373863940497, "name": "Songwe" },
+    "HTGZ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Magazini" },
+    "HTHB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Muhuba" },
+    "HTHG": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kilumbi" },
+    "HTHI": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mlay/Mlahi" },
+    "HTHM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mwambesi" },
+    "HTHR": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Heri Hospital" },
+    "HTHS": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Muhesi" },
+    "HTHY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Hydom" },
+    "HTIA": { "lat": -8.064876, "lon": 36.698112, "name": "Ifakara" },
+    "HTIF": { "lat": -8.070735, "lon": 35.432556, "name": "Ifunda Farm" },
+    "HTIH": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Tarime (Sasi)" },
+    "HTII": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lesirwai" },
+    "HTIK": { "lat": -6.908626, "lon": 31.166407, "name": "Iku-Lake Chada" },
+    "HTIL": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lila" },
+    "HTIR": { "lat": -7.668630123, "lon": 35.7521019, "name": "Iringa" },
+    "HTIW": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Liwale" },
+    "HTIY": { "lat": -6.719232, "lon": 32.062657, "name": "Inyonga" },
+    "HTJN": { "lat": -5.512166, "lon": 38.965097, "name": "Kwajoni" },
+    "HTJO": { "lat": -7.894934, "lon": 34.580821, "name": "Jongomero" },
+    "HTJR": { "lat": -5.719283, "lon": 38.828465, "name": "Mkwaja Ranch" },
+    "HTKA": { "lat": -4.88641355, "lon": 29.66999721980784, "name": "Kigoma" },
+    "HTKB": { "lat": -3.52604515, "lon": 30.650418965020407, "name": "Kibondo" },
+    "HTKC": { "lat": -1.7733408, "lon": 35.2738344, "name": "Kleins Camp" },
+    "HTKD": { "lat": -4.893710136, "lon": 35.7682991, "name": "Kondoa" },
+    "HTKE": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ketumbeine" },
+    "HTKF": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kibebe Farm" },
+    "HTKG": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Namkongo" },
+    "HTKH": { "lat": -3.847, "lon": 32.6865, "name": "Kahama" },
+    "HTKI": { "lat": -8.91123, "lon": 39.508619, "name": "Kilwa Masoko" },
+    "HTKJ": { "lat": -3.4280794, "lon": 37.0762888915749, "name": "Kilimanjaro" },
+    "HTKL": { "lat": -4.3167, "lon": 34.3333, "name": "Kirondatal" },
+    "HTKM": { "lat": -7.687751, "lon": 36.986496, "name": "Kilombero" },
+    "HTKN": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kasense" },
+    "HTKO": { "lat": -6.16346955, "lon": 36.42142026314065, "name": "Kongwa" },
+    "HTKP": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kingupira" },
+    "HTKR": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Karagwe" },
+    "HTKS": { "lat": -6.864605, "lon": 37.00845, "name": "Kilosa" },
+    "HTKT": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kilimatinde" },
+    "HTKU": { "lat": -4.549167, "lon": 30.102222, "name": "Kasulu" },
+    "HTKX": { "lat": -8.0977, "lon": 35.0000, "name": "Kitemela" },
+    "HTLA": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lukula" },
+    "HTLB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Malambo" },
+    "HTLD": { "lat": -2.0695228, "lon": 35.539985466726904, "name": "Loliondo" },
+    "HTLE": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ilembula" },
+    "HTLI": { "lat": -9.85111, "lon": 39.757801, "name": "Lindi" },
+    "HTLJ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lualanje" },
+    "HTLK": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Luika" },
+    "HTLL": { "lat": -11.1000, "lon": 34.6500, "name": "Liuli" },
+    "HTLM": { "lat": -3.3754297500000003, "lon": 35.81841518400475, "name": "Lake Manyara" },
+    "HTLN": { "lat": -7.599608, "lon": 32.3072, "name": "Lukwati" },
+    "HTLO": { "lat": -2.009865, "lon": 35.159105, "name": "Lobo Wild Life Lodge" },
+    "HTLP": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lupa" },
+    "HTLR": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lukuliro" },
+    "HTLS": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lesingita" },
+    "HTLT": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Lunda Wma" },
+    "HTLU": { "lat": -7.4833, "lon": 35.7667, "name": "Lunda" },
+    "HTLV": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Liveria" },
+    "HTLW": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Luwegu" },
+    "HTLY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Luwele" },
+    "HTMA": { "lat": -7.91735835, "lon": 39.66804537412173, "name": "Mafia" },
+    "HTMD": { "lat": -1.774223, "lon": 34.098139, "name": "Buhemba Gold Mining" },
+    "HTME": { "lat": -7.528887, "lon": 37.76201, "name": "Matambwe" },
+    "HTMF": { "lat": -8.733807, "lon": 35.3033183, "name": "Mufindi" },
+    "HTMG": { "lat": -6.7972567, "lon": 37.65293413099329, "name": "Morogoro" },
+    "HTMH": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Makau" },
+    "HTMI": { "lat": -10.738714, "lon": 38.77182244631695, "name": "Masasi" },
+    "HTMJ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Maji Moto" },
+    "HTMK": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mikumi" },
+    "HTML": { "lat": -6.0117669, "lon": 29.7654228, "name": "Mahale" },
+    "HTMM": { "lat": -2.657814, "lon": 34.394518, "name": "Mamarehe" },
+    "HTMN": { "lat": -10.763142, "lon": 36.953222, "name": "Matemanga" },
+    "HTMO": { "lat": -4.8991455, "lon": 38.2402893, "name": "Mombo" },
+    "HTMP": { "lat": -6.35497145, "lon": 31.08408249793776, "name": "Mpanda" },
+    "HTMR": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Msembe Ruaha" },
+    "HTMS": { "lat": -3.3667, "lon": 37.3167, "name": "Moshi" },
+    "HTMT": { "lat": -10.33753, "lon": 40.18218, "name": "Mtwara" },
+    "HTMU": { "lat": -1.5035000, "lon": 33.8021667, "name": "Musoma" },
+    "HTMV": { "lat": -6.3741, "lon": 35.8987, "name": "Mvumi" },
+    "HTMW": { "lat": -2.44583425, "lon": 32.93340863939895, "name": "Mwanza" },
+    "HTMX": { "lat": -6.3500, "lon": 36.4833, "name": "Mpwapwa" },
+    "HTMY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mbuyu" },
+    "HTNA": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Nachingwea" },
+    "HTNB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Naberera" },
+    "HTND": { "lat": -3.027934, "lon": 34.9914545, "name": "Ndutu" },
+    "HTNF": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Nkonje" },
+    "HTNG": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ngerengere" },
+    "HTNH": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ndolo" },
+    "HTNJ": { "lat": -9.350000381, "lon": 34.79999924, "name": "Njombe" },
+    "HTNK": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Nkinga" },
+    "HTNM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "North Mara" },
+    "HTNN": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ngorongoro" },
+    "HTNO": { "lat": -3.11141, "lon": 34.660824, "name": "Mbono" },
+    "HTNR": { "lat": -2.5416624, "lon": 30.7040798, "name": "Ngara" },
+    "HTNW": { "lat": -8.522635, "lon": 35.179545, "name": "Ngwazi" },
+    "HTNY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kinyanguru" },
+    "HTNZ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Nzega" },
+    "HTOM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Olemilei" },
+    "HTON": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mishamo" },
+    "HTOP": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Olepakashi/Engaresero" },
+    "HTOZ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kigosa 1/Kigozi" },
+    "HTPD": { "lat": -6.259359, "lon": 33.619996, "name": "Mpunde" },
+    "HTPE": { "lat": -5.25760455, "lon": 39.812129878249095, "name": "Pemba" },
+    "HTPT": { "lat": -7.2053, "lon": 32.9328, "name": "Piti" },
+    "HTPW": { "lat": -6.248936, "lon": 38.678104, "name": "Matipwili" },
+    "HTRA": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mkangire" },
+    "HTRB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Rubondo" },
+    "HTRE": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kilo 3" },
+    "HTRG": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Rungwa" },
+    "HTRL": { "lat": -8.656494, "lon": 34.273113, "name": "Mbarali" },
+    "HTRN": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Barani" },
+    "HTRS": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kibesa" },
+    "HTRU": { "lat": -2.813667, "lon": 32.172472, "name": "Mchauru" },
+    "HTRX": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Tango One" },
+    "HTRZ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kirumira" },
+    "HTSA": { "lat": -6.817874, "lon": 34.218918, "name": "Makwasa" },
+    "HTSB": { "lat": -1.233641, "lon": 31.327325, "name": "Kagera Sugar" },
+    "HTSD": { "lat": -4.8104587, "lon": 34.7274309, "name": "Singida" },
+    "HTSE": { "lat": -4.0833, "lon": 37.7000, "name": "Same" },
+    "HTSG": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Stiglers Gorge" },
+    "HTSH": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mafinga" },
+    "HTSI": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kihansi" },
+    "HTSJ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Simanjiro" },
+    "HTSK": { "lat": -6.6333, "lon": 31.1333, "name": "Sitalike" },
+    "HTSL": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Msolwa" },
+    "HTSM": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Masimba" },
+    "HTSN": { "lat": -2.4576367, "lon": 34.8207415, "name": "Seronera" },
+    "HTSO": { "lat": -10.6812175, "lon": 35.58191536198474, "name": "Songea" },
+    "HTSS": { "lat": -8.528, "lon": 39.507, "name": "Songosongo" },
+    "HTST": { "lat": -3.0086, "lon": 34.7647, "name": "Serengeti South" },
+    "HTSU": { "lat": -7.9484409, "lon": 31.61107548285324, "name": "Sumbawanga" },
+    "HTSW": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kiswa" },
+    "HTSY": { "lat": -3.608297, "lon": 33.503481, "name": "Shinyanga – Ibadakuli" },
+    "HTTA": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mngeta" },
+    "HTTB": { "lat": -5.0775058, "lon": 32.83423957241028, "name": "Tabora" },
+    "HTTC": { "lat": -3.501372, "lon": 37.324097, "name": "TPC" },
+    "HTTE": { "lat": -7.7501513, "lon": 38.2087011, "name": "Mtemere" },
+    "HTTF": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mwadui" },
+    "HTTG": { "lat": -5.0921010, "lon": 39.0715982, "name": "Tanga" },
+    "HTTI": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mtibwa" },
+    "HTTJ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Handajega" },
+    "HTTL": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Tulawaka" },
+    "HTTN": { "lat": -7.719942, "lon": 34.226726, "name": "Magangwe" },
+    "HTTO": { "lat": -1.5685111, "lon": 34.8871265, "name": "Kogatende" },
+    "HTTR": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Tarangire" },
+    "HTTS": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Milembwe" },
+    "HTTU": { "lat": -1.1833, "lon": 37.3667, "name": "Tunduru" },
+    "HTTV": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Msima" },
+    "HTTX": { "lat": -1.2931, "lon": 34.4212, "name": "Tarime" },
+    "HTTY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Manyara South" },
+    "HTTZ": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Tura" },
+    "HTUC": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Turiani" },
+    "HTUF": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ugalla" },
+    "HTUG": { "lat": -8.916494, "lon": 36.126593, "name": "Lugala" },
+    "HTUK": { "lat": -2.1068287, "lon": 33.1117120, "name": "Ukerewe – Nansio" },
+    "HTUN": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Murungu" },
+    "HTUO": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Merugoi" },
+    "HTUP": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mtemaupinde" },
+    "HTUR": { "lat": -5.0667, "lon": 32.0500, "name": "Urambo" },
+    "HTUS": { "lat": -2.272545, "lon": 35.8086306, "name": "Masusu" },
+    "HTUT": { "lat": -7.999353, "lon": 38.760044, "name": "Utete" },
+    "HTUU": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kalulu" },
+    "HTUV": { "lat": -5.0920, "lon": 30.4119, "name": "Uvinza" },
+    "HTUW": { "lat": -5.7532, "lon": 39.3160, "name": "Nungwi" },
+    "HTUZ": { "lat": -4.007918, "lon": 36.076105, "name": "Kuro" },
+    "HTVR": { "lat": "to_be_defined", "lon": "to_be_defined" },
+    "HTWA": { "lat": -2.45806, "lon": 34.822498, "name": "Sasakwa" },
+    "HTWB": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mwiba" },
+    "HTWH": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Wazo Hill" },
+    "HTWI": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Mchukwi" },
+    "HTWK": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "West Kilimanjaro" },
+    "HTWS": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kwamsisi" },
+    "HTYA": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kibaya" },
+    "HTYE": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Nyamonge" },
+    "HTYO": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Moyowosi" },
+    "HTYW": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Likuyu" },
+    "HTYY": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Yeye 2" },
+    "HTZA": { "lat": -6.23096, "lon": 39.25054, "name": "Zanzibar" },
+    "HTZI": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Kisima (Mkomazi)" },
+    "HTZW": { "lat": "to_be_defined", "lon": "to_be_defined", "name": "Ziwandu" },
+    "IAFEX": { "lat": -2.455553, "lon": 34.487472 },
+    "IBGEN": { "lat": -2.489522, "lon": 32.721939 },
+    "IBGIM": { "lat": -3.352489, "lon": 36.308678 },
+    "IBGUS": { "lat": -6.060122, "lon": 39.111953 },
+    "IBKOB": { "lat": -3.189469, "lon": 36.096511 },
+    "IBLAP": { "lat": -2.833253, "lon": 31.638447 },
+    "IBLIL": { "lat": -2.265792, "lon": 32.798964 },
+    "IBLUV": { "lat": -6.041464, "lon": 39.305139 },
+    "IBMAR": { "lat": -2.735919, "lon": 32.749572 },
+    "IBMIP": { "lat": -3.522489, "lon": 37.247528 },
+    "IBROP": { "lat": -9.323317, "lon": 33.354311 },
+    "IBVIB": { "lat": -2.458158, "lon": 34.822433 },
+    "IMDOM": { "lat": -5.456703, "lon": 34.708903 },
+    "IMDUN": { "lat": -3.321697, "lon": 37.238894 },
+    "IMGEX": { "lat": -1.818258, "lon": 34.247844 },
+    "IMGID": { "lat": -3.229372, "lon": 35.618572 },
+    "IMKIX": { "lat": -4.501878, "lon": 36.842533 },
+    "IMKUR": { "lat": -6.177372, "lon": 36.039525 },
+    "IMLAK": { "lat": -2.568075, "lon": 35.950478 },
+    "IMPIL": { "lat": -3.518181, "lon": 35.892122 },
+    "IMRAX": { "lat": -3.191672, "lon": 34.039031 },
+    "IMRER": { "lat": -2.619444, "lon": 33.059017 },
+    "IMROD": { "lat": -6.65215, "lon": 40.900878 },
+    "IMRUB": { "lat": -3.41775, "lon": 37.343114 },
+    "IMSAT": { "lat": -6.171922, "lon": 37.679969 },
+    "IMTOM": { "lat": -6.028406, "lon": 39.2055 },
+    "IMVIV": { "lat": -6.111722, "lon": 39.213833 },
+    "ITBEX": { "lat": -9.272211, "lon": 33.479592 },
+    "ITBOS": { "lat": -1.72565, "lon": 32.636508 },
+    "ITGOP": { "lat": -6.171364, "lon": 38.488878 },
+    "ITLAN": { "lat": -7.543744, "lon": 37.650803 },
+    "ITMEN": { "lat": -3.553083, "lon": 35.930481 },
+    "ITNOV": { "lat": -5.372522, "lon": 35.844692 },
+    "ITOBO": { "lat": -5.044528, "lon": 33.009019 },
+    "ITROM": { "lat": -2.398831, "lon": 32.711853 },
+    "ITSEV": { "lat": -5.052272, "lon": 36.3022 },
+    "ITSIR": { "lat": -6.535494, "lon": 41.917556 },
+    "ITSOK": { "lat": -4.48235, "lon": 35.955758 },
+    "IXAGO": { "lat": -6.275822, "lon": 35.953472 },
+    "IXAPA": { "lat": -1.569319, "lon": 34.244014 },
+    "IXAXU": { "lat": -4.0078, "lon": 36.0787 },
+    "IXEBA": { "lat": -3.572247, "lon": 36.872019 },
+    "KASAMA NDB": { "lat": -10.204356, "lon": 31.134814 },
+    "KASIM": { "lat": -8.22035, "lon": 38.17915 },
+    "KB": { "lat": -3.5755, "lon": 36.6967 },
+    "KG": { "lat": -4.888353, "lon": 29.669131, "name": "Kigoma NDB" },
+    "KINAN": { "lat": -10.742892, "lon": 42.435647 },
     "KIRAWIRA A": { "lat": -2.1667, "lon": 34.1333 },
-
     "KIRAWIRA B (GRUMETI)": { "lat": -2.1653, "lon": 34.2250 },
-
-    "HTTO": {"lat": -1.5685111, "lon": 34.8871265},
-
-    "HTUZ": { "lat": -4.0000, "lon": 36.0833 },
-
-
-
-    "HTLO": { "lat": -2.0106, "lon": 35.1608 },
-
-    "HTLU": { "lat": -7.4833, "lon": 35.7667 },
-
-
-
-    "HTTN": { "lat": -7.7167, "lon": 34.2333 },
-
+    "KISAK": { "lat": -7.81375, "lon": 44.001053 },
+    "KISIR": { "lat": -8.174794, "lon": 40.266978 },
+    "KIVUR": { "lat": -2.619167, "lon": 29.267322 },
+    "KL": { "lat": -3.4343, "lon": 36.9232 },
+    "KNM": { "lat": -1.968564, "lon": 30.147558, "name": "Kigali DVOR" },
+    "KO": { "lat": -3.4319, "lon": 36.9899 },
+    "KOBEL": { "lat": -9.417458, "lon": 41.310894 },
+    "KOGUT": { "lat": -6.535494, "lon": 41.917556 },
+    "KV": { "lat": -3.4280523, "lon": 37.1064496, "name": "Kilimanjaro DVOR" },
+    "LABAT": { "lat": -1.002656, "lon": 33.45875 },
+    "LOSIN": { "lat": -3.133303, "lon": 36.12215 },
+    "LUGAP": { "lat": -5.693631, "lon": 38.019975 },
+    "LUSOB": { "lat": -1.638694, "lon": 33.536622 },
+    "MAGAD": { "lat": -2.181247, "lon": 36.151197 },
+    "MB": { "lat": -8.922767, "lon": 33.458172, "name": "Mbeya NDB" },
+    "MIWAS": { "lat": -4.925678, "lon": 36.043956 },
     "MORU": { "lat": -2.7500, "lon": 34.7667 },
-
-
-
     "MPULULU": { "lat": -7.0500, "lon": 34.7333 },
-
-    "HTRB": { "lat": -2.2833, "lon": 31.8333 },
-
-    "HTST": { "lat": -3.0086, "lon": 34.7647 },
-
-
-
-    "HTSK": { "lat": -6.6333, "lon": 31.1333 },
-
+    "MT": { "lat": -10.332392, "lon": 40.184531, "name": "Mtwara NDB" },
+    "MUMTU": { "lat": -5.199508, "lon": 38.173036 },
+    "MV": { "lat": -2.4429118, "lon": 32.9339470, "name": "Mwanza VOR" },
+    "NAGON": { "lat": -8.497822, "lon": 39.652242 },
+    "NESAL": { "lat": -1.002656, "lon": 33.851261 },
+    "NESOX": { "lat": -5.503067, "lon": 35.038561 },
+    "NEVAB": { "lat": -6.018364, "lon": 39.305353 },
+    "NEXAD": { "lat": -4.165883, "lon": 31.917728 },
+    "NIBOT": { "lat": -2.014233, "lon": 34.437386 },
+    "NIDED": { "lat": -4.82065, "lon": 40.618925 },
+    "NIDEL": { "lat": -8.974736, "lon": 34.207944 },
+    "NIDEX": { "lat": -4.252372, "lon": 35.61075 },
+    "NIGOX": { "lat": -6.830642, "lon": 39.871175 },
+    "ODGAT": { "lat": -7.947042, "lon": 37.895256 },
+    "OKDAS": { "lat": -5.172819, "lon": 35.190231 },
+    "OKDOX": { "lat": -8.819569, "lon": 33.525092 },
+    "OKLOM": { "lat": -7.670408, "lon": 33.302919 },
+    "OKMAS": { "lat": -5.661383, "lon": 35.844692 },
+    "OKNES": { "lat": -3.585739, "lon": 37.900842 },
+    "OKNUL": { "lat": -4.248428, "lon": 37.650331 },
+    "OKPAB": { "lat": -3.816019, "lon": 37.961361 },
+    "OKPOL": { "lat": -5.928425, "lon": 39.195467 },
+    "OKRAG": { "lat": -2.573919, "lon": 33.192883 },
+    "OKSIS": { "lat": -1.590661, "lon": 34.027653 },
+    "OKSOT": { "lat": -1.429286, "lon": 33.872372 },
+    "OKTEX": { "lat": -1, "lon": 31.235833 },
+    "OPDET": { "lat": -5.119883, "lon": 29.4227 },
+    "ORLIM": { "lat": -10.742081, "lon": 34.410731 },
+    "OVANA": { "lat": -9.619958, "lon": 33.50015 },
+    "PARIN": { "lat": -1.769225, "lon": 35.367461 },
+    "PENOD": { "lat": -5.615561, "lon": 33.075964 },
+    "ROVUM": { "lat": -11.606169, "lon": 35.558539 },
+    "SELRU": { "lat": -2.49725, "lon": 35.855397 },
+    "SG": { "lat": -10.6803333, "lon": 35.5801667, "name": "Songea NDB" },
+    "SINGI": { "lat": -5.783903, "lon": 34.909622 },
+    "TABNO": { "lat": -10.387089, "lon": 43.639839 },
     "TABORA B": { "lat": -1.8167, "lon": 34.1333 },
-
     "TARANGILE 1": { "lat": -4.7500, "lon": 35.9667 },
-
     "TARANGILE 2": { "lat": -3.7667, "lon": 36.0167 },
-
-"HTGZ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTRE": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTFR": {"lat": -3.838092, "lon": 30.640202},
-
-"HTHI": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTGT": {"lat": -2.476768, "lon": 36.25761},
-
-"HTSG": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTO": {"lat": -1.568396, "lon": 34.886933},
-
-"HTRU": {"lat": -2.813667, "lon": 32.172472},
-
-"HTOZ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTRL": {"lat": -8.656494, "lon": 34.273113},
-
-"HTRN": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIW": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUR": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUV": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTC": { "lat": -3.501372, "lon": 37.324097 },
-
-"HTBB": {"lat": -7.748241, "lon": 38.001833},
-
-"HTBG": { "lat": -7.331183, "lon": 37.114433 },
-
-"HTGO": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTMX": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTJ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTMH": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTMM": {"lat": -2.657814, "lon": 34.394518},
-
-"HTTY": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTDK": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTGS": {"lat": -4.793813, "lon": 30.712949},
-
-"HTMD": {"lat": -1.774223, "lon": 34.098139},
-
-"HTBJ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIR": {"lat": -7.668630123, "lon": 35.7521019},
-
-"HTMN": {"lat": -10.763142, "lon": 36.953222},
-
-"HTNM": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUZ": {"lat": -4.007918, "lon": 36.076105},
-
-"HTGA": {"lat": -8.978724, "lon": 36.869154},
-
-"HTJO": {"lat": -7.894934, "lon": 34.580821},
-
-"HTEJ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTX": {"lat": -1.2931, "lon": 34.4212},
-
-"HTTZ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTPD": {"lat": -6.259359, "lon": 33.619996},
-
-"HTSL": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLB": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTYW": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTDG": {"lat": -3.4394216, "lon": 36.8616974},
-
-"HTSW": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTRX": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTF": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLK": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTJN": {"lat": -5.512166, "lon": 38.965097},
-
-"HTBO": {"lat": -7.666746, "lon": 37.927229},
-
-"HTFI": {"lat": -2.080103, "lon": 34.62952},
-
-"HTPW": {"lat": -6.248936, "lon": 38.678104},
-
-"HTUO": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTCV": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIA": {"lat": -8.064876, "lon": 36.698112},
-
-"HTNZ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTBS": {"lat": -11.331675, "lon": 37.067816},
-
-"HTKU": {"lat": -4.549167, "lon": 30.102222},
-
-"HTNG": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTS": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKD": {"lat": -4.893710136, "lon": 35.7682991},
-
-"HTTV": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTNO": {"lat": -3.11141, "lon": 34.660824},
-
-"HTSK": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTYE": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTSA": {"lat": -6.817874, "lon": 34.218918},
-
-"HTSB": {"lat": -1.233641, "lon": 31.327325},
-
-"HTGU": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTRS": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTGP": {"lat": -4.080354, "lon": 33.160212},
-
-"HTKG": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIL": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTMY": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUF": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIY": {"lat": -6.719232, "lon": 32.062657},
-
-"HTNW": {"lat": -8.522635, "lon": 35.179545},
-
-"HTOM": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIK": {"lat": -6.908626, "lon": 31.166407},
-
-"HTKR": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLE": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTII": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKI": {"lat": -8.91123, "lon": 39.508619},
-
-"HTTR": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTMV": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTST": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"НТКВ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTYY": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTZI": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUC": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTNN": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKM": {"lat": -7.687751, "lon": 36.986496},
-
-"HTLV": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTL": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTBX": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKL": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTNJ": {"lat": -9.350000381, "lon": 34.79999924},
-
-"HTRG": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTME": {"lat": -7.528887, "lon": 37.76201},
-
-"HTYO": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUG": {"lat": -8.916494, "lon": 36.126593},
-
-"HTVR": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKF": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLN": {"lat": -7.599608, "lon": 32.3072},
-
-"HTDU": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTFE": {"lat": -4.805057, "lon": 31.276613},
-
-"HTEQ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLL": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTWS": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTGV": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTI": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLI": {"lat": -9.85111, "lon": 39.757801},
-
-"HTTN": {"lat": -7.719942, "lon": 34.226726},
-
-"HTUK": {"lat": -2.1068287, "lon": 33.1117120},
-
-"HTLJ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUP": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTYA": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTON": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKP": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTBV": {"lat": -3.961546, "lon": 35.144932},
-
-"HTIH": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTUS": {"lat": -2.272545, "lon": 35.8086306},
-
-"HTCF": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTDN": { "lat": -6.0309216, "lon": 38.7701179
-
-},
-
-"HTLO": {"lat": -2.009865, "lon": 35.159105},
-
-"HTLP": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLU": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTJR": {"lat": -5.719283, "lon": 38.828465},
-
-"HTTU": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTEB": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTWH": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKE": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKT": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTRZ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTLS": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTNB": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTDY": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTSE": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTBF": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTGM": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTSJ": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTTE": { "lat": -7.7501513, "lon": 38.2087011},
-
-"HTZW": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTBM": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTHB": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTIF": {"lat": -8.070735, "lon": 35.432556},
-
-"HTHG": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKS": {"lat": -6.864605, "lon": 37.00845},
-
-"HTSI": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTKX": {
-
-    "lat": -8.0977,
-
-    "lon": 35.0000
-
-},
-
-"HTBE": {
-
-    "lat": "to_be_defined",
-
-    "lon": "to_be_defined"
-
-},
-
-"HTMS": {
-
-    "lat": -3.3667,
-
-    "lon": 37.3167
-
-},
-
-"KO": {
-
-    "lat": -3.4319,
-
-    "lon": 36.9899
-
-},
-
-"KL": {
-
-    "lat": -3.4343,
-
-    "lon": 36.9232
-
-},
-
-"KB": {
-
-    "lat": -3.5755,
-
-    "lon": 36.6967
-
-},
-
-"HTAR": {
-
-    "lat": -3.3537,
-
-    "lon": 36.6246
-
-},
-
-    
-
-"ZV": {
-
-    "lat": -6.25090,
-
-    "lon": 39.25194
-
-},
-
-
-
-    
-
-"HTDA": { "lat": -6.8780873, "lon": 39.2026718
-
-},
-
-
-
-    
-
-"HTZA": {
-
-    "lat": -6.23096,
-
-    "lon": 39.25054
-
-},
-
-
-
-    
-
-"IMSAT": {
-
-    "lat": -6.1333,
-
-    "lon": 37.6667
-
-},
-
-
-
-    "NIDED": {
-
-        "lat": -4.82065,
-
-        "lon": 40.618925
-
-    },
-
-    "AKUMU": {
-
-        "lat": -1.008136,
-
-        "lon": 34.02655
-
-    },
-
-    "ALSAR": {
-
-        "lat": -1.451228,
-
-        "lon": 30.744514
-
-    },
-
-    "AMSAD": {
-
-        "lat": -6.221833,
-
-        "lon": 43.993508
-
-    },
-
-    "ANTIM": {
-
-        "lat": -4.601578,
-
-        "lon": 36.129778
-
-    },
-
-    "ANVOX": {
-
-        "lat": -2.734381,
-
-        "lon": 36.161825
-
-    },
-
-    "ANVUN": {
-
-        "lat": -6.444689,
-
-        "lon": 39.740992
-
-    },
-
-    "APDIK": {
-
-        "lat": -2.470275,
-
-        "lon": 36.675486
-
-    },
-
-    "APDOT": {
-
-        "lat": -1.537053,
-
-        "lon": 34.567111
-
-    },
-
-    "APGEN": {
-
-        "lat": -8.189483,
-
-        "lon": 40.83945
-
-    },
-
-    "APKOL": {
-
-        "lat": -9.487747,
-
-        "lon": 33.312089
-
-    },
-
-    "APLOG": {
-
-        "lat": -1.501764,
-
-        "lon": 34.921056
-
-    },
-
-    "APMIT": {
-
-        "lat": -3.277064,
-
-        "lon": 36.467639
-
-    },
-
-    "APNAD": {
-
-        "lat": -1.0,
-
-        "lon": 32.55595
-
-    },
-
-    "APNOL": {
-
-        "lat": -4.324008,
-
-        "lon": 34.891336
-
-    },
-
-    "ATUNU": {
-
-        "lat": -5.396756,
-
-        "lon": 35.920589
-
-    },
-
-    "ATUPA": {
-
-        "lat": -2.651497,
-
-        "lon": 32.307514
-
-    },
-
-    "ATUPA": {
-
-        "lat": -2.651486,
-
-        "lon": 32.307514
-
-    },
-
-    "AVATU": {
-
-        "lat": -3.034422,
-
-        "lon": 35.426578
-
-    },
-
-    "AVEKI": {
-
-        "lat": -6.257547,
-
-        "lon": 39.622425
-
-    },
-
-    "AVETA": {
-
-        "lat": -3.680478,
-
-        "lon": 36.054372
-
-    },
-
-    "AVIGO": {
-
-        "lat": -5.57015,
-
-        "lon": 40.912642
-
-    },
-
-    "AVIRI": {
-
-        "lat": -6.678525,
-
-        "lon": 32.086919
-
-    },
-
-    "AVITA": {
-
-        "lat": -6.0311,
-
-        "lon": 37.754969
-
-    },
-
-    "AVUNO": {
-
-        "lat": -3.532981,
-
-        "lon": 37.750858
-
-    },
-
-    "AXOSI": {
-
-        "lat": -5.960556,
-
-        "lon": 37.800833
-
-    },
-
-    "BILAK": {
-
-        "lat": -9.132164,
-
-        "lon": 32.388603
-
-    },
-
-    "BONAP": {
-
-        "lat": -11.635278,
-
-        "lon": 37.657519
-
-    },
-
-    "BOSAD": {
-
-        "lat": -1.9073,
-
-        "lon": 30.82035
-
-    },
-
-    "BOTEN": {
-
-        "lat": -8.479722,
-
-        "lon": 38.681944
-
-    },
-
-    "BUJUMBURA CVOR": {
-
-        "lat": -3.346339,
-
-        "lon": 29.322025
-
-    },
-
-    "BUJUMBURA CVOR": {
-
-        "lat": -3.346339,
-
-        "lon": 29.322025
-
-    },
-
-    "DV": {
-
-        "lat": -6.888006,
-
-        "lon": 39.192714
-
-    },
-
-    "DARAS": {
-
-        "lat": -7.933147,
-
-        "lon": 40.503928
-
-    },
-
-    "DASTA": {
-
-        "lat": -8.717797,
-
-        "lon": 41.492842
-
-    },
-
-    "DATAN": {
-
-        "lat": -2.098672,
-
-        "lon": 30.896186
-
-    },
-
-    "DO": {
-
-        "lat": -6.168986,
-
-        "lon": 35.746506
-
-    },
-
-    "DUDGA": {
-
-        "lat": -1.0025,
-
-        "lon": 32.388358
-
-    },
-
-    "DUMPA": {
-
-        "lat": -4.172647,
-
-        "lon": 35.484042
-
-    },
-
-    "DUNDO": {
-
-        "lat": -4.867325,
-
-        "lon": 38.798558
-
-    },
-
-    "DUSKA": {
-
-        "lat": -10.63,
-
-        "lon": 40.2167
-
-    },
-
-    "EGLOX": {
-
-        "lat": -1.856469,
-
-        "lon": 34.995456
-
-    },
-
-    "EGMIL": {
-
-        "lat": -3.9803,
-
-        "lon": 35.732578
-
-    },
-
-    "EGNUM": {
-
-        "lat": -5.794444,
-
-        "lon": 37.926944
-
-    },
-
-    "EGPET": {
-
-        "lat": -5.877325,
-
-        "lon": 39.394508
-
-    },
-
-    "EGSEM": {
-
-        "lat": -6.445142,
-
-        "lon": 42.457319
-
-    },
-
-    "EGSIX": {
-
-        "lat": -4.526061,
-
-        "lon": 35.276153
-
-    },
-
-    "EGTAN": {
-
-        "lat": -11.16815,
-
-        "lon": 39.247806
-
-    },
-
-    "ELAVA": {
-
-        "lat": -5.118969,
-
-        "lon": 40.384269
-
-    },
-
-    "EPMAB": {
-
-        "lat": -8.5906,
-
-        "lon": 35.141364
-
-    },
-
-    "EPMIN": {
-
-        "lat": -4.762697,
-
-        "lon": 33.855258
-
-    },
-
-    "EPTAN": {
-
-        "lat": -2.798619,
-
-        "lon": 36.260147
-
-    },
-
-    "EPTEL": {
-
-        "lat": -4.041744,
-
-        "lon": 38.293333
-
-    },
-
-    "EPTIK": {
-
-        "lat": -4.611203,
-
-        "lon": 35.446903
-
-    },
-
-    "ERBOK": {
-
-        "lat": -3.210756,
-
-        "lon": 29.864539
-
-    },
-
-    "ERDEN": {
-
-        "lat": -8.5555,
-
-        "lon": 39.214006
-
-    },
-
-    "ESPUX": {
-
-        "lat": -3.781133,
-
-        "lon": 32.865953
-
-    },
-
-    "ESRES": {
-
-        "lat": -8.21435,
-
-        "lon": 30.679125
-
-    },
-
-    "ESVIM": {
-
-        "lat": -3.499031,
-
-        "lon": 29.797803
-
-    },
-
-    "ETIVO": {
-
-        "lat": -5.857753,
-
-        "lon": 37.8739
-
-    },
-
-    "ETLEK": {
-
-        "lat": -4.268417,
-
-        "lon": 32.222625
-
-    },
-
-    "ETMIS": {
-
-        "lat": -7.826758,
-
-        "lon": 40.603047
-
-    },
-
-    "ETMIX": {
-
-        "lat": -2.378864,
-
-        "lon": 30.057117
-
-    },
-
-    "ETMOV": {
-
-        "lat": -3.19375,
-
-        "lon": 36.114664
-
-    },
-
-    "ETMOV": {
-
-        "lat": -3.195881,
-
-        "lon": 36.1144
-
-    },
-
-    "ETUXI": {
-
-        "lat": -5.088133,
-
-        "lon": 34.921969
-
-    },
-
-    "EVASI": {
-
-        "lat": -3.713661,
-
-        "lon": 34.810097
-
-    },
-
-    "EVATO": {
-
-        "lat": -2.33585,
-
-        "lon": 36.450822
-
-    },
-
-    "EXELU": {
-
-        "lat": -2.951019,
-
-        "lon": 36.554219
-
-    },
-
-    "EXELU": {
-
-        "lat": -3.006317,
-
-        "lon": 36.539536
-
-    },
-
-    "GABSO": {
-
-        "lat": -2.852481,
-
-        "lon": 37.567517
-
-    },
-
-    "GAVDA": {
-
-        "lat": -2.7867,
-
-        "lon": 29.6603
-
-    },
-
-    "GEREN": {
-
-        "lat": -5.064797,
-
-        "lon": 38.461097
-
-    },
-
-    "GERUD": {
-
-        "lat": -3.857328,
-
-        "lon": 35.672044
-
-    },
-
-    "GESAT": {
-
-        "lat": -9.441642,
-
-        "lon": 33.062917
-
-    },
-
-    "GETAB": {
-
-        "lat": -2.979967,
-
-        "lon": 30.793747
-
-    },
-
-    "GETUX": {
-
-        "lat": -4.484297,
-
-        "lon": 29.569717
-
-    },
-
-    "HTSY": {
-
-        "lat": -3.608297,
-
-        "lon": 33.503481
-
-    },
-
-    "IBGEN": {
-
-        "lat": -2.489522,
-
-        "lon": 32.721939
-
-    },
-
-    "IBKOB": {
-
-        "lat": -3.189469,
-
-        "lon": 36.096511
-
-    },
-
-    "IBMAR": {
-
-        "lat": -2.735919,
-
-        "lon": 32.749572
-
-    },
-
-    "IBROP": {
-
-        "lat": -9.321389,
-
-        "lon": 33.353611
-
-    },
-
-    "IMDOM": {
-
-        "lat": -5.456703,
-
-        "lon": 34.708903
-
-    },
-
-    "IMGEX": {
-
-        "lat": -1.818258,
-
-        "lon": 34.247844
-
-    },
-
-    "IMKIX": {
-
-        "lat": -4.501878,
-
-        "lon": 36.842533
-
-    },
-
-    "IMLAK": {
-
-        "lat": -2.568075,
-
-        "lon": 35.950478
-
-    },
-
-    "IMPIL": {
-
-        "lat": -3.518181,
-
-        "lon": 35.892122
-
-    },
-
-    "IMRAX": {
-
-        "lat": -3.191672,
-
-        "lon": 34.039031
-
-    },
-
-    "IMROD": {
-
-        "lat": -6.65215,
-
-        "lon": 40.900878
-
-    },
-
-    "ITBEX": {
-
-        "lat": -9.272211,
-
-        "lon": 33.479592
-
-    },
-
-    "ITBOS": {
-
-        "lat": -1.72565,
-
-        "lon": 32.636508
-
-    },
-
-    "ITGOP": {
-
-        "lat": -6.171364,
-
-        "lon": 38.488878
-
-    },
-
-    "ITLAN": {
-
-        "lat": -7.543744,
-
-        "lon": 37.650789
-
-    },
-
-    "ITMEN": {
-
-        "lat": -3.553083,
-
-        "lon": 35.930481
-
-    },
-
-    "ITNOV": {
-
-        "lat": -5.372522,
-
-        "lon": 35.844692
-
-    },
-
-    "ITOBO": {
-
-        "lat": -5.044528,
-
-        "lon": 33.009019
-
-    },
-
-    "ITROM": {
-
-        "lat": -2.399386,
-
-        "lon": 32.711853
-
-    },
-
-    "ITSEV": {
-
-        "lat": -5.052272,
-
-        "lon": 36.3022
-
-    },
-
-    "ITSOK": {
-
-        "lat": -4.48235,
-
-        "lon": 35.955758
-
-    },
-
-    "IXAPA": {
-
-        "lat": -1.569319,
-
-        "lon": 34.244014
-
-    },
-
-    "KASAMA NDB": {
-
-        "lat": -10.204356,
-
-        "lon": 31.134814
-
-    },
-
-    "KASIM": {
-
-        "lat": -8.22035,
-
-        "lon": 38.17915
-
-    },
-
-    "KNM": {
-
-        "lat": -1.968564,
-
-        "lon": 30.147558
-
-    },
-
-    "KG": {
-
-        "lat": -4.888353,
-
-        "lon": 29.669131
-
-    },
-
-    "KV": {
-
-        "lat": -3.4280523,
-
-        "lon": 37.1064496
-
-    },
-
-    "KINAN": {
-
-        "lat": -10.742892,
-
-        "lon": 42.435647
-
-    },
-
-    "KISIR": {
-
-        "lat": -8.174794,
-
-        "lon": 40.266978
-
-    },
-
-    "KIVUR": {
-
-        "lat": -2.619167,
-
-        "lon": 29.267322
-
-    },
-
-    "KOBEL": {
-
-        "lat": -9.417458,
-
-        "lon": 41.310894
-
-    },
-
-    "KOGUT": {
-
-        "lat": -6.535494,
-
-        "lon": 41.917556
-
-    },
-
-    "LOSIN": {
-
-        "lat": -3.133303,
-
-        "lon": 36.12215
-
-    },
-
-    "LUGAP": {
-
-        "lat": -5.693631,
-
-        "lon": 38.019975
-
-    },
-
-    "LUSOB": {
-
-        "lat": -1.638694,
-
-        "lon": 33.536622
-
-    },
-
-    "MAGAD": {
-
-        "lat": -2.181247,
-
-        "lon": 36.151197
-
-    },
-
-    "MB": {
-
-        "lat": -8.922767,
-
-        "lon": 33.458172
-
-    },
-
-    "MIWAS": {
-
-        "lat": -4.925678,
-
-        "lon": 36.043956
-
-    },
-
-    "MT": {
-
-        "lat": -10.332392,
-
-        "lon": 40.184531
-
-    },
-
-    "MUMTU": {
-
-        "lat": -5.199508,
-
-        "lon": 38.173039
-
-    },
-
-    "MV": {
-
-        "lat": -2.4429118,
-
-        "lon": 32.9339470
-
-    },
-
-    "NAGON": {
-
-        "lat": -8.497822,
-
-        "lon": 39.652242
-
-    },
-
-    "NESAL": {
-
-        "lat": -1.002656,
-
-        "lon": 33.851261
-
-    },
-
-    "NESOX": {
-
-        "lat": -5.503067,
-
-        "lon": 35.038561
-
-    },
-
-    "NEXAD": {
-
-        "lat": -4.165883,
-
-        "lon": 31.917731
-
-    },
-
-    "NIBOT": {
-
-        "lat": -2.014233,
-
-        "lon": 34.437386
-
-    },
-
-    "NIDEL": {
-
-        "lat": -8.974736,
-
-        "lon": 34.207944
-
-    },
-
-    "NIDEX": {
-
-        "lat": -4.252372,
-
-        "lon": 35.61075
-
-    },
-
-    "ODGAT": {
-
-        "lat": -7.947042,
-
-        "lon": 37.895256
-
-    },
-
-    "OKDAS": {
-
-        "lat": -5.172819,
-
-        "lon": 35.190231
-
-    },
-
-    "OKLOM": {
-
-        "lat": -7.670408,
-
-        "lon": 33.302919
-
-    },
-
-    "OKMAS": {
-
-        "lat": -5.653733,
-
-        "lon": 35.810006
-
-    },
-
-    "OKNES": {
-
-        "lat": -3.585739,
-
-        "lon": 37.900842
-
-    },
-
-    "OKPAB": {
-
-        "lat": -3.816019,
-
-        "lon": 37.961361
-
-    },
-
-    "OKSIS": {
-
-        "lat": -1.590661,
-
-        "lon": 34.027653
-
-    },
-
-    "OKSOT": {
-
-        "lat": -1.429286,
-
-        "lon": 33.872372
-
-    },
-
-    "OKTEX": {
-
-        "lat": -1.002656,
-
-        "lon": 31.249528
-
-    },
-
-    "OPDET": {
-
-        "lat": -5.119883,
-
-        "lon": 29.4227
-
-    },
-
-    "ORLIM": {
-
-        "lat": -10.742081,
-
-        "lon": 34.410731
-
-    },
-
-    "OVANA": {
-
-        "lat": -9.619958,
-
-        "lon": 33.50015
-
-    },
-
-    "PARIN": {
-
-        "lat": -1.769225,
-
-        "lon": 35.367461
-
-    },
-
-    "PENOD": {
-
-        "lat": -5.615561,
-
-        "lon": 33.075964
-
-    },
-
-    "ROVUM": {
-
-        "lat": -11.606169,
-
-        "lon": 35.558539
-
-    },
-
-    "SELRU": {
-
-        "lat": -2.49725,
-
-        "lon": 35.855397
-
-    },
-
-    "SINGI": {
-
-        "lat": -5.783903,
-
-        "lon": 34.909622
-
-    },
-
-    "TABNO": {
-
-        "lat": -10.387089,
-
-        "lon": 43.639839
-
-    },
-
-    "TB": {
-
-        "lat": -5.064406,
-
-        "lon": 32.832633
-
-    },
-
-    "TEBLU": {
-
-        "lat": -1.328369,
-
-        "lon": 33.774061
-
-    },
-
-    "TIKAN": {
-
-        "lat": -9.080192,
-
-        "lon": 31.965314
-
-    },
-
-    "UDMAM": {
-
-        "lat": -3.702403,
-
-        "lon": 30.41735
-
-    },
-
-    "UDNOT": {
-
-        "lat": -9.085592,
-
-        "lon": 32.103169
-
-    },
-
-    "UMTAP": {
-
-        "lat": -10.560153,
-
-        "lon": 34.636014
-
-    },
-
-    "UNLEN": {
-
-        "lat": -1.292769,
-
-        "lon": 34.239758
-
-    },
-
-    "USUBU": {
-
-        "lat": -4.4815,
-
-        "lon": 32.945739
-
-    },
-
-    "UTATA": {
-
-        "lat": -2.685825,
-
-        "lon": 37.042506
-
-    },
-
-    "UTEMA": {
-
-        "lat": -9.296933,
-
-        "lon": 32.752353
-
-    },
-
-    "UTINA": {
-
-        "lat": -11.168433,
-
-        "lon": 34.489067
-
-    },
-
-    "UTOVU": {
-
-        "lat": -3.975128,
-
-        "lon": 35.201542
-
-    },
-
-    "UVBOX": {
-
-        "lat": -3.951922,
-
-        "lon": 36.298689
-
-    },
-
-    "UVDIX": {
-
-        "lat": -2.078647,
-
-        "lon": 34.251856
-
-    },
-
-    "UVKAT": {
-
-        "lat": -9.312761,
-
-        "lon": 34.959631
-
-    },
-
-    "UVKOD": {
-
-        "lat": -1.737064,
-
-        "lon": 32.347936
-
-    },
-
-    "UVLED": {
-
-        "lat": -2.374308,
-
-        "lon": 32.319064
-
-    },
-
-    "UVMAN": {
-
-        "lat": -5.095933,
-
-        "lon": 32.176428
-
-    },
-
-    "UVMEX": {
-
-        "lat": -6.789958,
-
-        "lon": 39.955894
-
-    },
-
-    "UVMID": {
-
-        "lat": -3.581225,
-
-        "lon": 32.255542
-
-    },
-
-    "UVORA": {
-
-        "lat": -7.432583,
-
-        "lon": 30.002064
-
-    },
-
-    "UVUKO": {
-
-        "lat": -4.702336,
-
-        "lon": 39.500908
-
-    },
-
-    "UVUMI": {
-
-        "lat": -5.66095,
-
-        "lon": 35.846961
-
-    },
-
-    "XAKRI": {
-
-        "lat": -2.190322,
-
-        "lon": 36.172836
-
-    },
-
-    "XINDA": {
-
-        "lat": -1.084928,
-
-        "lon": 33.961439
-
-    },
-
-    "DVOR": {
-
-        "lat": -3.427881,
-
-        "lon": 37.106611
-
-    },
-
-    "EXEMI": {
-
-        "lat": -2.750875,
-
-        "lon": 34.230561
-
-    },
-
-    "LABAT": {
-
-        "lat": -1.002656,
-
-        "lon": 33.45875
-
-    }
-
-,
-
-"HTAI": {
-
-    "lat": -1.5616934,
-
-    "lon": 34.7023730
-
-},
-
-"HTAL": {
-
-    "lat": -31.5756233,
-
-    "lon": -68.6849263
-
-},
-
-"HTAS": {
-
-    "lat": 32.175273,
-
-    "lon": 34.926677
-
-},
-
-"HTBA": {
-
-    "lat": 52.4881849,
-
-    "lon": 6.0544815
-
-},
-
-"HTBH": {
-
-    "lat": -2.6603,
-
-    "lon": 31.3500
-
-},
-
-"HTBN": {
-
-    "lat": 16.936777,
-
-    "lon": 43.771098
-
-},
-
-"HTBT": {
-
-    "lat": 31.8062313,
-
-    "lon": 35.2692277
-
-},
-
-"HTBU": { "lat": -1.3305742, "lon": 31.8194127 },
-
-"HTBY": {
-
-    "lat": 17.933333,
-
-    "lon": 30.966667
-
-},
-
-"HTCH": {
-
-    "lat": -8.559177349999999,
-
-    "lon": 33.43547039554499
-
-},
-
-"HTCM": {
-
-    "lat": 46.9617675,
-
-    "lon": 16.278200731666622
-
-},
-
-"HTDB": {
-
-    "lat": 52.3623427,
-
-    "lon": 4.8695215
-
-},
-
-"HTDO": {
-
-    "lat": -6.1700681500000005,
-
-    "lon": 35.754430618763045
-
-},
-
-"HTEE": {
-
-    "lat": 13.7796933,
-
-    "lon": 98.7124157
-
-},
-
-"HTEN": {
-
-    "lat": 17.0969991,
-
-    "lon": 96.3200175
-
-},
-
-"HTER": {
-
-    "lat": 9.9776535,
-
-    "lon": 98.5494378
-
-},
-
-"HTES": {
-
-    "lat": 49.1355098,
-
-    "lon": -0.47051
-
-},
-
-"HTEY": {
-
-    "lat": 25.36091605,
-
-    "lon": 96.99050045
-
-},
-
-"HTGE": {
-
-    "lat": -2.7431076,
-
-    "lon": 31.71008826429769
-
-},
-
-"HTGL": {
-
-    "lat": 50.4442293,
-
-    "lon": 100.1579353
-
-},
-
-"HTGR": {
-
-    "lat": -2.160722,
-
-    "lon": 34.224778
-
-},
-
-"HTGW": {
-
-    "lat": -8.9216503,
-
-    "lon": 33.27373863940497
-
-},
-
-"HTHM": {
-
-    "lat": 24.4638519,
-
-    "lon": 39.6833937
-
-},
-
-"HTHR": {
-
-    "lat": 25.7289325,
-
-    "lon": 32.60213950516434
-
-},
-
-"HTHS": {
-
-    "lat": 39.9605951,
-
-    "lon": 65.9355931
-
-},
-
-"HTHY": {
-
-    "lat": 13.8255175,
-
-    "lon": 100.718174
-
-},
-
-"HTKA": {
-
-    "lat": -4.88641355,
-
-    "lon": 29.66999721980784
-
-},
-
-"HTKB": {
-
-    "lat": -3.52604515,
-
-    "lon": 30.650418965020407
-
-},
-
-"HTKC": {
-
-    "lat": -1.7733408,
-
-    "lon": 35.2738344
-
-},
-
-"HTKH": {
-
-    "lat": -3.847,
-
-    "lon": 32.6865
-
-},
-
-"HTKJ": {
-
-    "lat": -3.4280794,
-
-    "lon": 37.0762888915749
-
-},
-
-"HTKN": {
-
-    "lat": 30.8522739,
-
-    "lon": 56.7995944
-
-},
-
-"HTKO": {
-
-    "lat": -6.16346955,
-
-    "lon": 36.42142026314065
-
-},
-
-"HTLA": {
-
-    "lat": 32.804671,
-
-    "lon": 35.09867
-
-},
-
-"HTLD": {
-
-    "lat": -2.0695228,
-
-    "lon": 35.539985466726904
-
-},
-
-"HTLM": {
-
-    "lat": -3.3754297500000003,
-
-    "lon": 35.81841518400475
-
-},
-
-"HTLR": {
-
-    "lat": 48.0861212,
-
-    "lon": 16.2573042
-
-},
-
-"HTLT": {
-
-    "lat": 35.3382696,
-
-    "lon": 40.1859941
-
-},
-
-"HTLW": {
-
-    "lat": 35.6752461,
-
-    "lon": 44.0701279
-
-},
-
-"HTLY": {
-
-    "lat": 14.383316,
-
-    "lon": 43.98589
-
-},
-
-"HTMA": {
-
-    "lat": -7.91735835,
-
-    "lon": 39.66804537412173
-
-},
-
-"HTMF": {
-
-    "lat": -8.733807,
-
-    "lon": 35.3033183
-
-},
-
-"HTMG": {
-
-    "lat": -6.7972567,
-
-    "lon": 37.65293413099329
-
-},
-
-"HTMI": {
-
-    "lat": -10.738714,
-
-    "lon": 38.77182244631695
-
-},
-
-"HTMJ": {
-
-    "lat": 43.8015515,
-
-    "lon": 4.6564631
-
-},
-
-"HTMK": {
-
-    "lat": 32.00441764999999,
-
-    "lon": 34.865560983390154
-
-},
-
-"HTML": {
-
-    "lat": -6.0117669,
-
-    "lon": 29.7654228
-
-},
-
-"HTMO": {
-
-    "lat": -4.8991455,
-
-    "lon": 38.2402893
-
-},
-
-"HTMP": {
-
-    "lat": -6.35497145,
-
-    "lon": 31.08408249793776
-
-},
-
-"HTMR": {
-
-    "lat": 31.43500955,
-
-    "lon": 34.534656877741725
-
-},
-
-"HTMT": {
-
-    "lat": -10.33753,
-
-    "lon": 40.18218
-
-},
-
-"HTMU": { "lat": -1.5035000, "lon": 33.8021667 },
-
-"HTMW": {
-
-    "lat": -2.44583425,
-
-    "lon": 32.93340863939895
-
-},
-
-"HTNA": {
-
-    "lat": 32.790254,
-
-    "lon": 35.52886
-
-},
-
-"HTND": {
-
-    "lat": -3.027934,
-
-    "lon": 34.9914545
-
-},
-
-"HTNH": {
-
-    "lat": 32.6960454,
-
-    "lon": 35.3174536
-
-},
-
-"HTNK": {
-
-    "lat": 32.4830222,
-
-    "lon": 34.8936223
-
-},
-
-"HTNR": { "lat": -2.5416624, "lon": 30.7040798 },
-
-"HTNY": {
-
-    "lat": 32.0881595,
-
-    "lon": 34.7752881
-
-},
-
-"HTOP": {
-
-    "lat": 41.7031215,
-
-    "lon": 2.8545373
-
-},
-
-"HTPE": {
-
-    "lat": -5.25760455,
-
-    "lon": 39.812129878249095
-
-},
-
-"HTPT": {
-
-    "lat": -7.2053,
-
-    "lon": 32.9328
-
-},
-
-"HTRA": {
-
-    "lat": 37.286855,
-
-    "lon": 49.574484
-
-},
-
-"HTRB": {
-
-    "lat": 47.5010605,
-
-    "lon": -0.5685783939849622
-
-},
-
-"HTSD": {
-
-    "lat": -4.8104587,
-
-    "lon": 34.7274309
-
-},
-
-"HTSH": {
-
-    "lat": 24.974886400000003,
-
-    "lon": 121.53287021562588
-
-},
-
-"HTSM": {
-
-    "lat": -29.69836105,
-
-    "lon": -53.82190234411016
-
-},
-
-"HTSN": {
-
-    "lat": -2.4576367,
-
-    "lon": 34.8207415
-
-},
-
-"HTSO": {
-
-    "lat": -10.6812175,
-
-    "lon": 35.58191536198474
-
-},
-
-"HTSS": {
-
-    "lat": -8.528,
-
-    "lon": 39.507
-
-},
-
-"HTSU": {
-
-    "lat": -7.9484409,
-
-    "lon": 31.61107548285324
-
-},
-
-"HTTA": {
-
-    "lat": 31.5807426,
-
-    "lon": 74.3176297
-
-},
-
-"HTTB": {
-
-    "lat": -5.0775058,
-
-    "lon": 32.83423957241028
-
-},
-
-"HTTG": { "lat": -5.0921010, "lon": 39.0715982 },
-
-"HTUN": {
-
-    "lat": 25.8668903,
-
-    "lon": 95.0904189
-
-},
-
-"HTUT": {
-
-    "lat": -7.999353,
-
-    "lon": 38.760044
-
-},
-
-"HTUU": {
-
-    "lat": 16.80378,
-
-    "lon": 96.2065582
-
-},
-
-"HTWA": {"lat": -2.45806, "lon": 34.822498},
-
-"HTWB": {
-
-    "lat": 31.81649125,
-
-    "lon": 35.35905120092828
-
-},
-
-"HTWI": {
-
-    "lat": 21.227039,
-
-    "lon": 92.956963
-
-},
-
-"HTWK": {
-
-    "lat": 51.3131269,
-
-    "lon": 12.373565233025795
-
-}};
+    "TB": { "lat": -5.064406, "lon": 32.832633, "name": "Tabora NDB" },
+    "TEBLU": { "lat": -1.328369, "lon": 33.774061 },
+    "TETEG": { "lat": -4.431781, "lon": 37.141981 },
+    "TEVEL": { "lat": -7.350472, "lon": 38.729525 },
+    "TG": { "lat": -5.0888333, "lon": 39.0733333, "name": "Tanga NDB" },
+    "THANDA": { "lat": -7.7036, "lon": 39.6808, "name": "Thanda Island Helipad" },
+    "TIDUR": { "lat": -6.015086, "lon": 39.494308 },
+    "TIKAN": { "lat": -9.080192, "lon": 31.965314 },
+    "TIKIM": { "lat": -2.761092, "lon": 35.467014 },
+    "TIKOX": { "lat": -6.26195, "lon": 31.301678 },
+    "TILIP": { "lat": -6.317311, "lon": 39.921114 },
+    "UBVES": { "lat": -6.200836, "lon": 39.643261 },
+    "UDMAM": { "lat": -3.702403, "lon": 30.41735 },
+    "UDNOT": { "lat": -9.085592, "lon": 32.103169 },
+    "UDNUR": { "lat": -6.038431, "lon": 39.105614 },
+    "UDPAP": { "lat": -8.785736, "lon": 33.074067 },
+    "UMTAP": { "lat": -10.560153, "lon": 34.636014 },
+    "UNBEB": { "lat": -2.123631, "lon": 31.739375 },
+    "UNDIB": { "lat": -2.921989, "lon": 35.750636 },
+    "UNKOG": { "lat": -7.090314, "lon": 39.132447 },
+    "UNLEN": { "lat": -1.292769, "lon": 34.239758 },
+    "UNLIG": { "lat": -7.494789, "lon": 38.940633 },
+    "UNLIK": { "lat": -2.084494, "lon": 31.678506 },
+    "USUBU": { "lat": -4.4815, "lon": 32.945739 },
+    "UTATA": { "lat": -2.685825, "lon": 37.042506 },
+    "UTEGI": { "lat": -2.468919, "lon": 32.719844 },
+    "UTEMA": { "lat": -9.296933, "lon": 32.752353 },
+    "UTINA": { "lat": -11.168433, "lon": 34.489067 },
+    "UTOVU": { "lat": -3.975128, "lon": 35.201542 },
+    "UTRAR": { "lat": -7.274017, "lon": 33.554678 },
+    "UTROX": { "lat": -10.14275, "lon": 40.297111 },
+    "UTVAD": { "lat": -1.506689, "lon": 32.695506 },
+    "UVABI": { "lat": -6.271253, "lon": 38.822753 },
+    "UVBIR": { "lat": -7.249375, "lon": 33.256417 },
+    "UVBOX": { "lat": -3.951922, "lon": 36.298689 },
+    "UVDIL": { "lat": -10.449519, "lon": 35.486894 },
+    "UVDIX": { "lat": -2.078647, "lon": 34.251856 },
+    "UVDOG": { "lat": -6.401172, "lon": 39.343806 },
+    "UVEBU": { "lat": -10.332383, "lon": 40.184681 },
+    "UVGER": { "lat": -3.444106, "lon": 36.733106 },
+    "UVGOL": { "lat": -2.833822, "lon": 31.591969 },
+    "UVKAT": { "lat": -9.312761, "lon": 34.959631 },
+    "UVKEV": { "lat": -2.123936, "lon": 34.844825 },
+    "UVKOD": { "lat": -1.737064, "lon": 32.347936 },
+    "UVLAR": { "lat": -2.354886, "lon": 32.754317 },
+    "UVLED": { "lat": -2.374308, "lon": 32.319064 },
+    "UVMAN": { "lat": -5.095933, "lon": 32.176428 },
+    "UVMEX": { "lat": -6.789958, "lon": 39.955894 },
+    "UVMID": { "lat": -3.581225, "lon": 32.255542 },
+    "UVORA": { "lat": -7.432583, "lon": 30.002064 },
+    "UVUKO": { "lat": -4.702336, "lon": 39.500908 },
+    "UVUMI": { "lat": -5.66095, "lon": 35.846961 },
+    "XABLI": { "lat": -6.266525, "lon": 35.570125 },
+    "XABMA": { "lat": -2.457008, "lon": 32.734567 },
+    "XADEV": { "lat": -8.920039, "lon": 33.625861 },
+    "XADGO": { "lat": -6.995547, "lon": 38.942806 },
+    "XADUT": { "lat": -2.388364, "lon": 33.359258 },
+    "XAGRA": { "lat": -9.020508, "lon": 33.525061 },
+    "XAGTO": { "lat": -2.197336, "lon": 34.612247 },
+    "XAGUR": { "lat": -2.786153, "lon": 34.764275 },
+    "XAKIG": { "lat": -6.655719, "lon": 39.282922 },
+    "XAKOT": { "lat": -2.445922, "lon": 32.710333 },
+    "XAKRI": { "lat": -2.213144, "lon": 36.214003 },
+    "XAKVU": { "lat": -8.919544, "lon": 32.972847 },
+    "XALGA": { "lat": -7.171644, "lon": 38.599906 },
+    "XAMSI": { "lat": -2.439481, "lon": 33.133694 },
+    "XANKA": { "lat": -10.526936, "lon": 40.253514 },
+    "XANKI": { "lat": -7.01925, "lon": 39.061344 },
+    "XANVA": { "lat": -10.593236, "lon": 35.345008 },
+    "XAPGU": { "lat": -2.276375, "lon": 32.822178 },
+    "XARPU": { "lat": -2.747025, "lon": 34.992031 },
+    "XASLU": { "lat": -3.412706, "lon": 35.786147 },
+    "XATKA": { "lat": -2.617753, "lon": 33.032617 },
+    "XATRO": { "lat": -3.680397, "lon": 37.085189 },
+    "XAVRU": { "lat": -1.568333, "lon": 34.886969 },
+    "XINDA": { "lat": -1.084928, "lon": 33.961439 },
+    "XORUK": { "lat": -6.72675, "lon": 39.354003 },
+    "XORUN": { "lat": -7.343742, "lon": 35.824689 },
+    "XOSED": { "lat": -7.463656, "lon": 35.901056 },
+    "XOTAX": { "lat": -8.674969, "lon": 34.932725 },
+    "XOVAM": { "lat": -7.288439, "lon": 33.628236 },
+    "XOXAN": { "lat": -7.0666, "lon": 39.013917 },
+    "XOXID": { "lat": -3.397331, "lon": 34.753264 },
+    "XOXOT": { "lat": -2.557519, "lon": 35.142331 },
+    "XUDID": { "lat": -2.439294, "lon": 33.147614 },
+    "XUGUS": { "lat": -2.453931, "lon": 34.267964 },
+    "XUKER": { "lat": -5.761361, "lon": 39.183803 },
+    "ZV": { "lat": -6.25090, "lon": 39.25194, "name": "Zanzibat VOR" },
+    "НТКВ": { "lat": "to_be_defined", "lon": "to_be_defined" }
+};
 
 
   // Function to calculate Euclidean distance between two waypoints
@@ -6131,11 +3454,30 @@
     return 100;
   }
 
+  function hasUndefinedWaypointCoords() {
+    return routeRows.some(row => (row.waypoints || []).some(wp => {
+      const d = waypointsMaster[wp];
+      if (!d) return true;
+      return d.lat === 'to_be_defined' || d.lon === 'to_be_defined';
+    }));
+  }
+
+  function refreshUndefinedCoordWarning() {
+    const row = document.querySelector('.charge-row[data-charge="anc"]');
+    if (!row) return;
+    row.classList.toggle('anc-blink', !excludedCharges.has('anc') && hasUndefinedWaypointCoords());
+  }
+
   function calculateANC() {
     const mtowValue = mtowField.value.trim();
     const mtow = parseFloat(mtowValue.replace(' Tonnes', ''));
 
     if (isNaN(mtow) || mtow <= 0) {
+      return "NIL";
+    }
+
+    // If any entered waypoint has undefined coordinates, ANC cannot be computed
+    if (hasUndefinedWaypointCoords()) {
       return "NIL";
     }
 
@@ -6229,7 +3571,17 @@
       return "NIL";
     }
     
-    return Math.ceil(mtow * rate);
+    let ldg = Math.ceil(mtow * rate);
+    const mlCheckbox = document.getElementById('multipleLandingCheckbox');
+    const mlCount = document.getElementById('multipleLandingCount');
+    if (mlCheckbox && mlCheckbox.checked) {
+      let n = parseInt(mlCount && mlCount.value, 10);
+      if (isNaN(n)) n = 2;
+      n = Math.floor(n);
+      if (n < 0) n = 0;
+      ldg *= n;
+    }
+    return ldg;
   }
 
   function calculateNLDG() {
@@ -6358,6 +3710,7 @@
 
     document.getElementById('admCharge').textContent = excludedCharges.has('adm') || adm === 0 ? 'NIL' : `${fmt(adm)} USD`;
     document.getElementById('ancCharge').textContent = excludedCharges.has('anc') || anc === "NIL" || anc === 0 ? 'NIL' : `${fmt(anc)} USD`;
+    refreshUndefinedCoordWarning();
     document.getElementById('stlfCharge').textContent = excludedCharges.has('stlf') || stlf === "NIL" || stlf === 0 ? 'NIL' : `${fmt(stlf)} USD`;
     document.getElementById('safCharge').textContent = excludedCharges.has('saf') || saf === "NIL" || saf === 0 ? 'NIL' : `${fmt(saf)} USD`;
     document.getElementById('ldgCharge').textContent = excludedCharges.has('ldg') || ldg === "NIL" || ldg === 0 ? 'NIL' : `${fmt(ldg)} USD`;
@@ -6519,8 +3872,8 @@
       if (firstRemoveBtn) firstRemoveBtn.style.display = 'none';
     }
 
-    // Update distance field
-    updateDistanceField();
+    // Update active row styling and distance
+    setActiveRouteRow(activeRouteRowId);
   }
 
   function updateRouteRowLabels() {
@@ -6536,6 +3889,10 @@
   function setActiveRouteRow(rowId) {
     activeRouteRowId = rowId;
     routeWaypoints = routeRows.find(row => row.id === rowId)?.waypoints || [];
+    document.querySelectorAll('.route-row').forEach(el => {
+      el.classList.toggle('active', el.id === `routeRow${rowId}`);
+    });
+    updateDistanceField();
   }
 
   function getRouteRowElement(rowId) {
@@ -6557,6 +3914,7 @@
 
   // Make route row headers clickable to set active row
   routeRowsContainer.addEventListener('click', (e) => {
+    if (e.target.closest('.remove-route-btn')) return;
     const rowHeader = e.target.closest('.route-row-header');
     if (rowHeader) {
       const rowElement = rowHeader.closest('.route-row');
@@ -6697,6 +4055,7 @@
     if (activeRow) {
       routeWaypoints = activeRow.waypoints || [];
     }
+    refreshUndefinedCoordWarning();
   }
 
   // Coordinate parsing helper functions
@@ -6929,7 +4288,7 @@
     if (filter !== '') {
       filtered = Object.keys(waypointsMaster).filter(wp => {
         const codeMatch = wp.includes(filter);
-        const fullName = waypointNames[wp] || '';
+        const fullName = waypointsMaster[wp].name || '';
         const nameMatch = fullName.toUpperCase().includes(filter);
         return codeMatch || nameMatch;
       }).sort();
@@ -6944,7 +4303,7 @@
     } else {
       filtered.forEach(wp => {
         const li = document.createElement('li');
-        const fullName = waypointNames[wp] || '';
+        const fullName = waypointsMaster[wp].name || '';
         if (fullName) {
           li.innerHTML = `<span class="waypoint-code">${wp}</span><span class="waypoint-name">${fullName}</span>`;
         } else {
@@ -7072,6 +4431,45 @@
   });
   waypointInput.addEventListener('click', (e) => { e.stopPropagation(); showWaypointDropdown(); });
   rateInput.addEventListener('click', (e) => { e.stopPropagation(); showRateDropdown(); });
+
+  // Multiple landing: show/hide the landings count input and recalculate
+  const mlCheckbox = document.getElementById('multipleLandingCheckbox');
+  const mlCount = document.getElementById('multipleLandingCount');
+  if (mlCheckbox && mlCount) {
+    mlCheckbox.addEventListener('change', () => {
+      mlCount.style.display = mlCheckbox.checked ? 'inline-block' : 'none';
+      if (mlCheckbox.checked) {
+        mlCount.focus();
+        const len = mlCount.value.length;
+        mlCount.setSelectionRange(len, len);
+      }
+      recalculateCharges();
+    });
+    // Block decimal separators, signs and exponent keys (whole numbers only)
+    mlCount.addEventListener('keydown', (e) => {
+      if (['.', ',', 'e', 'E', '+', '-'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+    // Keep digits only while editing; allow clearing the field (clamped to >=2 on commit)
+    mlCount.addEventListener('input', () => {
+      let v = mlCount.value;
+      const dot = v.indexOf('.');
+      if (dot !== -1) v = v.substring(0, dot);
+      v = v.replace(/[^0-9]/g, '');
+      if (v !== mlCount.value) mlCount.value = v;
+      recalculateCharges();
+    });
+    // On commit, normalize to a whole number (empty falls back to 2)
+    mlCount.addEventListener('change', () => {
+      let n = parseInt(mlCount.value, 10);
+      if (isNaN(n)) n = 2;
+      n = Math.floor(n);
+      if (n < 0) n = 0;
+      mlCount.value = n.toString();
+      recalculateCharges();
+    });
+  }
   waypointInput.addEventListener('input', () => {
     const value = waypointInput.value.trim().toUpperCase();
     buildWaypointList(waypointInput.value);
@@ -7155,6 +4553,11 @@
     if (multipleLandingCheckbox) {
       multipleLandingCheckbox.checked = false;
     }
+    const multipleLandingCount = document.getElementById('multipleLandingCount');
+    if (multipleLandingCount) {
+      multipleLandingCount.value = '2';
+      multipleLandingCount.style.display = 'none';
+    }
 
     // Reset all route rows to only the first empty row
     routeRows = [{ id: 0, waypoints: [] }];
@@ -7185,6 +4588,7 @@
     }
 
     renderRoute();
+    setActiveRouteRow(0);
     setDefaultDatetimes();
     aircraftInput.dataset.selected = '';
     waypointInput.dataset.selected = '';
@@ -7261,6 +4665,7 @@
 
     document.getElementById('admCharge').textContent = adm === 0 ? "NIL" : `${fmt(adm)} USD`;
     document.getElementById('ancCharge').textContent = anc === "NIL" || anc === 0 ? "NIL" : `${fmt(anc)} USD`;
+    refreshUndefinedCoordWarning();
     document.getElementById('stlfCharge').textContent = stlf === "NIL" || stlf === 0 ? "NIL" : `${fmt(stlf)} USD`;
     document.getElementById('safCharge').textContent = saf === "NIL" || saf === 0 ? "NIL" : `${fmt(saf)} USD`;
     document.getElementById('ldgCharge').textContent = ldg === "NIL" || ldg === 0 ? "NIL" : `${fmt(ldg)} USD`;
@@ -7634,6 +5039,7 @@ ${htmlTable}
   // Initialize clear button visibility
   toggleClearButton();
   renderRoute();
+  setActiveRouteRow(0);
 
 </script>
 
