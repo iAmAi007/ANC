@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!-- saved from url=(0031)https://iamai007.github.io/ANC/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
@@ -1116,11 +1116,11 @@
     }
 
     .multiple-landing-count {
-      width: 40px;
-      height: 40px;
+      width: 28px;
+      height: 28px;
       padding: 0;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
       color: #ffffff;
       caret-color: #ffffff;
@@ -1418,8 +1418,8 @@
     <div class="form-row">
       <div class="route-container">
         <div class="route-header">
-          <span>Route</span>
-          <button class="add-route-btn" id="addRouteBtn" title="Add another route row" aria-label="Add another route row">
+          <span>Journey</span>
+          <button class="add-route-btn" id="addRouteBtn" title="Add another journey row" aria-label="Add another journey row">
             <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M6 2.5v7M2.5 6h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
             </svg>
@@ -1428,14 +1428,14 @@
         <div class="route-rows-container" id="routeRowsContainer">
           <div class="route-row" id="routeRow0">
             <div class="route-row-header">
-              <span class="route-row-label">Route 1</span>
-              <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" aria-label="Remove this route" style="display: none;">
+              <span class="route-row-label">Journey 1</span>
+              <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this journey" aria-label="Remove this journey" style="display: none;">
                 <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
                 </svg>
               </button>
             </div>
-            <div class="route-list" id="routeList0"><div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div></div>
+            <div class="route-list" id="routeList0"><div class="empty-route">No waypoints added yet. Select waypoints for this journey.</div></div>
           </div>
         </div>
       </div>
@@ -3820,15 +3820,15 @@
 
     newRow.innerHTML = `
       <div class="route-row-header">
-        <span class="route-row-label">Route ${newId + 1}</span>
-        <button class="remove-route-btn" id="removeRouteBtn${newId}" title="Remove this route" aria-label="Remove this route">
+        <span class="route-row-label">Journey ${newId + 1}</span>
+        <button class="remove-route-btn" id="removeRouteBtn${newId}" title="Remove this journey" aria-label="Remove this journey">
           <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>
       </div>
       <div class="route-list" id="routeList${newId}">
-        <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
+        <div class="empty-route">No waypoints added yet. Select waypoints for this journey.</div>
       </div>
     `;
 
@@ -3881,7 +3881,7 @@
       const rowElement = document.getElementById(`routeRow${row.id}`);
       if (rowElement) {
         const label = rowElement.querySelector('.route-row-label');
-        if (label) label.textContent = `Route ${index + 1}`;
+        if (label) label.textContent = `Journey ${index + 1}`;
       }
     });
   }
@@ -3958,7 +3958,7 @@
 
       const waypoints = row.waypoints || [];
       if (waypoints.length === 0) {
-        routeListEl.innerHTML = '<div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>';
+        routeListEl.innerHTML = '<div class="empty-route">No waypoints added yet. Select waypoints for this journey.</div>';
         return;
       }
 
@@ -4568,15 +4568,15 @@
     routeRowsContainer.innerHTML = `
       <div class="route-row" id="routeRow0">
         <div class="route-row-header">
-          <span class="route-row-label">Route 1</span>
-          <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this route" aria-label="Remove this route" style="display: none;">
+          <span class="route-row-label">Journey 1</span>
+          <button class="remove-route-btn" id="removeRouteBtn0" title="Remove this journey" aria-label="Remove this journey" style="display: none;">
             <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </button>
         </div>
         <div class="route-list" id="routeList0">
-          <div class="empty-route">No waypoints added yet. Select waypoints to build a route.</div>
+          <div class="empty-route">No waypoints added yet. Select waypoints for this journey.</div>
         </div>
       </div>
     `;
@@ -4799,7 +4799,7 @@ const aircraftCode = aircraft !== '-' ? aircraft.split(' ')[0] : '-';
     <td style="width: 65%;">CALLSIGN: &nbsp;&nbsp; REG: &nbsp;&nbsp; TYP: ${aircraftCode}</td>
   </tr>
   <tr>
-    <td style="width: 35%;"><b>Route:</b></td>
+    <td style="width: 35%;"><b>Journey:</b></td>
     <td style="width: 65%;"></td>
   </tr>
   <tr>
